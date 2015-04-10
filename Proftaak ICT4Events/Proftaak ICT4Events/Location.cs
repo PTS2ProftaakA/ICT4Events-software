@@ -12,16 +12,8 @@ namespace Proftaak_ICT4Events
         private string address;
         private string phoneNumber;
         private string emailaddress;
-        private int maximumParticipants;
 
-        public Location(string locationName, string address, string phoneNumber, string emailaddress, int maximumParticipants)
-        {
-            this.locationName = locationName;
-            this.address = address;
-            this.phoneNumber = phoneNumber;
-            this.emailaddress = emailaddress;
-            this.maximumParticipants = maximumParticipants;
-        }
+        private int maximumParticipants;
 
         public string LocationName
         {
@@ -49,9 +41,18 @@ namespace Proftaak_ICT4Events
             set { maximumParticipants = value; }
         }
 
-        //public override void GetAll()
-        //{
-        //    //Get all locations from database
-        //}
+        public Location(string locationName, string address, string phoneNumber, string emailaddress, int maximumParticipants)
+        {
+            this.locationName = locationName;
+            this.address = address;
+            this.phoneNumber = phoneNumber;
+            this.emailaddress = emailaddress;
+            this.maximumParticipants = maximumParticipants;
+        }
+
+        public List<Location> GetAll()
+        {
+            return null;
+        }
     }
 }

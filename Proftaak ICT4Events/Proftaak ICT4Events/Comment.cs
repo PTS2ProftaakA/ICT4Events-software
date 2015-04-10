@@ -37,14 +37,13 @@ namespace Proftaak_ICT4Events
             this.Comment = Comment;
         }
 
-        public void GetAll(string RFID)
+        public List<Comment> GetAll(string RFID)
         {
-
+            return null;
         }
-
-        public void GetAll(string filePath)
+        public List<Comment> GetAll(string filePath)
         {
-
+            return null;
         }
     }
 }

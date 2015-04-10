@@ -10,20 +10,20 @@ namespace Proftaak_ICT4Events
     {
         private string hobbyName;
 
-        public Hobby(string hobbyName)
-        {
-            this.hobbyName = hobbyName;
-        }
-
         public string HobbyName
         {
             get { return hobbyName; }
             set { hobbyName = value; }
         }
 
-        //public override void GetAll()
-        //{
-        //    //Get all hobbies from database
-        //}
+        public Hobby(string hobbyName)
+        {
+            this.hobbyName = hobbyName;
+        }
+
+        public List<Hobby> GetAll()
+        {
+            return null;
+        }
     }
 }

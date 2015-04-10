@@ -25,16 +25,6 @@ namespace Proftaak_ICT4Events
 
         protected RentalType type;
 
-        public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
-        {
-            this.RFID = RFID;
-            this.rentalID = rentalID;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.isPayed = isPayed;
-            this.type = type;
-        }
-
         public string PropertyRFID
         {
             get { return RFID; }
@@ -66,9 +56,19 @@ namespace Proftaak_ICT4Events
             set { type = value; }
         }
 
-        //public override void getAll()
-        //{
-        //    //Get all reservations from the database
-        //}
+        public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
+        {
+            this.RFID = RFID;
+            this.rentalID = rentalID;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.isPayed = isPayed;
+            this.type = type;
+        }
+
+        public List<Reservation> getAll()
+        {
+            return null;
+        }
     }
 }

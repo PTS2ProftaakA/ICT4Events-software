@@ -20,15 +20,6 @@ namespace Proftaak_ICT4Events
 
         private SpotType spotTypes;
 
-        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
-                          int spotNumber, int amountOfPersons, SpotType spotTypes)
-            :base(RFID, rentalID, startDate, endDate, isPayed, type)
-        {
-            this.spotNumber = spotNumber;
-            this.amountOfPersons = amountOfPersons;
-            this.spotTypes = spotTypes;
-        }
-
         public int SpotNumber
         {
             get { return spotNumber; }
@@ -45,9 +36,18 @@ namespace Proftaak_ICT4Events
             set { spotTypes = value; }
         }
 
-        //public override void getAll()
-        //{
-        //    //Get all spot rentals from the database
-        //}
+        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+                  int spotNumber, int amountOfPersons, SpotType spotTypes)
+            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+        {
+            this.spotNumber = spotNumber;
+            this.amountOfPersons = amountOfPersons;
+            this.spotTypes = spotTypes;
+        }
+
+        public List<spotRental> getAll()
+        {
+            return null;
+        }
     }
 }

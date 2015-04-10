@@ -13,8 +13,19 @@ namespace Proftaak_ICT4Events
             
         }
 
-        //public List<MediaFile> GetLatest();
-        //public List<MediaFile> GetPopular();
-        //public List<MediaFile> Search(string text);
+        public List<MediaFile> GetLatest()
+        {
+            return null;
+        }
+
+        public List<MediaFile> GetPopular()
+        {
+            return null;
+        }
+
+        public List<MediaFile> Search(string text)
+        {
+            return null;
+        }
     }
 }

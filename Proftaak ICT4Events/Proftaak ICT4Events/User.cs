@@ -10,15 +10,19 @@ namespace Proftaak_ICT4Events
     class User
     {
         private string rFID;
-        private int eventID;
         private string name;
         private string emailAdres;
         private string photo;
-        private DateTime dateOfBirth;
         private string username;
         private string password;
+
+        private int eventID;
         private int spotNumber;
+
+        private DateTime dateOfBirth;
+        
         public List<Reservation> Reservations;
+
         public string RFID
         {
             get { return rFID; }
@@ -74,12 +78,13 @@ namespace Proftaak_ICT4Events
             this.Username = Username;
             this.Password = Password;
             this.SpotNumber = SpotNumber;
+
             Reservations = new List<Reservation>();
         }
 
         public User GetAll()
         {
-            return this;
+            return null;
         }
     }
 }

@@ -9,10 +9,24 @@ namespace Proftaak_ICT4Events
 {
     interface IDatabase
     {
-        void Get(T);
-        void Add(T);
-        void Edit(T);
-        void Remove(T);
+        void Get(Type type)
+        {
 
+        }
+
+        void Add(Type type)
+        {
+
+        }
+
+        void Edit(Type type)
+        {
+
+        }
+
+        void Remove(Type type)
+        {
+
+        }
     }
 }

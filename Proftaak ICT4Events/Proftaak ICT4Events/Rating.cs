@@ -9,10 +9,12 @@ namespace Proftaak_ICT4Events
 {
     class Rating
     {
-        private int ratingID;
         private string rFID;
         private string filePath;
+
+        private int ratingID;
         private int commentID;
+
         private bool positive;
 
         public bool Positive
@@ -51,6 +53,16 @@ namespace Proftaak_ICT4Events
             this.RFID = RFID;
             this.FilePath = FilePath;
             this.CommentID = CommentID;
+        }
+
+        public List<Rating> getAll(string filePath)
+        {
+            return null;
+        }
+
+        public List<Rating> getAll(string RFID)
+        {
+            return null;
         }
     }
 }

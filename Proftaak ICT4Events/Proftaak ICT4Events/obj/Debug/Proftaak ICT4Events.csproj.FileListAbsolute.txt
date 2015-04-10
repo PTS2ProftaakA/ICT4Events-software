@@ -6,3 +6,6 @@ C:\Users\Martijn\Desktop\SE12\Proftaak ICT4Events\Proftaak ICT4Events\bin\Debug\
 C:\Users\Martijn\Desktop\SE12\Proftaak ICT4Events\Proftaak ICT4Events\bin\Debug\Proftaak ICT4Events.pdb
 C:\Users\Martijn\Desktop\SE12\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.exe
 C:\Users\Martijn\Desktop\SE12\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.pdb
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\Proftaak ICT4Events\Proftaak ICT4Events\bin\Debug\Proftaak ICT4Events.exe.config
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.exe
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.pdb
