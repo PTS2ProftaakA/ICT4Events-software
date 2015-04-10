@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
-    public partial class Form1 : Form
+    public partial class UIFiles : Form
     {
-        public Form1()
+        public UIFiles()
         {
             InitializeComponent();
         }

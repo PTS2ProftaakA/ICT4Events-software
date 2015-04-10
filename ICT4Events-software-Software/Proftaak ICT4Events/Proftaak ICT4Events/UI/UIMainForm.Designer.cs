@@ -1,6 +1,6 @@
 ﻿namespace Proftaak_ICT4Events
 {
-    partial class Form1
+    partial class UIMainForm
     {
         /// <summary>
         /// Required designer variable.

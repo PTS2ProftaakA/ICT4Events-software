@@ -1,6 +1,4 @@
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.csprojResolveAssemblyReference.cache
-C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIKaart.resources
-C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIPersoonlijkeInformatie.resources
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.Properties.Resources.resources
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.csproj.GenerateResource.Cache
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\Debug\Proftaak ICT4Events.exe.config
@@ -8,3 +6,11 @@ C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Soft
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\Debug\Proftaak ICT4Events.pdb
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.exe
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak ICT4Events.pdb
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIMap.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIPersonalInformation.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIFeed.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIFiles.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIInloggen.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIKaart.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIPersoonlijkeInformatie.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\Debug\Proftaak_ICT4Events.UIVerhuur.resources

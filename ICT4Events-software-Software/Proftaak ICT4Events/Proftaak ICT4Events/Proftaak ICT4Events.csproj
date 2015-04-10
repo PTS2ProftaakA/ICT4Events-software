@@ -52,11 +52,23 @@
     <Compile Include="Event.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="ForbiddenWord.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="UI\UIFiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\UIFiles.designer.cs">
+      <DependentUpon>UIFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UILogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UILogIn.designer.cs">
+      <DependentUpon>UILogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIMap.designer.cs">
+      <DependentUpon>UIMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Hobby.cs" />
     <Compile Include="IDatabase.cs" />
@@ -65,29 +77,41 @@
     <Compile Include="Managers\MediaFileManager.cs" />
     <Compile Include="Managers\PersonalInfoManager.cs" />
     <Compile Include="Rating.cs" />
-    <Compile Include="UIPersoonlijkeInformatie.cs">
+    <Compile Include="UI\UIFeed.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UIPersoonlijkeInformatie.Designer.cs">
-      <DependentUpon>UIPersoonlijkeInformatie.cs</DependentUpon>
+    <Compile Include="UI\UIFeed.Designer.cs">
+      <DependentUpon>UIFeed.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\MapManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="SpotRental.cs" />
-    <Compile Include="UIKaart.cs">
+    <Compile Include="UI\UIPersonalInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UIKaart.Designer.cs">
-      <DependentUpon>UIKaart.cs</DependentUpon>
+    <Compile Include="UI\UIPersonalInformation.designer.cs">
+      <DependentUpon>UIPersonalInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIRent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIRent.designer.cs">
+      <DependentUpon>UIRent.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="UIKaart.resx">
-      <DependentUpon>UIKaart.cs</DependentUpon>
+    <EmbeddedResource Include="UI\UIFeed.resx">
+      <DependentUpon>UIFeed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIPersoonlijkeInformatie.resx">
-      <DependentUpon>UIPersoonlijkeInformatie.cs</DependentUpon>
+    <EmbeddedResource Include="UI\UIFiles.resx">
+      <DependentUpon>UIFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UILogIn.resx">
+      <DependentUpon>UILogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIMap.resx">
+      <DependentUpon>UIMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,6 +122,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\UIPersonalInformation.resx">
+      <DependentUpon>UIPersonalInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIRent.resx">
+      <DependentUpon>UIRent.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
