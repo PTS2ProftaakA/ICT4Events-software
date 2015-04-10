@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
+using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
@@ -13,6 +16,7 @@ namespace Proftaak_ICT4Events
         private string query;
         private string user;
         private string password;
+        private OracleConnection connection;
 
         #region properties
         public string User
@@ -27,9 +31,27 @@ namespace Proftaak_ICT4Events
         }
         #endregion 
 
+        public Database()
+        {
+            try
+            {
+                connection = new OracleConnection();
+
+
+            }
+            catch(OracleException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
         public void Connect()
         {
-            //Connect to the database
+            string user = "username";
+            string pw = "je eigen ingestelde password";
+            connection.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
+            connection.Open();
+            MessageBox.Show("Connectie gelukt!");
         }
 
         public void Close()

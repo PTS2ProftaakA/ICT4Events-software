@@ -12,9 +12,16 @@ namespace Proftaak_ICT4Events
 {
     public partial class UIMainForm : Form
     {
+        private Database database;
         public UIMainForm()
         {
             InitializeComponent();
+            database = new Database();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            database.Connect();
         }
     }
 }
