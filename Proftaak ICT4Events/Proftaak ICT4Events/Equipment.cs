@@ -24,17 +24,6 @@ namespace Proftaak_ICT4Events
 
         private CategoryType category;
 
-        public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
-                         string name, string description, int amount, decimal deposit, CategoryType category)
-            :base(RFID, rentalID, startDate, endDate, isPayed, type)
-        {
-            this.name = name;
-            this.description = description;
-            this.amount = amount;
-            this.deposit = deposit;
-            this.category = category;
-        }
-
         public string Name
         {
             get { return name; }
@@ -61,9 +50,20 @@ namespace Proftaak_ICT4Events
             set { category = value; }
         }
 
-        //public override void getAll()
-        //{
-        //    //Get all equipment from the database
-        //}
+        public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+                 string name, string description, int amount, decimal deposit, CategoryType category)
+            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+        {
+            this.name = name;
+            this.description = description;
+            this.amount = amount;
+            this.deposit = deposit;
+            this.category = category;
+        }
+
+        public Equipment[] getAll()
+        {
+            return null;
+        }
     }
 }
