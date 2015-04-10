@@ -47,8 +47,9 @@ namespace Proftaak_ICT4Events
 
         public void Connect()
         {
+            //needs actual username and password to the database
             string user = "username";
-            string pw = "je eigen ingestelde password";
+            string pw = "password";
             connection.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
             connection.Open();
             MessageBox.Show("Connectie gelukt!");
