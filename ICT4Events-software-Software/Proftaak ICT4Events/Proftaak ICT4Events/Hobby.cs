@@ -10,11 +10,13 @@ namespace Proftaak_ICT4Events
     {
         private string hobbyName;
 
+        #region properties
         public string HobbyName
         {
             get { return hobbyName; }
             set { hobbyName = value; }
         }
+        #endregion
 
         public Hobby(string hobbyName)
         {

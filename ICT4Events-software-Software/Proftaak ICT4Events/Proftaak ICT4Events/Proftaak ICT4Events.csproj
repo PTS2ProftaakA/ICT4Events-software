@@ -46,11 +46,11 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DiscussionManager.cs" />
+    <Compile Include="Managers\DiscussionManager.cs" />
     <Compile Include="Equipment.cs" />
-    <Compile Include="EquipmentManager.cs" />
+    <Compile Include="Managers\EquipmentManager.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="FeedManager.cs" />
+    <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="ForbiddenWord.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -62,8 +62,8 @@
     <Compile Include="IDatabase.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="MediaFile.cs" />
-    <Compile Include="MediaFileManager.cs" />
-    <Compile Include="PersonalInfoManager.cs" />
+    <Compile Include="Managers\MediaFileManager.cs" />
+    <Compile Include="Managers\PersonalInfoManager.cs" />
     <Compile Include="Rating.cs" />
     <Compile Include="UIPersoonlijkeInformatie.cs">
       <SubType>Form</SubType>
@@ -71,7 +71,7 @@
     <Compile Include="UIPersoonlijkeInformatie.Designer.cs">
       <DependentUpon>UIPersoonlijkeInformatie.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapManager.cs" />
+    <Compile Include="Managers\MapManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />

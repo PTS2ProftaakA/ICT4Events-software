@@ -27,6 +27,7 @@ namespace Proftaak_ICT4Events
 
         private User user;
 
+        #region properties
         public string PropertyRFID
         {
             get { return RFID; }
@@ -62,6 +63,7 @@ namespace Proftaak_ICT4Events
             get { return user; }
             set { user = value; }
         }
+        #endregion
 
         public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type, User user)
         {

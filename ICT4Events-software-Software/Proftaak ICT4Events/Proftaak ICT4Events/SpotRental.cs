@@ -20,6 +20,7 @@ namespace Proftaak_ICT4Events
 
         private SpotType spotTypes;
 
+        #region properties
         public int SpotNumber
         {
             get { return spotNumber; }
@@ -35,10 +36,11 @@ namespace Proftaak_ICT4Events
             get { return spotTypes; }
             set { spotTypes = value; }
         }
+        #endregion
 
-        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type, User user,
                   int spotNumber, int amountOfPersons, SpotType spotTypes)
-            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+            : base(RFID, rentalID, startDate, endDate, isPayed, type, user)
         {
             this.spotNumber = spotNumber;
             this.amountOfPersons = amountOfPersons;

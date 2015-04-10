@@ -24,6 +24,7 @@ namespace Proftaak_ICT4Events
         private List<Rating> ratings;
         private List<Comment> comments;
 
+        #region properties
         public string FilePath
         {
             get { return filePath; }
@@ -49,6 +50,7 @@ namespace Proftaak_ICT4Events
             get { return comments; }
             set { comments = value; }
         }
+        #endregion
 
         public MediaFile(string filePath, FileType type, string description)
         {

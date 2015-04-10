@@ -17,6 +17,7 @@ namespace Proftaak_ICT4Events
 
         private bool positive;
 
+        #region properties
         public string propertyRFID
         {
             get { return RFID; }
@@ -42,6 +43,7 @@ namespace Proftaak_ICT4Events
             get { return positive; }
             set { positive = value; }
         }
+        #endregion
 
         public Rating(int RatingID, string RFID, string FilePath, int CommentID, bool Positive)
         {
