@@ -11,37 +11,37 @@ namespace Proftaak_ICT4Events
     {
         List<User> users;
         List<Location> locations;
+
         private int eventID;
         private int amountParticipants;
+        private int reportpercentage;
+
         private DateTime startDate;
         private DateTime endDate;
-        private int reportpercentage;
+
         public int EventID
         {
             get { return eventID; }
             set { eventID = value; }
         }
         
-<<<<<<< HEAD
         public int EventID 
         { 
             get { return eventID; }
             set { eventID = value; }
         }
-=======
->>>>>>> origin/Software
+
         public int AmountParticipants
         {
             get { return amountParticipants; }
             set { amountParticipants = value; }
-<<<<<<< HEAD
         }
-        public int StartDate
+        public DateTime StartDate
         {
             get { return startDate; }
             set { startDate = value; }
         }
-        public int EndDate
+        public DateTime EndDate
         {
             get { return endDate; }
             set { endDate = value; }
@@ -50,8 +50,6 @@ namespace Proftaak_ICT4Events
         {
             get { return reportpercentage; }
             set { reportpercentage = value; }
-=======
->>>>>>> origin/Software
         }
 
         public DateTime StartDate
