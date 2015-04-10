@@ -9,7 +9,7 @@ namespace Proftaak_ICT4Events
 {
     class User
     {
-        private string rFID;
+        private string RFID;
         private string name;
         private string emailAdres;
         private string photo;
@@ -23,61 +23,63 @@ namespace Proftaak_ICT4Events
         
         public List<Reservation> Reservations;
 
-        public string RFID
+        public string propertyRFID
         {
-            get { return rFID; }
-            set { rFID = value; }
+            get { return RFID; }
+            set { RFID = value; }
         }
-        public int EventID
-        {
-            get { return eventID; }
-            set { eventID = value; }
-        }        
         public string Name
         {
             get { return name; }
             set { name = value; }
-        }        
+        }
         public string EmailAdres
         {
             get { return emailAdres; }
             set { emailAdres = value; }
-        }       
+        }
         public string Photo
         {
             get { return photo; }
             set { photo = value; }
-        }        
+        }
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        } 
+        public int EventID
+        {
+            get { return eventID; }
+            set { eventID = value; }
+        }
+        public int SpotNumber
+        {
+            get { return spotNumber; }
+            set { spotNumber = value; }
+        }  
         public DateTime DateOfBirth
         {
             get { return dateOfBirth; }
             set { dateOfBirth = value; }
         }       
-        public string Username
+      
+   
+        public User(string RFID, int eventID, string emailadres, string photo, DateTime date, string username, string password, int spotNumber)
         {
-            get { return username; }
-            set { username = value; }
-        }       
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }       
-        public int SpotNumber
-        {
-            get { return spotNumber; }
-            set { spotNumber = value; }
-        }     
-        public User(string RFID, int EventID, string Emailadres, string Photo, DateTime Date, string Username, string Password, int SpotNumber)
-        {
-            this.rFID = RFID;
-            this.EventID = EventID;
-            this.EmailAdres = Emailadres;
-            this.Photo = Photo;
-            this.DateOfBirth = Date;
-            this.Username = Username;
-            this.Password = Password;
-            this.SpotNumber = SpotNumber;
+            this.RFID = RFID;
+            this.eventID = eventID;
+            this.emailAdres = emailadres;
+            this.photo = photo;
+            this.dateOfBirth = date;
+            this.username = username;
+            this.password = password;
+            this.spotNumber = spotNumber;
 
             Reservations = new List<Reservation>();
         }

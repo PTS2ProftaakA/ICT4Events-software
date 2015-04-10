@@ -21,24 +21,28 @@ namespace Proftaak_ICT4Events
 
         private FileType type;
 
+        public string FilePath
+        {
+            get { return filePath; }
+            set { filePath = value; }
+        }
         public string Comment
         {
             get { return comment; }
             set { comment = value; }
         }
-
-        public string FilePath
-
+        public FileType Type
         {
-            get { return filePath; }
-            set { filePath = value; }
+            get { return type; }
+            set { type = value; }
         }
 
-        public MediaFile(string FilePath, FileType Type, string Comment)
+
+        public MediaFile(string filePath, FileType type, string comment)
         {
-            this.FilePath = FilePath;
-            this.type = Type;
-            this.Comment = Comment;
+            this.filePath = filePath;
+            this.type = type;
+            this.comment = comment;
         }
 
         public MediaFile GetAll() 

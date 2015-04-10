@@ -30,11 +30,11 @@ namespace Proftaak_ICT4Events
             set { commentID = value; }
         }
 
-        public Comment(int CommentID, string FilePath, string Comment)
+        public Comment(int commentID, string filePath, string comment)
         {
-            this.CommentID = CommentID;
-            this.FilePath = FilePath;
-            this.Comment = Comment;
+            this.CommentID = commentID;
+            this.FilePath = filePath;
+            this.Comment = comment;
         }
 
         public List<Comment> GetAll(string RFID)

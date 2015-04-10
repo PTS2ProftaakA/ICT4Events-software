@@ -45,7 +45,7 @@ namespace Proftaak_ICT4Events
             this.spotTypes = spotTypes;
         }
 
-        public List<spotRental> getAll()
+        public List<SpotRental> getAll()
         {
             return null;
         }

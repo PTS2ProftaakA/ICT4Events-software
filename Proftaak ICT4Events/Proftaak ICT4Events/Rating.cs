@@ -9,7 +9,7 @@ namespace Proftaak_ICT4Events
 {
     class Rating
     {
-        private string rFID;
+        private string RFID;
         private string filePath;
 
         private int ratingID;
@@ -17,34 +17,30 @@ namespace Proftaak_ICT4Events
 
         private bool positive;
 
-        public bool Positive
+        public string propertyRFID
         {
-            get { return positive; }
-            set { positive = value; }
+            get { return RFID; }
+            set { RFID = value; }
         }
-
-        public int CommentID
-        {
-            get { return commentID; }
-            set { commentID = value; }
-        }
-
         public string FilePath
         {
             get { return filePath; }
             set { filePath = value; }
         }
-
-        public string RFID
-        {
-            get { return rFID; }
-            set { rFID = value; }
-        }
-
         public int RatingID
         {
             get { return ratingID; }
             set { ratingID = value; }
+        }
+        public int CommentID
+        {
+            get { return commentID; }
+            set { commentID = value; }
+        }
+        public bool Positive
+        {
+            get { return positive; }
+            set { positive = value; }
         }
 
         public Rating(int RatingID, string RFID, string FilePath, int CommentID, bool Positive)

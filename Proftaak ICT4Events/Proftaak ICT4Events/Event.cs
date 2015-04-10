@@ -14,7 +14,7 @@ namespace Proftaak_ICT4Events
 
         private int eventID;
         private int amountParticipants;
-        private int reportpercentage;
+        private int reportPercentage;
 
         private DateTime startDate;
         private DateTime endDate;
@@ -24,18 +24,16 @@ namespace Proftaak_ICT4Events
             get { return eventID; }
             set { eventID = value; }
         }
-        
-        public int EventID 
-        { 
-            get { return eventID; }
-            set { eventID = value; }
-        }
-
         public int AmountParticipants
         {
             get { return amountParticipants; }
             set { amountParticipants = value; }
         }
+        public int ReportPercentage
+        {
+            get { return reportPercentage; }
+            set { reportPercentage = value; }
+        }
         public DateTime StartDate
         {
             get { return startDate; }
@@ -45,39 +43,15 @@ namespace Proftaak_ICT4Events
         {
             get { return endDate; }
             set { endDate = value; }
-        }
-        public int ReportPercentage
-        {
-            get { return reportpercentage; }
-            set { reportpercentage = value; }
-        }
-
-        public DateTime StartDate
-        {
-            get { return startDate; }
-            set { startDate = value; }
-        }
-        
-        public DateTime EndDate
-        {
-            get { return endDate; }
-            set { endDate = value; }
-        }
-    
-        public int ReportPercentage
-        {
-            get { return reportpercentage; }
-            set { reportpercentage = value; }
-        }
-        
+        }         
    
-        public Event(int EventID, int AmountParticipants, DateTime StartDate, DateTime EndDate, int ReportPercentage)
+        public Event(int eventID, int amountParticipants, DateTime startDate, DateTime endDate, int reportPercentage)
         {
-            this.EventID = EventID;
-            this.AmountParticipants = AmountParticipants;
-            this.StartDate = StartDate;
-            this.EndDate = EndDate;
-            this.ReportPercentage = ReportPercentage;
+            this.eventID = eventID;
+            this.amountParticipants = amountParticipants;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.reportPercentage = reportPercentage;
 
             users = new List<User>();
             locations = new List<Location>();
