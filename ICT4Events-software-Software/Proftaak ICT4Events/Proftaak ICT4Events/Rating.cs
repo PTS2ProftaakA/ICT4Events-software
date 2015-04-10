@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class Rating
+    class Rating : IDatabase
     {
         private string RFID;
         private string filePath;
@@ -51,14 +51,34 @@ namespace Proftaak_ICT4Events
             this.CommentID = CommentID;
         }
 
-        public List<Rating> getAll(string filePath)
+        public List<Rating> getAllFromFile(string filePath)
         {
             return null;
         }
 
-        public List<Rating> getAll(string RFID)
+        public List<Rating> getAllFromUser(string RFID)
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

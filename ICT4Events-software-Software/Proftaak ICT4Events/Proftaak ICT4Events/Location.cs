@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Location
+    class Location : IDatabase
     {
         private string locationName;
         private string address;
@@ -53,6 +53,26 @@ namespace Proftaak_ICT4Events
         public List<Location> GetAll()
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

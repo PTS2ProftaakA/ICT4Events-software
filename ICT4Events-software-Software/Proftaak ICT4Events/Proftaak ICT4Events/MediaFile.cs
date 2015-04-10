@@ -14,10 +14,10 @@ namespace Proftaak_ICT4Events
         Music
     };
 
-    class MediaFile
+    class MediaFile : IDatabase
     {
         private string filePath;
-        private string comment;
+        private string description;
 
         private FileType type;
 
@@ -26,10 +26,10 @@ namespace Proftaak_ICT4Events
             get { return filePath; }
             set { filePath = value; }
         }
-        public string Comment
+        public string Description
         {
-            get { return comment; }
-            set { comment = value; }
+            get { return description; }
+            set { description = value; }
         }
         public FileType Type
         {
@@ -38,16 +38,36 @@ namespace Proftaak_ICT4Events
         }
 
 
-        public MediaFile(string filePath, FileType type, string comment)
+        public MediaFile(string filePath, FileType type, string description)
         {
             this.filePath = filePath;
             this.type = type;
-            this.comment = comment;
+            this.description = description;
         }
 
         public MediaFile GetAll() 
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

@@ -10,14 +10,14 @@ namespace Proftaak_ICT4Events
     class Comment : IDatabase
     {
         private string filePath;
-        private string comment;
+        private string content;
 
         private int commentID;
 
-        public string Comment
+        public string Content
         {
-            get { return comment; }
-            set { comment = value; }
+            get { return content; }
+            set { content = value; }
         }
         public string FilePath
         {
@@ -30,20 +30,40 @@ namespace Proftaak_ICT4Events
             set { commentID = value; }
         }
 
-        public Comment(int commentID, string filePath, string comment)
+        public Comment(int commentID, string filePath, string content)
         {
             this.CommentID = commentID;
             this.FilePath = filePath;
-            this.Comment = comment;
+            this.Content = content;
         }
 
-        public List<Comment> GetAll(string RFID)
+        public List<Comment> GetAllFromFile(string filePath)
         {
             return null;
         }
-        public List<Comment> GetAll(string filePath)
+        public List<Comment> GetAllFromUser(string RFID)
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

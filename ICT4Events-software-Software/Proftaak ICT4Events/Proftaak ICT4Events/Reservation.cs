@@ -12,7 +12,7 @@ namespace Proftaak_ICT4Events
         SpotRental
     }
 
-    abstract class Reservation
+    abstract class Reservation : IDatabase
     {
         protected string RFID;
 
@@ -69,6 +69,26 @@ namespace Proftaak_ICT4Events
         public List<Reservation> getAll()
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

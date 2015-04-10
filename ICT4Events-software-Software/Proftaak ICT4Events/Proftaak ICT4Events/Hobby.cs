@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Hobby
+    class Hobby : IDatabase
     {
         private string hobbyName;
 
@@ -24,6 +24,26 @@ namespace Proftaak_ICT4Events
         public List<Hobby> GetAll()
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class User
+    class User : IDatabase
     {
         private string RFID;
         private string name;
@@ -87,6 +87,26 @@ namespace Proftaak_ICT4Events
         public User GetAll()
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }

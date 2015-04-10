@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class ForbiddenWord
+    class ForbiddenWord : IDatabase
     {
         private string word;
 
@@ -32,6 +32,26 @@ namespace Proftaak_ICT4Events
         public List<ForbiddenWord> GetAll()
         {
             return null;
+        }
+
+        public void Get(Type comment)
+        {
+
+        }
+
+        public void Add(Type comment)
+        {
+
+        }
+
+        public void Edit(Type comment)
+        {
+
+        }
+
+        public void Remove(Type comment)
+        {
+
         }
     }
 }
