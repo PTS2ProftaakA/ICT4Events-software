@@ -14,9 +14,9 @@ namespace Proftaak_ICT4Events
 
         }
 
-        public List<> GenerateFromPath()
+        public List<MediaFile> GenerateFromPath()
         {
-
+            return null;
         }
 
         public void NewFile(MediaFile file)

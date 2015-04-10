@@ -9,6 +9,7 @@ namespace Proftaak_ICT4Events
     class EquipmentManager
     {
         List<Equipment> ShoppingCart;
+
         public EquipmentManager()
         {
             ShoppingCart = new List<Equipment>();

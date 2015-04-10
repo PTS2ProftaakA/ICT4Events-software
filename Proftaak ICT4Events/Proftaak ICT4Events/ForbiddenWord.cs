@@ -12,12 +12,6 @@ namespace Proftaak_ICT4Events
 
         private int severity;
 
-        public ForbiddenWord(string word, int severity)
-        {
-            this.word = word;
-            this.severity = severity;
-        }
-
         public string Word
         {
             get { return word; }
@@ -29,9 +23,15 @@ namespace Proftaak_ICT4Events
             set { severity = value; }
         }
 
-        //public override void GetAll()
-        //{
-        //    //Get all forbidden words from database
-        //}
+        public ForbiddenWord(string word, int severity)
+        {
+            this.word = word;
+            this.severity = severity;
+        }
+
+        public List<ForbiddenWord> GetAll()
+        {
+            return null;
+        }
     }
 }

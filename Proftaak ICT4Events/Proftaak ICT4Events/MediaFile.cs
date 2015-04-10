@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
-
 {
     enum FileType
     {
@@ -14,13 +13,13 @@ namespace Proftaak_ICT4Events
         Text,
         Music
     };
+
     class MediaFile
     {
         private string filePath;
-
+        private string comment;
 
         private FileType type;
-        private string comment;
 
         public string Comment
         {
@@ -44,7 +43,7 @@ namespace Proftaak_ICT4Events
 
         public MediaFile GetAll() 
         {
-            return this;
+            return null;
         }
     }
 }
