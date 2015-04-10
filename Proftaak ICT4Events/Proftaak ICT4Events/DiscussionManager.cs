@@ -13,7 +13,13 @@ namespace Proftaak_ICT4Events
 
         }
 
-        //public MediaFile GetFile(MediaFile file);
-        //public List<Reactie> GetReactions(MediaFile, file);
+        public MediaFile GetFile(MediaFile file)
+        {
+            return null;
+        }
+        public List<Comment> GetReactions(MediaFile file)
+        {
+            return null;
+        }
     }
 }
