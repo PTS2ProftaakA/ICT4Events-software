@@ -11,23 +11,43 @@ namespace Proftaak_ICT4Events
     {
         List<User> users;
         List<Location> locations;
-
         private int eventID;
         private int amountParticipants;
-        private int startDate;
-        private int endDate;
+        private DateTime startDate;
+        private DateTime endDate;
         private int reportpercentage;
-        
-        public int EventID 
-        { 
-            get; set;
+        public int EventID
+        {
+            get { return eventID; }
+            set { eventID = value; }
         }
-        public int AmountParticipants{ get; set;}
-        public int StartDate{ get; set;}
-        public int EndDate{ get; set;}
-        public int ReportPercentage{ get; set;}
+        
+        public int AmountParticipants
+        {
+            get { return amountParticipants; }
+            set { amountParticipants = value; }
+        }
 
-        public Event(int EventID, int AmountParticipants, int StartDate, int EndDate, int ReportPercentage)
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+        }
+        
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { endDate = value; }
+        }
+    
+        public int ReportPercentage
+        {
+            get { return reportpercentage; }
+            set { reportpercentage = value; }
+        }
+        
+   
+        public Event(int EventID, int AmountParticipants, DateTime StartDate, DateTime EndDate, int ReportPercentage)
         {
             this.EventID = EventID;
             this.AmountParticipants = AmountParticipants;
