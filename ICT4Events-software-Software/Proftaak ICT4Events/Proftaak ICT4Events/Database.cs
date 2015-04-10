@@ -14,6 +14,7 @@ namespace Proftaak_ICT4Events
         private string user;
         private string password;
 
+        #region properties
         public string User
         {
             get { return user;}
@@ -24,6 +25,7 @@ namespace Proftaak_ICT4Events
             get { return password; }
             set { password = value; }
         }
+        #endregion 
 
         public void Connect()
         {

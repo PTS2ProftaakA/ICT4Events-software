@@ -12,6 +12,7 @@ namespace Proftaak_ICT4Events
 
         private int severity;
 
+        #region properties
         public string Word
         {
             get { return word; }
@@ -22,6 +23,7 @@ namespace Proftaak_ICT4Events
             get { return severity; }
             set { severity = value; }
         }
+        #endregion
 
         public ForbiddenWord(string word, int severity)
         {

@@ -9,9 +9,6 @@ namespace Proftaak_ICT4Events
 {
     class Event : IDatabase
     {
-        List<User> users;
-        List<Location> locations;
-
         private int eventID;
         private int amountParticipants;
         private int reportPercentage;
@@ -19,6 +16,10 @@ namespace Proftaak_ICT4Events
         private DateTime startDate;
         private DateTime endDate;
 
+        List<User> users;
+        Location location;
+
+        #region properties
         public int EventID
         {
             get { return eventID; }
@@ -43,18 +44,29 @@ namespace Proftaak_ICT4Events
         {
             get { return endDate; }
             set { endDate = value; }
-        }         
-   
-        public Event(int eventID, int amountParticipants, DateTime startDate, DateTime endDate, int reportPercentage)
+        }
+        public List<User> Users
+        {
+            get { return users; }
+            set { users = value; }
+        }
+        public Location Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
+        #endregion
+
+        public Event(int eventID, int amountParticipants, DateTime startDate, DateTime endDate, int reportPercentage, Location location)
         {
             this.eventID = eventID;
             this.amountParticipants = amountParticipants;
             this.startDate = startDate;
             this.endDate = endDate;
             this.reportPercentage = reportPercentage;
+            this.location = location;
 
             users = new List<User>();
-            locations = new List<Location>();
         }
 
         public List<Event> getAll()

@@ -15,6 +15,7 @@ namespace Proftaak_ICT4Events
 
         private int maximumParticipants;
 
+        #region properties
         public string LocationName
         {
             get { return locationName; }
@@ -40,6 +41,7 @@ namespace Proftaak_ICT4Events
             get { return maximumParticipants; }
             set { maximumParticipants = value; }
         }
+        #endregion
 
         public Location(string locationName, string address, string phoneNumber, string emailaddress, int maximumParticipants)
         {

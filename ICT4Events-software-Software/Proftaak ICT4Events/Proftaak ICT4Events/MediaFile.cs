@@ -21,6 +21,9 @@ namespace Proftaak_ICT4Events
 
         private FileType type;
 
+        private List<Rating> ratings;
+        private List<Comment> comments;
+
         public string FilePath
         {
             get { return filePath; }
@@ -36,13 +39,25 @@ namespace Proftaak_ICT4Events
             get { return type; }
             set { type = value; }
         }
-
+        public List<Rating> Ratings
+        {
+            get { return ratings; }
+            set { ratings = value; }
+        }
+        public List<Comment> Comments
+        {
+            get { return comments; }
+            set { comments = value; }
+        }
 
         public MediaFile(string filePath, FileType type, string description)
         {
             this.filePath = filePath;
             this.type = type;
             this.description = description;
+
+            ratings = new List<Rating>();
+            comments = new List<Comment>();
         }
 
         public MediaFile GetAll() 

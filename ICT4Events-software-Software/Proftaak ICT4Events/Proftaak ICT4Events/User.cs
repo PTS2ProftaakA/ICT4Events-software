@@ -20,9 +20,11 @@ namespace Proftaak_ICT4Events
         private int spotNumber;
 
         private DateTime dateOfBirth;
-        
-        public List<Reservation> Reservations;
 
+        private List<Reservation> reservations;
+        private List<Hobby> hobbies;
+
+        #region properties
         public string propertyRFID
         {
             get { return RFID; }
@@ -67,9 +69,19 @@ namespace Proftaak_ICT4Events
         {
             get { return dateOfBirth; }
             set { dateOfBirth = value; }
-        }       
-      
-   
+        }
+        public List<Reservation> Reservations
+        {
+            get { return reservations; }
+            set { reservations = value; }
+        }
+        public List<Hobby> Hobbies
+        {
+            get { return hobbies; }
+            set { hobbies = value; }
+        }
+        #endregion
+
         public User(string RFID, int eventID, string emailadres, string photo, DateTime date, string username, string password, int spotNumber)
         {
             this.RFID = RFID;
@@ -81,7 +93,8 @@ namespace Proftaak_ICT4Events
             this.password = password;
             this.spotNumber = spotNumber;
 
-            Reservations = new List<Reservation>();
+            reservations = new List<Reservation>();
+            hobbies = new List<Hobby>();
         }
 
         public User GetAll()

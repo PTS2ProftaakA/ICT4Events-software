@@ -24,6 +24,7 @@ namespace Proftaak_ICT4Events
 
         private CategoryType category;
 
+        #region properties
         public string Name
         {
             get { return name; }
@@ -49,10 +50,11 @@ namespace Proftaak_ICT4Events
             get { return category; }
             set { category = value; }
         }
+        #endregion
 
-        public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+        public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type, User user,
                  string name, string description, int amount, decimal deposit, CategoryType category)
-            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+            : base(RFID, rentalID, startDate, endDate, isPayed, type, user)
         {
             this.name = name;
             this.description = description;

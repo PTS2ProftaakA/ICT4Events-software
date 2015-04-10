@@ -14,6 +14,10 @@ namespace Proftaak_ICT4Events
 
         private int commentID;
 
+        private List<Rating> ratings;
+        private User user;
+
+        #region properties
         public string Content
         {
             get { return content; }
@@ -29,12 +33,21 @@ namespace Proftaak_ICT4Events
             get { return commentID; }
             set { commentID = value; }
         }
+        public List<Rating> Ratings
+        {
+            get { return ratings; }
+            set { ratings = value; }
+        }
+        #endregion
 
-        public Comment(int commentID, string filePath, string content)
+        public Comment(int commentID, string filePath, string content, User user)
         {
             this.CommentID = commentID;
             this.FilePath = filePath;
             this.Content = content;
+            this.user = user;
+
+            ratings = new List<Rating>();
         }
 
         public List<Comment> GetAllFromFile(string filePath)
