@@ -36,22 +36,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type comment)
+        public void Get(Type forbiddenWord)
         {
 
         }
 
-        public void Add(Type comment)
+        public void Add(Type forbiddenWord)
         {
 
         }
 
-        public void Edit(Type comment)
+        public void Edit(Type forbiddenWord)
         {
 
         }
 
-        public void Remove(Type comment)
+        public void Remove(Type forbiddenWord)
         {
 
         }

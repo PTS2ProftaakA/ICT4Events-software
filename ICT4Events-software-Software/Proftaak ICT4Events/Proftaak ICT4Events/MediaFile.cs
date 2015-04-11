@@ -67,22 +67,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type comment)
+        public void Get(Type mediaFile)
         {
 
         }
 
-        public void Add(Type comment)
+        public void Add(Type mediaFile)
         {
 
         }
 
-        public void Edit(Type comment)
+        public void Edit(Type mediaFile)
         {
 
         }
 
-        public void Remove(Type comment)
+        public void Remove(Type mediaFile)
         {
 
         }

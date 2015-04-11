@@ -63,7 +63,7 @@ namespace Proftaak_ICT4Events
             this.category = category;
         }
 
-        public List<Equipment> getAll()
+        public new List<Equipment> getAll()
         {
             return null;
         }

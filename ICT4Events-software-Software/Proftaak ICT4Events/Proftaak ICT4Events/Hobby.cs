@@ -28,22 +28,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type comment)
+        public void Get(Type hobby)
         {
 
         }
 
-        public void Add(Type comment)
+        public void Add(Type hobby)
         {
 
         }
 
-        public void Edit(Type comment)
+        public void Edit(Type hobby)
         {
 
         }
 
-        public void Remove(Type comment)
+        public void Remove(Type hobby)
         {
 
         }

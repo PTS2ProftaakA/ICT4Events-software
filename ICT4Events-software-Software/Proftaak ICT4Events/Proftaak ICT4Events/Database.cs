@@ -14,8 +14,8 @@ namespace Proftaak_ICT4Events
     {
         //private OracleConnection connection;
         private string query;
-        private string user;
-        private string password;
+        private string user = "DBS2Proftaak";
+        private string password = "qwert12345";
         private OracleConnection connection;
 
         #region properties
@@ -47,17 +47,38 @@ namespace Proftaak_ICT4Events
 
         public void Connect()
         {
-            //needs actual username and password to the database
-            string user = "username";
-            string pw = "password";
-            connection.ConnectionString = "User Id=" + user + ";Password=" + pw + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
-            connection.Open();
-            MessageBox.Show("Connectie gelukt!");
+            //If there is a correct combination between username and password a connection will be established.
+            try 
+            {
+                connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
+                connection.Open();
+                MessageBox.Show("Connected to : " + user);
+
+                using (OracleCommand oracleCommand = new OracleCommand("SELECT * FROM HOBBY"))
+                {
+                    using (oracleCommand.Connection = connection)
+                    {
+
+                        oracleCommand.Parameters.Add(":port_id", 1521);
+                        OracleDataReader Reader = oracleCommand.ExecuteReader();
+
+                        while(Reader.Read())
+                        {
+                            MessageBox.Show(Convert.ToString(Reader["HobbyNaam"]));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("The combination of username and password is incorrect");
+            }
         }
 
         public void Close()
         {
-            //Close the database
+            //Closes connection even if it is not open.
+            connection.Close();
         }
 
         public void editDatabase()
@@ -67,7 +88,7 @@ namespace Proftaak_ICT4Events
 
         public void selectQuery()
         {
-            //Select correct query
+
         }
     }
 }

@@ -74,22 +74,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type comment)
+        public void Get(Type singleEvent)
         {
 
         }
 
-        public void Add(Type comment)
+        public void Add(Type singleEvent)
         {
 
         }
 
-        public void Edit(Type comment)
+        public void Edit(Type singleEvent)
         {
 
         }
 
-        public void Remove(Type comment)
+        public void Remove(Type singleEvent)
         {
 
         }
