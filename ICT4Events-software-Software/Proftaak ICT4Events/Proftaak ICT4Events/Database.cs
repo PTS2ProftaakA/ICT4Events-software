@@ -33,16 +33,7 @@ namespace Proftaak_ICT4Events
 
         public Database()
         {
-            try
-            {
-                connection = new OracleConnection();
 
-
-            }
-            catch(OracleException ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
         }
 
         public void Connect()
@@ -50,24 +41,10 @@ namespace Proftaak_ICT4Events
             //If there is a correct combination between username and password a connection will be established.
             try 
             {
+                connection = new OracleConnection();
                 connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
                 connection.Open();
                 MessageBox.Show("Connected to : " + user);
-
-                using (OracleCommand oracleCommand = new OracleCommand("SELECT * FROM HOBBY"))
-                {
-                    using (oracleCommand.Connection = connection)
-                    {
-
-                        oracleCommand.Parameters.Add(":port_id", 1521);
-                        OracleDataReader Reader = oracleCommand.ExecuteReader();
-
-                        while(Reader.Read())
-                        {
-                            MessageBox.Show(Convert.ToString(Reader["HobbyNaam"]));
-                        }
-                    }
-                }
             }
             catch
             {
@@ -86,9 +63,38 @@ namespace Proftaak_ICT4Events
             //Make changes to the database
         }
 
-        public void selectQuery()
+        public List<string>[] selectQuery(string query, List<string> columnNames)
         {
+            Connect();
 
+            List<string>[] dataTable = new List<string>[columnNames.Count()];
+
+            for (int i = 0; i < columnNames.Count(); i++)
+            {
+                dataTable[i] = new List<string>();
+                dataTable[i].Add(columnNames[i]);
+            }
+
+            using (OracleCommand oracleCommand = new OracleCommand(query))
+            {
+                using (oracleCommand.Connection = connection)
+                {
+                    oracleCommand.Parameters.Add(":port_id", 1521);
+                    OracleDataReader reader = oracleCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        for(int i = 0; i < columnNames.Count(); i++)
+                        {
+                            dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
+                        }
+                    }
+
+                }
+            }
+            Close();
+
+            return dataTable;
         }
     }
 }
