@@ -82,11 +82,11 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public User(string RFID, int eventID, string emailadres, string photo, DateTime date, string username, string password, int spotNumber)
+        public User(string RFID, int eventID, string emailAdres, string photo, DateTime date, string username, string password, int spotNumber)
         {
             this.RFID = RFID;
             this.eventID = eventID;
-            this.emailAdres = emailadres;
+            this.emailAdres = emailAdres;
             this.photo = photo;
             this.dateOfBirth = date;
             this.username = username;
@@ -97,7 +97,7 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
-        public User GetAll()
+        public Type Get(string RFID)
         {
             return null;
         }

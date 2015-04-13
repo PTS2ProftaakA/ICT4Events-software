@@ -86,10 +86,10 @@ namespace Proftaak_ICT4Events
                     {
                         for(int i = 0; i < columnNames.Count(); i++)
                         {
+                            MessageBox.Show(Convert.ToString(reader[columnNames[i]]));
                             dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
                         }
                     }
-
                 }
             }
             Close();

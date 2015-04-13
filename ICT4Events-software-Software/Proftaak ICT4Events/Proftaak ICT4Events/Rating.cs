@@ -63,9 +63,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type rating)
+        public Type Get(string ratingID)
         {
-
+            return null;
         }
 
         public void Add(Type rating)

@@ -30,7 +30,7 @@ namespace Proftaak_ICT4Events
         private void btnGetHobby_Click(object sender, EventArgs e)
         {
             Hobby hobby = new Hobby("hallo");
-            hobby.GetAll();
+            hobby.GetAll("10050");
         }
     }
 }

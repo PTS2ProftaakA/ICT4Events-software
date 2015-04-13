@@ -81,9 +81,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type reservation)
+        public Type Get(string rentalID)
         {
-
+            return null;
         }
 
         public void Add(Type reservation)

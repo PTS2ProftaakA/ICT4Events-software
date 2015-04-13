@@ -57,9 +57,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type location)
+        public Type Get(string locationName)
         {
-
+            return null;
         }
 
         public void Add(Type location)

@@ -67,9 +67,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type mediaFile)
+        public Type Get(string filePath)
         {
-
+            return null;
         }
 
         public void Add(Type mediaFile)

@@ -59,9 +59,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type comment)
+        public Type Get(string commentID)
         {
-
+            return null;
         }
 
         public void Add(Type comment)

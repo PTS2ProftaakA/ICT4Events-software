@@ -74,9 +74,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type singleEvent)
+        public Type Get(string eventID)
         {
-
+            return null;
         }
 
         public void Add(Type singleEvent)

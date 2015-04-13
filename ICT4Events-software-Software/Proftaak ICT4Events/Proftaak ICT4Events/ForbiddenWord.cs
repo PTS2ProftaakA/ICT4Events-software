@@ -36,9 +36,9 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public void Get(Type forbiddenWord)
+        public Type Get(string word)
         {
-
+            return null;
         }
 
         public void Add(Type forbiddenWord)

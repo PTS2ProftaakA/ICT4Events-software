@@ -9,7 +9,7 @@ namespace Proftaak_ICT4Events
 {
     interface IDatabase
     {
-        void Get(Type type);
+        Type Get(string identifier);
 
         void Add(Type type);
 
