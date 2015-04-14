@@ -8,10 +8,10 @@ namespace Proftaak_ICT4Events
 {
     enum FileType
     {
-        Image,
         Video,
-        Text,
-        Music
+        Plaatje,
+        Tekst,
+        GIF
     };
 
     class MediaFile : IDatabase
@@ -72,6 +72,7 @@ namespace Proftaak_ICT4Events
 
         public static List<MediaFile> GetFiles(string specification, Database database)
         {
+            //Specification can be latest, popular or a text to search with
             List<string> mediaFilesColumns = new List<string>();
             List<MediaFile> selectedMediaFiles = new List<MediaFile>();
 
@@ -84,11 +85,15 @@ namespace Proftaak_ICT4Events
 
             if(specification == "latest")
             {
-                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY DATE DESC";
+                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY UPLOADDATUM DESC";
+            }
+            else if(specification == "popular")
+            {
+                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY DATE DESC"; //<<----------
             }
             else
             {
-                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY DATE DESC";
+                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 AND DESCRIPTION LIKE " + specification; 
             }
 
             List<string>[] dataTable = database.selectQuery(query, mediaFilesColumns);

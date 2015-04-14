@@ -8,9 +8,11 @@ namespace Proftaak_ICT4Events
 {
     class FeedManager
     {
+        Database database;
+
         FeedManager()
         {
-            
+            database = new Database();
         }
 
         public List<MediaFile> GetFiles(string specification, Database database)
@@ -18,14 +20,5 @@ namespace Proftaak_ICT4Events
             return MediaFile.GetFiles(specification, database);
         }
 
-        public List<MediaFile> GetPopular()
-        {
-            return null;
-        }
-
-        public List<MediaFile> Search(string text)
-        {
-            return null;
-        }
     }
 }

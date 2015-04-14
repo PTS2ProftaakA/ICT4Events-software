@@ -8,9 +8,11 @@ namespace Proftaak_ICT4Events
 {
     enum CategoryType
     {
-        Chargers,
-        Cameras,
-        etc
+        Mobiel_Apparaat,
+        Randapparatuur,
+        Laptop,
+        Computer,
+        Hoofdtelefoon        
     }
 
     class Equipment : Reservation
