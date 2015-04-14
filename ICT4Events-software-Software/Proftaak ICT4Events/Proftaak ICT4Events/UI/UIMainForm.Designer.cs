@@ -52,7 +52,6 @@
             this.btnGetHobby.TabIndex = 1;
             this.btnGetHobby.Text = "Get hobby";
             this.btnGetHobby.UseVisualStyleBackColor = true;
-            this.btnGetHobby.Click += new System.EventHandler(this.btnGetHobby_Click);
             // 
             // listBox1
             // 

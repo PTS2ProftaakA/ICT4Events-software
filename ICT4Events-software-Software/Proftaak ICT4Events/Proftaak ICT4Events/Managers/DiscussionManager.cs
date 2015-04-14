@@ -8,18 +8,17 @@ namespace Proftaak_ICT4Events
 {
     class DiscussionManager
     {
+        Database database;
+
         DiscussionManager()
         {
-
+            database = new Database();
         }
 
-        public MediaFile GetFile(MediaFile file)
-        {
-            return null;
-        }
+
         public List<Comment> GetReactions(MediaFile file)
         {
-            return null;
+            return Comment.GetAllFromFile(file.FilePath, database);
         }
     }
 }

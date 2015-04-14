@@ -119,7 +119,7 @@ namespace Proftaak_ICT4Events
 
         public void Remove(Type user)
         {
-
+            
         }
     }
 }

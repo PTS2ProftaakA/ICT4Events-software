@@ -38,9 +38,9 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type, User user,
+        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
                   int spotNumber, int amountOfPersons, SpotType spotTypes)
-            : base(RFID, rentalID, startDate, endDate, isPayed, type, user)
+            : base(RFID, rentalID, startDate, endDate, isPayed, type)
         {
             this.spotNumber = spotNumber;
             this.amountOfPersons = amountOfPersons;

@@ -65,7 +65,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type, User user)
+        public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
         {
             this.RFID = RFID;
             this.rentalID = rentalID;
@@ -73,7 +73,6 @@ namespace Proftaak_ICT4Events
             this.endDate = endDate;
             this.isPayed = isPayed;
             this.type = type;
-            this.user = user;
         }
 
         public List<Reservation> getAll()

@@ -24,11 +24,9 @@ namespace Proftaak_ICT4Events
         public Hobby(string hobbyName)
         {
             this.hobbyName = hobbyName;
-
-            database = new Database();
         }
 
-        public List<Hobby> GetAll()
+        public List<Hobby> GetAll(Database database)
         {
             List<string> hobbyColumns = new List<string>();
             List<Hobby> allHobbies = new List<Hobby>();
@@ -48,7 +46,7 @@ namespace Proftaak_ICT4Events
             return allHobbies;
         }
 
-        public List<Hobby> GetAll(string RFID)
+        public List<Hobby> GetAll(string RFID, Database database)
         {
             List<string> hobbyColumns = new List<string>();
             List<Hobby> allHobbies = new List<Hobby>();

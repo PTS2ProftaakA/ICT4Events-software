@@ -26,11 +26,5 @@ namespace Proftaak_ICT4Events
         {
             database.Connect();
         }
-
-        private void btnGetHobby_Click(object sender, EventArgs e)
-        {
-            Hobby hobby = new Hobby("hallo");
-            hobby.GetAll("10050");
-        }
     }
 }

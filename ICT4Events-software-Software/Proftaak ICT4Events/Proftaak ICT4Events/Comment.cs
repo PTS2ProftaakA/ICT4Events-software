@@ -11,11 +11,11 @@ namespace Proftaak_ICT4Events
     {
         private string filePath;
         private string content;
+        private string RFID;
 
         private int commentID;
 
         private List<Rating> ratings;
-        private User user;
 
         #region properties
         public string Content
@@ -40,19 +40,43 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Comment(int commentID, string filePath, string content, User user)
+        public Comment(int commentID, string filePath, string content, string RFID)
         {
             this.CommentID = commentID;
             this.FilePath = filePath;
             this.Content = content;
-            this.user = user;
+            this.RFID = RFID;
 
             ratings = new List<Rating>();
         }
 
-        public List<Comment> GetAllFromFile(string filePath)
+        public static List<Comment> GetAllFromFile(string filePath, Database database)
         {
-            return null;
+            List<string> commentColumns = new List<string>();
+            List<Comment> allComments = new List<Comment>();
+
+            commentColumns.Add("REACTIEID");
+            commentColumns.Add("BESTANDSLOCATIE");
+            commentColumns.Add("RFID");
+            commentColumns.Add("INHOUD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDSLOCATIE = " + filePath, commentColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+
+
+                    allComments.Add(new Comment(
+                        Convert.ToInt32(dataTable[0][i]),
+                        dataTable[1][i],
+                        dataTable[3][i],
+                        dataTable[2][i]));
+                }
+            }
+
+            return allComments;
         }
         public List<Comment> GetAllFromUser(string RFID)
         {

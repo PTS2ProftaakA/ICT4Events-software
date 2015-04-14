@@ -13,9 +13,9 @@ namespace Proftaak_ICT4Events
             
         }
 
-        public List<MediaFile> GetLatest()
+        public List<MediaFile> GetFiles(string specification, Database database)
         {
-            return null;
+            return MediaFile.GetFiles(specification, database);
         }
 
         public List<MediaFile> GetPopular()
