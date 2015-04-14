@@ -33,6 +33,10 @@
             this.tpTijdlijn = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.gbPost = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnLike = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tpRental = new System.Windows.Forms.TabPage();
             this.lblMaterialProductNameName = new System.Windows.Forms.Label();
             this.lblMaterialDescriptionValue = new System.Windows.Forms.Label();
@@ -71,14 +75,11 @@
             this.lblMapNumber = new System.Windows.Forms.Label();
             this.lblMapInfo = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnLike = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.gbPost.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tpRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).BeginInit();
             this.tpBestanden.SuspendLayout();
@@ -87,7 +88,6 @@
             this.tpMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -100,11 +100,12 @@
             this.tabControl1.Controls.Add(this.tpMap);
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.ItemSize = new System.Drawing.Size(40, 150);
-            this.tabControl1.Location = new System.Drawing.Point(12, 71);
+            this.tabControl1.Location = new System.Drawing.Point(16, 87);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1046, 556);
+            this.tabControl1.Size = new System.Drawing.Size(1395, 684);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
@@ -114,9 +115,10 @@
             this.tpTijdlijn.Controls.Add(this.flowLayoutPanel1);
             this.tpTijdlijn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpTijdlijn.Location = new System.Drawing.Point(154, 4);
+            this.tpTijdlijn.Margin = new System.Windows.Forms.Padding(4);
             this.tpTijdlijn.Name = "tpTijdlijn";
-            this.tpTijdlijn.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTijdlijn.Size = new System.Drawing.Size(888, 548);
+            this.tpTijdlijn.Padding = new System.Windows.Forms.Padding(4);
+            this.tpTijdlijn.Size = new System.Drawing.Size(1237, 676);
             this.tpTijdlijn.TabIndex = 0;
             this.tpTijdlijn.Text = "Tijdlijn";
             this.tpTijdlijn.UseVisualStyleBackColor = true;
@@ -124,9 +126,10 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.gbPost);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 49);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(123, 60);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(750, 456);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 561);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // gbPost
@@ -135,11 +138,52 @@
             this.gbPost.Controls.Add(this.btnLike);
             this.gbPost.Controls.Add(this.label2);
             this.gbPost.Controls.Add(this.pictureBox3);
-            this.gbPost.Location = new System.Drawing.Point(3, 3);
+            this.gbPost.Location = new System.Drawing.Point(4, 4);
+            this.gbPost.Margin = new System.Windows.Forms.Padding(4);
             this.gbPost.Name = "gbPost";
-            this.gbPost.Size = new System.Drawing.Size(531, 259);
+            this.gbPost.Padding = new System.Windows.Forms.Padding(4);
+            this.gbPost.Size = new System.Drawing.Size(708, 319);
             this.gbPost.TabIndex = 0;
             this.gbPost.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(23, 223);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 57);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Comment";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnLike
+            // 
+            this.btnLike.Location = new System.Drawing.Point(23, 143);
+            this.btnLike.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLike.Name = "btnLike";
+            this.btnLike.Size = new System.Drawing.Size(107, 60);
+            this.btnLike.TabIndex = 2;
+            this.btnLike.Text = "Like";
+            this.btnLike.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(139, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(548, 257);
+            this.label2.TabIndex = 1;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(23, 37);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(107, 98);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
             // 
             // tpRental
             // 
@@ -156,9 +200,10 @@
             this.tpRental.Controls.Add(this.cbMaterialProduct);
             this.tpRental.Controls.Add(this.cbMaterialCategory);
             this.tpRental.Location = new System.Drawing.Point(154, 4);
+            this.tpRental.Margin = new System.Windows.Forms.Padding(4);
             this.tpRental.Name = "tpRental";
-            this.tpRental.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRental.Size = new System.Drawing.Size(888, 548);
+            this.tpRental.Padding = new System.Windows.Forms.Padding(4);
+            this.tpRental.Size = new System.Drawing.Size(1237, 676);
             this.tpRental.TabIndex = 1;
             this.tpRental.Text = "Verhuur";
             this.tpRental.UseVisualStyleBackColor = true;
@@ -167,10 +212,11 @@
             // 
             this.lblMaterialProductNameName.AutoSize = true;
             this.lblMaterialProductNameName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialProductNameName.Location = new System.Drawing.Point(579, 34);
+            this.lblMaterialProductNameName.Location = new System.Drawing.Point(772, 42);
+            this.lblMaterialProductNameName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialProductNameName.Name = "lblMaterialProductNameName";
             this.lblMaterialProductNameName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialProductNameName.Size = new System.Drawing.Size(67, 22);
+            this.lblMaterialProductNameName.Size = new System.Drawing.Size(87, 30);
             this.lblMaterialProductNameName.TabIndex = 12;
             this.lblMaterialProductNameName.Text = "Naam";
             this.lblMaterialProductNameName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -178,10 +224,11 @@
             // lblMaterialDescriptionValue
             // 
             this.lblMaterialDescriptionValue.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialDescriptionValue.Location = new System.Drawing.Point(579, 90);
+            this.lblMaterialDescriptionValue.Location = new System.Drawing.Point(772, 111);
+            this.lblMaterialDescriptionValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialDescriptionValue.Name = "lblMaterialDescriptionValue";
             this.lblMaterialDescriptionValue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialDescriptionValue.Size = new System.Drawing.Size(290, 269);
+            this.lblMaterialDescriptionValue.Size = new System.Drawing.Size(387, 331);
             this.lblMaterialDescriptionValue.TabIndex = 11;
             this.lblMaterialDescriptionValue.Text = resources.GetString("lblMaterialDescriptionValue.Text");
             // 
@@ -189,10 +236,11 @@
             // 
             this.lblMaterialDepositAmount.AutoSize = true;
             this.lblMaterialDepositAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialDepositAmount.Location = new System.Drawing.Point(579, 62);
+            this.lblMaterialDepositAmount.Location = new System.Drawing.Point(772, 76);
+            this.lblMaterialDepositAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialDepositAmount.Name = "lblMaterialDepositAmount";
             this.lblMaterialDepositAmount.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialDepositAmount.Size = new System.Drawing.Size(43, 22);
+            this.lblMaterialDepositAmount.Size = new System.Drawing.Size(52, 30);
             this.lblMaterialDepositAmount.TabIndex = 10;
             this.lblMaterialDepositAmount.Text = "120";
             this.lblMaterialDepositAmount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -201,10 +249,11 @@
             // 
             this.lblMaterialDescription.AutoSize = true;
             this.lblMaterialDescription.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialDescription.Location = new System.Drawing.Point(410, 90);
+            this.lblMaterialDescription.Location = new System.Drawing.Point(547, 111);
+            this.lblMaterialDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialDescription.Name = "lblMaterialDescription";
             this.lblMaterialDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialDescription.Size = new System.Drawing.Size(128, 22);
+            this.lblMaterialDescription.Size = new System.Drawing.Size(169, 30);
             this.lblMaterialDescription.TabIndex = 9;
             this.lblMaterialDescription.Text = "Omschrijving";
             this.lblMaterialDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -213,10 +262,11 @@
             // 
             this.lblMaterialDeposit.AutoSize = true;
             this.lblMaterialDeposit.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialDeposit.Location = new System.Drawing.Point(410, 62);
+            this.lblMaterialDeposit.Location = new System.Drawing.Point(547, 76);
+            this.lblMaterialDeposit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialDeposit.Name = "lblMaterialDeposit";
             this.lblMaterialDeposit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialDeposit.Size = new System.Drawing.Size(52, 22);
+            this.lblMaterialDeposit.Size = new System.Drawing.Size(66, 30);
             this.lblMaterialDeposit.TabIndex = 8;
             this.lblMaterialDeposit.Text = "Borg";
             this.lblMaterialDeposit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -225,10 +275,11 @@
             // 
             this.lblMaterialName.AutoSize = true;
             this.lblMaterialName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialName.Location = new System.Drawing.Point(410, 34);
+            this.lblMaterialName.Location = new System.Drawing.Point(547, 42);
+            this.lblMaterialName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialName.Name = "lblMaterialName";
             this.lblMaterialName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialName.Size = new System.Drawing.Size(67, 22);
+            this.lblMaterialName.Size = new System.Drawing.Size(87, 30);
             this.lblMaterialName.TabIndex = 7;
             this.lblMaterialName.Text = "Naam";
             this.lblMaterialName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -238,19 +289,21 @@
             this.lblMaterialAvailable.AutoSize = true;
             this.lblMaterialAvailable.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaterialAvailable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblMaterialAvailable.Location = new System.Drawing.Point(732, 34);
+            this.lblMaterialAvailable.Location = new System.Drawing.Point(976, 42);
+            this.lblMaterialAvailable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialAvailable.Name = "lblMaterialAvailable";
             this.lblMaterialAvailable.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialAvailable.Size = new System.Drawing.Size(122, 22);
+            this.lblMaterialAvailable.Size = new System.Drawing.Size(157, 30);
             this.lblMaterialAvailable.TabIndex = 6;
             this.lblMaterialAvailable.Text = "Beschikbaar";
             this.lblMaterialAvailable.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pbProductList
             // 
-            this.pbProductList.Location = new System.Drawing.Point(235, 34);
+            this.pbProductList.Location = new System.Drawing.Point(313, 42);
+            this.pbProductList.Margin = new System.Windows.Forms.Padding(4);
             this.pbProductList.Name = "pbProductList";
-            this.pbProductList.Size = new System.Drawing.Size(169, 174);
+            this.pbProductList.Size = new System.Drawing.Size(225, 214);
             this.pbProductList.TabIndex = 5;
             this.pbProductList.TabStop = false;
             // 
@@ -258,10 +311,11 @@
             // 
             this.lblMaterialProduct.AutoSize = true;
             this.lblMaterialProduct.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialProduct.Location = new System.Drawing.Point(17, 100);
+            this.lblMaterialProduct.Location = new System.Drawing.Point(23, 123);
+            this.lblMaterialProduct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialProduct.Name = "lblMaterialProduct";
             this.lblMaterialProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialProduct.Size = new System.Drawing.Size(83, 22);
+            this.lblMaterialProduct.Size = new System.Drawing.Size(105, 30);
             this.lblMaterialProduct.TabIndex = 4;
             this.lblMaterialProduct.Text = "Product";
             this.lblMaterialProduct.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -270,10 +324,11 @@
             // 
             this.lblMaterialCategory.AutoSize = true;
             this.lblMaterialCategory.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterialCategory.Location = new System.Drawing.Point(17, 34);
+            this.lblMaterialCategory.Location = new System.Drawing.Point(23, 42);
+            this.lblMaterialCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialCategory.Name = "lblMaterialCategory";
             this.lblMaterialCategory.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMaterialCategory.Size = new System.Drawing.Size(103, 22);
+            this.lblMaterialCategory.Size = new System.Drawing.Size(134, 30);
             this.lblMaterialCategory.TabIndex = 3;
             this.lblMaterialCategory.Text = "Categorie";
             this.lblMaterialCategory.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -281,17 +336,19 @@
             // cbMaterialProduct
             // 
             this.cbMaterialProduct.FormattingEnabled = true;
-            this.cbMaterialProduct.Location = new System.Drawing.Point(21, 125);
+            this.cbMaterialProduct.Location = new System.Drawing.Point(28, 154);
+            this.cbMaterialProduct.Margin = new System.Windows.Forms.Padding(4);
             this.cbMaterialProduct.Name = "cbMaterialProduct";
-            this.cbMaterialProduct.Size = new System.Drawing.Size(181, 21);
+            this.cbMaterialProduct.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialProduct.TabIndex = 2;
             // 
             // cbMaterialCategory
             // 
             this.cbMaterialCategory.FormattingEnabled = true;
-            this.cbMaterialCategory.Location = new System.Drawing.Point(21, 59);
+            this.cbMaterialCategory.Location = new System.Drawing.Point(28, 73);
+            this.cbMaterialCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cbMaterialCategory.Name = "cbMaterialCategory";
-            this.cbMaterialCategory.Size = new System.Drawing.Size(181, 21);
+            this.cbMaterialCategory.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialCategory.TabIndex = 1;
             // 
             // tpBestanden
@@ -299,25 +356,28 @@
             this.tpBestanden.Controls.Add(this.tvFolders);
             this.tpBestanden.Controls.Add(this.tvTree);
             this.tpBestanden.Location = new System.Drawing.Point(154, 4);
+            this.tpBestanden.Margin = new System.Windows.Forms.Padding(4);
             this.tpBestanden.Name = "tpBestanden";
-            this.tpBestanden.Size = new System.Drawing.Size(888, 548);
+            this.tpBestanden.Size = new System.Drawing.Size(1237, 676);
             this.tpBestanden.TabIndex = 2;
             this.tpBestanden.Text = "Bestanden";
             this.tpBestanden.UseVisualStyleBackColor = true;
             // 
             // tvFolders
             // 
-            this.tvFolders.Location = new System.Drawing.Point(266, 3);
+            this.tvFolders.Location = new System.Drawing.Point(355, 4);
+            this.tvFolders.Margin = new System.Windows.Forms.Padding(4);
             this.tvFolders.Name = "tvFolders";
-            this.tvFolders.Size = new System.Drawing.Size(619, 542);
+            this.tvFolders.Size = new System.Drawing.Size(824, 666);
             this.tvFolders.TabIndex = 1;
             this.tvFolders.UseCompatibleStateImageBehavior = false;
             // 
             // tvTree
             // 
-            this.tvTree.Location = new System.Drawing.Point(3, 3);
+            this.tvTree.Location = new System.Drawing.Point(4, 4);
+            this.tvTree.Margin = new System.Windows.Forms.Padding(4);
             this.tvTree.Name = "tvTree";
-            this.tvTree.Size = new System.Drawing.Size(257, 542);
+            this.tvTree.Size = new System.Drawing.Size(341, 666);
             this.tvTree.TabIndex = 0;
             // 
             // tpSettings
@@ -334,8 +394,9 @@
             this.tpSettings.Controls.Add(this.lblSettingsName);
             this.tpSettings.Controls.Add(this.pbSettingsPicture);
             this.tpSettings.Location = new System.Drawing.Point(154, 4);
+            this.tpSettings.Margin = new System.Windows.Forms.Padding(4);
             this.tpSettings.Name = "tpSettings";
-            this.tpSettings.Size = new System.Drawing.Size(888, 548);
+            this.tpSettings.Size = new System.Drawing.Size(1237, 676);
             this.tpSettings.TabIndex = 3;
             this.tpSettings.Text = "Instellingen";
             this.tpSettings.UseVisualStyleBackColor = true;
@@ -344,49 +405,55 @@
             // 
             this.btnSettingsSave.Enabled = false;
             this.btnSettingsSave.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsSave.Location = new System.Drawing.Point(25, 274);
+            this.btnSettingsSave.Location = new System.Drawing.Point(33, 337);
+            this.btnSettingsSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsSave.Name = "btnSettingsSave";
-            this.btnSettingsSave.Size = new System.Drawing.Size(200, 27);
+            this.btnSettingsSave.Size = new System.Drawing.Size(267, 33);
             this.btnSettingsSave.TabIndex = 11;
             this.btnSettingsSave.Text = "Opslaan";
             this.btnSettingsSave.UseVisualStyleBackColor = true;
             // 
             // dpBirthDate
             // 
-            this.dpBirthDate.Location = new System.Drawing.Point(251, 142);
+            this.dpBirthDate.Location = new System.Drawing.Point(335, 175);
+            this.dpBirthDate.Margin = new System.Windows.Forms.Padding(4);
             this.dpBirthDate.Name = "dpBirthDate";
-            this.dpBirthDate.Size = new System.Drawing.Size(366, 20);
+            this.dpBirthDate.Size = new System.Drawing.Size(487, 22);
             this.dpBirthDate.TabIndex = 10;
             // 
             // tbSettingsUsername
             // 
-            this.tbSettingsUsername.Location = new System.Drawing.Point(251, 190);
+            this.tbSettingsUsername.Location = new System.Drawing.Point(335, 234);
+            this.tbSettingsUsername.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsUsername.Name = "tbSettingsUsername";
-            this.tbSettingsUsername.Size = new System.Drawing.Size(366, 20);
+            this.tbSettingsUsername.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsUsername.TabIndex = 9;
             // 
             // tbSettingsEmail
             // 
-            this.tbSettingsEmail.Location = new System.Drawing.Point(251, 94);
+            this.tbSettingsEmail.Location = new System.Drawing.Point(335, 116);
+            this.tbSettingsEmail.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsEmail.Name = "tbSettingsEmail";
-            this.tbSettingsEmail.Size = new System.Drawing.Size(366, 20);
+            this.tbSettingsEmail.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsEmail.TabIndex = 7;
             // 
             // tbSettingsName
             // 
-            this.tbSettingsName.Location = new System.Drawing.Point(251, 49);
+            this.tbSettingsName.Location = new System.Drawing.Point(335, 60);
+            this.tbSettingsName.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsName.Name = "tbSettingsName";
-            this.tbSettingsName.Size = new System.Drawing.Size(366, 20);
+            this.tbSettingsName.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsName.TabIndex = 6;
             // 
             // lblSettingsUsername
             // 
             this.lblSettingsUsername.AutoSize = true;
             this.lblSettingsUsername.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsUsername.Location = new System.Drawing.Point(247, 165);
+            this.lblSettingsUsername.Location = new System.Drawing.Point(329, 203);
+            this.lblSettingsUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsUsername.Name = "lblSettingsUsername";
             this.lblSettingsUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblSettingsUsername.Size = new System.Drawing.Size(163, 22);
+            this.lblSettingsUsername.Size = new System.Drawing.Size(210, 30);
             this.lblSettingsUsername.TabIndex = 5;
             this.lblSettingsUsername.Text = "Gebruikersnaam";
             this.lblSettingsUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -395,10 +462,11 @@
             // 
             this.lblSettingsGeboorte.AutoSize = true;
             this.lblSettingsGeboorte.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsGeboorte.Location = new System.Drawing.Point(247, 117);
+            this.lblSettingsGeboorte.Location = new System.Drawing.Point(329, 144);
+            this.lblSettingsGeboorte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsGeboorte.Name = "lblSettingsGeboorte";
             this.lblSettingsGeboorte.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblSettingsGeboorte.Size = new System.Drawing.Size(169, 22);
+            this.lblSettingsGeboorte.Size = new System.Drawing.Size(217, 30);
             this.lblSettingsGeboorte.TabIndex = 4;
             this.lblSettingsGeboorte.Text = "Geboorte Datum";
             this.lblSettingsGeboorte.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -407,10 +475,11 @@
             // 
             this.lblSettingsEmail.AutoSize = true;
             this.lblSettingsEmail.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsEmail.Location = new System.Drawing.Point(247, 69);
+            this.lblSettingsEmail.Location = new System.Drawing.Point(329, 85);
+            this.lblSettingsEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsEmail.Name = "lblSettingsEmail";
             this.lblSettingsEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblSettingsEmail.Size = new System.Drawing.Size(56, 22);
+            this.lblSettingsEmail.Size = new System.Drawing.Size(78, 30);
             this.lblSettingsEmail.TabIndex = 3;
             this.lblSettingsEmail.Text = "Email";
             this.lblSettingsEmail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -418,9 +487,10 @@
             // btnSettingsEdit
             // 
             this.btnSettingsEdit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsEdit.Location = new System.Drawing.Point(25, 241);
+            this.btnSettingsEdit.Location = new System.Drawing.Point(33, 297);
+            this.btnSettingsEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsEdit.Name = "btnSettingsEdit";
-            this.btnSettingsEdit.Size = new System.Drawing.Size(200, 27);
+            this.btnSettingsEdit.Size = new System.Drawing.Size(267, 33);
             this.btnSettingsEdit.TabIndex = 2;
             this.btnSettingsEdit.Text = "Profiel Bewerken";
             this.btnSettingsEdit.UseVisualStyleBackColor = true;
@@ -429,19 +499,21 @@
             // 
             this.lblSettingsName.AutoSize = true;
             this.lblSettingsName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsName.Location = new System.Drawing.Point(247, 23);
+            this.lblSettingsName.Location = new System.Drawing.Point(329, 28);
+            this.lblSettingsName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsName.Name = "lblSettingsName";
             this.lblSettingsName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblSettingsName.Size = new System.Drawing.Size(67, 22);
+            this.lblSettingsName.Size = new System.Drawing.Size(87, 30);
             this.lblSettingsName.TabIndex = 1;
             this.lblSettingsName.Text = "Naam";
             this.lblSettingsName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pbSettingsPicture
             // 
-            this.pbSettingsPicture.Location = new System.Drawing.Point(25, 23);
+            this.pbSettingsPicture.Location = new System.Drawing.Point(33, 28);
+            this.pbSettingsPicture.Margin = new System.Windows.Forms.Padding(4);
             this.pbSettingsPicture.Name = "pbSettingsPicture";
-            this.pbSettingsPicture.Size = new System.Drawing.Size(200, 200);
+            this.pbSettingsPicture.Size = new System.Drawing.Size(267, 246);
             this.pbSettingsPicture.TabIndex = 0;
             this.pbSettingsPicture.TabStop = false;
             // 
@@ -456,8 +528,9 @@
             this.tpMap.Controls.Add(this.lblMapNumber);
             this.tpMap.Controls.Add(this.lblMapInfo);
             this.tpMap.Location = new System.Drawing.Point(154, 4);
+            this.tpMap.Margin = new System.Windows.Forms.Padding(4);
             this.tpMap.Name = "tpMap";
-            this.tpMap.Size = new System.Drawing.Size(888, 548);
+            this.tpMap.Size = new System.Drawing.Size(1237, 676);
             this.tpMap.TabIndex = 4;
             this.tpMap.Text = "Kaart";
             this.tpMap.UseVisualStyleBackColor = true;
@@ -466,9 +539,10 @@
             // 
             this.pbMapMap.Image = ((System.Drawing.Image)(resources.GetObject("pbMapMap.Image")));
             this.pbMapMap.InitialImage = null;
-            this.pbMapMap.Location = new System.Drawing.Point(361, 26);
+            this.pbMapMap.Location = new System.Drawing.Point(481, 32);
+            this.pbMapMap.Margin = new System.Windows.Forms.Padding(4);
             this.pbMapMap.Name = "pbMapMap";
-            this.pbMapMap.Size = new System.Drawing.Size(500, 500);
+            this.pbMapMap.Size = new System.Drawing.Size(667, 615);
             this.pbMapMap.TabIndex = 7;
             this.pbMapMap.TabStop = false;
             // 
@@ -476,9 +550,10 @@
             // 
             this.lblMapPeople.AutoSize = true;
             this.lblMapPeople.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapPeople.Location = new System.Drawing.Point(211, 117);
+            this.lblMapPeople.Location = new System.Drawing.Point(281, 144);
+            this.lblMapPeople.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapPeople.Name = "lblMapPeople";
-            this.lblMapPeople.Size = new System.Drawing.Size(19, 21);
+            this.lblMapPeople.Size = new System.Drawing.Size(21, 23);
             this.lblMapPeople.TabIndex = 6;
             this.lblMapPeople.Text = "6";
             // 
@@ -486,31 +561,34 @@
             // 
             this.lblMapType.AutoSize = true;
             this.lblMapType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapType.Location = new System.Drawing.Point(210, 85);
+            this.lblMapType.Location = new System.Drawing.Point(280, 105);
+            this.lblMapType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapType.Name = "lblMapType";
-            this.lblMapType.Size = new System.Drawing.Size(115, 21);
+            this.lblMapType.Size = new System.Drawing.Size(143, 23);
             this.lblMapType.TabIndex = 5;
             this.lblMapType.Text = "Bungolowww";
             // 
             // nudMapSpot
             // 
-            this.nudMapSpot.Location = new System.Drawing.Point(214, 55);
+            this.nudMapSpot.Location = new System.Drawing.Point(285, 68);
+            this.nudMapSpot.Margin = new System.Windows.Forms.Padding(4);
             this.nudMapSpot.Maximum = new decimal(new int[] {
             679,
             0,
             0,
             0});
             this.nudMapSpot.Name = "nudMapSpot";
-            this.nudMapSpot.Size = new System.Drawing.Size(68, 20);
+            this.nudMapSpot.Size = new System.Drawing.Size(91, 22);
             this.nudMapSpot.TabIndex = 4;
             // 
             // lblMapTypePlace
             // 
             this.lblMapTypePlace.AutoSize = true;
             this.lblMapTypePlace.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapTypePlace.Location = new System.Drawing.Point(28, 85);
+            this.lblMapTypePlace.Location = new System.Drawing.Point(37, 105);
+            this.lblMapTypePlace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapTypePlace.Name = "lblMapTypePlace";
-            this.lblMapTypePlace.Size = new System.Drawing.Size(81, 21);
+            this.lblMapTypePlace.Size = new System.Drawing.Size(102, 23);
             this.lblMapTypePlace.TabIndex = 3;
             this.lblMapTypePlace.Text = "Type Plek";
             // 
@@ -518,9 +596,10 @@
             // 
             this.lblMapMax.AutoSize = true;
             this.lblMapMax.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapMax.Location = new System.Drawing.Point(28, 117);
+            this.lblMapMax.Location = new System.Drawing.Point(37, 144);
+            this.lblMapMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapMax.Name = "lblMapMax";
-            this.lblMapMax.Size = new System.Drawing.Size(177, 21);
+            this.lblMapMax.Size = new System.Drawing.Size(220, 23);
             this.lblMapMax.TabIndex = 2;
             this.lblMapMax.Text = "Max aantal personen";
             // 
@@ -528,9 +607,10 @@
             // 
             this.lblMapNumber.AutoSize = true;
             this.lblMapNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapNumber.Location = new System.Drawing.Point(28, 55);
+            this.lblMapNumber.Location = new System.Drawing.Point(37, 68);
+            this.lblMapNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapNumber.Name = "lblMapNumber";
-            this.lblMapNumber.Size = new System.Drawing.Size(111, 21);
+            this.lblMapNumber.Size = new System.Drawing.Size(140, 23);
             this.lblMapNumber.TabIndex = 1;
             this.lblMapNumber.Text = "Plek Nummer";
             // 
@@ -538,70 +618,39 @@
             // 
             this.lblMapInfo.AutoSize = true;
             this.lblMapInfo.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapInfo.Location = new System.Drawing.Point(26, 12);
+            this.lblMapInfo.Location = new System.Drawing.Point(35, 15);
+            this.lblMapInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapInfo.Name = "lblMapInfo";
-            this.lblMapInfo.Size = new System.Drawing.Size(124, 33);
+            this.lblMapInfo.Size = new System.Drawing.Size(153, 40);
             this.lblMapInfo.TabIndex = 0;
             this.lblMapInfo.Text = "Plek Info";
             // 
             // lblMenu
             // 
             this.lblMenu.AutoSize = true;
-            this.lblMenu.Font = new System.Drawing.Font("Bebas", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.Location = new System.Drawing.Point(43, 22);
+            this.lblMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMenu.Location = new System.Drawing.Point(57, 27);
+            this.lblMenu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(99, 46);
+            this.lblMenu.Size = new System.Drawing.Size(132, 52);
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
             // 
-            // pictureBox3
+            // UIMainForm
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(17, 30);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(104, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(411, 209);
-            this.label2.TabIndex = 1;
-            this.label2.Text = resources.GetString("label2.Text");
-            // 
-            // btnLike
-            // 
-            this.btnLike.Location = new System.Drawing.Point(17, 116);
-            this.btnLike.Name = "btnLike";
-            this.btnLike.Size = new System.Drawing.Size(80, 49);
-            this.btnLike.TabIndex = 2;
-            this.btnLike.Text = "Like";
-            this.btnLike.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(17, 181);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Comment";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 639);
+            this.ClientSize = new System.Drawing.Size(1471, 786);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "UIMainForm";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tpTijdlijn.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.gbPost.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tpRental.ResumeLayout(false);
             this.tpRental.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).EndInit();
@@ -613,7 +662,6 @@
             this.tpMap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

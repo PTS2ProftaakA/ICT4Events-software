@@ -12,9 +12,12 @@ namespace Proftaak_ICT4Events
 {
     public partial class UIMainForm : Form
     {
+        private LogInManager logInManager;
         public UIMainForm()
         {
             InitializeComponent();
+
+            logInManager = new LogInManager();
         }
 
         private void button1_Click(object sender, EventArgs e)
