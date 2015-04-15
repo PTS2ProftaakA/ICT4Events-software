@@ -12,18 +12,17 @@ namespace Proftaak_ICT4Events
 {
     public partial class UIMainForm : Form
     {
-        private LogInManager logInManager;
         public UIMainForm()
         {
             InitializeComponent();
-
-            logInManager = new LogInManager();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void createPost(string content, string type)
         {
 
         }
+        
 
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -58,9 +57,5 @@ namespace Proftaak_ICT4Events
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
-
-    
-
-      
     }
 }

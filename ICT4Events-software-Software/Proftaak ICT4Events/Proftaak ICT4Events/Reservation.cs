@@ -8,8 +8,8 @@ namespace Proftaak_ICT4Events
 {
     enum RentalType
     {
-        Equipment,
-        SpotRental
+        PLAATS,
+        MATERIAAL
     }
 
     abstract class Reservation : IDatabase

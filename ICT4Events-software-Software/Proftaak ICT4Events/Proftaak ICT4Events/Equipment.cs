@@ -8,61 +8,28 @@ namespace Proftaak_ICT4Events
 {
     enum CategoryType
     {
-        Mobiel_Apparaat,
-        Randapparatuur,
-        Laptop,
-        Computer,
-        Hoofdtelefoon        
+        MOBIEL_APPARAAT,
+        RANDAPPARATUUR,
+        LAPTOP,
+        COMPUTER,
+        HOOFDTELEFOON        
     }
 
     class Equipment : Reservation
     {
-        private string name;
-        private string description;
+        private Material material;
 
-        private int amount;
-
-        private decimal deposit;
-
-        private CategoryType category;
-
-        #region properties
-        public string Name
+        public Material Material
         {
-            get { return name; }
-            set { name = value; }
+            get { return material; }
+            set { material = value; }
         }
-        public string Description
-        {
-            get { return description; }
-            set { description = value; }
-        }
-        public int Amount
-        {
-            get { return amount; }
-            set { amount = value; }
-        }
-        public decimal Deposit
-        {
-            get { return deposit; }
-            set { deposit = value; }
-        }
-        private CategoryType Category
-        {
-            get { return category; }
-            set { category = value; }
-        }
-        #endregion
 
         public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
-                 string name, string description, int amount, decimal deposit, CategoryType category)
+                 Material material)
             : base(RFID, rentalID, startDate, endDate, isPayed, type)
         {
-            this.name = name;
-            this.description = description;
-            this.amount = amount;
-            this.deposit = deposit;
-            this.category = category;
+            this.material = material;
         }
 
         public new static List<Equipment> getAll(Database database)
@@ -76,13 +43,17 @@ namespace Proftaak_ICT4Events
             equipmentColumns.Add("EINDDATUM");
             equipmentColumns.Add("HUURTYPE");
             equipmentColumns.Add("BETAALD");
+            equipmentColumns.Add("MATID");
             equipmentColumns.Add("NAAM");
             equipmentColumns.Add("HOEVEELHEID");
             equipmentColumns.Add("BORG");
             equipmentColumns.Add("OMSCHRIJVING");
-     
+            equipmentColumns.Add("CATEGORIE");
+            equipmentColumns.Add("FOTOPAD");
+            
+            //Has to be fixed with current database
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING", equipmentColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT r.HUURID, r.RFID, r.STARTDATUM, r.EINDDATUM, r.HUURTYPE, r.BETAALD, m.MATID, m.NAAM, m.HOEVEELHEID, m.BORG, m.OMSCHRIJVING, m.CATEGORIE, m.FOTOPAD FROM RESERVERING r, MATERIAAL m", equipmentColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -99,7 +70,8 @@ namespace Proftaak_ICT4Events
                     }
 
                     RentalType rentalValue = (RentalType)Enum.Parse(typeof(RentalType), dataTable[4][i]);
-                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[9][i]);
+                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[11][i]);
+
                     allEquipment.Add(new Equipment(
                         dataTable[1][i],
                         Convert.ToInt32(dataTable[0][i]),
@@ -107,11 +79,14 @@ namespace Proftaak_ICT4Events
                         Convert.ToDateTime(dataTable[3][i]),
                         isPayed,
                         rentalValue,
-                        dataTable[6][i],
-                        dataTable[9][i],
-                        Convert.ToInt32(dataTable[7][i]),
-                        Convert.ToDecimal(dataTable[8][i])/100,
-                        categoryValue ));
+                        new Material(
+                            dataTable[7][i],
+                            dataTable[10][i],
+                            dataTable[12][i],
+                            Convert.ToInt32(dataTable[6][i]),
+                            Convert.ToInt32(dataTable[8][i]),
+                            Convert.ToDecimal(dataTable[9][i]) / 100,
+                            categoryValue)));
                 }
             }
 

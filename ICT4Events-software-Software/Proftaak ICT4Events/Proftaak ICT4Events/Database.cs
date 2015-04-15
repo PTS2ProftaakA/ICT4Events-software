@@ -13,7 +13,6 @@ namespace Proftaak_ICT4Events
     public class Database
     {
         //private OracleConnection connection;
-        private string query;
         private string user = "DBS2Proftaak";
         private string password = "qwert12345";
         private OracleConnection connection;
@@ -86,7 +85,6 @@ namespace Proftaak_ICT4Events
                     {
                         for(int i = 0; i < columnNames.Count(); i++)
                         {
-                            MessageBox.Show(Convert.ToString(reader[columnNames[i]]));
                             dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
                         }
                     }

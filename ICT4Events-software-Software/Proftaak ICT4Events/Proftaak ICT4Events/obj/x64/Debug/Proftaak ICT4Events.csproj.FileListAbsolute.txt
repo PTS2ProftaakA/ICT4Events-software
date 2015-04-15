@@ -9,3 +9,4 @@ C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Soft
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.pdb
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Oracle.ManagedDataAccess.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.csprojResolveAssemblyReference.cache
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UI.Inloggen.resources

@@ -88,6 +88,7 @@
     <Compile Include="IDatabase.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Managers\LogInManager.cs" />
+    <Compile Include="Material.cs" />
     <Compile Include="MediaFile.cs" />
     <Compile Include="Managers\MediaFileManager.cs" />
     <Compile Include="Managers\PersonalInfoManager.cs" />
@@ -97,6 +98,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="SpotRental.cs" />
+    <Compile Include="UI\Inloggen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inloggen.designer.cs">
+      <DependentUpon>Inloggen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UIMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +120,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Inloggen.resx">
+      <DependentUpon>Inloggen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UIMainForm.resx">
       <DependentUpon>UIMainForm.cs</DependentUpon>
     </EmbeddedResource>

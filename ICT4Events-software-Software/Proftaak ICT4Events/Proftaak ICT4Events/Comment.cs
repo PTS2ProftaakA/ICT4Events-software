@@ -66,8 +66,6 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-
-
                     allComments.Add(new Comment(
                         Convert.ToInt32(dataTable[0][i]),
                         dataTable[1][i],
@@ -78,9 +76,31 @@ namespace Proftaak_ICT4Events
 
             return allComments;
         }
-        public List<Comment> GetAllFromUser(string RFID)
+        public List<Comment> GetAllFromUser(string RFID, Database database)
         {
-            return null;
+            List<string> commentColumns = new List<string>();
+            List<Comment> allComments = new List<Comment>();
+
+            commentColumns.Add("REACTIEID");
+            commentColumns.Add("BESTANDSLOCATIE");
+            commentColumns.Add("RFID");
+            commentColumns.Add("INHOUD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE RFID = " + RFID, commentColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allComments.Add(new Comment(
+                        Convert.ToInt32(dataTable[0][i]),
+                        dataTable[1][i],
+                        dataTable[3][i],
+                        dataTable[2][i]));
+                }
+            }
+
+            return allComments;
         }
 
         public Type Get(string commentID)

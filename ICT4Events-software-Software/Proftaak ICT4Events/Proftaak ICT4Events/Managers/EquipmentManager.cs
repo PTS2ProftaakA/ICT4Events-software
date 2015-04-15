@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
@@ -29,20 +30,21 @@ namespace Proftaak_ICT4Events
             ShoppingCart.Remove(equipment);
         }
 
-        public List<Equipment> Search(string text)
+        public List<Material> Search(string text)
         {
-            List<Equipment> allEquipment = Equipment.getAll(database);
-            List<Equipment> equipmentShown = new List<Equipment>();
+            List<Material> allMaterial = Material.getAll(database, CategoryType.HOOFDTELEFOON);
+            List<Material> materialShown = new List<Material>();
 
-            foreach(Equipment equipment in allEquipment)
+            foreach (Material material in allMaterial)
             {
-                if(equipment.Name.IndexOf(text) != -1)
+                if (material.Name.IndexOf(text) != -1)
                 {
-                    equipmentShown.Add(equipment);
+                    materialShown.Add(material);
+                    MessageBox.Show("" + material.Name);
                 }
             }
 
-            return equipmentShown;
+            return allMaterial;
         }
 
         public void CheckOut()

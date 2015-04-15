@@ -11,7 +11,6 @@ namespace Proftaak_ICT4Events
     {
         private string hobbyName;
 
-        Database database;
 
         #region properties
         public string HobbyName
