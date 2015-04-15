@@ -116,7 +116,7 @@ namespace Proftaak_ICT4Events
 
             //Has to be fixed with current database
 
-            dataTable = database.selectQuery("SELECT * FROM  MATERIAAL m WHERE CATEGORIE =" + (int)category, materialColumns);
+            dataTable = database.selectQuery("SELECT * FROM  MATERIAAL m WHERE CATEGORIE = " + (int)category, materialColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -138,22 +138,22 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
-        public Type Get(string materialName)
+        public T Get<T>(string materialID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type material)
-        {
-
-        }
-
-        public void Edit(Type material)
+        public void Add<T>(T material, Database database)
         {
 
         }
 
-        public void Remove(Type material)
+        public void Edit<T>(T material, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T material, Database database)
         {
 
         }

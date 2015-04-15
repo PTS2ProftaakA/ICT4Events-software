@@ -15,6 +15,8 @@ namespace Proftaak_ICT4Events
 
         private int commentID;
 
+        private Comment returnComment;
+
         private List<Rating> ratings;
 
         #region properties
@@ -103,24 +105,45 @@ namespace Proftaak_ICT4Events
             return allComments;
         }
 
-        public Type Get(string commentID)
+        public T Get<T>(string commentID, Database database)
         {
-            return null;
+            List<string> commentColumns = new List<string>();
+
+            commentColumns.Add("REACTIEID");
+            commentColumns.Add("BESTANDSLOCATIE");
+            commentColumns.Add("RFID");
+            commentColumns.Add("INHOUD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                return (T)Convert.ChangeType(new Comment(
+                    Convert.ToInt32(dataTable[0][1]),
+                    dataTable[1][1],
+                    dataTable[3][1],
+                    dataTable[2][1]), typeof(T));
+            }
+            else
+            {
+                return (T)Convert.ChangeType(null, typeof(T));
+            }
         }
 
-        public void Add(Type comment)
+        public void Add<T>(T comment, Database database)
         {
-
+            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
+            database.editDatabase("INSERT INTO REACTIE VALUES(" + newComment.commentID + ", '" + newComment.filePath + "', '" + newComment.RFID + "', '" + newComment.content + "'");
         }
 
-        public void Edit(Type comment)
+        public void Edit<T>(T comment, Database database)
         {
-
+            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
         }
 
-        public void Remove(Type comment)
+        public void Remove<T>(T comment, Database database)
         {
-
+            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
         }
     }
 }

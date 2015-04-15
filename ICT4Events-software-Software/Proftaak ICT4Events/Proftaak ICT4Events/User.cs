@@ -97,29 +97,24 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
-        public Type Get(string RFID)
+        public T Get<T>(string userID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Get(Type user)
-        {
-
-        }
-
-        public void Add(Type user)
+        public void Add<T>(T user, Database database)
         {
 
         }
 
-        public void Edit(Type user)
+        public void Edit<T>(T user, Database database)
         {
 
         }
 
-        public void Remove(Type user)
+        public void Remove<T>(T user, Database database)
         {
-            
+
         }
     }
 }

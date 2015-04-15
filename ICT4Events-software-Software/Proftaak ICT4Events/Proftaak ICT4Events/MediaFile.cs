@@ -117,22 +117,22 @@ namespace Proftaak_ICT4Events
             return selectedMediaFiles;
         }
 
-        public Type Get(string filePath)
+        public T Get<T>(string mediaFileID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type mediaFile)
-        {
-
-        }
-
-        public void Edit(Type mediaFile)
+        public void Add<T>(T mediaFile, Database database)
         {
 
         }
 
-        public void Remove(Type mediaFile)
+        public void Edit<T>(T mediaFile, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T mediaFile, Database database)
         {
 
         }

@@ -15,6 +15,8 @@ namespace Proftaak_ICT4Events
         public UIMainForm()
         {
             InitializeComponent();
+
+            
         }
 
 

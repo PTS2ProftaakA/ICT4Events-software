@@ -80,22 +80,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public Type Get(string rentalID)
+        public T Get<T>(string reservationID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type reservation)
-        {
-
-        }
-
-        public void Edit(Type reservation)
+        public void Add<T>(T reservation, Database database)
         {
 
         }
 
-        public void Remove(Type reservation)
+        public void Edit<T>(T reservation, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T reservation, Database database)
         {
 
         }

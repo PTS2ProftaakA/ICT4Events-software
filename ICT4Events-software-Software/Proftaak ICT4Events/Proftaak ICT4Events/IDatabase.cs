@@ -9,12 +9,12 @@ namespace Proftaak_ICT4Events
 {
     interface IDatabase
     {
-        Type Get(string identifier);
+        T Get<T>(string identifier, Database database);
 
-        void Add(Type type);
+        void Add<T>(T type, Database database);
 
-        void Edit(Type type);
+        void Edit<T>(T type, Database database);
 
-        void Remove(Type type);
+        void Remove<T>(T type, Database database);
     }
 }

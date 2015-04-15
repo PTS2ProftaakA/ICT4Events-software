@@ -74,22 +74,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public Type Get(string eventID)
+        public T Get<T>(string eventID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type singleEvent)
-        {
-
-        }
-
-        public void Edit(Type singleEvent)
+        public void Add<T>(T singleEvent, Database database)
         {
 
         }
 
-        public void Remove(Type singleEvent)
+        public void Edit<T>(T singleEvent, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T singleEvent, Database database)
         {
 
         }

@@ -62,22 +62,22 @@ namespace Proftaak_ICT4Events
             return allHobbies;
         }
 
-        public Type Get(string hobbyName)
+        public T Get<T>(string hobbyID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type hobby)
-        {
-
-        }
-
-        public void Edit(Type hobby)
+        public void Add<T>(T hobby, Database database)
         {
 
         }
 
-        public void Remove(Type hobby)
+        public void Edit<T>(T hobby, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T hobby, Database database)
         {
 
         }

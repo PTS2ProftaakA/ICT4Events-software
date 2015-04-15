@@ -57,22 +57,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public Type Get(string locationName)
+        public T Get<T>(string locationID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type location)
-        {
-
-        }
-
-        public void Edit(Type location)
+        public void Add<T>(T location, Database database)
         {
 
         }
 
-        public void Remove(Type location)
+        public void Edit<T>(T location, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T location, Database database)
         {
 
         }

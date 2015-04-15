@@ -36,22 +36,22 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public Type Get(string word)
+        public T Get<T>(string forbiddenWordID, Database database)
         {
-            return null;
+            return (T)Convert.ChangeType(null, typeof(T));
         }
 
-        public void Add(Type forbiddenWord)
-        {
-
-        }
-
-        public void Edit(Type forbiddenWord)
+        public void Add<T>(T forbiddenWord, Database database)
         {
 
         }
 
-        public void Remove(Type forbiddenWord)
+        public void Edit<T>(T forbiddenWord, Database database)
+        {
+
+        }
+
+        public void Remove<T>(T forbiddenWord, Database database)
         {
 
         }
