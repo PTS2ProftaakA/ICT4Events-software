@@ -92,11 +92,92 @@ namespace Proftaak_ICT4Events
             Form f = new UI.makePost();
             f.Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        //TAB INDEX CHANGER//
+        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
         {
-            UI.UILogIn testLogIn = new UI.UILogIn();
-            testLogIn.Show();
+            //feed
+            if (tabControl1.SelectedIndex == 0)
+            {
+
+            }
+            //verhuur
+            if (tabControl1.SelectedIndex == 1)
+            {
+
+            }
+            //bestanden
+            if (tabControl1.SelectedIndex == 2)
+            {
+
+            }
+            //instellingen
+            if (tabControl1.SelectedIndex == 3)
+            {
+                //  SettingsFillControls(LogInManager.INGELODGE USER)
+            }
+            //kaart
+            if (tabControl1.SelectedIndex == 4)
+            {
+
+            }
+        }
+
+        // FEED //
+
+        //
+        private void FeedFill(string search, FileType type, bool tenMostPopuliar, bool tenNewest)
+        {
+            foreach (MediaFile m in feedManager.GivePosts(search, type, tenMostPopuliar, tenNewest))
+            {
+                // PersonalInfoManager. //GET USER BY RFID m.RFID
+                // Post post = new Post()
+                // flpPosts.Controls.Add(post);
+            }
+
+        }
+
+        // PERSONAL INFO SCREEN //
+        //
+        //
+        private void SettingsFillControls(User user)
+        {
+            tbSettingsName.Text = user.Name;
+            tbSettingsEmail.Text = user.EmailAdres;
+            tbSettingsUsername.Text = user.Username;
+            dpBirthDate.Value = user.DateOfBirth;
+            lbPersonRentals.Items.Clear();
+            pbSettingsPicture.ImageLocation = user.Photo;
+            foreach (Equipment e in equipmentManager.getEquipmentFromUser(user))
+            {
+                lbPersonRentals.Items.Add(e.Material.Name);
+            }
+        }
+
+        private void btnSettingsEdit_Click(object sender, EventArgs e)
+        {
+            btnSettingsSave.Enabled = true;
+        }
+
+        private void btnSettingsSave_Click(object sender, EventArgs e)
+        {
+            string email = tbSettingsEmail.Text;
+            string name = tbSettingsName.Text;
+            string username = tbSettingsUsername.Text;
+            DateTime birth = dpBirthDate.Value;
+
+            if (name != null && email.Contains("@") == true && email.Contains(".") == true && username != null && birth < DateTime.Now)
+            {
+                // PersonalInfoManager.INGELOGDE USER.alle nieuwe values heir 
+                // PersonalInfoManager.INGELOGDE USER.alle nieuwe values heir 
+                // PersonalInfoManager.INGELOGDE USER.alle nieuwe values heir 
+                // 
+
+                btnSettingsSave.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Gegevens zijn niet geldig");
+            }
         }
 
     }

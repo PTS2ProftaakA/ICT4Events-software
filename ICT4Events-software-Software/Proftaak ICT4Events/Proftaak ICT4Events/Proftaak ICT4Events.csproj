@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Functional Classes\Comment.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Functional Classes\Spot.cs" />
     <Compile Include="Managers\DiscussionManager.cs" />
     <Compile Include="Functional Classes\Equipment.cs" />
     <Compile Include="Managers\EquipmentManager.cs" />

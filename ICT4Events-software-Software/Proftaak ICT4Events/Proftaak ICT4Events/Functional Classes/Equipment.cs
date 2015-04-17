@@ -32,7 +32,7 @@ namespace Proftaak_ICT4Events
             this.material = material;
         }
 
-        public new static List<Equipment> getAll(Database database)
+        public static List<Equipment> getAll(Database database)
         {
             List<string> equipmentColumns = new List<string>();
             List<Equipment> allEquipment = new List<Equipment>();

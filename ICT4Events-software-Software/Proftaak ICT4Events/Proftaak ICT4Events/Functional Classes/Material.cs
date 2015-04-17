@@ -62,7 +62,7 @@ namespace Proftaak_ICT4Events
             this.category = category;
         }
 
-        public new static List<Material> getAll(Database database)
+        public static List<Material> getAll(Database database)
         {
             List<string> materialColumns = new List<string>();
             List<Material> allMaterial = new List<Material>();
@@ -100,7 +100,7 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
-        public new static List<Material> getAll(Database database, CategoryType category)
+        public static List<Material> getAll(Database database, CategoryType category)
         {
             List<string> materialColumns = new List<string>();
             List<Material> allMaterial = new List<Material>();

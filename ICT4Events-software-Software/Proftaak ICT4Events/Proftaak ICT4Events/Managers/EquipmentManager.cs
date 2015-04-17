@@ -51,5 +51,10 @@ namespace Proftaak_ICT4Events
         {
 
         }
+
+        public List<Equipment> getEquipmentFromUser(User user)
+        {
+            return null;
+        }
     }
 }
