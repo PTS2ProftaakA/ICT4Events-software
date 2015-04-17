@@ -35,7 +35,7 @@ namespace Proftaak_ICT4Events
 
         }
 
-        public void Connect()
+        public bool Connect()
         {
             //If there is a correct combination between username and password a connection will be established.
             try 
@@ -44,10 +44,12 @@ namespace Proftaak_ICT4Events
                 connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
                 connection.Open();
                 MessageBox.Show("Connected to : " + user);
+                return true;
             }
             catch
             {
                 MessageBox.Show("The combination of username and password is incorrect");
+                return false;
             }
         }
 
@@ -57,22 +59,65 @@ namespace Proftaak_ICT4Events
             connection.Close();
         }
 
-        public void editDatabase()
+        public void editDatabase(string query)
         {
-            //Make changes to the database
+            if (Connect())
+            {
+                using (OracleCommand oracleCommand = new OracleCommand(query))
+                {
+                    using (oracleCommand.Connection = connection)
+                    {
+                        oracleCommand.ExecuteNonQuery();
+                    }
+                }
+
+                Close();
+            }
         }
 
         public List<string>[] selectQuery(string query, List<string> columnNames)
         {
+            if (Connect())
+            {
+                List<string>[] dataTable = new List<string>[columnNames.Count()];
+
+                for (int i = 0; i < columnNames.Count(); i++)
+                {
+                    dataTable[i] = new List<string>();
+                    dataTable[i].Add(columnNames[i]);
+                }
+
+                using (OracleCommand oracleCommand = new OracleCommand(query))
+                {
+                    using (oracleCommand.Connection = connection)
+                    {
+                        oracleCommand.Parameters.Add(":port_id", 1521);
+                        OracleDataReader reader = oracleCommand.ExecuteReader();
+
+                        Close();
+
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < columnNames.Count(); i++)
+                            {
+                                dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
+                            }
+                        }
+                    }
+                }
+                return dataTable;
+            }
+            else return null;
+            {
+
+            }
+        }
+
+        public int nextSequenceValue(string sequenceName)
+        {
             Connect();
 
-            List<string>[] dataTable = new List<string>[columnNames.Count()];
-
-            for (int i = 0; i < columnNames.Count(); i++)
-            {
-                dataTable[i] = new List<string>();
-                dataTable[i].Add(columnNames[i]);
-            }
+            string query = "SELECT " + sequenceName + ".currval FROM DUAL";
 
             using (OracleCommand oracleCommand = new OracleCommand(query))
             {
@@ -81,18 +126,20 @@ namespace Proftaak_ICT4Events
                     oracleCommand.Parameters.Add(":port_id", 1521);
                     OracleDataReader reader = oracleCommand.ExecuteReader();
 
-                    while (reader.Read())
+                    Close();
+
+                    try
                     {
-                        for(int i = 0; i < columnNames.Count(); i++)
-                        {
-                            dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
-                        }
+                        return Convert.ToInt32(reader.Read());
                     }
+                    catch
+                    {
+
+                    }
+
                 }
             }
-            Close();
-
-            return dataTable;
+            return 0;
         }
     }
 }

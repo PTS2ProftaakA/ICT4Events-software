@@ -8,24 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Proftaak_ICT4Events
 {
+    
     public partial class UIMainForm : Form
     {
+
         public UIMainForm()
         {
             InitializeComponent();
-
             
-        }
-
-
-        private void createPost(string content, string type)
-        {
-
-        }
-        
-
+        }   
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -59,5 +53,28 @@ namespace Proftaak_ICT4Events
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
+
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string description = "Ik vind Matthijs echt een aardige knul.";
+            string naam = "Martino";
+            string derp = "derp";
+            FileType aapje = FileType.Video;
+            Post Post = new Post(aapje, naam, description, derp);
+            
+            
+            flpPosts.Controls.Add(Post);        
+        }
+
+        private void btnMakePost_Click(object sender, EventArgs e)
+        {
+            Form f = new UI.makePost();
+            f.Show();
+        }
+
+       
+       
     }
 }

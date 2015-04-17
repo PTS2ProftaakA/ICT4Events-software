@@ -1,6 +1,6 @@
 ﻿namespace Proftaak_ICT4Events.UI
 {
-    partial class Inloggen
+    partial class UILogIn
     {
         /// <summary>
         /// Required designer variable.

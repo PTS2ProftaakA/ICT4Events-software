@@ -9,9 +9,12 @@ namespace Proftaak_ICT4Events
 {
     class MediaFileManager
     {
+        Database database;
+        Comment comment;
+
         public MediaFileManager() 
         {
-
+            database = new Database();
         }
 
         public List<MediaFile> GenerateFromPath()
@@ -32,6 +35,11 @@ namespace Proftaak_ICT4Events
         public void EditFile(MediaFile file)
         {
 
+        }
+
+        public void testComment(Comment comment)
+        {
+            comment.Edit(comment, database);
         }
     }
 }

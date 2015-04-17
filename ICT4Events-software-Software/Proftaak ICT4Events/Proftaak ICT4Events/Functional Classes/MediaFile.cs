@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    enum FileType
+    public enum FileType
     {
         Video,
         Plaatje,

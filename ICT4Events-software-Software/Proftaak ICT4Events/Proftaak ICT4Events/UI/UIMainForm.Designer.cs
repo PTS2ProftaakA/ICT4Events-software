@@ -31,8 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIMainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpTijdlijn = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnMakePost = new System.Windows.Forms.Button();
+            this.tbFeedSearch = new System.Windows.Forms.TextBox();
+            this.cbFeedFileTypes = new System.Windows.Forms.ComboBox();
+            this.flpPosts = new System.Windows.Forms.FlowLayoutPanel();
+            this.rbtnTenNewest = new System.Windows.Forms.RadioButton();
+            this.rbtnTenMostPopulair = new System.Windows.Forms.RadioButton();
             this.tpRental = new System.Windows.Forms.TabPage();
+            this.lblRentalEnd = new System.Windows.Forms.Label();
+            this.lblRentalStart = new System.Windows.Forms.Label();
+            this.dtpRentalEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpRentalStart = new System.Windows.Forms.DateTimePicker();
+            this.btnMaterialRent = new System.Windows.Forms.Button();
             this.lblMaterialProductNameName = new System.Windows.Forms.Label();
             this.lblMaterialDescriptionValue = new System.Windows.Forms.Label();
             this.lblMaterialDepositAmount = new System.Windows.Forms.Label();
@@ -40,15 +50,16 @@
             this.lblMaterialDeposit = new System.Windows.Forms.Label();
             this.lblMaterialName = new System.Windows.Forms.Label();
             this.lblMaterialAvailable = new System.Windows.Forms.Label();
-            this.pbProductList = new System.Windows.Forms.PictureBox();
             this.lblMaterialProduct = new System.Windows.Forms.Label();
             this.lblMaterialCategory = new System.Windows.Forms.Label();
             this.cbMaterialProduct = new System.Windows.Forms.ComboBox();
             this.cbMaterialCategory = new System.Windows.Forms.ComboBox();
+            this.pbProductList = new System.Windows.Forms.PictureBox();
             this.tpBestanden = new System.Windows.Forms.TabPage();
             this.tvFolders = new System.Windows.Forms.ListView();
             this.tvTree = new System.Windows.Forms.TreeView();
             this.tpSettings = new System.Windows.Forms.TabPage();
+            this.lbPersonRentals = new System.Windows.Forms.ListBox();
             this.btnSettingsSave = new System.Windows.Forms.Button();
             this.dpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.tbSettingsUsername = new System.Windows.Forms.TextBox();
@@ -61,16 +72,26 @@
             this.lblSettingsName = new System.Windows.Forms.Label();
             this.pbSettingsPicture = new System.Windows.Forms.PictureBox();
             this.tpMap = new System.Windows.Forms.TabPage();
+            this.nudMapPeople = new System.Windows.Forms.NumericUpDown();
+            this.cbMapType = new System.Windows.Forms.ComboBox();
+            this.btnMapSearch = new System.Windows.Forms.Button();
             this.btnReservation = new System.Windows.Forms.Button();
-            this.pbMapMap = new System.Windows.Forms.PictureBox();
-            this.lblMapPeople = new System.Windows.Forms.Label();
-            this.lblMapType = new System.Windows.Forms.Label();
             this.nudMapSpot = new System.Windows.Forms.NumericUpDown();
             this.lblMapTypePlace = new System.Windows.Forms.Label();
             this.lblMapMax = new System.Windows.Forms.Label();
             this.lblMapNumber = new System.Windows.Forms.Label();
             this.lblMapInfo = new System.Windows.Forms.Label();
+            this.pbMapMap = new System.Windows.Forms.PictureBox();
             this.tpEventBeheer = new System.Windows.Forms.TabPage();
+            this.lblEManagementRapp = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.lblEManagementEnd = new System.Windows.Forms.Label();
+            this.lblEManagementStart = new System.Windows.Forms.Label();
+            this.lblEManagementAantal = new System.Windows.Forms.Label();
+            this.tbEManagementLocatie = new System.Windows.Forms.TextBox();
+            this.lblEManagementLocatie = new System.Windows.Forms.Label();
+            this.lblEManagementNaam = new System.Windows.Forms.Label();
+            this.lblEManagement = new System.Windows.Forms.Label();
             this.tbEManagementNaam = new System.Windows.Forms.TextBox();
             this.cbEManagementEvents = new System.Windows.Forms.ComboBox();
             this.btnEManagementSave = new System.Windows.Forms.Button();
@@ -78,33 +99,49 @@
             this.dtpEManagementEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpEManagementStart = new System.Windows.Forms.DateTimePicker();
             this.tpMateriaalBeheer = new System.Windows.Forms.TabPage();
+            this.lbManagementAllRental = new System.Windows.Forms.ListBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnManagementProductBrowse = new System.Windows.Forms.Button();
+            this.tbManagementProductphotoPath = new System.Windows.Forms.TextBox();
+            this.btnManagementNewCategorie = new System.Windows.Forms.Button();
+            this.cbManagementCatergory = new System.Windows.Forms.ComboBox();
+            this.tbManagementDescription = new System.Windows.Forms.TextBox();
+            this.nudManagementProductDeposit = new System.Windows.Forms.NumericUpDown();
+            this.nudManagementProductAmount = new System.Windows.Forms.NumericUpDown();
+            this.lblManagementProductFoto = new System.Windows.Forms.Label();
+            this.lblManagementProductCategory = new System.Windows.Forms.Label();
+            this.lblManagementProductDescription = new System.Windows.Forms.Label();
+            this.lblManagementProductDeposit = new System.Windows.Forms.Label();
+            this.lblManagementAmount = new System.Windows.Forms.Label();
+            this.lblManagementProductName = new System.Windows.Forms.Label();
+            this.tbManagementProductName = new System.Windows.Forms.TextBox();
             this.tpPostBeheer = new System.Windows.Forms.TabPage();
+            this.btnManagementGetPosts = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.lblEManagement = new System.Windows.Forms.Label();
-            this.lblEManagementNaam = new System.Windows.Forms.Label();
-            this.lblEManagementLocatie = new System.Windows.Forms.Label();
-            this.tbEManagementLocatie = new System.Windows.Forms.TextBox();
-            this.lblEManagementAantal = new System.Windows.Forms.Label();
-            this.lblEManagementStart = new System.Windows.Forms.Label();
-            this.lblEManagementEnd = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.lblEManagementRapp = new System.Windows.Forms.Label();
-            this.lblMapAvailable = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tpRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).BeginInit();
             this.tpBestanden.SuspendLayout();
             this.tpSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSettingsPicture)).BeginInit();
             this.tpMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapPeople)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).BeginInit();
             this.tpEventBeheer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).BeginInit();
+            this.tpMateriaalBeheer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudManagementProductDeposit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudManagementProductAmount)).BeginInit();
+            this.tpPostBeheer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -131,7 +168,12 @@
             // 
             // tpTijdlijn
             // 
-            this.tpTijdlijn.Controls.Add(this.flowLayoutPanel1);
+            this.tpTijdlijn.Controls.Add(this.btnMakePost);
+            this.tpTijdlijn.Controls.Add(this.tbFeedSearch);
+            this.tpTijdlijn.Controls.Add(this.cbFeedFileTypes);
+            this.tpTijdlijn.Controls.Add(this.flpPosts);
+            this.tpTijdlijn.Controls.Add(this.rbtnTenNewest);
+            this.tpTijdlijn.Controls.Add(this.rbtnTenMostPopulair);
             this.tpTijdlijn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpTijdlijn.Location = new System.Drawing.Point(154, 4);
             this.tpTijdlijn.Name = "tpTijdlijn";
@@ -141,16 +183,69 @@
             this.tpTijdlijn.Text = "Tijdlijn";
             this.tpTijdlijn.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // btnMakePost
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 49);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(750, 456);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.btnMakePost.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMakePost.Location = new System.Drawing.Point(694, 5);
+            this.btnMakePost.Name = "btnMakePost";
+            this.btnMakePost.Size = new System.Drawing.Size(113, 27);
+            this.btnMakePost.TabIndex = 4;
+            this.btnMakePost.Text = "Maak Post";
+            this.btnMakePost.UseVisualStyleBackColor = true;
+            this.btnMakePost.Click += new System.EventHandler(this.btnMakePost_Click);
+            // 
+            // tbFeedSearch
+            // 
+            this.tbFeedSearch.Location = new System.Drawing.Point(6, 3);
+            this.tbFeedSearch.Name = "tbFeedSearch";
+            this.tbFeedSearch.Size = new System.Drawing.Size(166, 31);
+            this.tbFeedSearch.TabIndex = 0;
+            // 
+            // cbFeedFileTypes
+            // 
+            this.cbFeedFileTypes.FormattingEnabled = true;
+            this.cbFeedFileTypes.Location = new System.Drawing.Point(178, 3);
+            this.cbFeedFileTypes.Name = "cbFeedFileTypes";
+            this.cbFeedFileTypes.Size = new System.Drawing.Size(152, 30);
+            this.cbFeedFileTypes.TabIndex = 1;
+            // 
+            // flpPosts
+            // 
+            this.flpPosts.AutoScroll = true;
+            this.flpPosts.Location = new System.Drawing.Point(0, 35);
+            this.flpPosts.Name = "flpPosts";
+            this.flpPosts.Size = new System.Drawing.Size(808, 513);
+            this.flpPosts.TabIndex = 0;
+            // 
+            // rbtnTenNewest
+            // 
+            this.rbtnTenNewest.AutoSize = true;
+            this.rbtnTenNewest.Location = new System.Drawing.Point(336, 3);
+            this.rbtnTenNewest.Name = "rbtnTenNewest";
+            this.rbtnTenNewest.Size = new System.Drawing.Size(151, 26);
+            this.rbtnTenNewest.TabIndex = 2;
+            this.rbtnTenNewest.TabStop = true;
+            this.rbtnTenNewest.Text = "Tien Nieuwste";
+            this.rbtnTenNewest.UseVisualStyleBackColor = true;
+            // 
+            // rbtnTenMostPopulair
+            // 
+            this.rbtnTenMostPopulair.AutoSize = true;
+            this.rbtnTenMostPopulair.Location = new System.Drawing.Point(493, 3);
+            this.rbtnTenMostPopulair.Name = "rbtnTenMostPopulair";
+            this.rbtnTenMostPopulair.Size = new System.Drawing.Size(167, 26);
+            this.rbtnTenMostPopulair.TabIndex = 3;
+            this.rbtnTenMostPopulair.TabStop = true;
+            this.rbtnTenMostPopulair.Text = "Tien Populairste";
+            this.rbtnTenMostPopulair.UseVisualStyleBackColor = true;
             // 
             // tpRental
             // 
+            this.tpRental.Controls.Add(this.lblRentalEnd);
+            this.tpRental.Controls.Add(this.lblRentalStart);
+            this.tpRental.Controls.Add(this.dtpRentalEnd);
+            this.tpRental.Controls.Add(this.dtpRentalStart);
+            this.tpRental.Controls.Add(this.btnMaterialRent);
             this.tpRental.Controls.Add(this.lblMaterialProductNameName);
             this.tpRental.Controls.Add(this.lblMaterialDescriptionValue);
             this.tpRental.Controls.Add(this.lblMaterialDepositAmount);
@@ -158,11 +253,11 @@
             this.tpRental.Controls.Add(this.lblMaterialDeposit);
             this.tpRental.Controls.Add(this.lblMaterialName);
             this.tpRental.Controls.Add(this.lblMaterialAvailable);
-            this.tpRental.Controls.Add(this.pbProductList);
             this.tpRental.Controls.Add(this.lblMaterialProduct);
             this.tpRental.Controls.Add(this.lblMaterialCategory);
             this.tpRental.Controls.Add(this.cbMaterialProduct);
             this.tpRental.Controls.Add(this.cbMaterialCategory);
+            this.tpRental.Controls.Add(this.pbProductList);
             this.tpRental.Location = new System.Drawing.Point(154, 4);
             this.tpRental.Name = "tpRental";
             this.tpRental.Padding = new System.Windows.Forms.Padding(3);
@@ -170,6 +265,53 @@
             this.tpRental.TabIndex = 1;
             this.tpRental.Text = "Verhuur";
             this.tpRental.UseVisualStyleBackColor = true;
+            // 
+            // lblRentalEnd
+            // 
+            this.lblRentalEnd.AutoSize = true;
+            this.lblRentalEnd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalEnd.Location = new System.Drawing.Point(579, 455);
+            this.lblRentalEnd.Name = "lblRentalEnd";
+            this.lblRentalEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblRentalEnd.Size = new System.Drawing.Size(45, 22);
+            this.lblRentalEnd.TabIndex = 17;
+            this.lblRentalEnd.Text = "End";
+            this.lblRentalEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblRentalStart
+            // 
+            this.lblRentalStart.AutoSize = true;
+            this.lblRentalStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalStart.Location = new System.Drawing.Point(579, 431);
+            this.lblRentalStart.Name = "lblRentalStart";
+            this.lblRentalStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblRentalStart.Size = new System.Drawing.Size(52, 22);
+            this.lblRentalStart.TabIndex = 16;
+            this.lblRentalStart.Text = "Start";
+            this.lblRentalStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dtpRentalEnd
+            // 
+            this.dtpRentalEnd.Location = new System.Drawing.Point(669, 457);
+            this.dtpRentalEnd.Name = "dtpRentalEnd";
+            this.dtpRentalEnd.Size = new System.Drawing.Size(200, 20);
+            this.dtpRentalEnd.TabIndex = 15;
+            // 
+            // dtpRentalStart
+            // 
+            this.dtpRentalStart.Location = new System.Drawing.Point(669, 431);
+            this.dtpRentalStart.Name = "dtpRentalStart";
+            this.dtpRentalStart.Size = new System.Drawing.Size(200, 20);
+            this.dtpRentalStart.TabIndex = 14;
+            // 
+            // btnMaterialRent
+            // 
+            this.btnMaterialRent.Location = new System.Drawing.Point(794, 504);
+            this.btnMaterialRent.Name = "btnMaterialRent";
+            this.btnMaterialRent.Size = new System.Drawing.Size(75, 23);
+            this.btnMaterialRent.TabIndex = 13;
+            this.btnMaterialRent.Text = "Reserveren";
+            this.btnMaterialRent.UseVisualStyleBackColor = true;
             // 
             // lblMaterialProductNameName
             // 
@@ -254,14 +396,6 @@
             this.lblMaterialAvailable.Text = "Beschikbaar";
             this.lblMaterialAvailable.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pbProductList
-            // 
-            this.pbProductList.Location = new System.Drawing.Point(235, 34);
-            this.pbProductList.Name = "pbProductList";
-            this.pbProductList.Size = new System.Drawing.Size(169, 174);
-            this.pbProductList.TabIndex = 5;
-            this.pbProductList.TabStop = false;
-            // 
             // lblMaterialProduct
             // 
             this.lblMaterialProduct.AutoSize = true;
@@ -302,6 +436,14 @@
             this.cbMaterialCategory.Size = new System.Drawing.Size(181, 21);
             this.cbMaterialCategory.TabIndex = 1;
             // 
+            // pbProductList
+            // 
+            this.pbProductList.Location = new System.Drawing.Point(235, 34);
+            this.pbProductList.Name = "pbProductList";
+            this.pbProductList.Size = new System.Drawing.Size(169, 174);
+            this.pbProductList.TabIndex = 5;
+            this.pbProductList.TabStop = false;
+            // 
             // tpBestanden
             // 
             this.tpBestanden.Controls.Add(this.tvFolders);
@@ -330,6 +472,7 @@
             // 
             // tpSettings
             // 
+            this.tpSettings.Controls.Add(this.lbPersonRentals);
             this.tpSettings.Controls.Add(this.btnSettingsSave);
             this.tpSettings.Controls.Add(this.dpBirthDate);
             this.tpSettings.Controls.Add(this.tbSettingsUsername);
@@ -347,6 +490,14 @@
             this.tpSettings.TabIndex = 3;
             this.tpSettings.Text = "Instellingen";
             this.tpSettings.UseVisualStyleBackColor = true;
+            // 
+            // lbPersonRentals
+            // 
+            this.lbPersonRentals.FormattingEnabled = true;
+            this.lbPersonRentals.Location = new System.Drawing.Point(251, 317);
+            this.lbPersonRentals.Name = "lbPersonRentals";
+            this.lbPersonRentals.Size = new System.Drawing.Size(366, 212);
+            this.lbPersonRentals.TabIndex = 12;
             // 
             // btnSettingsSave
             // 
@@ -455,16 +606,16 @@
             // 
             // tpMap
             // 
-            this.tpMap.Controls.Add(this.lblMapAvailable);
+            this.tpMap.Controls.Add(this.nudMapPeople);
+            this.tpMap.Controls.Add(this.cbMapType);
+            this.tpMap.Controls.Add(this.btnMapSearch);
             this.tpMap.Controls.Add(this.btnReservation);
-            this.tpMap.Controls.Add(this.pbMapMap);
-            this.tpMap.Controls.Add(this.lblMapPeople);
-            this.tpMap.Controls.Add(this.lblMapType);
             this.tpMap.Controls.Add(this.nudMapSpot);
             this.tpMap.Controls.Add(this.lblMapTypePlace);
             this.tpMap.Controls.Add(this.lblMapMax);
             this.tpMap.Controls.Add(this.lblMapNumber);
             this.tpMap.Controls.Add(this.lblMapInfo);
+            this.tpMap.Controls.Add(this.pbMapMap);
             this.tpMap.Location = new System.Drawing.Point(154, 4);
             this.tpMap.Name = "tpMap";
             this.tpMap.Size = new System.Drawing.Size(888, 548);
@@ -472,48 +623,42 @@
             this.tpMap.Text = "Kaart";
             this.tpMap.UseVisualStyleBackColor = true;
             // 
+            // nudMapPeople
+            // 
+            this.nudMapPeople.Location = new System.Drawing.Point(200, 82);
+            this.nudMapPeople.Name = "nudMapPeople";
+            this.nudMapPeople.Size = new System.Drawing.Size(54, 20);
+            this.nudMapPeople.TabIndex = 12;
+            // 
+            // cbMapType
+            // 
+            this.cbMapType.FormattingEnabled = true;
+            this.cbMapType.Location = new System.Drawing.Point(200, 55);
+            this.cbMapType.Name = "cbMapType";
+            this.cbMapType.Size = new System.Drawing.Size(121, 21);
+            this.cbMapType.TabIndex = 11;
+            // 
+            // btnMapSearch
+            // 
+            this.btnMapSearch.Location = new System.Drawing.Point(32, 110);
+            this.btnMapSearch.Name = "btnMapSearch";
+            this.btnMapSearch.Size = new System.Drawing.Size(97, 23);
+            this.btnMapSearch.TabIndex = 10;
+            this.btnMapSearch.Text = "Zoeken";
+            this.btnMapSearch.UseVisualStyleBackColor = true;
+            // 
             // btnReservation
             // 
-            this.btnReservation.Location = new System.Drawing.Point(32, 187);
+            this.btnReservation.Location = new System.Drawing.Point(32, 503);
             this.btnReservation.Name = "btnReservation";
             this.btnReservation.Size = new System.Drawing.Size(75, 23);
             this.btnReservation.TabIndex = 8;
             this.btnReservation.Text = "Reserveren";
             this.btnReservation.UseVisualStyleBackColor = true;
             // 
-            // pbMapMap
-            // 
-            this.pbMapMap.Image = ((System.Drawing.Image)(resources.GetObject("pbMapMap.Image")));
-            this.pbMapMap.InitialImage = null;
-            this.pbMapMap.Location = new System.Drawing.Point(361, 26);
-            this.pbMapMap.Name = "pbMapMap";
-            this.pbMapMap.Size = new System.Drawing.Size(500, 500);
-            this.pbMapMap.TabIndex = 7;
-            this.pbMapMap.TabStop = false;
-            // 
-            // lblMapPeople
-            // 
-            this.lblMapPeople.AutoSize = true;
-            this.lblMapPeople.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapPeople.Location = new System.Drawing.Point(211, 117);
-            this.lblMapPeople.Name = "lblMapPeople";
-            this.lblMapPeople.Size = new System.Drawing.Size(19, 21);
-            this.lblMapPeople.TabIndex = 6;
-            this.lblMapPeople.Text = "6";
-            // 
-            // lblMapType
-            // 
-            this.lblMapType.AutoSize = true;
-            this.lblMapType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapType.Location = new System.Drawing.Point(210, 85);
-            this.lblMapType.Name = "lblMapType";
-            this.lblMapType.Size = new System.Drawing.Size(115, 21);
-            this.lblMapType.TabIndex = 5;
-            this.lblMapType.Text = "Bungolowww";
-            // 
             // nudMapSpot
             // 
-            this.nudMapSpot.Location = new System.Drawing.Point(214, 55);
+            this.nudMapSpot.Location = new System.Drawing.Point(200, 465);
             this.nudMapSpot.Maximum = new decimal(new int[] {
             679,
             0,
@@ -527,7 +672,7 @@
             // 
             this.lblMapTypePlace.AutoSize = true;
             this.lblMapTypePlace.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapTypePlace.Location = new System.Drawing.Point(28, 85);
+            this.lblMapTypePlace.Location = new System.Drawing.Point(28, 55);
             this.lblMapTypePlace.Name = "lblMapTypePlace";
             this.lblMapTypePlace.Size = new System.Drawing.Size(81, 21);
             this.lblMapTypePlace.TabIndex = 3;
@@ -537,17 +682,17 @@
             // 
             this.lblMapMax.AutoSize = true;
             this.lblMapMax.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapMax.Location = new System.Drawing.Point(28, 117);
+            this.lblMapMax.Location = new System.Drawing.Point(28, 82);
             this.lblMapMax.Name = "lblMapMax";
-            this.lblMapMax.Size = new System.Drawing.Size(177, 21);
+            this.lblMapMax.Size = new System.Drawing.Size(141, 21);
             this.lblMapMax.TabIndex = 2;
-            this.lblMapMax.Text = "Max aantal personen";
+            this.lblMapMax.Text = "Aantal personen";
             // 
             // lblMapNumber
             // 
             this.lblMapNumber.AutoSize = true;
             this.lblMapNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapNumber.Location = new System.Drawing.Point(28, 55);
+            this.lblMapNumber.Location = new System.Drawing.Point(28, 465);
             this.lblMapNumber.Name = "lblMapNumber";
             this.lblMapNumber.Size = new System.Drawing.Size(111, 21);
             this.lblMapNumber.TabIndex = 1;
@@ -562,6 +707,16 @@
             this.lblMapInfo.Size = new System.Drawing.Size(124, 33);
             this.lblMapInfo.TabIndex = 0;
             this.lblMapInfo.Text = "Plek Info";
+            // 
+            // pbMapMap
+            // 
+            this.pbMapMap.Image = ((System.Drawing.Image)(resources.GetObject("pbMapMap.Image")));
+            this.pbMapMap.InitialImage = null;
+            this.pbMapMap.Location = new System.Drawing.Point(361, 26);
+            this.pbMapMap.Name = "pbMapMap";
+            this.pbMapMap.Size = new System.Drawing.Size(500, 500);
+            this.pbMapMap.TabIndex = 7;
+            this.pbMapMap.TabStop = false;
             // 
             // tpEventBeheer
             // 
@@ -586,6 +741,104 @@
             this.tpEventBeheer.TabIndex = 5;
             this.tpEventBeheer.Text = "Event Beheer";
             this.tpEventBeheer.UseVisualStyleBackColor = true;
+            // 
+            // lblEManagementRapp
+            // 
+            this.lblEManagementRapp.AutoSize = true;
+            this.lblEManagementRapp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementRapp.Location = new System.Drawing.Point(233, 318);
+            this.lblEManagementRapp.Name = "lblEManagementRapp";
+            this.lblEManagementRapp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementRapp.Size = new System.Drawing.Size(136, 22);
+            this.lblEManagementRapp.TabIndex = 15;
+            this.lblEManagementRapp.Text = "Rapporteer %";
+            this.lblEManagementRapp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(237, 349);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown1.TabIndex = 14;
+            // 
+            // lblEManagementEnd
+            // 
+            this.lblEManagementEnd.AutoSize = true;
+            this.lblEManagementEnd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementEnd.Location = new System.Drawing.Point(233, 257);
+            this.lblEManagementEnd.Name = "lblEManagementEnd";
+            this.lblEManagementEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementEnd.Size = new System.Drawing.Size(96, 22);
+            this.lblEManagementEnd.TabIndex = 13;
+            this.lblEManagementEnd.Text = "End Date";
+            this.lblEManagementEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblEManagementStart
+            // 
+            this.lblEManagementStart.AutoSize = true;
+            this.lblEManagementStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementStart.Location = new System.Drawing.Point(233, 202);
+            this.lblEManagementStart.Name = "lblEManagementStart";
+            this.lblEManagementStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementStart.Size = new System.Drawing.Size(103, 22);
+            this.lblEManagementStart.TabIndex = 12;
+            this.lblEManagementStart.Text = "Start Date";
+            this.lblEManagementStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblEManagementAantal
+            // 
+            this.lblEManagementAantal.AutoSize = true;
+            this.lblEManagementAantal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementAantal.Location = new System.Drawing.Point(233, 150);
+            this.lblEManagementAantal.Name = "lblEManagementAantal";
+            this.lblEManagementAantal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementAantal.Size = new System.Drawing.Size(206, 22);
+            this.lblEManagementAantal.TabIndex = 11;
+            this.lblEManagementAantal.Text = "Max Aantal Personen";
+            this.lblEManagementAantal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbEManagementLocatie
+            // 
+            this.tbEManagementLocatie.Location = new System.Drawing.Point(237, 127);
+            this.tbEManagementLocatie.Name = "tbEManagementLocatie";
+            this.tbEManagementLocatie.Size = new System.Drawing.Size(200, 20);
+            this.tbEManagementLocatie.TabIndex = 10;
+            // 
+            // lblEManagementLocatie
+            // 
+            this.lblEManagementLocatie.AutoSize = true;
+            this.lblEManagementLocatie.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementLocatie.Location = new System.Drawing.Point(233, 102);
+            this.lblEManagementLocatie.Name = "lblEManagementLocatie";
+            this.lblEManagementLocatie.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementLocatie.Size = new System.Drawing.Size(140, 22);
+            this.lblEManagementLocatie.TabIndex = 9;
+            this.lblEManagementLocatie.Text = "Locatie Naam";
+            this.lblEManagementLocatie.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblEManagementNaam
+            // 
+            this.lblEManagementNaam.AutoSize = true;
+            this.lblEManagementNaam.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagementNaam.Location = new System.Drawing.Point(233, 48);
+            this.lblEManagementNaam.Name = "lblEManagementNaam";
+            this.lblEManagementNaam.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagementNaam.Size = new System.Drawing.Size(126, 22);
+            this.lblEManagementNaam.TabIndex = 8;
+            this.lblEManagementNaam.Text = "Event Naam";
+            this.lblEManagementNaam.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblEManagement
+            // 
+            this.lblEManagement.AutoSize = true;
+            this.lblEManagement.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEManagement.Location = new System.Drawing.Point(60, 48);
+            this.lblEManagement.Name = "lblEManagement";
+            this.lblEManagement.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblEManagement.Size = new System.Drawing.Size(71, 22);
+            this.lblEManagement.TabIndex = 7;
+            this.lblEManagement.Text = "Events";
+            this.lblEManagement.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tbEManagementNaam
             // 
@@ -634,6 +887,26 @@
             // 
             // tpMateriaalBeheer
             // 
+            this.tpMateriaalBeheer.Controls.Add(this.lbManagementAllRental);
+            this.tpMateriaalBeheer.Controls.Add(this.radioButton1);
+            this.tpMateriaalBeheer.Controls.Add(this.radioButton3);
+            this.tpMateriaalBeheer.Controls.Add(this.comboBox2);
+            this.tpMateriaalBeheer.Controls.Add(this.radioButton2);
+            this.tpMateriaalBeheer.Controls.Add(this.button4);
+            this.tpMateriaalBeheer.Controls.Add(this.btnManagementProductBrowse);
+            this.tpMateriaalBeheer.Controls.Add(this.tbManagementProductphotoPath);
+            this.tpMateriaalBeheer.Controls.Add(this.btnManagementNewCategorie);
+            this.tpMateriaalBeheer.Controls.Add(this.cbManagementCatergory);
+            this.tpMateriaalBeheer.Controls.Add(this.tbManagementDescription);
+            this.tpMateriaalBeheer.Controls.Add(this.nudManagementProductDeposit);
+            this.tpMateriaalBeheer.Controls.Add(this.nudManagementProductAmount);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductFoto);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductCategory);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductDescription);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductDeposit);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementAmount);
+            this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductName);
+            this.tpMateriaalBeheer.Controls.Add(this.tbManagementProductName);
             this.tpMateriaalBeheer.Location = new System.Drawing.Point(154, 4);
             this.tpMateriaalBeheer.Name = "tpMateriaalBeheer";
             this.tpMateriaalBeheer.Size = new System.Drawing.Size(888, 548);
@@ -641,8 +914,203 @@
             this.tpMateriaalBeheer.Text = "Mtrl Beheer";
             this.tpMateriaalBeheer.UseVisualStyleBackColor = true;
             // 
+            // lbManagementAllRental
+            // 
+            this.lbManagementAllRental.FormattingEnabled = true;
+            this.lbManagementAllRental.Location = new System.Drawing.Point(582, 24);
+            this.lbManagementAllRental.Name = "lbManagementAllRental";
+            this.lbManagementAllRental.Size = new System.Drawing.Size(217, 316);
+            this.lbManagementAllRental.TabIndex = 30;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(276, 23);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(80, 17);
+            this.radioButton1.TabIndex = 29;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Verwijderen";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(364, 24);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(80, 17);
+            this.radioButton3.TabIndex = 28;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Verwijderen";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(175, 44);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(183, 21);
+            this.comboBox2.TabIndex = 25;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(175, 23);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(95, 17);
+            this.radioButton2.TabIndex = 24;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Nieuw Product";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(28, 507);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 22;
+            this.button4.Text = "Opslaan";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnManagementProductBrowse
+            // 
+            this.btnManagementProductBrowse.Location = new System.Drawing.Point(389, 452);
+            this.btnManagementProductBrowse.Name = "btnManagementProductBrowse";
+            this.btnManagementProductBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnManagementProductBrowse.TabIndex = 21;
+            this.btnManagementProductBrowse.Text = "Foto";
+            this.btnManagementProductBrowse.UseVisualStyleBackColor = true;
+            // 
+            // tbManagementProductphotoPath
+            // 
+            this.tbManagementProductphotoPath.Location = new System.Drawing.Point(332, 481);
+            this.tbManagementProductphotoPath.Name = "tbManagementProductphotoPath";
+            this.tbManagementProductphotoPath.Size = new System.Drawing.Size(220, 20);
+            this.tbManagementProductphotoPath.TabIndex = 20;
+            // 
+            // btnManagementNewCategorie
+            // 
+            this.btnManagementNewCategorie.Location = new System.Drawing.Point(27, 216);
+            this.btnManagementNewCategorie.Name = "btnManagementNewCategorie";
+            this.btnManagementNewCategorie.Size = new System.Drawing.Size(121, 23);
+            this.btnManagementNewCategorie.TabIndex = 19;
+            this.btnManagementNewCategorie.Text = "Nieuwe Categorie";
+            this.btnManagementNewCategorie.UseVisualStyleBackColor = true;
+            // 
+            // cbManagementCatergory
+            // 
+            this.cbManagementCatergory.FormattingEnabled = true;
+            this.cbManagementCatergory.Location = new System.Drawing.Point(27, 189);
+            this.cbManagementCatergory.Name = "cbManagementCatergory";
+            this.cbManagementCatergory.Size = new System.Drawing.Size(121, 21);
+            this.cbManagementCatergory.TabIndex = 18;
+            // 
+            // tbManagementDescription
+            // 
+            this.tbManagementDescription.Location = new System.Drawing.Point(27, 267);
+            this.tbManagementDescription.MaxLength = 4000;
+            this.tbManagementDescription.Multiline = true;
+            this.tbManagementDescription.Name = "tbManagementDescription";
+            this.tbManagementDescription.Size = new System.Drawing.Size(286, 234);
+            this.tbManagementDescription.TabIndex = 17;
+            // 
+            // nudManagementProductDeposit
+            // 
+            this.nudManagementProductDeposit.Location = new System.Drawing.Point(28, 141);
+            this.nudManagementProductDeposit.Name = "nudManagementProductDeposit";
+            this.nudManagementProductDeposit.Size = new System.Drawing.Size(120, 20);
+            this.nudManagementProductDeposit.TabIndex = 16;
+            // 
+            // nudManagementProductAmount
+            // 
+            this.nudManagementProductAmount.Location = new System.Drawing.Point(28, 93);
+            this.nudManagementProductAmount.Name = "nudManagementProductAmount";
+            this.nudManagementProductAmount.Size = new System.Drawing.Size(120, 20);
+            this.nudManagementProductAmount.TabIndex = 15;
+            // 
+            // lblManagementProductFoto
+            // 
+            this.lblManagementProductFoto.AutoSize = true;
+            this.lblManagementProductFoto.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementProductFoto.Location = new System.Drawing.Point(328, 452);
+            this.lblManagementProductFoto.Name = "lblManagementProductFoto";
+            this.lblManagementProductFoto.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementProductFoto.Size = new System.Drawing.Size(50, 22);
+            this.lblManagementProductFoto.TabIndex = 13;
+            this.lblManagementProductFoto.Text = "Foto";
+            this.lblManagementProductFoto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblManagementProductCategory
+            // 
+            this.lblManagementProductCategory.AutoSize = true;
+            this.lblManagementProductCategory.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementProductCategory.Location = new System.Drawing.Point(24, 164);
+            this.lblManagementProductCategory.Name = "lblManagementProductCategory";
+            this.lblManagementProductCategory.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementProductCategory.Size = new System.Drawing.Size(103, 22);
+            this.lblManagementProductCategory.TabIndex = 12;
+            this.lblManagementProductCategory.Text = "Categorie";
+            this.lblManagementProductCategory.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblManagementProductDescription
+            // 
+            this.lblManagementProductDescription.AutoSize = true;
+            this.lblManagementProductDescription.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementProductDescription.Location = new System.Drawing.Point(24, 242);
+            this.lblManagementProductDescription.Name = "lblManagementProductDescription";
+            this.lblManagementProductDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementProductDescription.Size = new System.Drawing.Size(128, 22);
+            this.lblManagementProductDescription.TabIndex = 11;
+            this.lblManagementProductDescription.Text = "Omschrijving";
+            this.lblManagementProductDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblManagementProductDeposit
+            // 
+            this.lblManagementProductDeposit.AutoSize = true;
+            this.lblManagementProductDeposit.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementProductDeposit.Location = new System.Drawing.Point(23, 116);
+            this.lblManagementProductDeposit.Name = "lblManagementProductDeposit";
+            this.lblManagementProductDeposit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementProductDeposit.Size = new System.Drawing.Size(52, 22);
+            this.lblManagementProductDeposit.TabIndex = 10;
+            this.lblManagementProductDeposit.Text = "Borg";
+            this.lblManagementProductDeposit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblManagementAmount
+            // 
+            this.lblManagementAmount.AutoSize = true;
+            this.lblManagementAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementAmount.Location = new System.Drawing.Point(24, 68);
+            this.lblManagementAmount.Name = "lblManagementAmount";
+            this.lblManagementAmount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementAmount.Size = new System.Drawing.Size(127, 22);
+            this.lblManagementAmount.TabIndex = 9;
+            this.lblManagementAmount.Text = "Hoeveelheid";
+            this.lblManagementAmount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblManagementProductName
+            // 
+            this.lblManagementProductName.AutoSize = true;
+            this.lblManagementProductName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblManagementProductName.Location = new System.Drawing.Point(24, 20);
+            this.lblManagementProductName.Name = "lblManagementProductName";
+            this.lblManagementProductName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblManagementProductName.Size = new System.Drawing.Size(145, 22);
+            this.lblManagementProductName.TabIndex = 8;
+            this.lblManagementProductName.Text = "Naam Product";
+            this.lblManagementProductName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbManagementProductName
+            // 
+            this.tbManagementProductName.Location = new System.Drawing.Point(27, 45);
+            this.tbManagementProductName.Name = "tbManagementProductName";
+            this.tbManagementProductName.Size = new System.Drawing.Size(100, 20);
+            this.tbManagementProductName.TabIndex = 0;
+            // 
             // tpPostBeheer
             // 
+            this.tpPostBeheer.Controls.Add(this.btnManagementGetPosts);
+            this.tpPostBeheer.Controls.Add(this.flowLayoutPanel1);
             this.tpPostBeheer.Location = new System.Drawing.Point(154, 4);
             this.tpPostBeheer.Name = "tpPostBeheer";
             this.tpPostBeheer.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -650,6 +1118,22 @@
             this.tpPostBeheer.TabIndex = 7;
             this.tpPostBeheer.Text = "Post Beheer";
             this.tpPostBeheer.UseVisualStyleBackColor = true;
+            // 
+            // btnManagementGetPosts
+            // 
+            this.btnManagementGetPosts.Location = new System.Drawing.Point(3, 3);
+            this.btnManagementGetPosts.Name = "btnManagementGetPosts";
+            this.btnManagementGetPosts.Size = new System.Drawing.Size(128, 23);
+            this.btnManagementGetPosts.TabIndex = 1;
+            this.btnManagementGetPosts.Text = "Get reported posts";
+            this.btnManagementGetPosts.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 32);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(882, 513);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // lblMenu
             // 
@@ -661,136 +1145,29 @@
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
             // 
-            // lblEManagement
-            // 
-            this.lblEManagement.AutoSize = true;
-            this.lblEManagement.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagement.Location = new System.Drawing.Point(60, 48);
-            this.lblEManagement.Name = "lblEManagement";
-            this.lblEManagement.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagement.Size = new System.Drawing.Size(71, 22);
-            this.lblEManagement.TabIndex = 7;
-            this.lblEManagement.Text = "Events";
-            this.lblEManagement.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblEManagementNaam
-            // 
-            this.lblEManagementNaam.AutoSize = true;
-            this.lblEManagementNaam.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementNaam.Location = new System.Drawing.Point(233, 48);
-            this.lblEManagementNaam.Name = "lblEManagementNaam";
-            this.lblEManagementNaam.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementNaam.Size = new System.Drawing.Size(126, 22);
-            this.lblEManagementNaam.TabIndex = 8;
-            this.lblEManagementNaam.Text = "Event Naam";
-            this.lblEManagementNaam.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblEManagementLocatie
-            // 
-            this.lblEManagementLocatie.AutoSize = true;
-            this.lblEManagementLocatie.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementLocatie.Location = new System.Drawing.Point(233, 102);
-            this.lblEManagementLocatie.Name = "lblEManagementLocatie";
-            this.lblEManagementLocatie.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementLocatie.Size = new System.Drawing.Size(140, 22);
-            this.lblEManagementLocatie.TabIndex = 9;
-            this.lblEManagementLocatie.Text = "Locatie Naam";
-            this.lblEManagementLocatie.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tbEManagementLocatie
-            // 
-            this.tbEManagementLocatie.Location = new System.Drawing.Point(237, 127);
-            this.tbEManagementLocatie.Name = "tbEManagementLocatie";
-            this.tbEManagementLocatie.Size = new System.Drawing.Size(200, 20);
-            this.tbEManagementLocatie.TabIndex = 10;
-            // 
-            // lblEManagementAantal
-            // 
-            this.lblEManagementAantal.AutoSize = true;
-            this.lblEManagementAantal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementAantal.Location = new System.Drawing.Point(233, 150);
-            this.lblEManagementAantal.Name = "lblEManagementAantal";
-            this.lblEManagementAantal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementAantal.Size = new System.Drawing.Size(206, 22);
-            this.lblEManagementAantal.TabIndex = 11;
-            this.lblEManagementAantal.Text = "Max Aantal Personen";
-            this.lblEManagementAantal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblEManagementStart
-            // 
-            this.lblEManagementStart.AutoSize = true;
-            this.lblEManagementStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementStart.Location = new System.Drawing.Point(233, 202);
-            this.lblEManagementStart.Name = "lblEManagementStart";
-            this.lblEManagementStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementStart.Size = new System.Drawing.Size(103, 22);
-            this.lblEManagementStart.TabIndex = 12;
-            this.lblEManagementStart.Text = "Start Date";
-            this.lblEManagementStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblEManagementEnd
-            // 
-            this.lblEManagementEnd.AutoSize = true;
-            this.lblEManagementEnd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementEnd.Location = new System.Drawing.Point(233, 257);
-            this.lblEManagementEnd.Name = "lblEManagementEnd";
-            this.lblEManagementEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementEnd.Size = new System.Drawing.Size(96, 22);
-            this.lblEManagementEnd.TabIndex = 13;
-            this.lblEManagementEnd.Text = "End Date";
-            this.lblEManagementEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(237, 349);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown1.TabIndex = 14;
-            // 
-            // lblEManagementRapp
-            // 
-            this.lblEManagementRapp.AutoSize = true;
-            this.lblEManagementRapp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEManagementRapp.Location = new System.Drawing.Point(233, 318);
-            this.lblEManagementRapp.Name = "lblEManagementRapp";
-            this.lblEManagementRapp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblEManagementRapp.Size = new System.Drawing.Size(136, 22);
-            this.lblEManagementRapp.TabIndex = 15;
-            this.lblEManagementRapp.Text = "Rapporteer %";
-            this.lblEManagementRapp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblMapAvailable
-            // 
-            this.lblMapAvailable.AutoSize = true;
-            this.lblMapAvailable.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapAvailable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblMapAvailable.Location = new System.Drawing.Point(28, 152);
-            this.lblMapAvailable.Name = "lblMapAvailable";
-            this.lblMapAvailable.Size = new System.Drawing.Size(85, 21);
-            this.lblMapAvailable.TabIndex = 9;
-            this.lblMapAvailable.Text = "Available";
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(169, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.TabIndex = 2;
+            this.button1.Text = "TestPost";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 639);
+            this.ClientSize = new System.Drawing.Size(1073, 639);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.tabControl1);
             this.Name = "UIMainForm";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tpTijdlijn.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.tpTijdlijn.PerformLayout();
             this.tpRental.ResumeLayout(false);
             this.tpRental.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).EndInit();
@@ -800,12 +1177,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSettingsPicture)).EndInit();
             this.tpMap.ResumeLayout(false);
             this.tpMap.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapPeople)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).EndInit();
             this.tpEventBeheer.ResumeLayout(false);
             this.tpEventBeheer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).EndInit();
+            this.tpMateriaalBeheer.ResumeLayout(false);
+            this.tpMateriaalBeheer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudManagementProductDeposit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudManagementProductAmount)).EndInit();
+            this.tpPostBeheer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,8 +1216,6 @@
         private System.Windows.Forms.Button btnSettingsSave;
         private System.Windows.Forms.Label lblMapInfo;
         private System.Windows.Forms.Label lblMapNumber;
-        private System.Windows.Forms.Label lblMapPeople;
-        private System.Windows.Forms.Label lblMapType;
         private System.Windows.Forms.NumericUpDown nudMapSpot;
         private System.Windows.Forms.Label lblMapTypePlace;
         private System.Windows.Forms.Label lblMapMax;
@@ -853,7 +1234,6 @@
         private System.Windows.Forms.ComboBox cbMaterialCategory;
         private System.Windows.Forms.ListView tvFolders;
         private System.Windows.Forms.TreeView tvTree;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TabPage tpEventBeheer;
         private System.Windows.Forms.TabPage tpMateriaalBeheer;
         private System.Windows.Forms.TabPage tpPostBeheer;
@@ -873,8 +1253,44 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label lblEManagementEnd;
         private System.Windows.Forms.Label lblEManagementStart;
-        private System.Windows.Forms.Label lblMapAvailable;
+        private System.Windows.Forms.Label lblRentalEnd;
+        private System.Windows.Forms.Label lblRentalStart;
+        private System.Windows.Forms.DateTimePicker dtpRentalEnd;
+        private System.Windows.Forms.DateTimePicker dtpRentalStart;
+        private System.Windows.Forms.Button btnMaterialRent;
+        private System.Windows.Forms.ListBox lbPersonRentals;
+        private System.Windows.Forms.NumericUpDown nudMapPeople;
+        private System.Windows.Forms.ComboBox cbMapType;
+        private System.Windows.Forms.Button btnMapSearch;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnManagementProductBrowse;
+        private System.Windows.Forms.TextBox tbManagementProductphotoPath;
+        private System.Windows.Forms.Button btnManagementNewCategorie;
+        private System.Windows.Forms.ComboBox cbManagementCatergory;
+        private System.Windows.Forms.TextBox tbManagementDescription;
+        private System.Windows.Forms.NumericUpDown nudManagementProductDeposit;
+        private System.Windows.Forms.NumericUpDown nudManagementProductAmount;
+        private System.Windows.Forms.Label lblManagementProductFoto;
+        private System.Windows.Forms.Label lblManagementProductCategory;
+        private System.Windows.Forms.Label lblManagementProductDescription;
+        private System.Windows.Forms.Label lblManagementProductDeposit;
+        private System.Windows.Forms.Label lblManagementAmount;
+        private System.Windows.Forms.Label lblManagementProductName;
+        private System.Windows.Forms.TextBox tbManagementProductName;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.FlowLayoutPanel flpPosts;
+        private System.Windows.Forms.TextBox tbFeedSearch;
+        private System.Windows.Forms.ComboBox cbFeedFileTypes;
+        private System.Windows.Forms.RadioButton rbtnTenNewest;
+        private System.Windows.Forms.RadioButton rbtnTenMostPopulair;
+        private System.Windows.Forms.Button btnMakePost;
+        private System.Windows.Forms.ListBox lbManagementAllRental;
+        private System.Windows.Forms.Button btnManagementGetPosts;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

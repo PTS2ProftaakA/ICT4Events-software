@@ -10,17 +10,15 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events.UI
 {
-    public partial class Inloggen : Form
+    public partial class makePost : Form
     {
-        public Inloggen()
+        public makePost()
         {
             InitializeComponent();
         }
 
-        private void btnLogIn_Click(object sender, EventArgs e)
+        private void btnMakePostBrowse_Click(object sender, EventArgs e)
         {
-            string logInName = tbInlogName.Text;
-            string password = tbPassword.Text;
 
         }
     }

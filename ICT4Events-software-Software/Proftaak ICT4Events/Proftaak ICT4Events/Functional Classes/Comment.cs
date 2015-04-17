@@ -14,8 +14,7 @@ namespace Proftaak_ICT4Events
         private string RFID;
 
         private int commentID;
-
-        private Comment returnComment;
+        private int commentedOnID;
 
         private List<Rating> ratings;
 
@@ -35,6 +34,11 @@ namespace Proftaak_ICT4Events
             get { return commentID; }
             set { commentID = value; }
         }
+        public int CommentedOnID
+        {
+            get { return commentedOnID; }
+            set { commentedOnID = value; }
+        }
         public List<Rating> Ratings
         {
             get { return ratings; }
@@ -42,9 +46,10 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Comment(int commentID, string filePath, string content, string RFID)
+        public Comment(int commentID, int commentedOnID, string filePath, string content, string RFID)
         {
             this.CommentID = commentID;
+            this.commentedOnID = commentedOnID;
             this.FilePath = filePath;
             this.Content = content;
             this.RFID = RFID;
@@ -60,6 +65,7 @@ namespace Proftaak_ICT4Events
             commentColumns.Add("REACTIEID");
             commentColumns.Add("BESTANDSLOCATIE");
             commentColumns.Add("RFID");
+            commentColumns.Add("REACTIEOPID");
             commentColumns.Add("INHOUD");
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDSLOCATIE = " + filePath, commentColumns);
@@ -70,15 +76,17 @@ namespace Proftaak_ICT4Events
                 {
                     allComments.Add(new Comment(
                         Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i]),
                         dataTable[1][i],
-                        dataTable[3][i],
+                        dataTable[4][i],
                         dataTable[2][i]));
                 }
             }
 
             return allComments;
         }
-        public List<Comment> GetAllFromUser(string RFID, Database database)
+
+        public static List<Comment> GetAllFromUser(string RFID, Database database)
         {
             List<string> commentColumns = new List<string>();
             List<Comment> allComments = new List<Comment>();
@@ -86,6 +94,7 @@ namespace Proftaak_ICT4Events
             commentColumns.Add("REACTIEID");
             commentColumns.Add("BESTANDSLOCATIE");
             commentColumns.Add("RFID");
+            commentColumns.Add("REACTIEOPID");
             commentColumns.Add("INHOUD");
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE RFID = " + RFID, commentColumns);
@@ -96,8 +105,9 @@ namespace Proftaak_ICT4Events
                 {
                     allComments.Add(new Comment(
                         Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i]),
                         dataTable[1][i],
-                        dataTable[3][i],
+                        dataTable[4][i],
                         dataTable[2][i]));
                 }
             }
@@ -112,6 +122,7 @@ namespace Proftaak_ICT4Events
             commentColumns.Add("REACTIEID");
             commentColumns.Add("BESTANDSLOCATIE");
             commentColumns.Add("RFID");
+            commentColumns.Add("REACTIEOPID");
             commentColumns.Add("INHOUD");
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
@@ -120,8 +131,9 @@ namespace Proftaak_ICT4Events
             {
                 return (T)Convert.ChangeType(new Comment(
                     Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1]),
                     dataTable[1][1],
-                    dataTable[3][1],
+                    dataTable[4][1],
                     dataTable[2][1]), typeof(T));
             }
             else
@@ -133,17 +145,21 @@ namespace Proftaak_ICT4Events
         public void Add<T>(T comment, Database database)
         {
             Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
-            database.editDatabase("INSERT INTO REACTIE VALUES(" + newComment.commentID + ", '" + newComment.filePath + "', '" + newComment.RFID + "', '" + newComment.content + "'");
+            database.editDatabase(String.Format("INSERT INTO REACTIE VALUES ({0}, '{1}', '{2}', {3}, '{4}')",
+                newComment.commentID, newComment.filePath, newComment.RFID, newComment.commentedOnID, newComment.content));
         }
 
         public void Edit<T>(T comment, Database database)
         {
-            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
+            Comment updateComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
+            database.editDatabase("UPDATE REACTIE SET INHOUD = " + updateComment.content);
+
         }
 
         public void Remove<T>(T comment, Database database)
         {
-            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
+            Comment removeComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
+            database.editDatabase("DELETE FROM REACTIE WHERE REACTIEID = " + removeComment.commentID);
         }
     }
 }
