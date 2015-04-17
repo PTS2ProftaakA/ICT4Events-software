@@ -39,7 +39,7 @@ namespace Proftaak_ICT4Events
 
         public void testComment(Comment comment)
         {
-            comment.Edit(comment, database);
+            comment.Remove(comment, database);
         }
     }
 }

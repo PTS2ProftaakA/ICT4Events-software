@@ -14,11 +14,12 @@ namespace Proftaak_ICT4Events
     
     public partial class UIMainForm : Form
     {
-
+        private MediaFileManager mediaFileManager;
         public UIMainForm()
         {
             InitializeComponent();
-            
+
+            mediaFileManager = new MediaFileManager();
         }   
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -72,6 +73,11 @@ namespace Proftaak_ICT4Events
         {
             Form f = new UI.makePost();
             f.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mediaFileManager.testComment(new Comment(300, 1, "C:\\Profielfotos\\Tiger.mp4", "WNNGLIRJGJGLBNNVGNVLSNVLJ:SFsdfghjkl", "100326"));
         }
 
        

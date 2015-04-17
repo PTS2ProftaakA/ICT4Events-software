@@ -152,14 +152,16 @@ namespace Proftaak_ICT4Events
         public void Edit<T>(T comment, Database database)
         {
             Comment updateComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
-            database.editDatabase("UPDATE REACTIE SET INHOUD = " + updateComment.content);
+            database.editDatabase(String.Format("UPDATE REACTIE SET INHOUD = '{0}' WHERE RFID = '{1}'",
+                updateComment.content, updateComment.RFID));
 
         }
 
         public void Remove<T>(T comment, Database database)
         {
             Comment removeComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
-            database.editDatabase("DELETE FROM REACTIE WHERE REACTIEID = " + removeComment.commentID);
+            database.editDatabase(String.Format("DELETE FROM REACTIE WHERE REACTIEID = '{0}'",
+                removeComment.commentID));
         }
     }
 }
