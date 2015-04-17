@@ -107,9 +107,9 @@ namespace Proftaak_ICT4Events
                 }
                 return dataTable;
             }
-            else return null;
+            else 
             {
-
+                return null;
             }
         }
 

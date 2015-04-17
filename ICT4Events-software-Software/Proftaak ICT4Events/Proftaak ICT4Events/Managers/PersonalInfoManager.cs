@@ -9,10 +9,13 @@ namespace Proftaak_ICT4Events
 {
     class PersonalInfoManager
     {
-        public PersonalInfoManager()
-        {
+        Database database;
 
+        public PersonalInfoManager(Database database)
+        {
+            this.database = database;
         }
+
         public User GetSpecificUser(string RFID) 
         {
             return null;

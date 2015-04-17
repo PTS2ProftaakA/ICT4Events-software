@@ -10,9 +10,9 @@ namespace Proftaak_ICT4Events
     {
         Database database;
 
-        FeedManager()
+        public FeedManager(Database database)
         {
-            database = new Database();
+            this.database = database;
         }
 
         public List<MediaFile> GetFiles(string specification, Database database)

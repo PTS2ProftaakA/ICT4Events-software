@@ -8,9 +8,11 @@ namespace Proftaak_ICT4Events
 {
     class MapManager
     {
-        MapManager()
-        {
+        Database database;
 
+        public MapManager(Database database)
+        {
+            this.database = database;
         }
 
         public SpotRental GetSpotInfo(int spotNumber)

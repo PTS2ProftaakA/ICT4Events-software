@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
-    
     public partial class UIMainForm : Form
     {  
         private DiscussionManager discussionManager;

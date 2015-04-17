@@ -13,11 +13,11 @@ namespace Proftaak_ICT4Events
 
         Database database;
 
-        public EquipmentManager()
+        public EquipmentManager(Database database)
         {
             ShoppingCart = new List<Equipment>();
 
-            database = new Database();
+            this.database = database;
         }
 
         public void AddToCart(Equipment equipment)

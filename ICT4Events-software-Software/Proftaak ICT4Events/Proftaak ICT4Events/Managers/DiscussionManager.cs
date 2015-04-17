@@ -10,9 +10,9 @@ namespace Proftaak_ICT4Events
     {
         Database database;
 
-        DiscussionManager()
+        public DiscussionManager(Database database)
         {
-            database = new Database();
+            this.database = database;
         }
 
 

@@ -12,9 +12,9 @@ namespace Proftaak_ICT4Events
         Database database;
         Comment comment;
 
-        public MediaFileManager() 
+        public MediaFileManager(Database database) 
         {
-            database = new Database();
+            this.database = database;
         }
 
         public List<MediaFile> GenerateFromPath()

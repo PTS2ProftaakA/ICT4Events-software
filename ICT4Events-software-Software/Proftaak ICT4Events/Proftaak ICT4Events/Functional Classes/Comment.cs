@@ -152,8 +152,8 @@ namespace Proftaak_ICT4Events
         public void Edit<T>(T comment, Database database)
         {
             Comment updateComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
-            database.editDatabase(String.Format("UPDATE REACTIE SET INHOUD = '{0}' WHERE RFID = '{1}'",
-                updateComment.content, updateComment.RFID));
+            database.editDatabase(String.Format("UPDATE REACTIE SET INHOUD = '{0}' WHERE REACTIEID = '{1}'",
+                updateComment.content, updateComment.commentID));
 
         }
 
