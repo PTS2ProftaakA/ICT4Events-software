@@ -18,7 +18,7 @@ namespace Proftaak_ICT4Events
     class Equipment : Reservation
     {
         private Material material;
-
+        
         public Material Material
         {
             get { return material; }

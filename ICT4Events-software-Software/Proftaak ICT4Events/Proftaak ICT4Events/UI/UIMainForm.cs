@@ -13,13 +13,32 @@ namespace Proftaak_ICT4Events
 {
     
     public partial class UIMainForm : Form
-    {
+    {  
+        private DiscussionManager discussionManager;
+        private EquipmentManager equipmentManager;
+        private FeedManager feedManager;
+        private LogInManager logInManager;
+        private MapManager mapManager;
         private MediaFileManager mediaFileManager;
+        private PersonalInfoManager personalInfoManager;
+        private ProductTypeManager productTypeManager;
+
+        private Database database;
+
         public UIMainForm()
         {
             InitializeComponent();
 
-            mediaFileManager = new MediaFileManager();
+            database = new Database();
+
+            discussionManager = new DiscussionManager(database);
+            equipmentManager = new EquipmentManager(database);
+            feedManager = new FeedManager(database);
+            logInManager = new LogInManager(database);
+            mapManager = new MapManager(database);
+            mediaFileManager = new MediaFileManager(database);
+            personalInfoManager = new PersonalInfoManager(database);
+            productTypeManager = new ProductTypeManager(database);
         }   
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -77,10 +96,9 @@ namespace Proftaak_ICT4Events
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mediaFileManager.testComment(new Comment(300, 1, "C:\\Profielfotos\\Tiger.mp4", "WNNGLIRJGJGLBNNVGNVLSNVLJ:SFsdfghjkl", "100326"));
+            UI.UILogIn testLogIn = new UI.UILogIn();
+            testLogIn.Show();
         }
 
-       
-       
     }
 }

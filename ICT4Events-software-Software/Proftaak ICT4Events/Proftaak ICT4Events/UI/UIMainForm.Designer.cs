@@ -159,7 +159,7 @@
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.ItemSize = new System.Drawing.Size(40, 150);
             this.tabControl1.Location = new System.Drawing.Point(16, 87);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -178,9 +178,9 @@
             this.tpTijdlijn.Controls.Add(this.rbtnTenMostPopulair);
             this.tpTijdlijn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpTijdlijn.Location = new System.Drawing.Point(154, 4);
-            this.tpTijdlijn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpTijdlijn.Margin = new System.Windows.Forms.Padding(4);
             this.tpTijdlijn.Name = "tpTijdlijn";
-            this.tpTijdlijn.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpTijdlijn.Padding = new System.Windows.Forms.Padding(4);
             this.tpTijdlijn.Size = new System.Drawing.Size(1237, 676);
             this.tpTijdlijn.TabIndex = 0;
             this.tpTijdlijn.Text = "Tijdlijn";
@@ -190,7 +190,7 @@
             // 
             this.btnMakePost.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMakePost.Location = new System.Drawing.Point(925, 6);
-            this.btnMakePost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMakePost.Margin = new System.Windows.Forms.Padding(4);
             this.btnMakePost.Name = "btnMakePost";
             this.btnMakePost.Size = new System.Drawing.Size(151, 33);
             this.btnMakePost.TabIndex = 4;
@@ -201,7 +201,7 @@
             // tbFeedSearch
             // 
             this.tbFeedSearch.Location = new System.Drawing.Point(8, 4);
-            this.tbFeedSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFeedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbFeedSearch.Name = "tbFeedSearch";
             this.tbFeedSearch.Size = new System.Drawing.Size(220, 37);
             this.tbFeedSearch.TabIndex = 0;
@@ -210,7 +210,7 @@
             // 
             this.cbFeedFileTypes.FormattingEnabled = true;
             this.cbFeedFileTypes.Location = new System.Drawing.Point(237, 4);
-            this.cbFeedFileTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFeedFileTypes.Margin = new System.Windows.Forms.Padding(4);
             this.cbFeedFileTypes.Name = "cbFeedFileTypes";
             this.cbFeedFileTypes.Size = new System.Drawing.Size(201, 38);
             this.cbFeedFileTypes.TabIndex = 1;
@@ -219,7 +219,7 @@
             // 
             this.flpPosts.AutoScroll = true;
             this.flpPosts.Location = new System.Drawing.Point(0, 43);
-            this.flpPosts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpPosts.Margin = new System.Windows.Forms.Padding(4);
             this.flpPosts.Name = "flpPosts";
             this.flpPosts.Size = new System.Drawing.Size(1077, 631);
             this.flpPosts.TabIndex = 0;
@@ -228,7 +228,7 @@
             // 
             this.rbtnTenNewest.AutoSize = true;
             this.rbtnTenNewest.Location = new System.Drawing.Point(448, 4);
-            this.rbtnTenNewest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnTenNewest.Margin = new System.Windows.Forms.Padding(4);
             this.rbtnTenNewest.Name = "rbtnTenNewest";
             this.rbtnTenNewest.Size = new System.Drawing.Size(198, 34);
             this.rbtnTenNewest.TabIndex = 2;
@@ -240,7 +240,7 @@
             // 
             this.rbtnTenMostPopulair.AutoSize = true;
             this.rbtnTenMostPopulair.Location = new System.Drawing.Point(657, 4);
-            this.rbtnTenMostPopulair.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnTenMostPopulair.Margin = new System.Windows.Forms.Padding(4);
             this.rbtnTenMostPopulair.Name = "rbtnTenMostPopulair";
             this.rbtnTenMostPopulair.Size = new System.Drawing.Size(219, 34);
             this.rbtnTenMostPopulair.TabIndex = 3;
@@ -268,9 +268,9 @@
             this.tpRental.Controls.Add(this.cbMaterialCategory);
             this.tpRental.Controls.Add(this.pbProductList);
             this.tpRental.Location = new System.Drawing.Point(154, 4);
-            this.tpRental.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpRental.Margin = new System.Windows.Forms.Padding(4);
             this.tpRental.Name = "tpRental";
-            this.tpRental.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpRental.Padding = new System.Windows.Forms.Padding(4);
             this.tpRental.Size = new System.Drawing.Size(1237, 676);
             this.tpRental.TabIndex = 1;
             this.tpRental.Text = "Verhuur";
@@ -305,7 +305,7 @@
             // dtpRentalEnd
             // 
             this.dtpRentalEnd.Location = new System.Drawing.Point(892, 562);
-            this.dtpRentalEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpRentalEnd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpRentalEnd.Name = "dtpRentalEnd";
             this.dtpRentalEnd.Size = new System.Drawing.Size(265, 22);
             this.dtpRentalEnd.TabIndex = 15;
@@ -313,7 +313,7 @@
             // dtpRentalStart
             // 
             this.dtpRentalStart.Location = new System.Drawing.Point(892, 530);
-            this.dtpRentalStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpRentalStart.Margin = new System.Windows.Forms.Padding(4);
             this.dtpRentalStart.Name = "dtpRentalStart";
             this.dtpRentalStart.Size = new System.Drawing.Size(265, 22);
             this.dtpRentalStart.TabIndex = 14;
@@ -321,7 +321,7 @@
             // btnMaterialRent
             // 
             this.btnMaterialRent.Location = new System.Drawing.Point(1059, 620);
-            this.btnMaterialRent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMaterialRent.Margin = new System.Windows.Forms.Padding(4);
             this.btnMaterialRent.Name = "btnMaterialRent";
             this.btnMaterialRent.Size = new System.Drawing.Size(100, 28);
             this.btnMaterialRent.TabIndex = 13;
@@ -448,7 +448,7 @@
             // 
             this.cbMaterialProduct.FormattingEnabled = true;
             this.cbMaterialProduct.Location = new System.Drawing.Point(28, 154);
-            this.cbMaterialProduct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbMaterialProduct.Margin = new System.Windows.Forms.Padding(4);
             this.cbMaterialProduct.Name = "cbMaterialProduct";
             this.cbMaterialProduct.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialProduct.TabIndex = 2;
@@ -457,7 +457,7 @@
             // 
             this.cbMaterialCategory.FormattingEnabled = true;
             this.cbMaterialCategory.Location = new System.Drawing.Point(28, 73);
-            this.cbMaterialCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbMaterialCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cbMaterialCategory.Name = "cbMaterialCategory";
             this.cbMaterialCategory.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialCategory.TabIndex = 1;
@@ -465,7 +465,7 @@
             // pbProductList
             // 
             this.pbProductList.Location = new System.Drawing.Point(313, 42);
-            this.pbProductList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbProductList.Margin = new System.Windows.Forms.Padding(4);
             this.pbProductList.Name = "pbProductList";
             this.pbProductList.Size = new System.Drawing.Size(225, 214);
             this.pbProductList.TabIndex = 5;
@@ -476,7 +476,7 @@
             this.tpBestanden.Controls.Add(this.tvFolders);
             this.tpBestanden.Controls.Add(this.tvTree);
             this.tpBestanden.Location = new System.Drawing.Point(154, 4);
-            this.tpBestanden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpBestanden.Margin = new System.Windows.Forms.Padding(4);
             this.tpBestanden.Name = "tpBestanden";
             this.tpBestanden.Size = new System.Drawing.Size(1237, 676);
             this.tpBestanden.TabIndex = 2;
@@ -486,7 +486,7 @@
             // tvFolders
             // 
             this.tvFolders.Location = new System.Drawing.Point(355, 4);
-            this.tvFolders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvFolders.Margin = new System.Windows.Forms.Padding(4);
             this.tvFolders.Name = "tvFolders";
             this.tvFolders.Size = new System.Drawing.Size(824, 666);
             this.tvFolders.TabIndex = 1;
@@ -495,7 +495,7 @@
             // tvTree
             // 
             this.tvTree.Location = new System.Drawing.Point(4, 4);
-            this.tvTree.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvTree.Margin = new System.Windows.Forms.Padding(4);
             this.tvTree.Name = "tvTree";
             this.tvTree.Size = new System.Drawing.Size(341, 666);
             this.tvTree.TabIndex = 0;
@@ -515,7 +515,7 @@
             this.tpSettings.Controls.Add(this.lblSettingsName);
             this.tpSettings.Controls.Add(this.pbSettingsPicture);
             this.tpSettings.Location = new System.Drawing.Point(154, 4);
-            this.tpSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpSettings.Margin = new System.Windows.Forms.Padding(4);
             this.tpSettings.Name = "tpSettings";
             this.tpSettings.Size = new System.Drawing.Size(1237, 676);
             this.tpSettings.TabIndex = 3;
@@ -527,7 +527,7 @@
             this.lbPersonRentals.FormattingEnabled = true;
             this.lbPersonRentals.ItemHeight = 16;
             this.lbPersonRentals.Location = new System.Drawing.Point(335, 390);
-            this.lbPersonRentals.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbPersonRentals.Margin = new System.Windows.Forms.Padding(4);
             this.lbPersonRentals.Name = "lbPersonRentals";
             this.lbPersonRentals.Size = new System.Drawing.Size(487, 260);
             this.lbPersonRentals.TabIndex = 12;
@@ -537,7 +537,7 @@
             this.btnSettingsSave.Enabled = false;
             this.btnSettingsSave.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettingsSave.Location = new System.Drawing.Point(33, 337);
-            this.btnSettingsSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSettingsSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsSave.Name = "btnSettingsSave";
             this.btnSettingsSave.Size = new System.Drawing.Size(267, 33);
             this.btnSettingsSave.TabIndex = 11;
@@ -547,7 +547,7 @@
             // dpBirthDate
             // 
             this.dpBirthDate.Location = new System.Drawing.Point(335, 175);
-            this.dpBirthDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpBirthDate.Margin = new System.Windows.Forms.Padding(4);
             this.dpBirthDate.Name = "dpBirthDate";
             this.dpBirthDate.Size = new System.Drawing.Size(487, 22);
             this.dpBirthDate.TabIndex = 10;
@@ -555,7 +555,7 @@
             // tbSettingsUsername
             // 
             this.tbSettingsUsername.Location = new System.Drawing.Point(335, 234);
-            this.tbSettingsUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSettingsUsername.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsUsername.Name = "tbSettingsUsername";
             this.tbSettingsUsername.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsUsername.TabIndex = 9;
@@ -563,7 +563,7 @@
             // tbSettingsEmail
             // 
             this.tbSettingsEmail.Location = new System.Drawing.Point(335, 116);
-            this.tbSettingsEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSettingsEmail.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsEmail.Name = "tbSettingsEmail";
             this.tbSettingsEmail.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsEmail.TabIndex = 7;
@@ -571,7 +571,7 @@
             // tbSettingsName
             // 
             this.tbSettingsName.Location = new System.Drawing.Point(335, 60);
-            this.tbSettingsName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSettingsName.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsName.Name = "tbSettingsName";
             this.tbSettingsName.Size = new System.Drawing.Size(487, 22);
             this.tbSettingsName.TabIndex = 6;
@@ -619,7 +619,7 @@
             // 
             this.btnSettingsEdit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettingsEdit.Location = new System.Drawing.Point(33, 297);
-            this.btnSettingsEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSettingsEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsEdit.Name = "btnSettingsEdit";
             this.btnSettingsEdit.Size = new System.Drawing.Size(267, 33);
             this.btnSettingsEdit.TabIndex = 2;
@@ -642,7 +642,7 @@
             // pbSettingsPicture
             // 
             this.pbSettingsPicture.Location = new System.Drawing.Point(33, 28);
-            this.pbSettingsPicture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbSettingsPicture.Margin = new System.Windows.Forms.Padding(4);
             this.pbSettingsPicture.Name = "pbSettingsPicture";
             this.pbSettingsPicture.Size = new System.Drawing.Size(267, 246);
             this.pbSettingsPicture.TabIndex = 0;
@@ -661,7 +661,7 @@
             this.tpMap.Controls.Add(this.lblMapInfo);
             this.tpMap.Controls.Add(this.pbMapMap);
             this.tpMap.Location = new System.Drawing.Point(154, 4);
-            this.tpMap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpMap.Margin = new System.Windows.Forms.Padding(4);
             this.tpMap.Name = "tpMap";
             this.tpMap.Size = new System.Drawing.Size(1237, 676);
             this.tpMap.TabIndex = 4;
@@ -671,7 +671,7 @@
             // nudMapPeople
             // 
             this.nudMapPeople.Location = new System.Drawing.Point(267, 101);
-            this.nudMapPeople.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudMapPeople.Margin = new System.Windows.Forms.Padding(4);
             this.nudMapPeople.Name = "nudMapPeople";
             this.nudMapPeople.Size = new System.Drawing.Size(72, 22);
             this.nudMapPeople.TabIndex = 12;
@@ -680,7 +680,7 @@
             // 
             this.cbMapType.FormattingEnabled = true;
             this.cbMapType.Location = new System.Drawing.Point(267, 68);
-            this.cbMapType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbMapType.Margin = new System.Windows.Forms.Padding(4);
             this.cbMapType.Name = "cbMapType";
             this.cbMapType.Size = new System.Drawing.Size(160, 24);
             this.cbMapType.TabIndex = 11;
@@ -688,7 +688,7 @@
             // btnMapSearch
             // 
             this.btnMapSearch.Location = new System.Drawing.Point(43, 135);
-            this.btnMapSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMapSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnMapSearch.Name = "btnMapSearch";
             this.btnMapSearch.Size = new System.Drawing.Size(129, 28);
             this.btnMapSearch.TabIndex = 10;
@@ -698,7 +698,7 @@
             // btnReservation
             // 
             this.btnReservation.Location = new System.Drawing.Point(43, 619);
-            this.btnReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnReservation.Name = "btnReservation";
             this.btnReservation.Size = new System.Drawing.Size(100, 28);
             this.btnReservation.TabIndex = 8;
@@ -708,7 +708,7 @@
             // nudMapSpot
             // 
             this.nudMapSpot.Location = new System.Drawing.Point(267, 572);
-            this.nudMapSpot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudMapSpot.Margin = new System.Windows.Forms.Padding(4);
             this.nudMapSpot.Maximum = new decimal(new int[] {
             679,
             0,
@@ -767,7 +767,7 @@
             this.pbMapMap.Image = ((System.Drawing.Image)(resources.GetObject("pbMapMap.Image")));
             this.pbMapMap.InitialImage = null;
             this.pbMapMap.Location = new System.Drawing.Point(481, 32);
-            this.pbMapMap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbMapMap.Margin = new System.Windows.Forms.Padding(4);
             this.pbMapMap.Name = "pbMapMap";
             this.pbMapMap.Size = new System.Drawing.Size(667, 615);
             this.pbMapMap.TabIndex = 7;
@@ -791,7 +791,7 @@
             this.tpEventBeheer.Controls.Add(this.dtpEManagementEnd);
             this.tpEventBeheer.Controls.Add(this.dtpEManagementStart);
             this.tpEventBeheer.Location = new System.Drawing.Point(154, 4);
-            this.tpEventBeheer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpEventBeheer.Margin = new System.Windows.Forms.Padding(4);
             this.tpEventBeheer.Name = "tpEventBeheer";
             this.tpEventBeheer.Size = new System.Drawing.Size(1237, 676);
             this.tpEventBeheer.TabIndex = 5;
@@ -814,7 +814,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(316, 430);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(67, 22);
             this.numericUpDown1.TabIndex = 14;
@@ -861,7 +861,7 @@
             // tbEManagementLocatie
             // 
             this.tbEManagementLocatie.Location = new System.Drawing.Point(316, 156);
-            this.tbEManagementLocatie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEManagementLocatie.Margin = new System.Windows.Forms.Padding(4);
             this.tbEManagementLocatie.Name = "tbEManagementLocatie";
             this.tbEManagementLocatie.Size = new System.Drawing.Size(265, 22);
             this.tbEManagementLocatie.TabIndex = 10;
@@ -908,7 +908,7 @@
             // tbEManagementNaam
             // 
             this.tbEManagementNaam.Location = new System.Drawing.Point(316, 90);
-            this.tbEManagementNaam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEManagementNaam.Margin = new System.Windows.Forms.Padding(4);
             this.tbEManagementNaam.Name = "tbEManagementNaam";
             this.tbEManagementNaam.Size = new System.Drawing.Size(265, 22);
             this.tbEManagementNaam.TabIndex = 6;
@@ -917,7 +917,7 @@
             // 
             this.cbEManagementEvents.FormattingEnabled = true;
             this.cbEManagementEvents.Location = new System.Drawing.Point(85, 90);
-            this.cbEManagementEvents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEManagementEvents.Margin = new System.Windows.Forms.Padding(4);
             this.cbEManagementEvents.Name = "cbEManagementEvents";
             this.cbEManagementEvents.Size = new System.Drawing.Size(160, 24);
             this.cbEManagementEvents.TabIndex = 5;
@@ -925,7 +925,7 @@
             // btnEManagementSave
             // 
             this.btnEManagementSave.Location = new System.Drawing.Point(316, 479);
-            this.btnEManagementSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEManagementSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnEManagementSave.Name = "btnEManagementSave";
             this.btnEManagementSave.Size = new System.Drawing.Size(267, 28);
             this.btnEManagementSave.TabIndex = 4;
@@ -935,7 +935,7 @@
             // nudEManagementAantal
             // 
             this.nudEManagementAantal.Location = new System.Drawing.Point(316, 215);
-            this.nudEManagementAantal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudEManagementAantal.Margin = new System.Windows.Forms.Padding(4);
             this.nudEManagementAantal.Name = "nudEManagementAantal";
             this.nudEManagementAantal.Size = new System.Drawing.Size(267, 22);
             this.nudEManagementAantal.TabIndex = 2;
@@ -943,7 +943,7 @@
             // dtpEManagementEnd
             // 
             this.dtpEManagementEnd.Location = new System.Drawing.Point(316, 354);
-            this.dtpEManagementEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEManagementEnd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpEManagementEnd.Name = "dtpEManagementEnd";
             this.dtpEManagementEnd.Size = new System.Drawing.Size(265, 22);
             this.dtpEManagementEnd.TabIndex = 1;
@@ -951,7 +951,7 @@
             // dtpEManagementStart
             // 
             this.dtpEManagementStart.Location = new System.Drawing.Point(316, 284);
-            this.dtpEManagementStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEManagementStart.Margin = new System.Windows.Forms.Padding(4);
             this.dtpEManagementStart.Name = "dtpEManagementStart";
             this.dtpEManagementStart.Size = new System.Drawing.Size(265, 22);
             this.dtpEManagementStart.TabIndex = 0;
@@ -979,7 +979,7 @@
             this.tpMateriaalBeheer.Controls.Add(this.lblManagementProductName);
             this.tpMateriaalBeheer.Controls.Add(this.tbManagementProductName);
             this.tpMateriaalBeheer.Location = new System.Drawing.Point(154, 4);
-            this.tpMateriaalBeheer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpMateriaalBeheer.Margin = new System.Windows.Forms.Padding(4);
             this.tpMateriaalBeheer.Name = "tpMateriaalBeheer";
             this.tpMateriaalBeheer.Size = new System.Drawing.Size(1237, 676);
             this.tpMateriaalBeheer.TabIndex = 6;
@@ -991,7 +991,7 @@
             this.lbManagementAllRental.FormattingEnabled = true;
             this.lbManagementAllRental.ItemHeight = 16;
             this.lbManagementAllRental.Location = new System.Drawing.Point(776, 30);
-            this.lbManagementAllRental.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbManagementAllRental.Margin = new System.Windows.Forms.Padding(4);
             this.lbManagementAllRental.Name = "lbManagementAllRental";
             this.lbManagementAllRental.Size = new System.Drawing.Size(288, 388);
             this.lbManagementAllRental.TabIndex = 30;
@@ -1000,7 +1000,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(368, 28);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(103, 21);
             this.radioButton1.TabIndex = 29;
@@ -1012,7 +1012,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(485, 30);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(103, 21);
             this.radioButton3.TabIndex = 28;
@@ -1024,7 +1024,7 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(233, 54);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(243, 24);
             this.comboBox2.TabIndex = 25;
@@ -1033,7 +1033,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(233, 28);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(120, 21);
             this.radioButton2.TabIndex = 24;
@@ -1044,7 +1044,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(37, 624);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 22;
@@ -1054,7 +1054,7 @@
             // btnManagementProductBrowse
             // 
             this.btnManagementProductBrowse.Location = new System.Drawing.Point(519, 556);
-            this.btnManagementProductBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnManagementProductBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementProductBrowse.Name = "btnManagementProductBrowse";
             this.btnManagementProductBrowse.Size = new System.Drawing.Size(100, 28);
             this.btnManagementProductBrowse.TabIndex = 21;
@@ -1064,7 +1064,7 @@
             // tbManagementProductphotoPath
             // 
             this.tbManagementProductphotoPath.Location = new System.Drawing.Point(443, 592);
-            this.tbManagementProductphotoPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbManagementProductphotoPath.Margin = new System.Windows.Forms.Padding(4);
             this.tbManagementProductphotoPath.Name = "tbManagementProductphotoPath";
             this.tbManagementProductphotoPath.Size = new System.Drawing.Size(292, 22);
             this.tbManagementProductphotoPath.TabIndex = 20;
@@ -1072,7 +1072,7 @@
             // btnManagementNewCategorie
             // 
             this.btnManagementNewCategorie.Location = new System.Drawing.Point(36, 266);
-            this.btnManagementNewCategorie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnManagementNewCategorie.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementNewCategorie.Name = "btnManagementNewCategorie";
             this.btnManagementNewCategorie.Size = new System.Drawing.Size(161, 28);
             this.btnManagementNewCategorie.TabIndex = 19;
@@ -1083,7 +1083,7 @@
             // 
             this.cbManagementCatergory.FormattingEnabled = true;
             this.cbManagementCatergory.Location = new System.Drawing.Point(36, 233);
-            this.cbManagementCatergory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbManagementCatergory.Margin = new System.Windows.Forms.Padding(4);
             this.cbManagementCatergory.Name = "cbManagementCatergory";
             this.cbManagementCatergory.Size = new System.Drawing.Size(160, 24);
             this.cbManagementCatergory.TabIndex = 18;
@@ -1091,7 +1091,7 @@
             // tbManagementDescription
             // 
             this.tbManagementDescription.Location = new System.Drawing.Point(36, 329);
-            this.tbManagementDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbManagementDescription.Margin = new System.Windows.Forms.Padding(4);
             this.tbManagementDescription.MaxLength = 4000;
             this.tbManagementDescription.Multiline = true;
             this.tbManagementDescription.Name = "tbManagementDescription";
@@ -1101,7 +1101,7 @@
             // nudManagementProductDeposit
             // 
             this.nudManagementProductDeposit.Location = new System.Drawing.Point(37, 174);
-            this.nudManagementProductDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudManagementProductDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.nudManagementProductDeposit.Name = "nudManagementProductDeposit";
             this.nudManagementProductDeposit.Size = new System.Drawing.Size(160, 22);
             this.nudManagementProductDeposit.TabIndex = 16;
@@ -1109,7 +1109,7 @@
             // nudManagementProductAmount
             // 
             this.nudManagementProductAmount.Location = new System.Drawing.Point(37, 114);
-            this.nudManagementProductAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudManagementProductAmount.Margin = new System.Windows.Forms.Padding(4);
             this.nudManagementProductAmount.Name = "nudManagementProductAmount";
             this.nudManagementProductAmount.Size = new System.Drawing.Size(160, 22);
             this.nudManagementProductAmount.TabIndex = 15;
@@ -1195,7 +1195,7 @@
             // tbManagementProductName
             // 
             this.tbManagementProductName.Location = new System.Drawing.Point(36, 55);
-            this.tbManagementProductName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbManagementProductName.Margin = new System.Windows.Forms.Padding(4);
             this.tbManagementProductName.Name = "tbManagementProductName";
             this.tbManagementProductName.Size = new System.Drawing.Size(132, 22);
             this.tbManagementProductName.TabIndex = 0;
@@ -1205,7 +1205,7 @@
             this.tpPostBeheer.Controls.Add(this.btnManagementGetPosts);
             this.tpPostBeheer.Controls.Add(this.flowLayoutPanel1);
             this.tpPostBeheer.Location = new System.Drawing.Point(154, 4);
-            this.tpPostBeheer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpPostBeheer.Margin = new System.Windows.Forms.Padding(4);
             this.tpPostBeheer.Name = "tpPostBeheer";
             this.tpPostBeheer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tpPostBeheer.Size = new System.Drawing.Size(1237, 676);
@@ -1216,7 +1216,7 @@
             // btnManagementGetPosts
             // 
             this.btnManagementGetPosts.Location = new System.Drawing.Point(4, 4);
-            this.btnManagementGetPosts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnManagementGetPosts.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementGetPosts.Name = "btnManagementGetPosts";
             this.btnManagementGetPosts.Size = new System.Drawing.Size(171, 28);
             this.btnManagementGetPosts.TabIndex = 1;
@@ -1226,7 +1226,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 39);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1176, 631);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -1245,7 +1245,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(225, 41);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 2;
@@ -1255,7 +1255,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(436, 33);
+            this.button2.Location = new System.Drawing.Point(431, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -1272,7 +1272,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UIMainForm";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);

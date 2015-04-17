@@ -31,3 +31,6 @@ C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Soft
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Interop.WMPLib.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\AxInterop.WMPLib.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.csprojResolveAssemblyReference.cache
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\UI\UILogIn.resx
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\UI\UILogIn.cs
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\UI\UILogIn.designer.cs

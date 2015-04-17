@@ -115,6 +115,7 @@
     <Compile Include="Managers\PersonalInfoManager.cs" />
     <Compile Include="Functional Classes\Rating.cs" />
     <Compile Include="Managers\MapManager.cs" />
+    <Compile Include="Managers\ProductTypeManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Functional Classes\Reservation.cs" />
@@ -134,9 +135,11 @@
     </Compile>
     <Compile Include="UI\UILogIn.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UI\UILogIn.designer.cs">
       <DependentUpon>UILogIn.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UI\UIMainForm.cs">
       <SubType>Form</SubType>
@@ -179,6 +182,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UILogIn.resx">
       <DependentUpon>UILogIn.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIMainForm.resx">
       <DependentUpon>UIMainForm.cs</DependentUpon>
