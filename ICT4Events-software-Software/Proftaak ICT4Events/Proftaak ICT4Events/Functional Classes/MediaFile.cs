@@ -89,7 +89,7 @@ namespace Proftaak_ICT4Events
             }
             else if(specification == "popular")
             {
-                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY DATE DESC"; //<<----------
+                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.RFID ORDER BY COUNT(*) DESC;";
             }
             else
             {
