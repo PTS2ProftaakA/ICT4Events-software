@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    interface IDatabase
+    interface IDatabase<T> where T : class
     {
-        T Get<T>(string identifier, Database database);
+        T Get(string identifier, Database database);
 
-        void Add<T>(T type, Database database);
+        void Add(T type, Database database);
 
-        void Edit<T>(T type, Database database);
+        void Edit(T type, Database database);
 
-        void Remove<T>(T type, Database database);
+        void Remove(T type, Database database);
     }
 }

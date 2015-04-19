@@ -7,17 +7,23 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class User : IDatabase
+    class User : IDatabase<User>
     {
         private string RFID;
+        private string reservee;
         private string name;
-        private string emailAdres;
-        private string photo;
+        private string emailAddress;
+        private string phoneNumber;
+        private string photoPath;
         private string username;
         private string password;
 
+        private int userID;
         private int eventID;
         private int spotNumber;
+
+        private bool administrator;
+        private bool loggedIn;
 
         private DateTime dateOfBirth;
 
@@ -30,6 +36,11 @@ namespace Proftaak_ICT4Events
             get { return RFID; }
             set { RFID = value; }
         }
+        public string Reservee
+        {
+            get { return reservee; }
+            set { reservee = value; }
+        }
         public string Name
         {
             get { return name; }
@@ -37,13 +48,18 @@ namespace Proftaak_ICT4Events
         }
         public string EmailAdres
         {
-            get { return emailAdres; }
-            set { emailAdres = value; }
+            get { return emailAddress; }
+            set { emailAddress = value; }
         }
-        public string Photo
+        public string PhoneNumer
         {
-            get { return photo; }
-            set { photo = value; }
+            get { return phoneNumber; }
+            set { phoneNumber = value; }
+        }
+        public string PhotoPath
+        {
+            get { return photoPath; }
+            set { photoPath = value; }
         }
         public string Username
         {
@@ -60,11 +76,26 @@ namespace Proftaak_ICT4Events
             get { return eventID; }
             set { eventID = value; }
         }
+        public int UserID
+        {
+            get { return userID; }
+            set { userID = value; }
+        }
         public int SpotNumber
         {
             get { return spotNumber; }
             set { spotNumber = value; }
-        }  
+        }
+        public bool Administrator
+        {
+            get { return administrator; }
+            set { administrator = value; }
+        }
+        public bool LoggedIn
+        {
+            get { return loggedIn; }
+            set { loggedIn = value; }
+        }
         public DateTime DateOfBirth
         {
             get { return dateOfBirth; }
@@ -82,39 +113,50 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public User(string RFID, int eventID, string emailAdres, string photo, DateTime date, string username, string password, int spotNumber)
+        public User(string RFID, string reservee, string name, string emailAddress, string phoneNumber, string photoPath, string username, string password, int userID, int eventID, int spotNumber, bool administrator, bool loggedIn, DateTime dateOfBirth)
         {
             this.RFID = RFID;
-            this.eventID = eventID;
-            this.emailAdres = emailAdres;
-            this.photo = photo;
-            this.dateOfBirth = date;
+            this.reservee = reservee;
+            this.name = name;
+            this.emailAddress = emailAddress;
+            this.phoneNumber = phoneNumber;
+            this.photoPath = photoPath;
             this.username = username;
             this.password = password;
+            this.userID = userID;
+            this.eventID = eventID;
             this.spotNumber = spotNumber;
+            this.administrator = administrator;
+            this.loggedIn = loggedIn;
+            this.dateOfBirth = dateOfBirth;
 
             reservations = new List<Reservation>();
             hobbies = new List<Hobby>();
         }
 
-        public T Get<T>(string userID, Database database)
+        public User Get(string userID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+
+            return null;
         }
 
-        public void Add<T>(T user, Database database)
+        public void Add(User newUser, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD-MM-YYYY'), '{9}', '{10}', {11}, '{12}', '{13}')",
+                newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn));
+        }
+
+        public void Edit(User updateUser, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD-MM-YYYY'), INGELOGD = '{5}'  WHERE GEBRUIKERID = {6}",
+                updateUser.name, updateUser.emailAddress, updateUser.phoneNumber, updateUser.photoPath, updateUser.dateOfBirth, updateUser.loggedIn, updateUser.userID));
 
         }
 
-        public void Edit<T>(T user, Database database)
+        public void Remove(User removeUser, Database database)
         {
-
-        }
-
-        public void Remove<T>(T user, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM GEBRUIKER WHERE GEBRUIKERID = {0}",
+                removeUser.userID));
         }
     }
 }

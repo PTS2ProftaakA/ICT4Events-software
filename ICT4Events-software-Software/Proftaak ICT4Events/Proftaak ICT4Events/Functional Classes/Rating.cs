@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class Rating : IDatabase
+    class Rating : IDatabase<Rating>
     {
         private string RFID;
         private string filePath;
@@ -63,24 +63,28 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public T Get<T>(string ratingID, Database database)
+        public Rating Get(string ratingID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+            return null;
         }
 
-        public void Add<T>(T rating, Database database)
+        public void Add(Rating newRating, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO OORDEEL VALUES ({0}, '{1}', '{2}', '{3}', '{4}')",
+                newRating.ratingID, newRating.RFID, newRating.filePath, newRating.commentID, newRating.positive));
+        }
+
+        public void Edit(Rating updateRating, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE OORDEEL SET POSITIEF = '{0}' WHERE OORDEELID = {1}",
+                updateRating.positive, updateRating.ratingID));
 
         }
 
-        public void Edit<T>(T rating, Database database)
+        public void Remove(Rating removeRating, Database database)
         {
-
-        }
-
-        public void Remove<T>(T rating, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM OORDEEL WHERE OORDEELID = {0}",
+                removeRating.ratingID));
         }
     }
 }

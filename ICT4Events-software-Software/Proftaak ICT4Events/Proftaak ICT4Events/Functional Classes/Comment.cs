@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class Comment : IDatabase
+    class Comment : IDatabase<Comment>
     {
         private string filePath;
         private string content;
@@ -115,7 +115,7 @@ namespace Proftaak_ICT4Events
             return allComments;
         }
 
-        public T Get<T>(string commentID, Database database)
+        public Comment Get(string commentID, Database database)
         {
             List<string> commentColumns = new List<string>();
 
@@ -129,37 +129,34 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return (T)Convert.ChangeType(new Comment(
+                return new Comment(
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[3][1]),
                     dataTable[1][1],
                     dataTable[4][1],
-                    dataTable[2][1]), typeof(T));
+                    dataTable[2][1]);
             }
             else
             {
-                return (T)Convert.ChangeType(null, typeof(T));
+                return null;
             }
         }
 
-        public void Add<T>(T comment, Database database)
+        public void Add(Comment newComment, Database database)
         {
-            Comment newComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
             database.editDatabase(String.Format("INSERT INTO REACTIE VALUES ({0}, '{1}', '{2}', {3}, '{4}')",
                 newComment.commentID, newComment.filePath, newComment.RFID, newComment.commentedOnID, newComment.content));
         }
 
-        public void Edit<T>(T comment, Database database)
+        public void Edit(Comment updateComment, Database database)
         {
-            Comment updateComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
             database.editDatabase(String.Format("UPDATE REACTIE SET INHOUD = '{0}' WHERE REACTIEID = '{1}'",
                 updateComment.content, updateComment.commentID));
 
         }
 
-        public void Remove<T>(T comment, Database database)
+        public void Remove(Comment removeComment, Database database)
         {
-            Comment removeComment = (Comment)Convert.ChangeType(comment, typeof(Comment));
             database.editDatabase(String.Format("DELETE FROM REACTIE WHERE REACTIEID = '{0}'",
                 removeComment.commentID));
         }

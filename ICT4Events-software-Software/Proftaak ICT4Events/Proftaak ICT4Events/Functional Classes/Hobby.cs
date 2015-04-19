@@ -7,10 +7,11 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
-    class Hobby : IDatabase
+    class Hobby : IDatabase<Hobby>
     {
         private string hobbyName;
 
+        private int hobbyID;
 
         #region properties
         public string HobbyName
@@ -18,11 +19,17 @@ namespace Proftaak_ICT4Events
             get { return hobbyName; }
             set { hobbyName = value; }
         }
+        public int HobbyID
+        {
+            get { return hobbyID; }
+            set { hobbyID = value; }
+        }
         #endregion
 
-        public Hobby(string hobbyName)
+        public Hobby(string hobbyName, int hobbyID)
         {
             this.hobbyName = hobbyName;
+            this.hobbyID = hobbyID;
         }
 
         public List<Hobby> GetAll(Database database)
@@ -30,6 +37,7 @@ namespace Proftaak_ICT4Events
             List<string> hobbyColumns = new List<string>();
             List<Hobby> allHobbies = new List<Hobby>();
 
+            hobbyColumns.Add("HOBBYID");
             hobbyColumns.Add("HOBBYNAAM");
 
             List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY", hobbyColumns);
@@ -38,7 +46,9 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    allHobbies.Add(new Hobby(dataTable[0][i]));
+                    allHobbies.Add(new Hobby(
+                       dataTable[0][i],
+                       Convert.ToInt32(dataTable[1][i])));
                 }
             }
 
@@ -50,36 +60,43 @@ namespace Proftaak_ICT4Events
             List<string> hobbyColumns = new List<string>();
             List<Hobby> allHobbies = new List<Hobby>();
 
+            hobbyColumns.Add("HOBBYID");
             hobbyColumns.Add("HOBBYNAAM");
 
             List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY WHERE HOBBYID IN (SELECT HOBBYID FROM GEBRUIKER_HOBBY WHERE RFID = " + RFID + ")", hobbyColumns);
 
             for (int i = 1; i < dataTable[0].Count(); i++)
             {
-                allHobbies.Add(new Hobby(dataTable[0][i]));
+                allHobbies.Add(new Hobby(
+                    dataTable[0][i],
+                    Convert.ToInt32(dataTable[1][i])));
             }
 
             return allHobbies;
         }
 
-        public T Get<T>(string hobbyID, Database database)
+        public Hobby Get(string hobbyID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+            return null;
         }
 
-        public void Add<T>(T hobby, Database database)
+        public void Add(Hobby newHobby, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO HOBBY VALUES ({0}, '{1}')",
+                newHobby.hobbyID, newHobby.hobbyName));
+        }
+
+        public void Edit(Hobby updateHobby, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE HOBBY SET HOBBYNAAM = '{0}' WHERE HOBBYID = {1}",
+                updateHobby.hobbyName, updateHobby.hobbyID));
 
         }
 
-        public void Edit<T>(T hobby, Database database)
+        public void Remove(Hobby removeHobby, Database database)
         {
-
-        }
-
-        public void Remove<T>(T hobby, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM HOBBY WHERE HOBBYID = {0}",
+                removeHobby.hobbyID));
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class ForbiddenWord : IDatabase
+    class ForbiddenWord : IDatabase<ForbiddenWord>
     {
         private string word;
         
@@ -56,7 +56,7 @@ namespace Proftaak_ICT4Events
             return allForbiddenWords;
         }
 
-        public T Get<T>(string forbiddenWordID, Database database)
+        public ForbiddenWord Get(string forbiddenWordID, Database database)
         {
             List<string> forbiddenWordColumns = new List<string>();
 
@@ -68,30 +68,31 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return (T)Convert.ChangeType(new ForbiddenWord(dataTable[2][1], Convert.ToInt32(dataTable[0][1]), Convert.ToInt32(dataTable[1][1])), typeof(T));
+                return new ForbiddenWord(
+                    dataTable[2][1], 
+                    Convert.ToInt32(dataTable[0][1]), 
+                    Convert.ToInt32(dataTable[1][1]));
             }
             else
             {
-                return (T)Convert.ChangeType(null, typeof(T));
+                return null;
             }
         }
 
-        public void Add<T>(T forbiddenWord, Database database)
+        public void Add(ForbiddenWord newForbiddenWord, Database database)
         {
-            ForbiddenWord newForbiddenWord = (ForbiddenWord)Convert.ChangeType(forbiddenWord, typeof(ForbiddenWord));
             database.editDatabase(String.Format("INSERT INTO FORBIDDENWORD VALUES ({0}, '{1}', {2})",
                 newForbiddenWord.wordID, newForbiddenWord.word, newForbiddenWord.severity));
         }
 
-        public void Edit<T>(T forbiddenWord, Database database)
+        public void Edit(ForbiddenWord updateForbiddenWord, Database database)
         {
-            ForbiddenWord updateForbiddenWord = (ForbiddenWord)Convert.ChangeType(forbiddenWord, typeof(ForbiddenWord));
-            database.editDatabase("UPDATE VERBODENWOORD SET WOORD = '" + updateForbiddenWord.word + "', HEVIGHEID =  " + updateForbiddenWord.severity + " WHERE WOORDID = '" + updateForbiddenWord.WordId + "'");
+            database.editDatabase(String.Format("UPDATE VERBODENWOORD SET WOORD = '{0}', HEVIGHEID = {1} WHERE WOORDID = '{2}'",
+                updateForbiddenWord.word, updateForbiddenWord.severity, updateForbiddenWord.wordID));
         }
 
-        public void Remove<T>(T forbiddenWord, Database database)
+        public void Remove(ForbiddenWord removeForbiddenWord, Database database)
         {
-            ForbiddenWord removeForbiddenWord = (ForbiddenWord)Convert.ChangeType(forbiddenWord, typeof(ForbiddenWord));
             database.editDatabase("DELETE FROM VERBODENWOORD WHERE WOORDID = " + removeForbiddenWord.wordID);
         }
     }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Spot : IDatabase
+    class Spot : IDatabase<Spot>
     {
         private int spotNumber;
         private int spotTypeID;
         private int price;
 
+        #region properties
         public int SpotNumber
         {
             get { return spotNumber; }
@@ -27,6 +28,7 @@ namespace Proftaak_ICT4Events
             get { return price; }
             set { price = value; }
         }
+        #endregion
 
         public Spot(int spotNumber, int spotTypeID, int price)
         {
@@ -35,7 +37,7 @@ namespace Proftaak_ICT4Events
             this.price = price;
         }
 
-        public T Get<T>(string spotNumber, Database database)
+        public Spot Get(string spotNumber, Database database)
         {
             List<string> spotColumns = new List<string>();
 
@@ -58,25 +60,22 @@ namespace Proftaak_ICT4Events
             }
         }
 
-        public void Add<T>(T spot, Database database)
+        public void Add(Spot newSpot, Database database)
         {
-            Spot newSpot = (Spot)Convert.ChangeType(spot, typeof(Spot));
-            database.editDatabase(String.Format("INSERT INTO PLAATS VALUES ({0}, '{1}', {2})",
+            database.editDatabase(String.Format("INSERT INTO PLAATS VALUES ({0}, {1}, {2})",
                 newSpot.spotNumber, newSpot.spotTypeID, newSpot.price));
         }
 
-        public void Edit<T>(T spot, Database database)
+        public void Edit(Spot updateSpot, Database database)
         {
-            Spot updateSpot = (Spot)Convert.ChangeType(spot, typeof(Spot));
-            database.editDatabase(String.Format("UPDATE PLAATS SET PRIJS = '{0}' WHERE PLAATSNUMMER = '{1}'",
+            database.editDatabase(String.Format("UPDATE PLAATS SET PRIJS = {0} WHERE PLAATSNUMMER = {1}",
                 updateSpot.price, updateSpot.spotNumber));
 
         }
 
-        public void Remove<T>(T spot, Database database)
+        public void Remove(Spot removeSpot, Database database)
         {
-            Spot removeSpot = (Spot)Convert.ChangeType(spot, typeof(Spot));
-            database.editDatabase(String.Format("DELETE FROM PLAATS WHERE PLAATSNUMMER = '{0}'",
+            database.editDatabase(String.Format("DELETE FROM PLAATS WHERE PLAATSNUMMER = {0}",
                 removeSpot.spotNumber));
         }
     }

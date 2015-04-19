@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Material : IDatabase
+    class Material : IDatabase<Material>
     {
         private string name;
         private string description;
@@ -51,7 +51,7 @@ namespace Proftaak_ICT4Events
             set { category = value; }
         }
         #endregion
-                public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, CategoryType category)
+        public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, CategoryType category)
         {
             this.name = name;
             this.description = description;
@@ -138,24 +138,28 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
-        public T Get<T>(string materialID, Database database)
+        public Material Get(string materialID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+            return null;
         }
 
-        public void Add<T>(T material, Database database)
+        public void Add(Material newMaterial, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO MATERIAAL VALUES ({0}, '{1}', {2}, {3}, '{4}', {5}, '{6}')",
+                newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit, newMaterial.description, newMaterial.category, newMaterial.photoPath));
+        }
+
+        public void Edit(Material updateMaterial, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE PLAATS SET NAAM = '{0}',  HOEVEELHEID = {1}, BORG = {2}, OMSCHRIJVING = '{4}', CATEGORIE = {4}, FOTOPAD = '{5}', WHERE MATID = {6}",
+                updateMaterial.name, updateMaterial.amount, updateMaterial.deposit, updateMaterial.description, updateMaterial.category, updateMaterial.photoPath, updateMaterial.materialID));
 
         }
 
-        public void Edit<T>(T material, Database database)
+        public void Remove(Material removeMaterial, Database database)
         {
-
-        }
-
-        public void Remove<T>(T material, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM MATERIAAL WHERE MATID = '{0}'",
+                removeMaterial.materialID));
         }
     }
 }

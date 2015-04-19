@@ -12,11 +12,13 @@ namespace Proftaak_ICT4Events
         MATERIAAL
     }
 
-    abstract class Reservation : IDatabase
+    abstract class Reservation : IDatabase<Reservation>
     {
         protected string RFID;
 
         protected int rentalID;
+        protected int materialID;
+        protected int spotNumber;
 
         protected DateTime startDate;
         protected DateTime endDate;
@@ -37,6 +39,16 @@ namespace Proftaak_ICT4Events
         {
             get { return rentalID; }
             set { rentalID = value; }
+        }
+        public int MaterialID
+        {
+            get { return materialID; }
+            set { materialID = value; }
+        }
+        protected int SpotNumber
+        {
+            get { return spotNumber; }
+            set { spotNumber = value; }
         }
         public DateTime StartDate
         {
@@ -80,24 +92,28 @@ namespace Proftaak_ICT4Events
             return null;
         }
 
-        public T Get<T>(string reservationID, Database database)
+        public Reservation Get(string reservationID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+            return null;
         }
 
-        public void Add<T>(T reservation, Database database)
+        public void Add(Reservation newReservation, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
+                newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, newReservation.type, newReservation.isPayed, newReservation.materialID, newReservation.spotNumber));
+        }
+
+        public void Edit(Reservation updateReservation, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
+                updateReservation.startDate, updateReservation.endDate, updateReservation.isPayed));
 
         }
 
-        public void Edit<T>(T reservation, Database database)
+        public void Remove(Reservation removeReservation, Database database)
         {
-
-        }
-
-        public void Remove<T>(T reservation, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
+                removeReservation.rentalID));
         }
     }
 }

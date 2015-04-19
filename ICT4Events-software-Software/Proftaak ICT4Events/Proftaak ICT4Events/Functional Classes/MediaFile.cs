@@ -14,13 +14,14 @@ namespace Proftaak_ICT4Events
         GIF
     };
 
-    class MediaFile : IDatabase
+    class MediaFile : IDatabase<MediaFile>
     {
         private string filePath;
         private string description;
         private string RFID;
 
-        private int evenementID;
+        private int mediaFileID;
+        private int eventID;
 
         private DateTime uploadDate;
 
@@ -40,6 +41,26 @@ namespace Proftaak_ICT4Events
             get { return description; }
             set { description = value; }
         }
+        public string PropertyRFID
+        {
+            get { return RFID; }
+            set { RFID = value; }
+        }
+        public int MediaFileID
+        {
+            get { return mediaFileID; }
+            set { mediaFileID = value; }
+        }
+        public int EventID
+        {
+            get { return eventID; }
+            set { eventID = value; }
+        }
+        public DateTime UploadDate
+        {
+            get { return uploadDate; }
+            set { uploadDate = value; }
+        }
         public FileType Type
         {
             get { return type; }
@@ -57,14 +78,15 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public MediaFile(string filePath, int evenementID, string RFID, FileType type, string description, DateTime uploadDate)
+        public MediaFile(string filePath, string description, string RFID, int mediaFileID, int eventID, DateTime uploadDate, FileType type)
         {
             this.filePath = filePath;
-            this.evenementID = evenementID;
-            this.RFID = RFID;
-            this.type = type;
             this.description = description;
+            this.RFID = RFID;
+            this.mediaFileID = mediaFileID;
+            this.eventID = eventID;          
             this.uploadDate = uploadDate;
+            this.type = type;
 
             ratings = new List<Rating>();
             comments = new List<Comment>();
@@ -76,10 +98,13 @@ namespace Proftaak_ICT4Events
             List<string> mediaFilesColumns = new List<string>();
             List<MediaFile> selectedMediaFiles = new List<MediaFile>();
 
-            mediaFilesColumns.Add("REACTIEID");
+            mediaFilesColumns.Add("MEDIABESTANDID");
             mediaFilesColumns.Add("BESTANDSLOCATIE");
+            mediaFilesColumns.Add("EVENEMENTID");
             mediaFilesColumns.Add("RFID");
-            mediaFilesColumns.Add("INHOUD");
+            mediaFilesColumns.Add("BESTAND");
+            mediaFilesColumns.Add("OPMERKING");
+            mediaFilesColumns.Add("UPLOADDATUM");
 
             string query;
 
@@ -102,39 +127,43 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[3][i]);
+                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][i]);
 
                     selectedMediaFiles.Add(new MediaFile(
-                        dataTable[0][i],
-                        Convert.ToInt32(dataTable[1][i]),
-                        dataTable[2][i],
-                        extension,
-                        dataTable[4][i],
-                        Convert.ToDateTime(dataTable[5][i])));
+                        dataTable[1][i],
+                        dataTable[5][i],
+                        dataTable[3][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[5][i]),
+                        extension));
                 }
             }
 
             return selectedMediaFiles;
         }
-
-        public T Get<T>(string mediaFileID, Database database)
+        public MediaFile Get(string mediaFileID, Database database)
         {
-            return (T)Convert.ChangeType(null, typeof(T));
+            return null;
         }
 
-        public void Add<T>(T mediaFile, Database database)
+        public void Add(MediaFile newMediaFile, Database database)
         {
+            database.editDatabase(String.Format("INSERT INTO MEDIABESTAND VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', TO_DATE('{6}', 'DD-MM-YYYY'))",
+                newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.RFID, newMediaFile.type, newMediaFile.description, newMediaFile.uploadDate));
+        }
+
+        public void Edit(MediaFile updateMediaFile, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, RFID = '{2}', BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD-MM-YYYY') WHERE MEDIABESTANDID = {6}",
+                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, updateMediaFile.type, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
 
         }
 
-        public void Edit<T>(T mediaFile, Database database)
+        public void Remove(MediaFile removeMediaFile, Database database)
         {
-
-        }
-
-        public void Remove<T>(T mediaFile, Database database)
-        {
-
+            database.editDatabase(String.Format("DELETE FROM MEDIABESTAND WHERE MEDIABESTANDID = {0}",
+                removeMediaFile.mediaFileID));
         }
     }
 }

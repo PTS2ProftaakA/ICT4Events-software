@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Location : IDatabase
+    class Location : IDatabase<Location>
     {
         private string locationName;
         private string address;
         private string phoneNumber;
         private string emailaddress;
+        private string cityName;
 
         private int locationID;
         private int maximumParticipants;
@@ -37,6 +38,11 @@ namespace Proftaak_ICT4Events
             get { return emailaddress; }
             set { emailaddress = value; }
         }
+        public int LocationID
+        {
+            get { return locationID; }
+            set { locationID = value; }
+        }
         public int MaximumParticipants
         {
             get { return maximumParticipants; }
@@ -44,17 +50,18 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Location(string locationName, string address, string phoneNumber, string emailaddress, int locationID, int maximumParticipants)
+        public Location(string locationName, string address, string phoneNumber, string emailaddress, string cityName, int locationID, int maximumParticipants)
         {
             this.locationName = locationName;
             this.address = address;
             this.phoneNumber = phoneNumber;
             this.emailaddress = emailaddress;
+            this.cityName = cityName;
             this.locationID = locationID;
             this.maximumParticipants = maximumParticipants;
         }
 
-        public T Get<T>(string locationID, Database database)
+        public Location Get(string locationID, Database database)
         {
             List<string> locationColumns = new List<string>();
 
@@ -70,38 +77,37 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return (T)Convert.ChangeType((new Location(
-                        Convert.ToInt32(dataTable[0][1]),
+                return new Location(
                         dataTable[1][1],
                         dataTable[4][1],
                         dataTable[5][1],
                         dataTable[6][1],
                         dataTable[3][1],
-                        Convert.ToInt32(dataTable[2][1]))), typeof(T));
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[3][1]));
             }
             else
             {
-                return (T)Convert.ChangeType(null, typeof(T));
+                return null;
             }
         }
 
-        public void Add<T>(T location, Database database)
+        public void Add(Location newLocation, Database database)
         {
-            Location newLocation = (Location)Convert.ChangeType(location, typeof(Location));
             database.editDatabase(String.Format("INSERT INTO LOCATIE VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}')",
-                newLocation.locationID, newLocation.LocationName, newLocation.maximumParticipants, newLocation.cityname, newLocation.address, newLocation.phoneNumber, newLocation.emailaddress));
+                newLocation.locationID, newLocation.LocationName, newLocation.maximumParticipants, newLocation.cityName, newLocation.address, newLocation.phoneNumber, newLocation.emailaddress));
         }
 
-        public void Edit<T>(T location, Database database)
+        public void Edit(Location updateLocation, Database database)
         {
-            Location updateLocation = (Location)Convert.ChangeType(location, typeof(Location));
-            database.editDatabase("UPDATE LOCATIE SET LOCATIENAAM = '" + updateLocation.locationName + "' ,MAXIMAALDEELNEMERS = " + updateLocation.maximumParticipants + " ,PLAATS = '" + updateLocation.cityname + "' ,ADRES = '" + updateLocation.address + "' ,TELEFOONNUMMER = '" + updateLocation.phoneNumber + "' ,EMAILADRES = '" + updateLocation.emailaddress + "' WHERE LOCATIEID = " + updateLocation.locationID);
+            database.editDatabase(String.Format("UPDATE LOCATIE SET LOCATIENAAM = '{1}', MAXIMAALDEELNEMERS = {2}, PLAATS = '{3}', ADRES = '{4}', TELEFOONNUMMER = '{5}', EMAILADRES = '{6}' WHERE LOCATIEID = {7}",
+                updateLocation.locationName, updateLocation.maximumParticipants, updateLocation.cityName, updateLocation.address, updateLocation.phoneNumber, updateLocation.emailaddress, updateLocation.locationID));
         }
 
-        public void Remove<T>(T location, Database database)
+        public void Remove(Location removeLocation, Database database)
         {
-            Location removeLocation = (Location)Convert.ChangeType(location, typeof(Location));
-            database.editDatabase("DELETE FROM LOCATIE WHERE LOCATIEID = " + removeLocation.locationID);
+            database.editDatabase(String.Format("DELETE FROM LOCATIE WHERE LOCATIEID = {0}",
+                removeLocation.locationID));
         }
     }
 }
