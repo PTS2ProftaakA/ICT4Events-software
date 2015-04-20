@@ -194,13 +194,13 @@ namespace Proftaak_ICT4Events
         public void Add(MediaFile newMediaFile, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MEDIABESTAND VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', TO_DATE('{6}', 'DD-MM-YYYY'))",
-                newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.RFID, newMediaFile.type, newMediaFile.description, newMediaFile.uploadDate));
+                newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.RFID, newMediaFile.mediaTypeName.MediaTypeID, newMediaFile.description, newMediaFile.uploadDate));
         }
 
         public void Edit(MediaFile updateMediaFile, Database database)
         {
             database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, RFID = '{2}', BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD-MM-YYYY') WHERE MEDIABESTANDID = {6}",
-                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, updateMediaFile.type, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
+                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, newMediaFile.mediaTypeName.MediaTypeID, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
 
         }
 

@@ -100,6 +100,7 @@
     <Compile Include="Functional Classes\Comment.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Functional Classes\MaterialCategory.cs" />
+    <Compile Include="Functional Classes\MediaType.cs" />
     <Compile Include="Functional Classes\Spot.cs" />
     <Compile Include="Functional Classes\SpotType.cs" />
     <Compile Include="Managers\DiscussionManager.cs" />
