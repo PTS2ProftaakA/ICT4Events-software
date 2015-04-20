@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
-    class Hobby : IDatabase<Hobby>
+    public class Hobby : IDatabase<Hobby>
     {
         private string hobbyName;
 

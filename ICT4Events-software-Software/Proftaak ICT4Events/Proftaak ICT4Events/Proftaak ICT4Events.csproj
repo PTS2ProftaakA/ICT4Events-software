@@ -99,12 +99,15 @@
   <ItemGroup>
     <Compile Include="Functional Classes\Comment.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Functional Classes\CurrentUser.cs" />
+    <Compile Include="Functional Classes\FTPClient.cs" />
     <Compile Include="Functional Classes\MaterialCategory.cs" />
     <Compile Include="Functional Classes\MediaType.cs" />
     <Compile Include="Functional Classes\Spot.cs" />
     <Compile Include="Functional Classes\SpotType.cs" />
     <Compile Include="Managers\DiscussionManager.cs" />
     <Compile Include="Functional Classes\Event.cs" />
+    <Compile Include="Managers\EventManager.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="Functional Classes\ForbiddenWord.cs" />
     <Compile Include="Functional Classes\Hobby.cs" />
@@ -113,6 +116,7 @@
     <Compile Include="Managers\LogInManager.cs" />
     <Compile Include="Functional Classes\Material.cs" />
     <Compile Include="Functional Classes\MediaFile.cs" />
+    <Compile Include="Managers\MaterialManager.cs" />
     <Compile Include="Managers\MediaFileManager.cs" />
     <Compile Include="Managers\PersonalInfoManager.cs" />
     <Compile Include="Functional Classes\Rating.cs" />
@@ -136,11 +140,9 @@
     </Compile>
     <Compile Include="UI\UILogIn.cs">
       <SubType>Form</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UI\UILogIn.designer.cs">
       <DependentUpon>UILogIn.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UI\UIMainForm.cs">
       <SubType>Form</SubType>
@@ -153,6 +155,12 @@
     </Compile>
     <Compile Include="UI\UIMakePost.designer.cs">
       <DependentUpon>UIMakePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UINewLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UINewLocation.designer.cs">
+      <DependentUpon>UINewLocation.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIPost.cs">
       <SubType>UserControl</SubType>
@@ -183,13 +191,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UILogIn.resx">
       <DependentUpon>UILogIn.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIMainForm.resx">
       <DependentUpon>UIMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIMakePost.resx">
       <DependentUpon>UIMakePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UINewLocation.resx">
+      <DependentUpon>UINewLocation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIPost.resx">
       <DependentUpon>UIPost.cs</DependentUpon>

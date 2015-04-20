@@ -1,0 +1,34 @@
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Proftaak ICT4Events.exe.config
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Proftaak ICT4Events.exe
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Proftaak ICT4Events.pdb
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Microsoft.CSharp.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Oracle.DataAccess.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Phidget21.NET.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Data.DataSetExtensions.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Data.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Deployment.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Drawing.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Windows.Forms.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Xml.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Xml.Linq.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Phidget21.NET.xml
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.Properties.Resources.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UIMainForm.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.csproj.GenerateResource.Cache
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.exe
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.pdb
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UIComment.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.Comments.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UI.UILogIn.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UI.makePost.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.Post.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.UI.UIReserve.resources
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.csproj.ResolveComReference.cache
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Interop.WMPLib.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\AxInterop.WMPLib.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Interop.WMPLib.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\AxInterop.WMPLib.dll
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak ICT4Events.csprojResolveAssemblyReference.cache
+C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\obj\x64\Debug\Proftaak_ICT4Events.NewLocation.resources

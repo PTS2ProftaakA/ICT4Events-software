@@ -16,8 +16,7 @@ namespace Proftaak_ICT4Events.UI
     {
         private RFID userRFID;
         private Database database;
-        private User currentUser;
-
+        
         public UILogIn()
         {
             InitializeComponent();
@@ -49,10 +48,9 @@ namespace Proftaak_ICT4Events.UI
 
         public void userRFID_Tag(object sender, TagEventArgs e)
         {
-            //if (currentUser != null)
-            //{
-            //    currentUser = User.Get(RFID);
-            //}
+            CurrentUser.currentUser = User.StaticGet(e.Tag, database);
+            this.Close();
+
             //e.Tag is the actual RFID that belongs to the chip
             //e.protocol is the protocol that belongs to that chip
         }
@@ -145,9 +143,8 @@ namespace Proftaak_ICT4Events.UI
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            string logInName = tbInlogName.Text;
-            string password = tbPassword.Text;
-
+            CurrentUser.currentUser = User.StaticGet(tbInlogName.Text, tbPassword.Text, database);
+            this.Close();
         }
     }
 }

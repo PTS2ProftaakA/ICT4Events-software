@@ -33,9 +33,8 @@
             this.lblPostMakeText = new System.Windows.Forms.Label();
             this.tbPostMakeText = new System.Windows.Forms.TextBox();
             this.btnMakePostBrowse = new System.Windows.Forms.Button();
-            this.pbPostMakeFilePath = new System.Windows.Forms.PictureBox();
             this.btnMakePostPost = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPostMakeFilePath)).BeginInit();
+            this.tbMakePostPath = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblPostMakeType
@@ -74,7 +73,7 @@
             // 
             // btnMakePostBrowse
             // 
-            this.btnMakePostBrowse.Location = new System.Drawing.Point(248, 44);
+            this.btnMakePostBrowse.Location = new System.Drawing.Point(253, 81);
             this.btnMakePostBrowse.Name = "btnMakePostBrowse";
             this.btnMakePostBrowse.Size = new System.Drawing.Size(133, 23);
             this.btnMakePostBrowse.TabIndex = 4;
@@ -82,30 +81,31 @@
             this.btnMakePostBrowse.UseVisualStyleBackColor = true;
             this.btnMakePostBrowse.Click += new System.EventHandler(this.btnMakePostBrowse_Click);
             // 
-            // pbPostMakeFilePath
-            // 
-            this.pbPostMakeFilePath.Location = new System.Drawing.Point(248, 73);
-            this.pbPostMakeFilePath.Name = "pbPostMakeFilePath";
-            this.pbPostMakeFilePath.Size = new System.Drawing.Size(166, 160);
-            this.pbPostMakeFilePath.TabIndex = 5;
-            this.pbPostMakeFilePath.TabStop = false;
-            // 
             // btnMakePostPost
             // 
+            this.btnMakePostPost.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMakePostPost.Location = new System.Drawing.Point(50, 286);
             this.btnMakePostPost.Name = "btnMakePostPost";
             this.btnMakePostPost.Size = new System.Drawing.Size(75, 23);
             this.btnMakePostPost.TabIndex = 6;
             this.btnMakePostPost.Text = "Post";
             this.btnMakePostPost.UseVisualStyleBackColor = true;
+            this.btnMakePostPost.Click += new System.EventHandler(this.btnMakePostPost_Click);
+            // 
+            // tbMakePostPath
+            // 
+            this.tbMakePostPath.Location = new System.Drawing.Point(253, 110);
+            this.tbMakePostPath.Name = "tbMakePostPath";
+            this.tbMakePostPath.Size = new System.Drawing.Size(202, 20);
+            this.tbMakePostPath.TabIndex = 7;
             // 
             // makePost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 352);
+            this.Controls.Add(this.tbMakePostPath);
             this.Controls.Add(this.btnMakePostPost);
-            this.Controls.Add(this.pbPostMakeFilePath);
             this.Controls.Add(this.btnMakePostBrowse);
             this.Controls.Add(this.tbPostMakeText);
             this.Controls.Add(this.lblPostMakeText);
@@ -113,7 +113,6 @@
             this.Controls.Add(this.lblPostMakeType);
             this.Name = "makePost";
             this.Text = "MakePost";
-            ((System.ComponentModel.ISupportInitialize)(this.pbPostMakeFilePath)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +125,7 @@
         private System.Windows.Forms.Label lblPostMakeText;
         private System.Windows.Forms.TextBox tbPostMakeText;
         private System.Windows.Forms.Button btnMakePostBrowse;
-        private System.Windows.Forms.PictureBox pbPostMakeFilePath;
         private System.Windows.Forms.Button btnMakePostPost;
+        private System.Windows.Forms.TextBox tbMakePostPath;
     }
 }

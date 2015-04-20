@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Rating : IDatabase<Rating>
+    public class Rating : IDatabase<Rating>
     {
         private string RFID;
         private string filePath;

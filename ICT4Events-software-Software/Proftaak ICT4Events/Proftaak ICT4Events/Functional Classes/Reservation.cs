@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    enum RentalType
-    {
-        PLAATS,
-        MATERIAAL
-    }
-
-    class Reservation : IDatabase<Reservation>
+    public class Reservation : IDatabase<Reservation>
     {
         protected string RFID;
 
@@ -46,7 +40,7 @@ namespace Proftaak_ICT4Events
             get { return materialID; }
             set { materialID = value; }
         }
-        protected int SpotNumber
+        public int SpotNumber
         {
             get { return spotNumber; }
             set { spotNumber = value; }
@@ -66,12 +60,12 @@ namespace Proftaak_ICT4Events
             get { return isPayed; }
             set { isPayed = value; }
         }
-        protected Spot Spot
+        public Spot Spot
         {
             get { return spot; }
             set { spot = value; }
         }
-        protected Material Material
+        public Material Material
         {
             get { return material; }
             set { material = value; }
@@ -83,23 +77,21 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
+        public Reservation(string RFID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
         {
             this.RFID = RFID;
             this.rentalID = rentalID;
             this.materialID = materialID;
-            this.spotNumber = spotNumber;
             this.startDate = startDate;
             this.endDate = endDate;
             this.isPayed = isPayed;
             this.spot = spot;
         }
 
-        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
+        public Reservation(string RFID, int rentalID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
         {
             this.RFID = RFID;
             this.rentalID = rentalID;
-            this.materialID = materialID;
             this.spotNumber = spotNumber;
             this.startDate = startDate;
             this.endDate = endDate;
@@ -133,7 +125,6 @@ namespace Proftaak_ICT4Events
                         dataTable[1][i],
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[6][i]),
-                        Convert.ToInt32(dataTable[7][i]),
                         Convert.ToDateTime(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[3][i]),
                         dataTable[5][i].ToUpper() == "Y",
@@ -144,7 +135,6 @@ namespace Proftaak_ICT4Events
                         allreservations.Add(new Reservation(
                         dataTable[1][i],
                         Convert.ToInt32(dataTable[0][i]),
-                        Convert.ToInt32(dataTable[6][i]),
                         Convert.ToInt32(dataTable[7][i]),
                         Convert.ToDateTime(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[3][i]),
@@ -181,7 +171,6 @@ namespace Proftaak_ICT4Events
                     dataTable[1][1],
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[6][1]),
-                    Convert.ToInt32(dataTable[7][1]),
                     Convert.ToDateTime(dataTable[2][1]),
                     Convert.ToDateTime(dataTable[3][1]),
                     dataTable[5][1].ToUpper() == "Y",
@@ -192,7 +181,6 @@ namespace Proftaak_ICT4Events
                     getReservation = new Reservation(
                     dataTable[1][1],
                     Convert.ToInt32(dataTable[0][1]),
-                    Convert.ToInt32(dataTable[6][1]),
                     Convert.ToInt32(dataTable[7][1]),
                     Convert.ToDateTime(dataTable[2][1]),
                     Convert.ToDateTime(dataTable[3][1]),
@@ -204,26 +192,48 @@ namespace Proftaak_ICT4Events
             return getReservation;
         }
 
-        public void Add(Reservation newSpotReservation, Database database)
+        public void Add(Reservation newReservation, Database database)
         {
-            string rentalType;
+            string isPayedString;
 
-            if (newSpotReservation.Material == null)
+            if (isPayed)
             {
-                rentalType = "PLAATS";
+                isPayedString = "Y";
             }
             else
             {
-                rentalType = "MATERIAAL";
+                isPayedString = "N";
             }
-            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
-                newSpotReservation.rentalID, newSpotReservation.RFID, newSpotReservation.startDate, newSpotReservation.endDate, rentalType, newSpotReservation.isPayed, newSpotReservation.materialID, newSpotReservation.spotNumber));
+
+            string rentalType;
+
+            if (newReservation.Material == null)
+            {
+                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', null, {6})",
+                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spotNumber));
+            }
+            else
+            {
+                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
+                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
+            }
         }
 
         public void Edit(Reservation updateReservation, Database database)
         {
-            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
-                updateReservation.startDate, updateReservation.endDate, updateReservation.isPayed));
+            string isPayedString;
+
+            if (isPayed)
+            {
+                isPayedString = "Y";
+            }
+            else
+            {
+                isPayedString = "N";
+            }
+
+            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD/MM/YYYY HH24:MI:SS'), EINDDATUM = TO_DATE('{1}', 'DD/MM/YYYY HH24:MI:SS'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
+                updateReservation.startDate, updateReservation.endDate, isPayedString));
 
         }
 

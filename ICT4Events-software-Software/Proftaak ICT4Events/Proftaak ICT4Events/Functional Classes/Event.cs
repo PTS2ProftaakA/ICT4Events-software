@@ -84,7 +84,7 @@ namespace Proftaak_ICT4Events
 
             eventColumns.Add("EVENEMENTID");
             eventColumns.Add("EVENEMENTNAAM");
-            eventColumns.Add("LOCATIENAAM");
+            eventColumns.Add("LOCATIEID");
             eventColumns.Add("AANTALDEELNEMERS");
             eventColumns.Add("STARTDATUM");
             eventColumns.Add("EINDDATUM");
@@ -157,6 +157,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM EVENEMENT WHERE EVENEMENTID = {0}",
                 removeEvent.eventID));
+        }
+
+        public override string ToString()
+        {
+            return eventName;
         }
     }
 }

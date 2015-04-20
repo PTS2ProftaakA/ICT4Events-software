@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class Material : IDatabase<Material>
+    public class Material : IDatabase<Material>
     {
         private string name;
         private string description;
@@ -40,6 +40,11 @@ namespace Proftaak_ICT4Events
             get { return amount; }
             set { amount = value; }
         }
+        public int MaterialID
+        {
+            get { return materialID; }
+            set { materialID = value; }
+        }
         public decimal Deposit
         {
             get { return deposit; }
@@ -51,6 +56,7 @@ namespace Proftaak_ICT4Events
             set { materialCategoryName = value; }
         }
         #endregion
+
         public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, MaterialCategory materialCategoryName)
         {
             this.name = name;
@@ -84,7 +90,7 @@ namespace Proftaak_ICT4Events
                 {
                     MaterialCategory thisMaterialCategory = null;
 
-                    foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                    foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
                     {
                         if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
                         {
@@ -93,12 +99,12 @@ namespace Proftaak_ICT4Events
                     }
 
                     allMaterial.Add(new Material(
-                        dataTable[7][i],
-                        dataTable[10][i],
-                        dataTable[12][i],
-                        Convert.ToInt32(dataTable[6][i]),
-                        Convert.ToInt32(dataTable[8][i]),
-                        Convert.ToDecimal(dataTable[9][i]) / 100,
+                        dataTable[1][i],
+                        dataTable[4][i],
+                        dataTable[6][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToDecimal(dataTable[3][i]) / 100,
                         thisMaterialCategory));
                 }
             }
@@ -106,7 +112,7 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
-        public static List<Material> getAll(Database database, MaterialCategory category)
+        public static List<Material> getAll(MaterialCategory category, Database database)
         {
             List<string> materialColumns = new List<string>();
             List<Material> allMaterial = new List<Material>();
@@ -127,7 +133,7 @@ namespace Proftaak_ICT4Events
                 {
                     MaterialCategory thisMaterialCategory = null;
 
-                    foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                    foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
                     {
                         if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
                         {
@@ -170,7 +176,7 @@ namespace Proftaak_ICT4Events
             {
                 MaterialCategory thisMaterialCategory = null;
 
-                foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
                 {
                     if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][1]))
                     {
@@ -207,6 +213,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM MATERIAAL WHERE MATID = '{0}'",
                 removeMaterial.materialID));
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

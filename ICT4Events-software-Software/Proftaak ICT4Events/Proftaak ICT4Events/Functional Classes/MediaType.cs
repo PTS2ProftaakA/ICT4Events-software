@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class MediaType : IDatabase<MediaType>
+    public class MediaType : IDatabase<MediaType>
     {
         private string type;
 
@@ -35,7 +35,7 @@ namespace Proftaak_ICT4Events
             database = new Database();
         }
 
-        public List<MediaType> GetAll()
+        public static List<MediaType> GetAll(Database database)
         {
             List<string> mediaTypeColumns = new List<string>();
             List<MediaType> allMediaType = new List<MediaType>();

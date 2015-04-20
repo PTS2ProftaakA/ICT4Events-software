@@ -87,7 +87,7 @@ namespace Proftaak_ICT4Events
                         dataTable[6][i],
                         dataTable[3][i],
                         Convert.ToInt32(dataTable[0][i]),
-                        Convert.ToInt32(dataTable[3][i])));
+                        Convert.ToInt32(dataTable[2][i])));
                 }
             }
 
@@ -118,7 +118,7 @@ namespace Proftaak_ICT4Events
                         dataTable[6][1],
                         dataTable[3][1],
                         Convert.ToInt32(dataTable[0][1]),
-                        Convert.ToInt32(dataTable[3][1]));
+                        Convert.ToInt32(dataTable[2][1]));
             }
 
             return getLocation;
@@ -148,7 +148,7 @@ namespace Proftaak_ICT4Events
                         dataTable[6][1],
                         dataTable[3][1],
                         Convert.ToInt32(dataTable[0][1]),
-                        Convert.ToInt32(dataTable[3][1]));
+                        Convert.ToInt32(dataTable[2][1]));
             }
 
             return getLocation;
@@ -170,6 +170,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM LOCATIE WHERE LOCATIEID = {0}",
                 removeLocation.locationID));
+        }
+
+        public override string ToString()
+        {
+            return locationName;
         }
     }
 }

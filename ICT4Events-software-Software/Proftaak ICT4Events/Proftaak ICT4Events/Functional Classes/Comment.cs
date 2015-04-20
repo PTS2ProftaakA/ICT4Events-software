@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Proftaak_ICT4Events
 
 {
-    class Comment : IDatabase<Comment>
+    public class Comment : IDatabase<Comment>
     {
         private string filePath;
         private string content;

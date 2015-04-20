@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class SpotType : IDatabase<SpotType>
+    public class SpotType : IDatabase<SpotType>
     {
         private string spotTypeName;
 
@@ -42,7 +42,7 @@ namespace Proftaak_ICT4Events
             database = new Database();
         }
 
-        public List<SpotType> GetAll()
+        public static List<SpotType> GetAll(Database database)
         {
             List<string> spotTypeColumns = new List<string>();
             List<SpotType> allSpotTypes = new List<SpotType>();
@@ -51,7 +51,7 @@ namespace Proftaak_ICT4Events
             spotTypeColumns.Add("PLAATSTYPE");
             spotTypeColumns.Add("HOEVEELHEIDPERSONEN");
 
-            List<string>[] dataTable = database.selectQuery("SELECT plaatstype FROM PLAATSTYPE", spotTypeColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATSTYPE", spotTypeColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -109,6 +109,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM PLAATSTYPE WHERE PLAATSTYPEID = {0}",
                 removeSpotType.SpotTypeID));
+        }
+
+        public override string ToString()
+        {
+            return spotTypeName;
         }
     }
 }

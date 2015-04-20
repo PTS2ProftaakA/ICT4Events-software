@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class ForbiddenWord : IDatabase<ForbiddenWord>
+    public class ForbiddenWord : IDatabase<ForbiddenWord>
     {
         private string word;
         

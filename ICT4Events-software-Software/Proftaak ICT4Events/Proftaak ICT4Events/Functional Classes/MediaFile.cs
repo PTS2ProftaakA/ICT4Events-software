@@ -14,7 +14,7 @@ namespace Proftaak_ICT4Events
         GIF
     };
 
-    class MediaFile : IDatabase<MediaFile>
+    public class MediaFile : IDatabase<MediaFile>
     {
         private string filePath;
         private string description;
@@ -129,7 +129,7 @@ namespace Proftaak_ICT4Events
                 {
                     MediaType thisMediaType = null;
 
-                    foreach (MediaType mediaType in thisMediaType.GetAll())
+                    foreach (MediaType mediaType in MediaType.GetAll(database))
                     {
                         if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][i]))
                         {
@@ -170,7 +170,7 @@ namespace Proftaak_ICT4Events
             {
                 MediaType thisMediaType = null;
 
-                foreach (MediaType mediaType in thisMediaType.GetAll())
+                foreach (MediaType mediaType in MediaType.GetAll(database))
                 {
                     if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][1]))
                     {

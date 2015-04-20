@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIMainForm));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tpTijdlijn = new System.Windows.Forms.TabPage();
             this.btnMakePost = new System.Windows.Forms.Button();
             this.tbFeedSearch = new System.Windows.Forms.TextBox();
@@ -56,6 +56,10 @@
             this.cbMaterialCategory = new System.Windows.Forms.ComboBox();
             this.pbProductList = new System.Windows.Forms.PictureBox();
             this.tpBestanden = new System.Windows.Forms.TabPage();
+            this.btnTreeUpload = new System.Windows.Forms.Button();
+            this.btnTreeDownload = new System.Windows.Forms.Button();
+            this.btnTreeAddFolder = new System.Windows.Forms.Button();
+            this.tbTreeMap = new System.Windows.Forms.TextBox();
             this.tvFolders = new System.Windows.Forms.ListView();
             this.tvTree = new System.Windows.Forms.TreeView();
             this.tpSettings = new System.Windows.Forms.TabPage();
@@ -72,23 +76,24 @@
             this.lblSettingsName = new System.Windows.Forms.Label();
             this.pbSettingsPicture = new System.Windows.Forms.PictureBox();
             this.tpMap = new System.Windows.Forms.TabPage();
+            this.lvAvailableSpots = new System.Windows.Forms.ListView();
             this.nudMapPeople = new System.Windows.Forms.NumericUpDown();
             this.cbMapType = new System.Windows.Forms.ComboBox();
-            this.btnMapSearch = new System.Windows.Forms.Button();
             this.btnReservation = new System.Windows.Forms.Button();
-            this.nudMapSpot = new System.Windows.Forms.NumericUpDown();
             this.lblMapTypePlace = new System.Windows.Forms.Label();
             this.lblMapMax = new System.Windows.Forms.Label();
-            this.lblMapNumber = new System.Windows.Forms.Label();
             this.lblMapInfo = new System.Windows.Forms.Label();
             this.pbMapMap = new System.Windows.Forms.PictureBox();
             this.tpEventBeheer = new System.Windows.Forms.TabPage();
+            this.btnEManagementNewSave = new System.Windows.Forms.Button();
+            this.btnEManagementNewLocation = new System.Windows.Forms.Button();
+            this.cbEManagementLocation = new System.Windows.Forms.ComboBox();
+            this.btnEManagementNew = new System.Windows.Forms.Button();
             this.lblEManagementRapp = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudEManagentPercentage = new System.Windows.Forms.NumericUpDown();
             this.lblEManagementEnd = new System.Windows.Forms.Label();
             this.lblEManagementStart = new System.Windows.Forms.Label();
             this.lblEManagementAantal = new System.Windows.Forms.Label();
-            this.tbEManagementLocatie = new System.Windows.Forms.TextBox();
             this.lblEManagementLocatie = new System.Windows.Forms.Label();
             this.lblEManagementNaam = new System.Windows.Forms.Label();
             this.lblEManagement = new System.Windows.Forms.Label();
@@ -101,7 +106,6 @@
             this.tpMateriaalBeheer = new System.Windows.Forms.TabPage();
             this.lbManagementAllRental = new System.Windows.Forms.ListBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.button4 = new System.Windows.Forms.Button();
@@ -124,8 +128,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMenu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).BeginInit();
@@ -134,10 +137,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSettingsPicture)).BeginInit();
             this.tpMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapPeople)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).BeginInit();
             this.tpEventBeheer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEManagentPercentage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).BeginInit();
             this.tpMateriaalBeheer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudManagementProductDeposit)).BeginInit();
@@ -145,28 +147,29 @@
             this.tpPostBeheer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tcMainForm
             // 
-            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl1.Controls.Add(this.tpTijdlijn);
-            this.tabControl1.Controls.Add(this.tpRental);
-            this.tabControl1.Controls.Add(this.tpBestanden);
-            this.tabControl1.Controls.Add(this.tpSettings);
-            this.tabControl1.Controls.Add(this.tpMap);
-            this.tabControl1.Controls.Add(this.tpEventBeheer);
-            this.tabControl1.Controls.Add(this.tpMateriaalBeheer);
-            this.tabControl1.Controls.Add(this.tpPostBeheer);
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.ItemSize = new System.Drawing.Size(40, 150);
-            this.tabControl1.Location = new System.Drawing.Point(16, 87);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1395, 684);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tcMainForm.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tcMainForm.Controls.Add(this.tpTijdlijn);
+            this.tcMainForm.Controls.Add(this.tpRental);
+            this.tcMainForm.Controls.Add(this.tpBestanden);
+            this.tcMainForm.Controls.Add(this.tpSettings);
+            this.tcMainForm.Controls.Add(this.tpMap);
+            this.tcMainForm.Controls.Add(this.tpEventBeheer);
+            this.tcMainForm.Controls.Add(this.tpMateriaalBeheer);
+            this.tcMainForm.Controls.Add(this.tpPostBeheer);
+            this.tcMainForm.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tcMainForm.ItemSize = new System.Drawing.Size(40, 150);
+            this.tcMainForm.Location = new System.Drawing.Point(16, 87);
+            this.tcMainForm.Margin = new System.Windows.Forms.Padding(4);
+            this.tcMainForm.Multiline = true;
+            this.tcMainForm.Name = "tcMainForm";
+            this.tcMainForm.SelectedIndex = 0;
+            this.tcMainForm.Size = new System.Drawing.Size(1395, 684);
+            this.tcMainForm.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tcMainForm.TabIndex = 0;
+            this.tcMainForm.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tcMainForm.SelectedIndexChanged += new System.EventHandler(this.tcMainForm_SelectedIndexChanged);
             // 
             // tpTijdlijn
             // 
@@ -196,7 +199,6 @@
             this.btnMakePost.TabIndex = 4;
             this.btnMakePost.Text = "Maak Post";
             this.btnMakePost.UseVisualStyleBackColor = true;
-            this.btnMakePost.Click += new System.EventHandler(this.btnMakePost_Click);
             // 
             // tbFeedSearch
             // 
@@ -327,6 +329,7 @@
             this.btnMaterialRent.TabIndex = 13;
             this.btnMaterialRent.Text = "Reserveren";
             this.btnMaterialRent.UseVisualStyleBackColor = true;
+            this.btnMaterialRent.Click += new System.EventHandler(this.btnMaterialRent_Click_1);
             // 
             // lblMaterialProductNameName
             // 
@@ -409,7 +412,7 @@
             this.lblMaterialAvailable.AutoSize = true;
             this.lblMaterialAvailable.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaterialAvailable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblMaterialAvailable.Location = new System.Drawing.Point(976, 42);
+            this.lblMaterialAvailable.Location = new System.Drawing.Point(547, 148);
             this.lblMaterialAvailable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaterialAvailable.Name = "lblMaterialAvailable";
             this.lblMaterialAvailable.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -452,6 +455,7 @@
             this.cbMaterialProduct.Name = "cbMaterialProduct";
             this.cbMaterialProduct.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialProduct.TabIndex = 2;
+            this.cbMaterialProduct.SelectedIndexChanged += new System.EventHandler(this.cbMaterialProduct_SelectedIndexChanged);
             // 
             // cbMaterialCategory
             // 
@@ -461,6 +465,7 @@
             this.cbMaterialCategory.Name = "cbMaterialCategory";
             this.cbMaterialCategory.Size = new System.Drawing.Size(240, 24);
             this.cbMaterialCategory.TabIndex = 1;
+            this.cbMaterialCategory.SelectedIndexChanged += new System.EventHandler(this.cbMaterialCategory_SelectedIndexChanged);
             // 
             // pbProductList
             // 
@@ -473,6 +478,10 @@
             // 
             // tpBestanden
             // 
+            this.tpBestanden.Controls.Add(this.btnTreeUpload);
+            this.tpBestanden.Controls.Add(this.btnTreeDownload);
+            this.tpBestanden.Controls.Add(this.btnTreeAddFolder);
+            this.tpBestanden.Controls.Add(this.tbTreeMap);
             this.tpBestanden.Controls.Add(this.tvFolders);
             this.tpBestanden.Controls.Add(this.tvTree);
             this.tpBestanden.Location = new System.Drawing.Point(154, 4);
@@ -482,6 +491,43 @@
             this.tpBestanden.TabIndex = 2;
             this.tpBestanden.Text = "Bestanden";
             this.tpBestanden.UseVisualStyleBackColor = true;
+            // 
+            // btnTreeUpload
+            // 
+            this.btnTreeUpload.Location = new System.Drawing.Point(161, 600);
+            this.btnTreeUpload.Name = "btnTreeUpload";
+            this.btnTreeUpload.Size = new System.Drawing.Size(184, 23);
+            this.btnTreeUpload.TabIndex = 5;
+            this.btnTreeUpload.Text = "Upload";
+            this.btnTreeUpload.UseVisualStyleBackColor = true;
+            this.btnTreeUpload.Click += new System.EventHandler(this.btnTreeUpload_Click);
+            // 
+            // btnTreeDownload
+            // 
+            this.btnTreeDownload.Location = new System.Drawing.Point(161, 571);
+            this.btnTreeDownload.Name = "btnTreeDownload";
+            this.btnTreeDownload.Size = new System.Drawing.Size(184, 23);
+            this.btnTreeDownload.TabIndex = 4;
+            this.btnTreeDownload.Text = "Download";
+            this.btnTreeDownload.UseVisualStyleBackColor = true;
+            this.btnTreeDownload.Click += new System.EventHandler(this.btnTreeDownload_Click);
+            // 
+            // btnTreeAddFolder
+            // 
+            this.btnTreeAddFolder.Location = new System.Drawing.Point(161, 542);
+            this.btnTreeAddFolder.Name = "btnTreeAddFolder";
+            this.btnTreeAddFolder.Size = new System.Drawing.Size(184, 23);
+            this.btnTreeAddFolder.TabIndex = 3;
+            this.btnTreeAddFolder.Text = "Map toevoegen";
+            this.btnTreeAddFolder.UseVisualStyleBackColor = true;
+            this.btnTreeAddFolder.Click += new System.EventHandler(this.btnTreeAddFolder_Click);
+            // 
+            // tbTreeMap
+            // 
+            this.tbTreeMap.Location = new System.Drawing.Point(4, 542);
+            this.tbTreeMap.Name = "tbTreeMap";
+            this.tbTreeMap.Size = new System.Drawing.Size(151, 22);
+            this.tbTreeMap.TabIndex = 2;
             // 
             // tvFolders
             // 
@@ -497,7 +543,7 @@
             this.tvTree.Location = new System.Drawing.Point(4, 4);
             this.tvTree.Margin = new System.Windows.Forms.Padding(4);
             this.tvTree.Name = "tvTree";
-            this.tvTree.Size = new System.Drawing.Size(341, 666);
+            this.tvTree.Size = new System.Drawing.Size(341, 531);
             this.tvTree.TabIndex = 0;
             // 
             // tpSettings
@@ -650,14 +696,12 @@
             // 
             // tpMap
             // 
+            this.tpMap.Controls.Add(this.lvAvailableSpots);
             this.tpMap.Controls.Add(this.nudMapPeople);
             this.tpMap.Controls.Add(this.cbMapType);
-            this.tpMap.Controls.Add(this.btnMapSearch);
             this.tpMap.Controls.Add(this.btnReservation);
-            this.tpMap.Controls.Add(this.nudMapSpot);
             this.tpMap.Controls.Add(this.lblMapTypePlace);
             this.tpMap.Controls.Add(this.lblMapMax);
-            this.tpMap.Controls.Add(this.lblMapNumber);
             this.tpMap.Controls.Add(this.lblMapInfo);
             this.tpMap.Controls.Add(this.pbMapMap);
             this.tpMap.Location = new System.Drawing.Point(154, 4);
@@ -668,9 +712,17 @@
             this.tpMap.Text = "Kaart";
             this.tpMap.UseVisualStyleBackColor = true;
             // 
+            // lvAvailableSpots
+            // 
+            this.lvAvailableSpots.Location = new System.Drawing.Point(41, 109);
+            this.lvAvailableSpots.Name = "lvAvailableSpots";
+            this.lvAvailableSpots.Size = new System.Drawing.Size(384, 379);
+            this.lvAvailableSpots.TabIndex = 13;
+            this.lvAvailableSpots.UseCompatibleStateImageBehavior = false;
+            // 
             // nudMapPeople
             // 
-            this.nudMapPeople.Location = new System.Drawing.Point(267, 101);
+            this.nudMapPeople.Location = new System.Drawing.Point(355, 523);
             this.nudMapPeople.Margin = new System.Windows.Forms.Padding(4);
             this.nudMapPeople.Name = "nudMapPeople";
             this.nudMapPeople.Size = new System.Drawing.Size(72, 22);
@@ -684,16 +736,7 @@
             this.cbMapType.Name = "cbMapType";
             this.cbMapType.Size = new System.Drawing.Size(160, 24);
             this.cbMapType.TabIndex = 11;
-            // 
-            // btnMapSearch
-            // 
-            this.btnMapSearch.Location = new System.Drawing.Point(43, 135);
-            this.btnMapSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMapSearch.Name = "btnMapSearch";
-            this.btnMapSearch.Size = new System.Drawing.Size(129, 28);
-            this.btnMapSearch.TabIndex = 10;
-            this.btnMapSearch.Text = "Zoeken";
-            this.btnMapSearch.UseVisualStyleBackColor = true;
+            this.cbMapType.SelectedIndexChanged += new System.EventHandler(this.cbMapType_SelectedIndexChanged);
             // 
             // btnReservation
             // 
@@ -704,19 +747,6 @@
             this.btnReservation.TabIndex = 8;
             this.btnReservation.Text = "Reserveren";
             this.btnReservation.UseVisualStyleBackColor = true;
-            // 
-            // nudMapSpot
-            // 
-            this.nudMapSpot.Location = new System.Drawing.Point(267, 572);
-            this.nudMapSpot.Margin = new System.Windows.Forms.Padding(4);
-            this.nudMapSpot.Maximum = new decimal(new int[] {
-            679,
-            0,
-            0,
-            0});
-            this.nudMapSpot.Name = "nudMapSpot";
-            this.nudMapSpot.Size = new System.Drawing.Size(91, 22);
-            this.nudMapSpot.TabIndex = 4;
             // 
             // lblMapTypePlace
             // 
@@ -733,23 +763,12 @@
             // 
             this.lblMapMax.AutoSize = true;
             this.lblMapMax.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapMax.Location = new System.Drawing.Point(37, 101);
+            this.lblMapMax.Location = new System.Drawing.Point(39, 523);
             this.lblMapMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapMax.Name = "lblMapMax";
             this.lblMapMax.Size = new System.Drawing.Size(174, 23);
             this.lblMapMax.TabIndex = 2;
             this.lblMapMax.Text = "Aantal personen";
-            // 
-            // lblMapNumber
-            // 
-            this.lblMapNumber.AutoSize = true;
-            this.lblMapNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMapNumber.Location = new System.Drawing.Point(37, 572);
-            this.lblMapNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMapNumber.Name = "lblMapNumber";
-            this.lblMapNumber.Size = new System.Drawing.Size(140, 23);
-            this.lblMapNumber.TabIndex = 1;
-            this.lblMapNumber.Text = "Plek Nummer";
             // 
             // lblMapInfo
             // 
@@ -775,12 +794,15 @@
             // 
             // tpEventBeheer
             // 
+            this.tpEventBeheer.Controls.Add(this.btnEManagementNewSave);
+            this.tpEventBeheer.Controls.Add(this.btnEManagementNewLocation);
+            this.tpEventBeheer.Controls.Add(this.cbEManagementLocation);
+            this.tpEventBeheer.Controls.Add(this.btnEManagementNew);
             this.tpEventBeheer.Controls.Add(this.lblEManagementRapp);
-            this.tpEventBeheer.Controls.Add(this.numericUpDown1);
+            this.tpEventBeheer.Controls.Add(this.nudEManagentPercentage);
             this.tpEventBeheer.Controls.Add(this.lblEManagementEnd);
             this.tpEventBeheer.Controls.Add(this.lblEManagementStart);
             this.tpEventBeheer.Controls.Add(this.lblEManagementAantal);
-            this.tpEventBeheer.Controls.Add(this.tbEManagementLocatie);
             this.tpEventBeheer.Controls.Add(this.lblEManagementLocatie);
             this.tpEventBeheer.Controls.Add(this.lblEManagementNaam);
             this.tpEventBeheer.Controls.Add(this.lblEManagement);
@@ -798,6 +820,50 @@
             this.tpEventBeheer.Text = "Event Beheer";
             this.tpEventBeheer.UseVisualStyleBackColor = true;
             // 
+            // btnEManagementNewSave
+            // 
+            this.btnEManagementNewSave.Enabled = false;
+            this.btnEManagementNewSave.Location = new System.Drawing.Point(317, 516);
+            this.btnEManagementNewSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEManagementNewSave.Name = "btnEManagementNewSave";
+            this.btnEManagementNewSave.Size = new System.Drawing.Size(265, 28);
+            this.btnEManagementNewSave.TabIndex = 19;
+            this.btnEManagementNewSave.Text = "Nieuw Event Opslaan";
+            this.btnEManagementNewSave.UseVisualStyleBackColor = true;
+            this.btnEManagementNewSave.Visible = false;
+            this.btnEManagementNewSave.Click += new System.EventHandler(this.btnEManagementNewSave_Click);
+            // 
+            // btnEManagementNewLocation
+            // 
+            this.btnEManagementNewLocation.Location = new System.Drawing.Point(607, 155);
+            this.btnEManagementNewLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEManagementNewLocation.Name = "btnEManagementNewLocation";
+            this.btnEManagementNewLocation.Size = new System.Drawing.Size(100, 28);
+            this.btnEManagementNewLocation.TabIndex = 18;
+            this.btnEManagementNewLocation.Text = "Nieuwe Locatie";
+            this.btnEManagementNewLocation.UseVisualStyleBackColor = true;
+            this.btnEManagementNewLocation.Click += new System.EventHandler(this.btnEManagementNewLocation_Click);
+            // 
+            // cbEManagementLocation
+            // 
+            this.cbEManagementLocation.FormattingEnabled = true;
+            this.cbEManagementLocation.Location = new System.Drawing.Point(317, 155);
+            this.cbEManagementLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.cbEManagementLocation.Name = "cbEManagementLocation";
+            this.cbEManagementLocation.Size = new System.Drawing.Size(264, 24);
+            this.cbEManagementLocation.TabIndex = 17;
+            // 
+            // btnEManagementNew
+            // 
+            this.btnEManagementNew.Location = new System.Drawing.Point(85, 123);
+            this.btnEManagementNew.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEManagementNew.Name = "btnEManagementNew";
+            this.btnEManagementNew.Size = new System.Drawing.Size(161, 28);
+            this.btnEManagementNew.TabIndex = 16;
+            this.btnEManagementNew.Text = "Nieuw";
+            this.btnEManagementNew.UseVisualStyleBackColor = true;
+            this.btnEManagementNew.Click += new System.EventHandler(this.btnEManagementNew_Click);
+            // 
             // lblEManagementRapp
             // 
             this.lblEManagementRapp.AutoSize = true;
@@ -811,13 +877,13 @@
             this.lblEManagementRapp.Text = "Rapporteer %";
             this.lblEManagementRapp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // numericUpDown1
+            // nudEManagentPercentage
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(316, 430);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(67, 22);
-            this.numericUpDown1.TabIndex = 14;
+            this.nudEManagentPercentage.Location = new System.Drawing.Point(316, 430);
+            this.nudEManagentPercentage.Margin = new System.Windows.Forms.Padding(4);
+            this.nudEManagentPercentage.Name = "nudEManagentPercentage";
+            this.nudEManagentPercentage.Size = new System.Drawing.Size(67, 22);
+            this.nudEManagentPercentage.TabIndex = 14;
             // 
             // lblEManagementEnd
             // 
@@ -857,14 +923,6 @@
             this.lblEManagementAantal.TabIndex = 11;
             this.lblEManagementAantal.Text = "Max Aantal Personen";
             this.lblEManagementAantal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tbEManagementLocatie
-            // 
-            this.tbEManagementLocatie.Location = new System.Drawing.Point(316, 156);
-            this.tbEManagementLocatie.Margin = new System.Windows.Forms.Padding(4);
-            this.tbEManagementLocatie.Name = "tbEManagementLocatie";
-            this.tbEManagementLocatie.Size = new System.Drawing.Size(265, 22);
-            this.tbEManagementLocatie.TabIndex = 10;
             // 
             // lblEManagementLocatie
             // 
@@ -921,6 +979,7 @@
             this.cbEManagementEvents.Name = "cbEManagementEvents";
             this.cbEManagementEvents.Size = new System.Drawing.Size(160, 24);
             this.cbEManagementEvents.TabIndex = 5;
+            this.cbEManagementEvents.SelectedIndexChanged += new System.EventHandler(this.cbEManagementEvents_SelectedIndexChanged);
             // 
             // btnEManagementSave
             // 
@@ -931,11 +990,17 @@
             this.btnEManagementSave.TabIndex = 4;
             this.btnEManagementSave.Text = "Opslaan";
             this.btnEManagementSave.UseVisualStyleBackColor = true;
+            this.btnEManagementSave.Click += new System.EventHandler(this.btnEManagementSave_Click);
             // 
             // nudEManagementAantal
             // 
             this.nudEManagementAantal.Location = new System.Drawing.Point(316, 215);
             this.nudEManagementAantal.Margin = new System.Windows.Forms.Padding(4);
+            this.nudEManagementAantal.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
             this.nudEManagementAantal.Name = "nudEManagementAantal";
             this.nudEManagementAantal.Size = new System.Drawing.Size(267, 22);
             this.nudEManagementAantal.TabIndex = 2;
@@ -960,7 +1025,6 @@
             // 
             this.tpMateriaalBeheer.Controls.Add(this.lbManagementAllRental);
             this.tpMateriaalBeheer.Controls.Add(this.radioButton1);
-            this.tpMateriaalBeheer.Controls.Add(this.radioButton3);
             this.tpMateriaalBeheer.Controls.Add(this.comboBox2);
             this.tpMateriaalBeheer.Controls.Add(this.radioButton2);
             this.tpMateriaalBeheer.Controls.Add(this.button4);
@@ -1007,18 +1071,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Verwijderen";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(485, 30);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(103, 21);
-            this.radioButton3.TabIndex = 28;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Verwijderen";
-            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // comboBox2
             // 
@@ -1251,47 +1303,36 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "TestPost";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(431, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1431, 786);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblMenu);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UIMainForm";
-            this.Text = "Form1";
-            this.tabControl1.ResumeLayout(false);
+            this.Text = "ICT4 EVENTS";
+            this.tcMainForm.ResumeLayout(false);
             this.tpTijdlijn.ResumeLayout(false);
             this.tpTijdlijn.PerformLayout();
             this.tpRental.ResumeLayout(false);
             this.tpRental.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductList)).EndInit();
             this.tpBestanden.ResumeLayout(false);
+            this.tpBestanden.PerformLayout();
             this.tpSettings.ResumeLayout(false);
             this.tpSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSettingsPicture)).EndInit();
             this.tpMap.ResumeLayout(false);
             this.tpMap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMapPeople)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMapSpot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMapMap)).EndInit();
             this.tpEventBeheer.ResumeLayout(false);
             this.tpEventBeheer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEManagentPercentage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEManagementAantal)).EndInit();
             this.tpMateriaalBeheer.ResumeLayout(false);
             this.tpMateriaalBeheer.PerformLayout();
@@ -1305,7 +1346,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tcMainForm;
         private System.Windows.Forms.TabPage tpTijdlijn;
         private System.Windows.Forms.TabPage tpRental;
         private System.Windows.Forms.TabPage tpBestanden;
@@ -1324,8 +1365,6 @@
         private System.Windows.Forms.DateTimePicker dpBirthDate;
         private System.Windows.Forms.Button btnSettingsSave;
         private System.Windows.Forms.Label lblMapInfo;
-        private System.Windows.Forms.Label lblMapNumber;
-        private System.Windows.Forms.NumericUpDown nudMapSpot;
         private System.Windows.Forms.Label lblMapTypePlace;
         private System.Windows.Forms.Label lblMapMax;
         private System.Windows.Forms.PictureBox pbMapMap;
@@ -1355,11 +1394,10 @@
         private System.Windows.Forms.Button btnReservation;
         private System.Windows.Forms.Label lblEManagement;
         private System.Windows.Forms.Label lblEManagementAantal;
-        private System.Windows.Forms.TextBox tbEManagementLocatie;
         private System.Windows.Forms.Label lblEManagementLocatie;
         private System.Windows.Forms.Label lblEManagementNaam;
         private System.Windows.Forms.Label lblEManagementRapp;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudEManagentPercentage;
         private System.Windows.Forms.Label lblEManagementEnd;
         private System.Windows.Forms.Label lblEManagementStart;
         private System.Windows.Forms.Label lblRentalEnd;
@@ -1370,7 +1408,6 @@
         private System.Windows.Forms.ListBox lbPersonRentals;
         private System.Windows.Forms.NumericUpDown nudMapPeople;
         private System.Windows.Forms.ComboBox cbMapType;
-        private System.Windows.Forms.Button btnMapSearch;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnManagementProductBrowse;
@@ -1387,7 +1424,6 @@
         private System.Windows.Forms.Label lblManagementAmount;
         private System.Windows.Forms.Label lblManagementProductName;
         private System.Windows.Forms.TextBox tbManagementProductName;
-        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -1400,7 +1436,15 @@
         private System.Windows.Forms.ListBox lbManagementAllRental;
         private System.Windows.Forms.Button btnManagementGetPosts;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEManagementNew;
+        private System.Windows.Forms.Button btnEManagementNewLocation;
+        private System.Windows.Forms.ComboBox cbEManagementLocation;
+        private System.Windows.Forms.Button btnEManagementNewSave;
+        private System.Windows.Forms.Button btnTreeAddFolder;
+        private System.Windows.Forms.TextBox tbTreeMap;
+        private System.Windows.Forms.Button btnTreeUpload;
+        private System.Windows.Forms.Button btnTreeDownload;
+        private System.Windows.Forms.ListView lvAvailableSpots;
     }
 }
 

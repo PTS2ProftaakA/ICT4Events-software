@@ -43,7 +43,6 @@ namespace Proftaak_ICT4Events
                 connection = new OracleConnection();
                 connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
                 connection.Open();
-                MessageBox.Show("Connected to : " + user);
                 return true;
             }
             catch
@@ -94,8 +93,6 @@ namespace Proftaak_ICT4Events
                         oracleCommand.Parameters.Add(":port_id", 1521);
                         OracleDataReader reader = oracleCommand.ExecuteReader();
 
-                        Close();
-
                         while (reader.Read())
                         {
                             for (int i = 0; i < columnNames.Count(); i++)
@@ -103,6 +100,7 @@ namespace Proftaak_ICT4Events
                                 dataTable[i].Add(Convert.ToString(reader[columnNames[i]]));
                             }
                         }
+                        Close();
                     }
                 }
                 return dataTable;

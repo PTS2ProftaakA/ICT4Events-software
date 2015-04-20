@@ -11,22 +11,22 @@ using System.Windows.Forms;
 
 namespace Proftaak_ICT4Events
 {
-    public partial class Post: UserControl
+    public partial class Post : UserControl
     {
-        
-        public Post(FileType type, string poster, string description ,string filePath)
+
+        public Post(MediaType type, string description, string filePath, string poster, string userPhoto)
         {
             InitializeComponent();
-            if (type == FileType.Tekst)
+            if (type.Type == "Tekst")
             {
                 pbPostPhoto.Visible = false;
                 wmpPostPlayer.Visible = false;
 
                 lblTextPostContent.Text = description;
                 lblPostNaam.Text = poster;
-                
+
             }
-            if (type == FileType.Plaatje)
+            if (type.Type == "Plaatje")
             {
                 lblTextPostContent.Visible = true;
                 wmpPostPlayer.Visible = false;
@@ -46,12 +46,12 @@ namespace Proftaak_ICT4Events
                 lblPostReageer.Location = lblcommentLocation;
                 Point lbldescription = new Point(postWidth - 300, postHeight - 160);
                 lblTextPostContent.Location = lbldescription;
-                
+
             }
 
-            if (type == FileType.Video)
+            if (type.Type == "Video")
             {
-                
+
                 pbPostPhoto.Visible = true;
                 wmpPostPlayer.Visible = true;
                 pbPostPhoto.Image = null;
@@ -75,14 +75,14 @@ namespace Proftaak_ICT4Events
 
                 wmpPostPlayer.settings.autoStart = false;
                 wmpPostPlayer.URL = "C:\\Example.mp4";
-          
+
             }
-        
+
         }
 
         private void btnPostLike_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnPostReageer_Click(object sender, EventArgs e)
@@ -126,11 +126,11 @@ namespace Proftaak_ICT4Events
             lblTextPostContent.SendToBack();
         }
 
-        
-                
-            
-            
-            // lblPostLike.Text
-            // lblPostReageer.Text
-        }
+
+
+
+
+        // lblPostLike.Text
+        // lblPostReageer.Text
     }
+}

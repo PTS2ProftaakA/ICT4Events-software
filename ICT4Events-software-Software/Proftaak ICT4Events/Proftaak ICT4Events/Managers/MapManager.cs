@@ -14,5 +14,20 @@ namespace Proftaak_ICT4Events
         {
             this.database = database;
         }
+
+        public List<Spot> GetAllspots()
+        {
+            return Spot.getAll(database);
+        }
+
+        public List<SpotType> GetAllSpotTypes()
+        {
+            return SpotType.GetAll(database);
+        }
+
+        public List<Spot> SearchAllSpots(SpotType spottype)
+        {
+            return Spot.SearchAll(spottype, database);
+        }
     }
 }

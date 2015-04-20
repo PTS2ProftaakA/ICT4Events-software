@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8386C5C1-D843-42E1-9AD9-06984B69F838}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Proftaak_ICT4Events</RootNamespace>
+    <AssemblyName>Proftaak ICT4Events</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Connection x64\odp.net4\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Phidget21.NET, Version=2.1.8.208, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Functional Classes\Comment.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Functional Classes\CurrentUser.cs" />
+    <Compile Include="Functional Classes\MaterialCategory.cs" />
+    <Compile Include="Functional Classes\MediaType.cs" />
+    <Compile Include="Functional Classes\Spot.cs" />
+    <Compile Include="Functional Classes\SpotType.cs" />
+    <Compile Include="Managers\DiscussionManager.cs" />
+    <Compile Include="Functional Classes\Event.cs" />
+    <Compile Include="Managers\EventManager.cs" />
+    <Compile Include="Managers\FeedManager.cs" />
+    <Compile Include="Functional Classes\ForbiddenWord.cs" />
+    <Compile Include="Functional Classes\Hobby.cs" />
+    <Compile Include="IDatabase.cs" />
+    <Compile Include="Functional Classes\Location.cs" />
+    <Compile Include="Managers\LogInManager.cs" />
+    <Compile Include="Functional Classes\Material.cs" />
+    <Compile Include="Functional Classes\MediaFile.cs" />
+    <Compile Include="Managers\MaterialManager.cs" />
+    <Compile Include="Managers\MediaFileManager.cs" />
+    <Compile Include="Managers\PersonalInfoManager.cs" />
+    <Compile Include="Functional Classes\Rating.cs" />
+    <Compile Include="Managers\MapManager.cs" />
+    <Compile Include="Managers\ProductTypeManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Functional Classes\Reservation.cs" />
+    <Compile Include="Functional Classes\User.cs" />
+    <Compile Include="UI\UiComment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UiComment.designer.cs">
+      <DependentUpon>UiComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIComments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIComments.designer.cs">
+      <DependentUpon>UIComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UILogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UILogIn.designer.cs">
+      <DependentUpon>UILogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIMainForm.designer.cs">
+      <DependentUpon>UIMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIMakePost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIMakePost.designer.cs">
+      <DependentUpon>UIMakePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UINewLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UINewLocation.designer.cs">
+      <DependentUpon>UINewLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UIPost.designer.cs">
+      <DependentUpon>UIPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIReserve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UIReserve.designer.cs">
+      <DependentUpon>UIReserve.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\UiComment.resx">
+      <DependentUpon>UiComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIComments.resx">
+      <DependentUpon>UIComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UILogIn.resx">
+      <DependentUpon>UILogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIMainForm.resx">
+      <DependentUpon>UIMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIMakePost.resx">
+      <DependentUpon>UIMakePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UINewLocation.resx">
+      <DependentUpon>UINewLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIPost.resx">
+      <DependentUpon>UIPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIReserve.resx">
+      <DependentUpon>UIReserve.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

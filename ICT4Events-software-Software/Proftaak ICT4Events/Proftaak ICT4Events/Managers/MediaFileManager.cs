@@ -10,7 +10,6 @@ namespace Proftaak_ICT4Events
     class MediaFileManager
     {
         Database database;
-        Comment comment;
 
         public MediaFileManager(Database database) 
         {

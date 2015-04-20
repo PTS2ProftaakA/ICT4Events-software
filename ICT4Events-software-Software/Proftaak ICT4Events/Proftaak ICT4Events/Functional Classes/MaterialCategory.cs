@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
 {
-    class MaterialCategory : IDatabase<MaterialCategory>
+    public class MaterialCategory : IDatabase<MaterialCategory>
     {
         private string materialCategoryName;
 
@@ -35,7 +35,7 @@ namespace Proftaak_ICT4Events
             database = new Database();
         }
 
-        public List<MaterialCategory> GetAll()
+        public static List<MaterialCategory> GetAll(Database database)
         {
             List<string> materialCategoryColumns = new List<string>();
             List<MaterialCategory> allMaterialCategories = new List<MaterialCategory>();
@@ -43,7 +43,7 @@ namespace Proftaak_ICT4Events
             materialCategoryColumns.Add("MATCATID");
             materialCategoryColumns.Add("CATNAAM");
 
-            List<string>[] dataTable = database.selectQuery("SELECT CATNAAM FROM MATERIAAL_CATEGORIE", materialCategoryColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM MATERIAAL_CATEGORIE", materialCategoryColumns);
 
             if(dataTable[0].Count() > 1)
             {
@@ -66,7 +66,7 @@ namespace Proftaak_ICT4Events
             materialCategoryColumns.Add("MATCATID");
             materialCategoryColumns.Add("CATNAAM");
 
-            List<string>[] dataTable = database.selectQuery("SELECT CATNAAM FROM MATERIAAL_CATEGORIE WHERE MATCATID = " + materialCategoryID, materialCategoryColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM MATERIAAL_CATEGORIE WHERE MATCATID = " + materialCategoryID, materialCategoryColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -97,6 +97,11 @@ namespace Proftaak_ICT4Events
         {
            database.editDatabase(String.Format("DELETE FROM MATERIAAL_CATEGORIE WHERE MATCATID = {0} ",
                removeMaterialCategory.materialCategoryID));
+        }
+
+        public override string ToString()
+        {
+            return materialCategoryName;
         }
     }
 }
