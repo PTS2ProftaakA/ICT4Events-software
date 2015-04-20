@@ -118,6 +118,7 @@ namespace Proftaak_ICT4Events
         public Comment Get(string commentID, Database database)
         {
             List<string> commentColumns = new List<string>();
+            Comment getComment = null;
 
             commentColumns.Add("REACTIEID");
             commentColumns.Add("BESTANDSLOCATIE");
@@ -129,17 +130,14 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return new Comment(
+                getComment = new Comment(
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[3][1]),
                     dataTable[1][1],
                     dataTable[4][1],
                     dataTable[2][1]);
             }
-            else
-            {
-                return null;
-            }
+            return getComment;
         }
 
         public void Add(Comment newComment, Database database)

@@ -142,9 +142,37 @@ namespace Proftaak_ICT4Events
 
             return selectedMediaFiles;
         }
+
         public MediaFile Get(string mediaFileID, Database database)
         {
-            return null;
+            List<string> mediaFilesColumns = new List<string>();
+            MediaFile getMediaFile = null;
+
+            mediaFilesColumns.Add("MEDIABESTANDID");
+            mediaFilesColumns.Add("BESTANDSLOCATIE");
+            mediaFilesColumns.Add("EVENEMENTID");
+            mediaFilesColumns.Add("RFID");
+            mediaFilesColumns.Add("BESTAND");
+            mediaFilesColumns.Add("OPMERKING");
+            mediaFilesColumns.Add("UPLOADDATUM");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MEDIABESTAND WHERE MEDIABESTANDID = " + mediaFileID, mediaFilesColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][i]);
+
+                    getMediaFile = new MediaFile(
+                        dataTable[1][1],
+                        dataTable[5][1],
+                        dataTable[3][1],
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[2][1]),
+                        Convert.ToDateTime(dataTable[5][1]),
+                        extension);
+            }
+
+            return getMediaFile;
         }
 
         public void Add(MediaFile newMediaFile, Database database)

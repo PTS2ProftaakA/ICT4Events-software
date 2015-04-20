@@ -37,9 +37,36 @@ namespace Proftaak_ICT4Events
             this.price = price;
         }
 
+        public List<Spot> getAll(Database database)
+        {
+            List<string> spotColumns = new List<string>();
+            List<Spot> allSpot = new List<Spot>();
+
+            spotColumns.Add("PLAATSNUMMER");
+            spotColumns.Add("PLAATSTYPEID");
+            spotColumns.Add("PRIJS");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING", spotColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allSpot.Add(new Spot(
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[1][i]),
+                        Convert.ToInt32(dataTable[2][i])
+                        ));
+                }
+            }
+
+            return allSpot;
+        }
+
         public Spot Get(string spotNumber, Database database)
         {
             List<string> spotColumns = new List<string>();
+            Spot getSpot = null;
 
             spotColumns.Add("PLAATSNUMMER");
             spotColumns.Add("PLAATSTYPEID");
@@ -49,15 +76,13 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return (T)Convert.ChangeType(new Spot(
+                getSpot = new Spot(
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[1][1]),
-                    Convert.ToInt32(dataTable[2][1])), typeof(T));
+                    Convert.ToInt32(dataTable[2][1]));
             }
-            else
-            {
-                return (T)Convert.ChangeType(null, typeof(T));
-            }
+
+            return getSpot;
         }
 
         public void Add(Spot newSpot, Database database)

@@ -51,5 +51,26 @@ namespace Proftaak_ICT4Events
         {
             return null;
         }
+
+
+
+        public void Add(SpotRental newSpotRental, Database database)
+        {
+            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
+                newSpotRental.rentalID, newSpotRental.RFID, newSpotRental.startDate, newSpotRental.endDate, newSpotRental.type, newSpotRental.isPayed, newSpotRental.materialID, newSpotRental.spotNumber));
+        }
+
+        public void Edit(SpotRental updateSpotRental, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
+                updateSpotRental.startDate, updateSpotRental.endDate, updateSpotRental.isPayed));
+
+        }
+
+        public void Remove(SpotRental removeSpotRental, Database database)
+        {
+            database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
+                removeSpotRental.rentalID));
+        }
     }
 }

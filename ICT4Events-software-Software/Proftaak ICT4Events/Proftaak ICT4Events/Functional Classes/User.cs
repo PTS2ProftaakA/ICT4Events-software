@@ -134,10 +134,73 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
-        public User Get(string userID, Database database)
+        public static List<Material> getAll(Database database)
         {
+            List<string> materialColumns = new List<string>();
+            List<Material> allMaterial = new List<Material>();
 
-            return null;
+            materialColumns.Add("GEBRUIKERID");
+            materialColumns.Add("RFID");
+            materialColumns.Add("EVENEMENTID");
+            materialColumns.Add("RESERVEERDER");
+            materialColumns.Add("NAAM");
+            materialColumns.Add("EMAIL");
+            materialColumns.Add("TELEFOONNUMMER");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE CATEGORIE = " + (int)category, materialColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][i]);
+
+                    allMaterial.Add(new Material(
+                        dataTable[1][i],
+                        dataTable[4][i],
+                        dataTable[6][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToDecimal(dataTable[3][i]) / 100,
+                        categoryValue));
+                }
+            }
+
+            return allMaterial;
+        }
+
+        public Material Get(string materialID, Database database)
+        {
+            List<string> materialColumns = new List<string>();
+            Material getMaterial = null;
+
+            materialColumns.Add("MATID");
+            materialColumns.Add("NAAM");
+            materialColumns.Add("HOEVEELHEID");
+            materialColumns.Add("BORG");
+            materialColumns.Add("OMSCHRIJVING");
+            materialColumns.Add("CATEGORIE");
+            materialColumns.Add("FOTOPAD");
+
+            //Has to be fixed with current database
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][1]);
+
+                getMaterial = new Material(
+                    dataTable[1][1],
+                    dataTable[4][1],
+                    dataTable[6][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToDecimal(dataTable[3][1]) / 100,
+                    categoryValue);
+            }
+
+            return getMaterial;
         }
 
         public void Add(User newUser, Database database)

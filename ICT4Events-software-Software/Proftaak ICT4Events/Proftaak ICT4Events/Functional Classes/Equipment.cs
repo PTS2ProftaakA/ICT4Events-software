@@ -92,5 +92,24 @@ namespace Proftaak_ICT4Events
 
             return allEquipment;
         }
+
+        public void Add(Equipment newEquipment, Database database)
+        {
+            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
+                newEquipment.rentalID, newEquipment.RFID, newEquipment.startDate, newEquipment.endDate, newEquipment.type, newEquipment.isPayed, newEquipment.materialID, newEquipment.spotNumber));
+        }
+
+        public void Edit(Equipment updateEquipment, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
+                updateEquipment.startDate, updateEquipment.endDate, updateEquipment.isPayed));
+
+        }
+
+        public void Remove(Equipment removeEquipment, Database database)
+        {
+            database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
+                removeEquipment.rentalID));
+        }
     }
 }

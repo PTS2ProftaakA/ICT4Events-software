@@ -86,34 +86,5 @@ namespace Proftaak_ICT4Events
             this.isPayed = isPayed;
             this.type = type;
         }
-
-        public List<Reservation> getAll()
-        {
-            return null;
-        }
-
-        public Reservation Get(string reservationID, Database database)
-        {
-            return null;
-        }
-
-        public void Add(Reservation newReservation, Database database)
-        {
-            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
-                newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, newReservation.type, newReservation.isPayed, newReservation.materialID, newReservation.spotNumber));
-        }
-
-        public void Edit(Reservation updateReservation, Database database)
-        {
-            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
-                updateReservation.startDate, updateReservation.endDate, updateReservation.isPayed));
-
-        }
-
-        public void Remove(Reservation removeReservation, Database database)
-        {
-            database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
-                removeReservation.rentalID));
-        }
     }
 }

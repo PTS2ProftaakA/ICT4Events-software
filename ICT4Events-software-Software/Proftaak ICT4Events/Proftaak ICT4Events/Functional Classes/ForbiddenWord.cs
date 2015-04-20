@@ -49,7 +49,10 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    allForbiddenWords.Add(new ForbiddenWord(dataTable[2][1], Convert.ToInt32(dataTable[0][1]), Convert.ToInt32(dataTable[1][1])));
+                    allForbiddenWords.Add(new ForbiddenWord(
+                        dataTable[2][1], 
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[1][1])));
                 }
             }
 
@@ -59,6 +62,7 @@ namespace Proftaak_ICT4Events
         public ForbiddenWord Get(string forbiddenWordID, Database database)
         {
             List<string> forbiddenWordColumns = new List<string>();
+            ForbiddenWord getForbiddenWord = null;
 
             forbiddenWordColumns.Add("WOORDID");
             forbiddenWordColumns.Add("WOORD");
@@ -68,15 +72,13 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return new ForbiddenWord(
+                getForbiddenWord = new ForbiddenWord(
                     dataTable[2][1], 
                     Convert.ToInt32(dataTable[0][1]), 
                     Convert.ToInt32(dataTable[1][1]));
             }
-            else
-            {
-                return null;
-            }
+
+            return getForbiddenWord;
         }
 
         public void Add(ForbiddenWord newForbiddenWord, Database database)

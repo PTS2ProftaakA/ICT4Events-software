@@ -55,29 +55,27 @@ namespace Proftaak_ICT4Events
             return allHobbies;
         }
 
-        public List<Hobby> GetAll(string RFID, Database database)
+        public static Hobby Get(string hobbyID, Database database)
         {
             List<string> hobbyColumns = new List<string>();
-            List<Hobby> allHobbies = new List<Hobby>();
+            Hobby getHobby = null;
 
             hobbyColumns.Add("HOBBYID");
             hobbyColumns.Add("HOBBYNAAM");
 
-            List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY WHERE HOBBYID IN (SELECT HOBBYID FROM GEBRUIKER_HOBBY WHERE RFID = " + RFID + ")", hobbyColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY WHERE HOBBYID = " + hobbyID, hobbyColumns);
 
-            for (int i = 1; i < dataTable[0].Count(); i++)
+            if (dataTable[0].Count() > 1)
             {
-                allHobbies.Add(new Hobby(
-                    dataTable[0][i],
-                    Convert.ToInt32(dataTable[1][i])));
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    getHobby = new Hobby(
+                       dataTable[0][i],
+                       Convert.ToInt32(dataTable[1][i]));
+                }
             }
 
-            return allHobbies;
-        }
-
-        public Hobby Get(string hobbyID, Database database)
-        {
-            return null;
+            return getHobby;
         }
 
         public void Add(Hobby newHobby, Database database)

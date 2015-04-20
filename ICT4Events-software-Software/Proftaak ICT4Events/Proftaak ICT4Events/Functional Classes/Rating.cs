@@ -45,7 +45,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Rating(int RatingID, string RFID, string FilePath, int CommentID, bool Positive)
+        public Rating(string RFID, string FilePath, int RatingID, int CommentID, bool Positive)
         {
             this.RatingID = RatingID;
             this.RFID = RFID;
@@ -53,19 +53,90 @@ namespace Proftaak_ICT4Events
             this.CommentID = CommentID;
         }
 
-        public List<Rating> getAllFromFile(string filePath)
+        public List<Rating> getAllFromFile(string filePath, Database database)
         {
-            return null;
+            List<string> ratingColumns = new List<string>();
+            List<Rating> allRating = new List<Rating>();
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("RFID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE BESTANDLOCATIE = " + filePath, ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allRating.Add(new Rating(
+                        dataTable[1][i],
+                        dataTable[2][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i]),
+                        Convert.ToBoolean(dataTable[4][i])
+                        ));
+                }
+            }
+
+            return allRating;
         }
 
-        public List<Rating> getAllFromUser(string RFID)
+        public List<Rating> getAllFromUser(string RFID, Database database)
         {
-            return null;
+            List<string> ratingColumns = new List<string>();
+            List<Rating> allRating = new List<Rating>();
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("RFID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE RFID = " + RFID, ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allRating.Add(new Rating(
+                        dataTable[1][i],
+                        dataTable[2][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i]),
+                        Convert.ToBoolean(dataTable[4][i])
+                        ));
+                }
+            }
+
+            return allRating;
         }
 
         public Rating Get(string ratingID, Database database)
         {
-            return null;
+            List<string> ratingColumns = new List<string>();
+            Rating getRating = null;
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("RFID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE RFID = " + RFID, ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                     getRating = new Rating(
+                        dataTable[1][1],
+                        dataTable[2][1],
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[3][1]),
+                        Convert.ToBoolean(dataTable[4][1]));
+            }
+
+            return getRating;
         }
 
         public void Add(Rating newRating, Database database)
