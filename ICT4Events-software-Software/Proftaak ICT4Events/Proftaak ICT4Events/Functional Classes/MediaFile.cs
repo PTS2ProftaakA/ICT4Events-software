@@ -200,7 +200,7 @@ namespace Proftaak_ICT4Events
         public void Edit(MediaFile updateMediaFile, Database database)
         {
             database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, RFID = '{2}', BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD-MM-YYYY') WHERE MEDIABESTANDID = {6}",
-                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, newMediaFile.mediaTypeName.MediaTypeID, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
+                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, updateMediaFile.mediaTypeName.MediaTypeID, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
 
         }
 
