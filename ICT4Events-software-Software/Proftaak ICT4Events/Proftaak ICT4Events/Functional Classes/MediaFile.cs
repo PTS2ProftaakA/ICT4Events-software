@@ -25,7 +25,7 @@ namespace Proftaak_ICT4Events
 
         private DateTime uploadDate;
 
-        private FileType type;
+        private MediaType mediaTypeName;
 
         private List<Rating> ratings;
         private List<Comment> comments;
@@ -61,10 +61,10 @@ namespace Proftaak_ICT4Events
             get { return uploadDate; }
             set { uploadDate = value; }
         }
-        public FileType Type
+        public MediaType MediaTypeName
         {
-            get { return type; }
-            set { type = value; }
+            get { return mediaTypeName; }
+            set { mediaTypeName = value; }
         }
         public List<Rating> Ratings
         {
@@ -78,7 +78,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public MediaFile(string filePath, string description, string RFID, int mediaFileID, int eventID, DateTime uploadDate, FileType type)
+        public MediaFile(string filePath, string description, string RFID, int mediaFileID, int eventID, DateTime uploadDate, MediaType mediaTypeName)
         {
             this.filePath = filePath;
             this.description = description;
@@ -86,7 +86,7 @@ namespace Proftaak_ICT4Events
             this.mediaFileID = mediaFileID;
             this.eventID = eventID;          
             this.uploadDate = uploadDate;
-            this.type = type;
+            this.mediaTypeName = mediaTypeName;
 
             ratings = new List<Rating>();
             comments = new List<Comment>();
@@ -127,7 +127,15 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][i]);
+                    MediaType thisMediaType = null;
+
+                    foreach (MediaType mediaType in thisMediaType.GetAll())
+                    {
+                        if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][i]))
+                        {
+                            thisMediaType = mediaType;
+                        }
+                    }
 
                     selectedMediaFiles.Add(new MediaFile(
                         dataTable[1][i],
@@ -136,7 +144,7 @@ namespace Proftaak_ICT4Events
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[5][i]),
-                        extension));
+                        thisMediaType));
                 }
             }
 
@@ -160,16 +168,24 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][1]);
+                MediaType thisMediaType = null;
 
-                    getMediaFile = new MediaFile(
-                        dataTable[1][1],
-                        dataTable[5][1],
-                        dataTable[3][1],
-                        Convert.ToInt32(dataTable[0][1]),
-                        Convert.ToInt32(dataTable[2][1]),
-                        Convert.ToDateTime(dataTable[5][1]),
-                        extension);
+                foreach (MediaType mediaType in thisMediaType.GetAll())
+                {
+                    if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][1]))
+                    {
+                        thisMediaType = mediaType;
+                    }
+                }
+
+                getMediaFile = new MediaFile(
+                    dataTable[1][1],
+                    dataTable[5][1],
+                    dataTable[3][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToDateTime(dataTable[5][1]),
+                    thisMediaType);
             }
 
             return getMediaFile;

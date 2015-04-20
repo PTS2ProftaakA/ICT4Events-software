@@ -12,20 +12,21 @@ namespace Proftaak_ICT4Events
         MATERIAAL
     }
 
-    abstract class Reservation : IDatabase<Reservation>
+    class Reservation : IDatabase<Reservation>
     {
         protected string RFID;
 
-        protected int rentalID;
-        protected int materialID;
-        protected int spotNumber;
+        private int rentalID;
+        private int materialID;
+        private int spotNumber;
 
-        protected DateTime startDate;
-        protected DateTime endDate;
+        private DateTime startDate;
+        private DateTime endDate;
 
-        protected bool isPayed;
+        private bool isPayed;
 
-        protected RentalType type;
+        private Spot spot;
+        private Material material;
 
         private User user;
 
@@ -65,10 +66,15 @@ namespace Proftaak_ICT4Events
             get { return isPayed; }
             set { isPayed = value; }
         }
-        public RentalType Type
+        protected Spot Spot
         {
-            get { return type; }
-            set { type = value; }
+            get { return spot; }
+            set { spot = value; }
+        }
+        protected Material Material
+        {
+            get { return material; }
+            set { material = value; }
         }
         public User User
         {
@@ -77,7 +83,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
+        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
         {
             this.RFID = RFID;
             this.rentalID = rentalID;
@@ -86,18 +92,132 @@ namespace Proftaak_ICT4Events
             this.startDate = startDate;
             this.endDate = endDate;
             this.isPayed = isPayed;
-            this.type = type;
+            this.spot = spot;
+        }
+
+        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
+        {
+            this.RFID = RFID;
+            this.rentalID = rentalID;
+            this.materialID = materialID;
+            this.spotNumber = spotNumber;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.isPayed = isPayed;
+            this.material = material;
+        }
+
+        public List<Reservation> GetAll(Database database)
+        {
+            List<string> reservationColumns = new List<string>();
+            List<Reservation> allreservations = new List<Reservation>();
+
+            reservationColumns.Add("HUURID");
+            reservationColumns.Add("RFID");
+            reservationColumns.Add("STARTDATUM");
+            reservationColumns.Add("EINDDATUM");
+            reservationColumns.Add("HUURTYPE");
+            reservationColumns.Add("BETAALD");
+            reservationColumns.Add("MATID");
+            reservationColumns.Add("PLAATSNUMMER");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    if (dataTable[4][i] == "MATERIAAL")
+                    {
+                        allreservations.Add(new Reservation(
+                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[6][i]),
+                        Convert.ToInt32(dataTable[7][i]),
+                        Convert.ToDateTime(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[3][i]),
+                        dataTable[5][i].ToUpper() == "Y",
+                        Material.Get(dataTable[6][i], database)));
+                    }
+                    else
+                    {
+                        allreservations.Add(new Reservation(
+                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[6][i]),
+                        Convert.ToInt32(dataTable[7][i]),
+                        Convert.ToDateTime(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[3][i]),
+                        dataTable[5][i].ToUpper() == "Y",
+                        Spot.Get(dataTable[7][i], database)));
+                    }
+                }
+            }
+
+            return allreservations;
         }
 
         public Reservation Get(string rentalID, Database database)
         {
-            return null;
+            List<string> reservationColumns = new List<string>();
+            Reservation getReservation = null;
+
+            reservationColumns.Add("HUURID");
+            reservationColumns.Add("RFID");
+            reservationColumns.Add("STARTDATUM");
+            reservationColumns.Add("EINDDATUM");
+            reservationColumns.Add("HUURTYPE");
+            reservationColumns.Add("BETAALD");
+            reservationColumns.Add("MATID");
+            reservationColumns.Add("PLAATSNUMMER");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                if(dataTable[4][1] == "MATERIAAL")
+                {
+                    getReservation = new Reservation(
+                    dataTable[1][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[6][1]),
+                    Convert.ToInt32(dataTable[7][1]),
+                    Convert.ToDateTime(dataTable[2][1]),
+                    Convert.ToDateTime(dataTable[3][1]),
+                    dataTable[5][1].ToUpper() == "Y",
+                    Material.Get(dataTable[6][1], database));
+                }
+                else
+                {
+                    getReservation = new Reservation(
+                    dataTable[1][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[6][1]),
+                    Convert.ToInt32(dataTable[7][1]),
+                    Convert.ToDateTime(dataTable[2][1]),
+                    Convert.ToDateTime(dataTable[3][1]),
+                    dataTable[5][1].ToUpper() == "Y",
+                    Spot.Get(dataTable[7][1], database));
+                }
+            }
+
+            return getReservation;
         }
 
         public void Add(Reservation newSpotReservation, Database database)
         {
+            string rentalType;
+
+            if (newSpotReservation.Material == null)
+            {
+                rentalType = "PLAATS";
+            }
+            else
+            {
+                rentalType = "MATERIAAL";
+            }
             database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
-                newSpotReservation.rentalID, newSpotReservation.RFID, newSpotReservation.startDate, newSpotReservation.endDate, newSpotReservation.type, newSpotReservation.isPayed, newSpotReservation.materialID, newSpotReservation.spotNumber));
+                newSpotReservation.rentalID, newSpotReservation.RFID, newSpotReservation.startDate, newSpotReservation.endDate, rentalType, newSpotReservation.isPayed, newSpotReservation.materialID, newSpotReservation.spotNumber));
         }
 
         public void Edit(Reservation updateReservation, Database database)

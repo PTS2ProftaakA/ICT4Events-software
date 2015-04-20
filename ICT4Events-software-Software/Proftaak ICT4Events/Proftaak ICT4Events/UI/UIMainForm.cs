@@ -14,7 +14,6 @@ namespace Proftaak_ICT4Events
     public partial class UIMainForm : Form
     {  
         private DiscussionManager discussionManager;
-        private EquipmentManager equipmentManager;
         private FeedManager feedManager;
         private LogInManager logInManager;
         private MapManager mapManager;
@@ -31,7 +30,6 @@ namespace Proftaak_ICT4Events
             database = new Database();
 
             discussionManager = new DiscussionManager(database);
-            equipmentManager = new EquipmentManager(database);
             feedManager = new FeedManager(database);
             logInManager = new LogInManager(database);
             mapManager = new MapManager(database);
@@ -147,10 +145,10 @@ namespace Proftaak_ICT4Events
             dpBirthDate.Value = user.DateOfBirth;
             lbPersonRentals.Items.Clear();
             pbSettingsPicture.ImageLocation = user.PhotoPath;
-            foreach (Equipment e in equipmentManager.getEquipmentFromUser(user))
-            {
-                lbPersonRentals.Items.Add(e.Material.Name);
-            }
+            //foreach (Equipment e in equipmentManager.getEquipmentFromUser(user))
+            //{
+            //    lbPersonRentals.Items.Add(e.Material.Name);
+            //}
         }
 
         private void btnSettingsEdit_Click(object sender, EventArgs e)

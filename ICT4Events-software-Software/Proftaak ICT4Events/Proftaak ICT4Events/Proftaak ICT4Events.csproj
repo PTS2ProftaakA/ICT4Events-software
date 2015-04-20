@@ -99,10 +99,10 @@
   <ItemGroup>
     <Compile Include="Functional Classes\Comment.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Functional Classes\MaterialCategory.cs" />
     <Compile Include="Functional Classes\Spot.cs" />
+    <Compile Include="Functional Classes\SpotType.cs" />
     <Compile Include="Managers\DiscussionManager.cs" />
-    <Compile Include="Functional Classes\Equipment.cs" />
-    <Compile Include="Managers\EquipmentManager.cs" />
     <Compile Include="Functional Classes\Event.cs" />
     <Compile Include="Managers\FeedManager.cs" />
     <Compile Include="Functional Classes\ForbiddenWord.cs" />
@@ -120,7 +120,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Functional Classes\Reservation.cs" />
-    <Compile Include="Functional Classes\SpotRental.cs" />
     <Compile Include="Functional Classes\User.cs" />
     <Compile Include="UI\UiComment.cs">
       <SubType>UserControl</SubType>

@@ -14,10 +14,5 @@ namespace Proftaak_ICT4Events
         {
             this.database = database;
         }
-
-        public SpotRental GetSpotInfo(int spotNumber)
-        {
-            return null;
-        }
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
-
 {
     class Rating : IDatabase<Rating>
     {

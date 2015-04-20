@@ -17,7 +17,7 @@ namespace Proftaak_ICT4Events
 
         private decimal deposit;
 
-        private CategoryType category;
+        private MaterialCategory materialCategoryName;
 
         #region properties
         public string Name
@@ -45,13 +45,13 @@ namespace Proftaak_ICT4Events
             get { return deposit; }
             set { deposit = value; }
         }
-        private CategoryType Category
+        private MaterialCategory MaterialCategoryName
         {
-            get { return category; }
-            set { category = value; }
+            get { return materialCategoryName; }
+            set { materialCategoryName = value; }
         }
         #endregion
-        public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, CategoryType category)
+        public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, MaterialCategory materialCategoryName)
         {
             this.name = name;
             this.description = description;
@@ -59,7 +59,7 @@ namespace Proftaak_ICT4Events
             this.materialID = materialID;
             this.amount = amount;
             this.deposit = deposit;
-            this.category = category;
+            this.materialCategoryName = materialCategoryName;
         }
 
         public static List<Material> getAll(Database database)
@@ -82,7 +82,15 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[11][i]);
+                    MaterialCategory thisMaterialCategory = null;
+
+                    foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                    {
+                        if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
+                        {
+                            thisMaterialCategory = materialCategory;
+                        }
+                    }
 
                     allMaterial.Add(new Material(
                         dataTable[7][i],
@@ -91,14 +99,14 @@ namespace Proftaak_ICT4Events
                         Convert.ToInt32(dataTable[6][i]),
                         Convert.ToInt32(dataTable[8][i]),
                         Convert.ToDecimal(dataTable[9][i]) / 100,
-                        categoryValue));
+                        thisMaterialCategory));
                 }
             }
 
             return allMaterial;
         }
 
-        public static List<Material> getAll(Database database, CategoryType category)
+        public static List<Material> getAll(Database database, MaterialCategory category)
         {
             List<string> materialColumns = new List<string>();
             List<Material> allMaterial = new List<Material>();
@@ -111,13 +119,21 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE CATEGORIE = " + (int)category, materialColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE CATEGORIE = " + category.MaterialCategoryID, materialColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][i]);
+                    MaterialCategory thisMaterialCategory = null;
+
+                    foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                    {
+                        if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
+                        {
+                            thisMaterialCategory = materialCategory;
+                        }
+                    }
 
                     allMaterial.Add(new Material(
                         dataTable[1][i],
@@ -126,7 +142,7 @@ namespace Proftaak_ICT4Events
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[2][i]),
                         Convert.ToDecimal(dataTable[3][i]) / 100,
-                        categoryValue));
+                        thisMaterialCategory));
                 }
             }
 
@@ -152,8 +168,15 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][1]);
+                MaterialCategory thisMaterialCategory = null;
 
+                foreach (MaterialCategory materialCategory in thisMaterialCategory.GetAll())
+                {
+                    if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][1]))
+                    {
+                        thisMaterialCategory = materialCategory;
+                    }
+                }
                 getMaterial = new Material(
                     dataTable[1][1],
                     dataTable[4][1],
@@ -161,7 +184,7 @@ namespace Proftaak_ICT4Events
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[2][1]),
                     Convert.ToDecimal(dataTable[3][1]) / 100,
-                    categoryValue);
+                    thisMaterialCategory);
             }
 
             return getMaterial;
@@ -170,13 +193,13 @@ namespace Proftaak_ICT4Events
         public void Add(Material newMaterial, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MATERIAAL VALUES ({0}, '{1}', {2}, {3}, '{4}', {5}, '{6}')",
-                newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit, newMaterial.description, newMaterial.category, newMaterial.photoPath));
+                newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit, newMaterial.description, newMaterial.materialCategoryName, newMaterial.photoPath));
         }
 
         public void Edit(Material updateMaterial, Database database)
         {
             database.editDatabase(String.Format("UPDATE PLAATS SET NAAM = '{0}',  HOEVEELHEID = {1}, BORG = {2}, OMSCHRIJVING = '{4}', CATEGORIE = {4}, FOTOPAD = '{5}', WHERE MATID = {6}",
-                updateMaterial.name, updateMaterial.amount, updateMaterial.deposit, updateMaterial.description, updateMaterial.category, updateMaterial.photoPath, updateMaterial.materialID));
+                updateMaterial.name, updateMaterial.amount, updateMaterial.deposit, updateMaterial.description, updateMaterial.materialCategoryName, updateMaterial.photoPath, updateMaterial.materialID));
 
         }
 
