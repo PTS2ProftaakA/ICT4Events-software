@@ -61,9 +61,43 @@ namespace Proftaak_ICT4Events
             this.maximumParticipants = maximumParticipants;
         }
 
+        public static List<Location> getAll(Database database)
+        {
+            List<string> locationColumns = new List<string>();
+            List<Location> allLocation = new List<Location>();
+
+            locationColumns.Add("LOCATIEID");
+            locationColumns.Add("LOCATIENAAM");
+            locationColumns.Add("MAXIMAALDEELNEMERS");
+            locationColumns.Add("PLAATS");
+            locationColumns.Add("ADRES");
+            locationColumns.Add("TELEFOONNUMMER");
+            locationColumns.Add("EMAILADRES");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM LOCATIE", locationColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allLocation.Add(new Location(
+                        dataTable[1][i],
+                        dataTable[4][i],
+                        dataTable[5][i],
+                        dataTable[6][i],
+                        dataTable[3][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i])));
+                }
+            }
+
+            return allLocation;
+        }
+
         public Location Get(string locationID, Database database)
         {
             List<string> locationColumns = new List<string>();
+            Location getLocation = null;
 
             locationColumns.Add("LOCATIEID");
             locationColumns.Add("LOCATIENAAM");
@@ -77,7 +111,7 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                return new Location(
+                getLocation = new Location(
                         dataTable[1][1],
                         dataTable[4][1],
                         dataTable[5][1],
@@ -86,10 +120,38 @@ namespace Proftaak_ICT4Events
                         Convert.ToInt32(dataTable[0][1]),
                         Convert.ToInt32(dataTable[3][1]));
             }
-            else
+
+            return getLocation;
+        }
+
+        public static Location StaticGet(string locationID, Database database)
+        {
+            List<string> locationColumns = new List<string>();
+            Location getLocation = null;
+
+            locationColumns.Add("LOCATIEID");
+            locationColumns.Add("LOCATIENAAM");
+            locationColumns.Add("MAXIMAALDEELNEMERS");
+            locationColumns.Add("PLAATS");
+            locationColumns.Add("ADRES");
+            locationColumns.Add("TELEFOONNUMMER");
+            locationColumns.Add("EMAILADRES");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM LOCATIE WHERE LOCATIEID = " + locationID, locationColumns);
+
+            if (dataTable[0].Count() > 1)
             {
-                return null;
+                getLocation = new Location(
+                        dataTable[1][1],
+                        dataTable[4][1],
+                        dataTable[5][1],
+                        dataTable[6][1],
+                        dataTable[3][1],
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[3][1]));
             }
+
+            return getLocation;
         }
 
         public void Add(Location newLocation, Database database)

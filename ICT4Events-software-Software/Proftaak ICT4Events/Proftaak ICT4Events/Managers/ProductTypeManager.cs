@@ -15,7 +15,7 @@ namespace Proftaak_ICT4Events
             this.database = database;
         }
 
-        public List<string> getMediaTypes()
+        public List<string> getMediaTypes(Database database)
         {
             List<string> mediaTypeColumn = new List<string>();
             List<string> allMediaTypes = new List<string>();
@@ -32,7 +32,7 @@ namespace Proftaak_ICT4Events
             return allMediaTypes;
         }
 
-        public List<string> getSpotTypes()
+        public List<string> getSpotTypes(Database database)
         {
             List<string> spotTypeColumn = new List<string>();
             List<string> allSpotTypes = new List<string>();
@@ -49,7 +49,7 @@ namespace Proftaak_ICT4Events
             return allSpotTypes;
         }
 
-        public List<string> getMaterialTypes()
+        public List<string> getMaterialTypes(Database database)
         {
             List<string> materialTypeColumn = new List<string>();
             List<string> allMaterialTypes = new List<string>();

@@ -33,7 +33,7 @@ namespace Proftaak_ICT4Events
             this.wordID = wordID;
         }
 
-        public List<ForbiddenWord> GetAll(Database database)
+        public static List<ForbiddenWord> GetAll(Database database)
         {
             List<string> forbiddenWordColumns = new List<string>();
             List<ForbiddenWord> allForbiddenWords = new List<ForbiddenWord>();

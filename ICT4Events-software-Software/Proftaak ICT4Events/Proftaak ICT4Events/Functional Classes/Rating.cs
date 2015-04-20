@@ -53,7 +53,7 @@ namespace Proftaak_ICT4Events
             this.CommentID = CommentID;
         }
 
-        public List<Rating> getAllFromFile(string filePath, Database database)
+        public static List<Rating> getAllFromFile(string filePath, Database database)
         {
             List<string> ratingColumns = new List<string>();
             List<Rating> allRating = new List<Rating>();
@@ -83,7 +83,7 @@ namespace Proftaak_ICT4Events
             return allRating;
         }
 
-        public List<Rating> getAllFromUser(string RFID, Database database)
+        public static List<Rating> getAllFromUser(string RFID, Database database)
         {
             List<string> ratingColumns = new List<string>();
             List<Rating> allRating = new List<Rating>();

@@ -77,14 +77,40 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public Reservation(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
+        public Reservation(string RFID, int rentalID, int materialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, RentalType type)
         {
             this.RFID = RFID;
             this.rentalID = rentalID;
+            this.materialID = materialID;
+            this.spotNumber = spotNumber;
             this.startDate = startDate;
             this.endDate = endDate;
             this.isPayed = isPayed;
             this.type = type;
+        }
+
+        public Reservation Get(string rentalID, Database database)
+        {
+            return null;
+        }
+
+        public void Add(Reservation newSpotReservation, Database database)
+        {
+            database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY'), TO_DATE('{3}', 'DD-MM-YYYY'), '{4}', '{5}', {6}, {7})",
+                newSpotReservation.rentalID, newSpotReservation.RFID, newSpotReservation.startDate, newSpotReservation.endDate, newSpotReservation.type, newSpotReservation.isPayed, newSpotReservation.materialID, newSpotReservation.spotNumber));
+        }
+
+        public void Edit(Reservation updateReservation, Database database)
+        {
+            database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{1}', 'DD-MM-YYYY'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
+                updateReservation.startDate, updateReservation.endDate, updateReservation.isPayed));
+
+        }
+
+        public void Remove(Reservation removeReservation, Database database)
+        {
+            database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
+                removeReservation.rentalID));
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Proftaak_ICT4Events
 
     class SpotRental : Reservation
     {
-        private int spotNumber;
         private int amountOfPersons;
 
         private SpotType spotTypes;
@@ -38,9 +37,9 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        public SpotRental(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+        public SpotRental(string RFID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
                   int spotNumber, int amountOfPersons, SpotType spotTypes)
-            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+            : base(RFID, rentalID, materialID, spotNumber, startDate, endDate, isPayed, type)
         {
             this.spotNumber = spotNumber;
             this.amountOfPersons = amountOfPersons;

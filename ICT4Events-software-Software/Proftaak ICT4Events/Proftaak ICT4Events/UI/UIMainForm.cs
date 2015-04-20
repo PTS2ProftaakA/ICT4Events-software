@@ -127,12 +127,12 @@ namespace Proftaak_ICT4Events
         //
         private void FeedFill(string search, FileType type, bool tenMostPopuliar, bool tenNewest)
         {
-            foreach (MediaFile m in feedManager.GivePosts(search, type, tenMostPopuliar, tenNewest))
-            {
-                // PersonalInfoManager. //GET USER BY RFID m.RFID
-                // Post post = new Post()
-                // flpPosts.Controls.Add(post);
-            }
+            //foreach (MediaFile m in feedManager.GivePosts(search, type, tenMostPopuliar, tenNewest))
+            //{
+            //    // PersonalInfoManager. //GET USER BY RFID m.RFID
+            //    // Post post = new Post()
+            //    // flpPosts.Controls.Add(post);
+            //}
 
         }
 
@@ -146,7 +146,7 @@ namespace Proftaak_ICT4Events
             tbSettingsUsername.Text = user.Username;
             dpBirthDate.Value = user.DateOfBirth;
             lbPersonRentals.Items.Clear();
-            pbSettingsPicture.ImageLocation = user.Photo;
+            pbSettingsPicture.ImageLocation = user.PhotoPath;
             foreach (Equipment e in equipmentManager.getEquipmentFromUser(user))
             {
                 lbPersonRentals.Items.Add(e.Material.Name);

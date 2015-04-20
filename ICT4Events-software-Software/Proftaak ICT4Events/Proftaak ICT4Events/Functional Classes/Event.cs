@@ -77,7 +77,7 @@ namespace Proftaak_ICT4Events
             users = new List<User>();
         }
 
-        public List<Event> getAll(Database database)
+        public static List<Event> getAll(Database database)
         {
             List<string> eventColumns = new List<string>();
             List<Event> allEvents = new List<Event>();
@@ -103,7 +103,7 @@ namespace Proftaak_ICT4Events
                         Convert.ToInt32(dataTable[6][i]),
                         Convert.ToDateTime(dataTable[4][i]),
                         Convert.ToDateTime(dataTable[5][i]),
-                        eventLocation.Get(dataTable[2][i], database)));
+                        Location.StaticGet(dataTable[2][i], database)));
                 }
             }
 

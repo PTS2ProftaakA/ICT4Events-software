@@ -32,7 +32,7 @@ namespace Proftaak_ICT4Events
             this.hobbyID = hobbyID;
         }
 
-        public List<Hobby> GetAll(Database database)
+        public static List<Hobby> GetAll(Database database)
         {
             List<string> hobbyColumns = new List<string>();
             List<Hobby> allHobbies = new List<Hobby>();
@@ -55,7 +55,7 @@ namespace Proftaak_ICT4Events
             return allHobbies;
         }
 
-        public static Hobby Get(string hobbyID, Database database)
+        public Hobby Get(string hobbyID, Database database)
         {
             List<string> hobbyColumns = new List<string>();
             Hobby getHobby = null;

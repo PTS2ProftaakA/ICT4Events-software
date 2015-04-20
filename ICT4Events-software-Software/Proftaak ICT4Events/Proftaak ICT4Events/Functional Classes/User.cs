@@ -134,73 +134,97 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
-        public static List<Material> getAll(Database database)
+        public static List<User> getAll(Database database)
         {
-            List<string> materialColumns = new List<string>();
-            List<Material> allMaterial = new List<Material>();
+            List<string> userColumns = new List<string>();
+            List<User> allUsers = new List<User>();
 
-            materialColumns.Add("GEBRUIKERID");
-            materialColumns.Add("RFID");
-            materialColumns.Add("EVENEMENTID");
-            materialColumns.Add("RESERVEERDER");
-            materialColumns.Add("NAAM");
-            materialColumns.Add("EMAIL");
-            materialColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("GEBRUIKERID");
+            userColumns.Add("RFID");
+            userColumns.Add("EVENEMENTID");
+            userColumns.Add("RESERVEERDER");
+            userColumns.Add("NAAM");
+            userColumns.Add("EMAIL");
+            userColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("FOTO");
+            userColumns.Add("GEBOORTEDATUM");
+            userColumns.Add("INLOGNAAM");
+            userColumns.Add("WACHTWOORD");
+            userColumns.Add("PLAATSNUMMER");
+            userColumns.Add("ADMINISTRATOR");
+            userColumns.Add("INGELOGD");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE CATEGORIE = " + (int)category, materialColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER", userColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][i]);
-
-                    allMaterial.Add(new Material(
+                    allUsers.Add(new User(
                         dataTable[1][i],
+                        dataTable[3][i],
                         dataTable[4][i],
+                        dataTable[5][i],
                         dataTable[6][i],
+                        dataTable[7][i],
+                        dataTable[9][i],
+                        dataTable[10][i],
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[2][i]),
-                        Convert.ToDecimal(dataTable[3][i]) / 100,
-                        categoryValue));
+                        Convert.ToInt32(dataTable[11][i]),
+                        dataTable[12][i].ToUpper() == "Y",
+                        dataTable[13][i].ToUpper() == "Y",
+                        Convert.ToDateTime(dataTable[8][i])
+                        ));
                 }
             }
 
-            return allMaterial;
+            return allUsers;
         }
 
-        public Material Get(string materialID, Database database)
+        public User Get(string userID, Database database)
         {
-            List<string> materialColumns = new List<string>();
-            Material getMaterial = null;
+            List<string> userColumns = new List<string>();
+            User getUser = null;
 
-            materialColumns.Add("MATID");
-            materialColumns.Add("NAAM");
-            materialColumns.Add("HOEVEELHEID");
-            materialColumns.Add("BORG");
-            materialColumns.Add("OMSCHRIJVING");
-            materialColumns.Add("CATEGORIE");
-            materialColumns.Add("FOTOPAD");
+            userColumns.Add("GEBRUIKERID");
+            userColumns.Add("RFID");
+            userColumns.Add("EVENEMENTID");
+            userColumns.Add("RESERVEERDER");
+            userColumns.Add("NAAM");
+            userColumns.Add("EMAIL");
+            userColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("FOTO");
+            userColumns.Add("GEBOORTEDATUM");
+            userColumns.Add("INLOGNAAM");
+            userColumns.Add("WACHTWOORD");
+            userColumns.Add("PLAATSNUMMER");
+            userColumns.Add("ADMINISTRATOR");
+            userColumns.Add("INGELOGD");
 
-            //Has to be fixed with current database
-
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE GEBRUIKERID = " + userID, userColumns);
 
             if (dataTable[0].Count() > 1)
             {
-                CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[5][1]);
-
-                getMaterial = new Material(
-                    dataTable[1][1],
-                    dataTable[4][1],
-                    dataTable[6][1],
-                    Convert.ToInt32(dataTable[0][1]),
-                    Convert.ToInt32(dataTable[2][1]),
-                    Convert.ToDecimal(dataTable[3][1]) / 100,
-                    categoryValue);
+                    getUser = new User(
+                        dataTable[1][1],
+                        dataTable[3][1],
+                        dataTable[4][1],
+                        dataTable[5][1],
+                        dataTable[6][1],
+                        dataTable[7][1],
+                        dataTable[9][1],
+                        dataTable[10][1],
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[2][1]),
+                        Convert.ToInt32(dataTable[11][1]),
+                        dataTable[12][1].ToUpper() == "Y",
+                        dataTable[13][1].ToUpper() == "Y",
+                        Convert.ToDateTime(dataTable[8][1])
+                        );
             }
 
-            return getMaterial;
+            return getUser;
         }
 
         public void Add(User newUser, Database database)

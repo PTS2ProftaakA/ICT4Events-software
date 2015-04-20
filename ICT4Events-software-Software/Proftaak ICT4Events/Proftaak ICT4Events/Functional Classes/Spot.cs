@@ -37,7 +37,7 @@ namespace Proftaak_ICT4Events
             this.price = price;
         }
 
-        public List<Spot> getAll(Database database)
+        public static List<Spot> getAll(Database database)
         {
             List<string> spotColumns = new List<string>();
             List<Spot> allSpot = new List<Spot>();

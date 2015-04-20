@@ -160,7 +160,7 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 1)
             {
-                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][i]);
+                    FileType extension = (FileType)Enum.Parse(typeof(FileType), dataTable[4][1]);
 
                     getMediaFile = new MediaFile(
                         dataTable[1][1],

@@ -25,9 +25,9 @@ namespace Proftaak_ICT4Events
             set { material = value; }
         }
 
-        public Equipment(string RFID, int rentalID, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
+        public Equipment(string RFID, int rentalID, int MaterialID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, RentalType type,
                  Material material)
-            : base(RFID, rentalID, startDate, endDate, isPayed, type)
+            : base(RFID, rentalID, MaterialID, spotNumber, startDate, endDate, isPayed, type)
         {
             this.material = material;
         }
@@ -51,35 +51,25 @@ namespace Proftaak_ICT4Events
             equipmentColumns.Add("CATEGORIE");
             equipmentColumns.Add("FOTOPAD");
             
-            //Has to be fixed with current database
-
             List<string>[] dataTable = database.selectQuery("SELECT r.HUURID, r.RFID, r.STARTDATUM, r.EINDDATUM, r.HUURTYPE, r.BETAALD, m.MATID, m.NAAM, m.HOEVEELHEID, m.BORG, m.OMSCHRIJVING, m.CATEGORIE, m.FOTOPAD FROM RESERVERING r, MATERIAAL m", equipmentColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    bool isPayed;
-                    if (dataTable[5][i].ToUpper() == "Y")
-                    {
-                        isPayed = true;
-                    }
-                    else
-                    {
-                        isPayed = false;
-                    }
-
                     RentalType rentalValue = (RentalType)Enum.Parse(typeof(RentalType), dataTable[4][i]);
                     CategoryType categoryValue = (CategoryType)Enum.Parse(typeof(CategoryType), dataTable[11][i]);
 
                     allEquipment.Add(new Equipment(
-                        dataTable[1][i],
-                        Convert.ToInt32(dataTable[0][i]),
-                        Convert.ToDateTime(dataTable[2][i]),
-                        Convert.ToDateTime(dataTable[3][i]),
-                        isPayed,
-                        rentalValue,
-                        new Material(
+                       dataTable[1][i],
+                       Convert.ToInt32(dataTable[0][i]),
+                       Convert.ToInt32(dataTable[6][i]),
+                       Convert.ToInt32(dataTable[7][i]),
+                       Convert.ToDateTime(dataTable[2][i]),
+                       Convert.ToDateTime(dataTable[3][i]),
+                       dataTable[5][i].ToUpper() == "Y",
+                       rentalValue,
+                       new Material(
                             dataTable[7][i],
                             dataTable[10][i],
                             dataTable[12][i],
@@ -92,6 +82,7 @@ namespace Proftaak_ICT4Events
 
             return allEquipment;
         }
+
 
         public void Add(Equipment newEquipment, Database database)
         {
