@@ -32,6 +32,8 @@ namespace Proftaak_ICT4Events.UI
             userRFID.Tag += new TagEventHandler(userRFID_Tag);
 
             openCmdLine(userRFID);
+
+            ShowDialog();
         }
 
         void userRFID_Attach(object sender, AttachEventArgs e)
@@ -51,7 +53,10 @@ namespace Proftaak_ICT4Events.UI
         public void userRFID_Tag(object sender, TagEventArgs e)
         {
             CurrentUser.currentUser = User.StaticGet(e.Tag, database);
-            this.Close();
+            if (CurrentUser.currentUser != null)
+            {
+                this.Close();
+            }
 
             //e.Tag is the actual RFID that belongs to the chip
             //e.protocol is the protocol that belongs to that chip
@@ -145,8 +150,28 @@ namespace Proftaak_ICT4Events.UI
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            CurrentUser.currentUser = User.StaticGet(tbInlogName.Text, tbPassword.Text, database);
-            this.Close();
+            if (tbInlogName.Text != "" && tbPassword.Text != "")
+            {
+                string userName = tbInlogName.Text;
+                string password = tbPassword.Text;
+                CurrentUser.currentUser = User.StaticGet(userName, password, database);
+                if (CurrentUser.currentUser != null)
+                {
+
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Inlognaam of wachtwoord onjuist.");
+            }
+            else
+            {
+                if (tbInlogName.Text == "" && tbPassword.Text == "")
+                    MessageBox.Show("Voor uw inlognaam en wacthwoord in.");
+                else if (tbInlogName.Text == "")
+                    MessageBox.Show("Vul uw inlognaam in.");
+                else if (tbPassword.Text == "")
+                    MessageBox.Show("Vul uw wachtwoord in.");
+            }
         }
     }
 }

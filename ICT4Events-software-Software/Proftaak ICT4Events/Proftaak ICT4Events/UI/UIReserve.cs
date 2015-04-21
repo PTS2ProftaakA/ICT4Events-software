@@ -51,8 +51,6 @@ namespace Proftaak_ICT4Events.UI
                 s += insertvalues[0][i] + " - " + insertvalues[1][i] + "\r";
             }
             
-            MapManager
-            
             Close();
         }
 

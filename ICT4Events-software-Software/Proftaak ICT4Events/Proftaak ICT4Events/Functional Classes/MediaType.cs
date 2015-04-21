@@ -43,7 +43,7 @@ namespace Proftaak_ICT4Events
             mediaTypeColumns.Add("MEDIATYPEID");
             mediaTypeColumns.Add("TYPE");
 
-            List<string>[] dataTable = database.selectQuery("SELECT TYPE FROM MEDIATYPE", mediaTypeColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIATYPE", mediaTypeColumns);
 
             if(dataTable[0].Count() > 1)
             {
@@ -98,6 +98,10 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM MEDIATYPE WHERE MEDIATYPEID = {0}",
                 removeMediaType.mediaTypeID));
+        }
+        public override string ToString()
+        {
+            return type;
         }
     }
 }

@@ -199,6 +199,7 @@ namespace Proftaak_ICT4Events
             return allreservations;
         }
 
+        
         public Reservation Get(string rentalID, Database database)
         {
             List<string> reservationColumns = new List<string>();
@@ -256,8 +257,6 @@ namespace Proftaak_ICT4Events
             {
                 isPayedString = "N";
             }
-
-            string rentalType;
 
             if (newReservation.Material == null)
             {

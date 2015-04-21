@@ -104,11 +104,12 @@
             this.dtpEManagementEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpEManagementStart = new System.Windows.Forms.DateTimePicker();
             this.tpMateriaalBeheer = new System.Windows.Forms.TabPage();
+            this.rbManagementProductEdit = new System.Windows.Forms.RadioButton();
             this.lbManagementAllRental = new System.Windows.Forms.ListBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.button4 = new System.Windows.Forms.Button();
+            this.rbManagementProductDelete = new System.Windows.Forms.RadioButton();
+            this.cbManagementProductAll = new System.Windows.Forms.ComboBox();
+            this.rbManagementProductNew = new System.Windows.Forms.RadioButton();
+            this.btnManagementProductSelect = new System.Windows.Forms.Button();
             this.btnManagementProductBrowse = new System.Windows.Forms.Button();
             this.tbManagementProductphotoPath = new System.Windows.Forms.TextBox();
             this.btnManagementNewCategorie = new System.Windows.Forms.Button();
@@ -199,6 +200,7 @@
             this.btnMakePost.TabIndex = 4;
             this.btnMakePost.Text = "Maak Post";
             this.btnMakePost.UseVisualStyleBackColor = true;
+            this.btnMakePost.Click += new System.EventHandler(this.btnMakePost_Click_1);
             // 
             // tbFeedSearch
             // 
@@ -1030,11 +1032,12 @@
             // 
             // tpMateriaalBeheer
             // 
+            this.tpMateriaalBeheer.Controls.Add(this.rbManagementProductEdit);
             this.tpMateriaalBeheer.Controls.Add(this.lbManagementAllRental);
-            this.tpMateriaalBeheer.Controls.Add(this.radioButton1);
-            this.tpMateriaalBeheer.Controls.Add(this.comboBox2);
-            this.tpMateriaalBeheer.Controls.Add(this.radioButton2);
-            this.tpMateriaalBeheer.Controls.Add(this.button4);
+            this.tpMateriaalBeheer.Controls.Add(this.rbManagementProductDelete);
+            this.tpMateriaalBeheer.Controls.Add(this.cbManagementProductAll);
+            this.tpMateriaalBeheer.Controls.Add(this.rbManagementProductNew);
+            this.tpMateriaalBeheer.Controls.Add(this.btnManagementProductSelect);
             this.tpMateriaalBeheer.Controls.Add(this.btnManagementProductBrowse);
             this.tpMateriaalBeheer.Controls.Add(this.tbManagementProductphotoPath);
             this.tpMateriaalBeheer.Controls.Add(this.btnManagementNewCategorie);
@@ -1057,6 +1060,19 @@
             this.tpMateriaalBeheer.Text = "Mtrl Beheer";
             this.tpMateriaalBeheer.UseVisualStyleBackColor = true;
             // 
+            // rbManagementProductEdit
+            // 
+            this.rbManagementProductEdit.AutoSize = true;
+            this.rbManagementProductEdit.Location = new System.Drawing.Point(484, 25);
+            this.rbManagementProductEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.rbManagementProductEdit.Name = "rbManagementProductEdit";
+            this.rbManagementProductEdit.Size = new System.Drawing.Size(153, 21);
+            this.rbManagementProductEdit.TabIndex = 31;
+            this.rbManagementProductEdit.TabStop = true;
+            this.rbManagementProductEdit.Text = "Product Aanpassen";
+            this.rbManagementProductEdit.UseVisualStyleBackColor = true;
+            this.rbManagementProductEdit.CheckedChanged += new System.EventHandler(this.rbManagementProductEdit_CheckedChanged);
+            // 
             // lbManagementAllRental
             // 
             this.lbManagementAllRental.FormattingEnabled = true;
@@ -1067,48 +1083,52 @@
             this.lbManagementAllRental.Size = new System.Drawing.Size(288, 388);
             this.lbManagementAllRental.TabIndex = 30;
             // 
-            // radioButton1
+            // rbManagementProductDelete
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(368, 28);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(103, 21);
-            this.radioButton1.TabIndex = 29;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Verwijderen";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbManagementProductDelete.AutoSize = true;
+            this.rbManagementProductDelete.Location = new System.Drawing.Point(233, 25);
+            this.rbManagementProductDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.rbManagementProductDelete.Name = "rbManagementProductDelete";
+            this.rbManagementProductDelete.Size = new System.Drawing.Size(103, 21);
+            this.rbManagementProductDelete.TabIndex = 29;
+            this.rbManagementProductDelete.TabStop = true;
+            this.rbManagementProductDelete.Text = "Verwijderen";
+            this.rbManagementProductDelete.UseVisualStyleBackColor = true;
+            this.rbManagementProductDelete.CheckedChanged += new System.EventHandler(this.rbManagementProductDelete_CheckedChanged);
             // 
-            // comboBox2
+            // cbManagementProductAll
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(233, 54);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(243, 24);
-            this.comboBox2.TabIndex = 25;
+            this.cbManagementProductAll.FormattingEnabled = true;
+            this.cbManagementProductAll.Location = new System.Drawing.Point(233, 54);
+            this.cbManagementProductAll.Margin = new System.Windows.Forms.Padding(4);
+            this.cbManagementProductAll.Name = "cbManagementProductAll";
+            this.cbManagementProductAll.Size = new System.Drawing.Size(404, 24);
+            this.cbManagementProductAll.TabIndex = 25;
+            this.cbManagementProductAll.SelectedIndexChanged += new System.EventHandler(this.cbManagementProductAll_SelectedIndexChanged);
             // 
-            // radioButton2
+            // rbManagementProductNew
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(233, 28);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(120, 21);
-            this.radioButton2.TabIndex = 24;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Nieuw Product";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbManagementProductNew.AutoSize = true;
+            this.rbManagementProductNew.Location = new System.Drawing.Point(356, 25);
+            this.rbManagementProductNew.Margin = new System.Windows.Forms.Padding(4);
+            this.rbManagementProductNew.Name = "rbManagementProductNew";
+            this.rbManagementProductNew.Size = new System.Drawing.Size(120, 21);
+            this.rbManagementProductNew.TabIndex = 24;
+            this.rbManagementProductNew.TabStop = true;
+            this.rbManagementProductNew.Text = "Nieuw Product";
+            this.rbManagementProductNew.UseVisualStyleBackColor = true;
+            this.rbManagementProductNew.CheckedChanged += new System.EventHandler(this.rbManagementProductNew_CheckedChanged);
             // 
-            // button4
+            // btnManagementProductSelect
             // 
-            this.button4.Location = new System.Drawing.Point(37, 624);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "Opslaan";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnManagementProductSelect.Location = new System.Drawing.Point(37, 624);
+            this.btnManagementProductSelect.Margin = new System.Windows.Forms.Padding(4);
+            this.btnManagementProductSelect.Name = "btnManagementProductSelect";
+            this.btnManagementProductSelect.Size = new System.Drawing.Size(100, 28);
+            this.btnManagementProductSelect.TabIndex = 22;
+            this.btnManagementProductSelect.Text = "Opslaan";
+            this.btnManagementProductSelect.UseVisualStyleBackColor = true;
+            this.btnManagementProductSelect.Click += new System.EventHandler(this.btnManagementProductSelect_Click);
             // 
             // btnManagementProductBrowse
             // 
@@ -1137,6 +1157,7 @@
             this.btnManagementNewCategorie.TabIndex = 19;
             this.btnManagementNewCategorie.Text = "Nieuwe Categorie";
             this.btnManagementNewCategorie.UseVisualStyleBackColor = true;
+            this.btnManagementNewCategorie.Click += new System.EventHandler(this.btnManagementNewCategorie_Click);
             // 
             // cbManagementCatergory
             // 
@@ -1161,6 +1182,11 @@
             // 
             this.nudManagementProductDeposit.Location = new System.Drawing.Point(37, 174);
             this.nudManagementProductDeposit.Margin = new System.Windows.Forms.Padding(4);
+            this.nudManagementProductDeposit.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nudManagementProductDeposit.Name = "nudManagementProductDeposit";
             this.nudManagementProductDeposit.Size = new System.Drawing.Size(160, 22);
             this.nudManagementProductDeposit.TabIndex = 16;
@@ -1169,6 +1195,11 @@
             // 
             this.nudManagementProductAmount.Location = new System.Drawing.Point(37, 114);
             this.nudManagementProductAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.nudManagementProductAmount.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nudManagementProductAmount.Name = "nudManagementProductAmount";
             this.nudManagementProductAmount.Size = new System.Drawing.Size(160, 22);
             this.nudManagementProductAmount.TabIndex = 15;
@@ -1256,7 +1287,7 @@
             this.tbManagementProductName.Location = new System.Drawing.Point(36, 55);
             this.tbManagementProductName.Margin = new System.Windows.Forms.Padding(4);
             this.tbManagementProductName.Name = "tbManagementProductName";
-            this.tbManagementProductName.Size = new System.Drawing.Size(132, 22);
+            this.tbManagementProductName.Size = new System.Drawing.Size(160, 22);
             this.tbManagementProductName.TabIndex = 0;
             // 
             // tpPostBeheer
@@ -1415,8 +1446,8 @@
         private System.Windows.Forms.ListBox lbPersonRentals;
         private System.Windows.Forms.NumericUpDown nudMapPeople;
         private System.Windows.Forms.ComboBox cbMapType;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RadioButton rbManagementProductNew;
+        private System.Windows.Forms.Button btnManagementProductSelect;
         private System.Windows.Forms.Button btnManagementProductBrowse;
         private System.Windows.Forms.TextBox tbManagementProductphotoPath;
         private System.Windows.Forms.Button btnManagementNewCategorie;
@@ -1431,9 +1462,9 @@
         private System.Windows.Forms.Label lblManagementAmount;
         private System.Windows.Forms.Label lblManagementProductName;
         private System.Windows.Forms.TextBox tbManagementProductName;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbManagementProductAll;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbManagementProductDelete;
         private System.Windows.Forms.FlowLayoutPanel flpPosts;
         private System.Windows.Forms.TextBox tbFeedSearch;
         private System.Windows.Forms.ComboBox cbFeedFileTypes;
@@ -1452,6 +1483,7 @@
         private System.Windows.Forms.Button btnTreeUpload;
         private System.Windows.Forms.Button btnTreeDownload;
         private System.Windows.Forms.ListView lvAvailableSpots;
+        private System.Windows.Forms.RadioButton rbManagementProductEdit;
     }
 }
 

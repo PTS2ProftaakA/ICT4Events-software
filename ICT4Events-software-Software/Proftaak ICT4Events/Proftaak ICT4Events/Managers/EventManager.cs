@@ -57,11 +57,18 @@ namespace Proftaak_ICT4Events
         }
 
 
-        public void newLocation(string locatieNaam, string address, string phoneNumber, string email, string city, int max)
+        public bool newLocation(string locatieNaam, string address, string phoneNumber, string email, string city, string max)
         {
-            // ER MOET HIER NOG GECHECKED WORDEN OF VALUES KLOPPEN
-            Location location = new Location(locatieNaam, address, phoneNumber, email, city, database.nextSequenceValue("PLAATSSEQUENCE"), max);
-            location.Add(location, database);
+            int outInt;
+
+            if (locatieNaam != "" && address != "" && phoneNumber != "" && email != "" && city != "" && int.TryParse(max, out outInt))
+            {
+                Location location = new Location(locatieNaam, address, phoneNumber, email, city, 1, Convert.ToInt32(max));
+                location.Add(location, database);
+                return true;
+            }
+
+            return false;
         }
     }
 }

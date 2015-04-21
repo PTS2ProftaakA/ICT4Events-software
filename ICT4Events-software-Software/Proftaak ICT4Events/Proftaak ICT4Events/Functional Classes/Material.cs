@@ -50,7 +50,7 @@ namespace Proftaak_ICT4Events
             get { return deposit; }
             set { deposit = value; }
         }
-        private MaterialCategory MaterialCategoryName
+        public MaterialCategory MaterialCategoryName
         {
             get { return materialCategoryName; }
             set { materialCategoryName = value; }
@@ -240,13 +240,13 @@ namespace Proftaak_ICT4Events
         public void Add(Material newMaterial, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MATERIAAL VALUES ({0}, '{1}', {2}, {3}, '{4}', {5}, '{6}')",
-                newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit, newMaterial.description, newMaterial.materialCategoryName.MaterialCategoryID, newMaterial.photoPath));
+                newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit * 100, newMaterial.description, newMaterial.materialCategoryName.MaterialCategoryID, newMaterial.photoPath));
         }
 
         public void Edit(Material updateMaterial, Database database)
         {
-            database.editDatabase(String.Format("UPDATE PLAATS SET NAAM = '{0}',  HOEVEELHEID = {1}, BORG = {2}, OMSCHRIJVING = '{4}', CATEGORIE = {4}, FOTOPAD = '{5}', WHERE MATID = {6}",
-                updateMaterial.name, updateMaterial.amount, updateMaterial.deposit, updateMaterial.description, updateMaterial.materialCategoryName.MaterialCategoryID, updateMaterial.photoPath, updateMaterial.materialID));
+            database.editDatabase(String.Format("UPDATE MATERIAAL SET NAAM = '{0}',  HOEVEELHEID = {1}, BORG = {2}, OMSCHRIJVING = '{3}', CATEGORIE = {4}, FOTOPAD = '{5}' WHERE MATID = {6}",
+                updateMaterial.name, updateMaterial.amount, updateMaterial.deposit * 100, updateMaterial.description, updateMaterial.materialCategoryName.MaterialCategoryID, updateMaterial.photoPath, updateMaterial.materialID));
 
         }
 

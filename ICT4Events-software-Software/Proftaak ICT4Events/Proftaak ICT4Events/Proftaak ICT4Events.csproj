@@ -113,7 +113,6 @@
     <Compile Include="Functional Classes\Hobby.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Functional Classes\Location.cs" />
-    <Compile Include="Managers\LogInManager.cs" />
     <Compile Include="Functional Classes\Material.cs" />
     <Compile Include="Functional Classes\MediaFile.cs" />
     <Compile Include="Managers\MaterialManager.cs" />

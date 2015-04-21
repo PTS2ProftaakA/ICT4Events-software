@@ -15,7 +15,6 @@ namespace Proftaak_ICT4Events
     {  
         private DiscussionManager discussionManager;
         private FeedManager feedManager;
-        private LogInManager logInManager;
         private MapManager mapManager;
         private MediaFileManager mediaFileManager;
         private PersonalInfoManager personalInfoManager;
@@ -36,7 +35,6 @@ namespace Proftaak_ICT4Events
 
             discussionManager = new DiscussionManager(database);
             feedManager = new FeedManager(database);
-            logInManager = new LogInManager(database);
             mapManager = new MapManager(database);
             mediaFileManager = new MediaFileManager(database);
             personalInfoManager = new PersonalInfoManager(database);
@@ -45,8 +43,6 @@ namespace Proftaak_ICT4Events
             materialManager = new MaterialManager(database);
 
             UI.UILogIn logInScreen = new UI.UILogIn();
-            logInScreen.Show();
-            logInScreen.TopMost = true;
 
             client = new FTPClient();
             ReloadTreeView();
@@ -163,7 +159,9 @@ namespace Proftaak_ICT4Events
             //Materiaal beheer
             if (tcMainForm.SelectedIndex == 6)
             {
-                
+                cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+                cbManagementProductAll.DataSource = materialManager.getAll();
+                rbManagementProductEdit.Checked = true;
             }
             //Post beheer
             if (tcMainForm.SelectedIndex == 7)
@@ -176,6 +174,17 @@ namespace Proftaak_ICT4Events
         // FEED //
 
         //
+        private void btnMakePost_Click_1(object sender, EventArgs e)
+        {
+            UI.makePost f = new UI.makePost(feedManager.getTypes(database));
+            f.ShowDialog();
+            if (f.DialogResult == DialogResult.OK)
+            {
+                feedManager.makePost(f.MediaType, f.Text, f.Path);
+
+
+            }
+        }
         private void FeedFill(string search, MediaType type, bool tenMostPopuliar, bool tenNewest)
         {
             foreach (MediaFile m in feedManager.GetFiles("latest", database))
@@ -188,14 +197,7 @@ namespace Proftaak_ICT4Events
 
         private void btnMakePost_Click(object sender, EventArgs e)
         {
-            UI.makePost f = new UI.makePost(feedManager.getTypes(database));
-            f.ShowDialog();
-            if (f.DialogResult == DialogResult.OK)
-            {
-                feedManager.makePost(f.MediaType, f.Text, f.Path);
-
-
-            }
+            
         }
 
         //RENTAL STUFF//
@@ -338,7 +340,8 @@ namespace Proftaak_ICT4Events
             {
                 MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
             }
-           
+
+            cbEManagementEvents.DataSource = eventManager.getAllEvents();
         }
 
         private void btnEManagementNew_Click(object sender, EventArgs e)
@@ -505,6 +508,82 @@ namespace Proftaak_ICT4Events
             }
         }
 
+        private void btnManagementNewCategorie_Click(object sender, EventArgs e)
+        {
+            MaterialCategory newMaterialCategory  = new MaterialCategory(cbManagementCatergory.Text, 1);
+            newMaterialCategory.Add(newMaterialCategory, database);
 
+            cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+        }
+
+        private void cbManagementProductAll_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Material selectedMaterial = (Material)cbManagementProductAll.SelectedItem;
+
+            tbManagementProductName.Text = selectedMaterial.Name;
+            nudManagementProductAmount.Value = selectedMaterial.Amount;
+            nudManagementProductDeposit.Value = Math.Round(selectedMaterial.Deposit/100, 2);
+            cbManagementCatergory.SelectedIndex = selectedMaterial.MaterialCategoryName.MaterialCategoryID - 1;
+            tbManagementDescription.Text = selectedMaterial.Description;
+            tbManagementProductphotoPath.Text = selectedMaterial.PhotoPath;
+
+            pbProductList.ImageLocation = selectedMaterial.PhotoPath;
+        }
+
+        private void rbManagementProductDelete_CheckedChanged(object sender, EventArgs e)
+        {
+            cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+            cbManagementProductAll.DataSource = materialManager.getAll();
+
+            btnManagementProductSelect.Text = "Verwijderen";
+        }
+
+        private void rbManagementProductNew_CheckedChanged(object sender, EventArgs e)
+        {
+            tbManagementProductName.Text = "";
+            tbManagementDescription.Text = "";
+            tbManagementProductphotoPath.Text = "";
+            cbManagementProductAll.Text = "";
+            nudManagementProductAmount.Value = 0;
+            nudManagementProductDeposit.Value = 0;
+            
+
+            pbProductList.ImageLocation = "";
+
+            btnManagementProductSelect.Text = "Opslaan";
+        }
+
+        private void rbManagementProductEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+            cbManagementProductAll.DataSource = materialManager.getAll();
+
+            btnManagementProductSelect.Text = "Aanpassen";
+        }
+
+        private void btnManagementProductSelect_Click(object sender, EventArgs e)
+        {
+            if(rbManagementProductEdit.Checked)
+            {
+                Material editMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value * 100), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                editMaterial.Edit(editMaterial, database);
+                cbManagementProductAll.DataSource = materialManager.getAll();
+                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+            }
+            else if(rbManagementProductDelete.Checked)
+            { 
+                Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                removeMaterial.Remove(removeMaterial, database);
+                cbManagementProductAll.DataSource = materialManager.getAll();
+                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+            }
+            else
+            {
+                Material newMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                newMaterial.Add(newMaterial, database);
+                cbManagementProductAll.DataSource = materialManager.getAll();
+                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+            }
+        }
     }
 }
