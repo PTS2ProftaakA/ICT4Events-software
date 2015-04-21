@@ -8,6 +8,7 @@ namespace Proftaak_ICT4Events
 {
     public class Material : IDatabase<Material>
     {
+        //Fields
         private string name;
         private string description;
         private string photoPath;
@@ -19,6 +20,7 @@ namespace Proftaak_ICT4Events
 
         private MaterialCategory materialCategoryName;
 
+        //Properties
         #region properties
         public string Name
         {
@@ -57,6 +59,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructer to make a material, it contains a category that is defined in another class
         public Material(string name, string description, string photoPath, int materialID, int amount, decimal deposit, MaterialCategory materialCategoryName)
         {
             this.name = name;
@@ -68,6 +71,8 @@ namespace Proftaak_ICT4Events
             this.materialCategoryName = materialCategoryName;
         }
 
+        //A function that returns a list of all materials
+        //It uses the data from the database to construct multiple materials
         public static List<Material> getAll(Database database)
         {
             List<string> materialColumns = new List<string>();
@@ -112,6 +117,8 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
+        //A function that returns a list of all materials where the category matches the input
+        //It uses the data from the database to construct multiple materials
         public static List<Material> getAll(MaterialCategory category, Database database)
         {
             List<string> materialColumns = new List<string>();
@@ -155,6 +162,7 @@ namespace Proftaak_ICT4Events
             return allMaterial;
         }
 
+        //Returns a material that matches the materialID
         public Material Get(string materialID, Database database)
         {
             List<string> materialColumns = new List<string>();
@@ -168,8 +176,6 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
-            //Has to be fixed with current database
-
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
 
             if (dataTable[0].Count() > 1)
@@ -196,6 +202,7 @@ namespace Proftaak_ICT4Events
             return getMaterial;
         }
 
+        //Returns a material that matches the materialID which is more accesible
         public static Material GetStatic(string materialID, Database database)
         {
             List<string> materialColumns = new List<string>();
@@ -209,8 +216,6 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
-            //Has to be fixed with current database
-
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
 
             if (dataTable[0].Count() > 1)
@@ -237,12 +242,14 @@ namespace Proftaak_ICT4Events
             return getMaterial;
         }
 
+        //Adds a single material to the database
         public void Add(Material newMaterial, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MATERIAAL VALUES ({0}, '{1}', {2}, {3}, '{4}', {5}, '{6}')",
                 newMaterial.materialID, newMaterial.name, newMaterial.amount, newMaterial.deposit * 100, newMaterial.description, newMaterial.materialCategoryName.MaterialCategoryID, newMaterial.photoPath));
         }
 
+        //Edits a material in the database to its current values
         public void Edit(Material updateMaterial, Database database)
         {
             database.editDatabase(String.Format("UPDATE MATERIAAL SET NAAM = '{0}',  HOEVEELHEID = {1}, BORG = {2}, OMSCHRIJVING = '{3}', CATEGORIE = {4}, FOTOPAD = '{5}' WHERE MATID = {6}",
@@ -250,12 +257,14 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes a material from the database with a specific materialID
         public void Remove(Material removeMaterial, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM MATERIAAL WHERE MATID = '{0}'",
                 removeMaterial.materialID));
         }
 
+        //returns a more convenient string that is more readable
         public override string ToString()
         {
             return name;

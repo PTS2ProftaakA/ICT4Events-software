@@ -8,6 +8,7 @@ namespace Proftaak_ICT4Events
 {
     class Location : IDatabase<Location>
     {
+        //Fields
         private string locationName;
         private string address;
         private string phoneNumber;
@@ -17,6 +18,7 @@ namespace Proftaak_ICT4Events
         private int locationID;
         private int maximumParticipants;
 
+        //Properties
         #region properties
         public string LocationName
         {
@@ -50,6 +52,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor that creates location, it is used to host an event
         public Location(string locationName, string address, string phoneNumber, string emailaddress, string cityName, int locationID, int maximumParticipants)
         {
             this.locationName = locationName;
@@ -61,6 +64,8 @@ namespace Proftaak_ICT4Events
             this.maximumParticipants = maximumParticipants;
         }
 
+        //A function that returns a list of all locations
+        //This is used to give the user a wide range of possible locations
         public static List<Location> getAll(Database database)
         {
             List<string> locationColumns = new List<string>();
@@ -94,6 +99,7 @@ namespace Proftaak_ICT4Events
             return allLocation;
         }
 
+        //returns a single Location that corresponds with the locationID
         public Location Get(string locationID, Database database)
         {
             List<string> locationColumns = new List<string>();
@@ -124,6 +130,8 @@ namespace Proftaak_ICT4Events
             return getLocation;
         }
 
+        //Returns a single location that corresponds with a locationID
+        //This function is more accessible for classes
         public static Location StaticGet(string locationID, Database database)
         {
             List<string> locationColumns = new List<string>();
@@ -154,24 +162,28 @@ namespace Proftaak_ICT4Events
             return getLocation;
         }
 
+        //Adds a single location to the database
         public void Add(Location newLocation, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO LOCATIE VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}')",
                 newLocation.locationID, newLocation.LocationName, newLocation.maximumParticipants, newLocation.cityName, newLocation.address, newLocation.phoneNumber, newLocation.emailaddress));
         }
 
+        //Edits a location with the current values of the location
         public void Edit(Location updateLocation, Database database)
         {
             database.editDatabase(String.Format("UPDATE LOCATIE SET LOCATIENAAM = '{1}', MAXIMAALDEELNEMERS = {2}, PLAATS = '{3}', ADRES = '{4}', TELEFOONNUMMER = '{5}', EMAILADRES = '{6}' WHERE LOCATIEID = {7}",
                 updateLocation.locationName, updateLocation.maximumParticipants, updateLocation.cityName, updateLocation.address, updateLocation.phoneNumber, updateLocation.emailaddress, updateLocation.locationID));
         }
 
+        //Removes a single location corresponding to the input location
         public void Remove(Location removeLocation, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM LOCATIE WHERE LOCATIEID = {0}",
                 removeLocation.locationID));
         }
 
+        //Returns a more presentable and readable string to define the location
         public override string ToString()
         {
             return locationName;

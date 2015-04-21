@@ -8,12 +8,13 @@ namespace Proftaak_ICT4Events
 {
     public class Spot : IDatabase<Spot>
     {
+        //Fields
         private int spotNumber;
         private int price;
 
         private SpotType spotSpotType;
 
-
+        //Properties
         #region properties
         public int SpotNumber
         {
@@ -32,6 +33,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor to make a spot
         public Spot(int spotNumber, int price, SpotType spotSpotType)
         {
             this.spotNumber = spotNumber;
@@ -39,6 +41,7 @@ namespace Proftaak_ICT4Events
             this.spotSpotType = spotSpotType;
         }
 
+        //A function that returns all the spots
         public static List<Spot> getAll(Database database)
         {
             List<string> spotColumns = new List<string>();
@@ -74,6 +77,7 @@ namespace Proftaak_ICT4Events
             return allSpot;
         }
 
+        //A function that finds all the spots of a single type like 'bungalow'
         public static List<Spot> SearchAll(SpotType spotype, Database database)
         {
             List<string> spotColumns = new List<string>();
@@ -116,6 +120,7 @@ namespace Proftaak_ICT4Events
             return allSpot;
         }
 
+        //Returns a specific spot that corresponds to the ID of the spot
         public Spot Get(string spotNumber, Database database)
         {
             List<string> spotColumns = new List<string>();
@@ -148,6 +153,8 @@ namespace Proftaak_ICT4Events
             return getSpot;
         }
 
+        //Returns a specific spot that corresponds to the ID of the spot
+        //Because this function is static it can be more easily used
         public Spot GetStatic(string spotNumber, Database database)
         {
             List<string> spotColumns = new List<string>();
@@ -180,12 +187,14 @@ namespace Proftaak_ICT4Events
             return getSpot;
         }
 
+        //Adds a spot to the database
         public void Add(Spot newSpot, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO PLAATS VALUES ({0}, {1}, {2})",
                 newSpot.spotNumber, newSpot.spotSpotType.SpotTypeID, newSpot.price));
         }
 
+        //Edits the value of a spot in the database to it's current values
         public void Edit(Spot updateSpot, Database database)
         {
             database.editDatabase(String.Format("UPDATE PLAATS SET PRIJS = {0} WHERE PLAATSNUMMER = {1}",
@@ -193,6 +202,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes a spot that corresponds with the input
         public void Remove(Spot removeSpot, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM PLAATS WHERE PLAATSNUMMER = {0}",

@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
-
 {
     class Event : IDatabase<Event>
     {
+        //Fields
         private string eventName;
 
         private int eventID;
@@ -21,6 +21,7 @@ namespace Proftaak_ICT4Events
         List<User> users;
         Location eventLocation;
 
+        //Properties
         #region properties
         public string EventName
         {
@@ -64,6 +65,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor that creates a single event using a location.
         public Event(string eventName, int eventID, int amountParticipants, int reportPercentage, DateTime startDate, DateTime endDate, Location eventLocation)
         {
             this.eventName = eventName;
@@ -77,6 +79,7 @@ namespace Proftaak_ICT4Events
             users = new List<User>();
         }
 
+        //A function that creates a list of all events by using data from the database
         public static List<Event> getAll(Database database)
         {
             List<string> eventColumns = new List<string>();
@@ -110,6 +113,7 @@ namespace Proftaak_ICT4Events
             return allEvents;
         }
 
+        //A single event gets constructed according to the right eventID
         public Event Get(string eventID, Database database)
         {
             List<string> eventColumns = new List<string>();
@@ -140,12 +144,14 @@ namespace Proftaak_ICT4Events
             return getEvent;
         }
 
+        //The database adds a single event
         public void Add(Event newEvent, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO EVENEMENT VALUES ({0}, '{1}', {2}, {3}, TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{5}', 'DD/MM/YYYY HH24:MI:SS'), {6})",
                 newEvent.eventID, newEvent.eventName, newEvent.eventLocation.LocationID, newEvent.amountParticipants, newEvent.startDate, newEvent.endDate, newEvent.reportPercentage));
         }
 
+        //The database edits an event to its current values
         public void Edit(Event updateEvent, Database database)
         {
             database.editDatabase(String.Format("UPDATE EVENEMENT SET EVENEMENTNAAM = '{0}', LOCATIEID = {1}, AANTALDEELNEMERS = {2}, STARTDATUM = TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), EINDDATUM = TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), RAPPORTEERPERCENTAGE = {5} WHERE EVENEMENTID = {6}",
@@ -153,12 +159,14 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //An event is removes from the database using it's ID
         public void Remove(Event removeEvent, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM EVENEMENT WHERE EVENEMENTID = {0}",
                 removeEvent.eventID));
         }
 
+        //A simple ToString to make Event items presentable and readable
         public override string ToString()
         {
             return eventName;

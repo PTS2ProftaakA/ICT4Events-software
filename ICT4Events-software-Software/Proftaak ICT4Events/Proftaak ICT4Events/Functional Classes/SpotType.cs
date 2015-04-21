@@ -8,6 +8,7 @@ namespace Proftaak_ICT4Events
 {
     public class SpotType : IDatabase<SpotType>
     {
+        //Fields
         private string spotTypeName;
 
         private int spotTypeID;
@@ -15,6 +16,7 @@ namespace Proftaak_ICT4Events
 
         private Database database;
 
+        //Properties
         #region properties
         public string SpotTypeName
         {
@@ -33,6 +35,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor that creates a spottype, this is used by spot
         public SpotType(string spotTypeName, int spotTypeID, int amountOfPersons)
         {
             this.spotTypeName = spotTypeName;
@@ -42,6 +45,8 @@ namespace Proftaak_ICT4Events
             database = new Database();
         }
 
+        //Returns all spottypes form the database
+        //They are constructed as they are pulled from the database
         public static List<SpotType> GetAll(Database database)
         {
             List<string> spotTypeColumns = new List<string>();
@@ -67,6 +72,7 @@ namespace Proftaak_ICT4Events
             return allSpotTypes;
         }
 
+        //Returns spottype corresponding to the spottype ID
         public SpotType Get(string spotTypeID, Database database)
         {
             List<string> spotTypeColumns = new List<string>();
@@ -92,12 +98,14 @@ namespace Proftaak_ICT4Events
             return getSpotType;
         }
 
+        //Adds a spottype to the database
         public void Add(SpotType newSpotType, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO PLAATSTYPE VALUES ({0}, '{1}', {2})",
                 newSpotType.SpotTypeID, newSpotType.spotTypeName, newSpotType.amountOfPersons));
         }
 
+        //Edits a spottype to it's current values
         public void Edit(SpotType updateSpotType, Database database)
         {
             database.editDatabase(String.Format("UPDATE PLAATSTYPE SET PLAATSTYPE = '{0}' , HOEVEELHEIDPERSONEN = {1} WHERE PLAATSTYPEID = {2}",
@@ -105,12 +113,14 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Spottype is removes from the database according to the spottype ID
         public void Remove(SpotType removeSpotType, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM PLAATSTYPE WHERE PLAATSTYPEID = {0}",
                 removeSpotType.SpotTypeID));
         }
 
+        //Makes a more readable for the user
         public override string ToString()
         {
             return spotTypeName;

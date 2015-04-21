@@ -8,12 +8,14 @@ namespace Proftaak_ICT4Events
 {
     public class MaterialCategory : IDatabase<MaterialCategory>
     {
+        //Fields
         private string materialCategoryName;
 
         private int materialCategoryID;
 
         Database database;
 
+        //Properties
         #region Properties
         public string MaterialCategoryName
         {
@@ -27,6 +29,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //A constructor that creates different categories for materials
         public MaterialCategory(string materialCategoryName, int materialCategoryID)
         {
             this.materialCategoryName = materialCategoryName;
@@ -35,6 +38,8 @@ namespace Proftaak_ICT4Events
             database = new Database();
         }
 
+        //A function that gets all the categories from the database
+        //It constructs them and returns a list
         public static List<MaterialCategory> GetAll(Database database)
         {
             List<string> materialCategoryColumns = new List<string>();
@@ -58,6 +63,7 @@ namespace Proftaak_ICT4Events
             return allMaterialCategories;
         }
 
+        //A function that gets a single category from the database
         public MaterialCategory Get(string materialCategoryID, Database database)
         {
             List<string> materialCategoryColumns = new List<string>();
@@ -81,18 +87,21 @@ namespace Proftaak_ICT4Events
             return getMaterialCategory;
         }
 
+        //Adds a single category to the database
         public void Add(MaterialCategory newMaterialCategory, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MATERIAAL_CATEGORIE VALUES ({0}, '{1}')",
                 newMaterialCategory.MaterialCategoryID, newMaterialCategory.materialCategoryName));
         }
 
+        //Edits a single category with the current value of the category
         public void Edit(MaterialCategory updateMaterialCategory, Database database)
         {
             database.editDatabase(String.Format("UPDATE MATERIAAL_CATEGORIE SET CATNAAM = '{0}' WHERE MATCATID = {1}",
                 updateMaterialCategory.materialCategoryName, updateMaterialCategory.materialCategoryID));
         }
 
+        //Removes a category that corresponds with the input category
         public void Remove(MaterialCategory removeMaterialCategory, Database database)
         {
            database.editDatabase(String.Format("DELETE FROM MATERIAAL_CATEGORIE WHERE MATCATID = {0} ",

@@ -8,6 +8,7 @@ namespace Proftaak_ICT4Events
 {
     public class Rating : IDatabase<Rating>
     {
+        //Fields
         private string RFID;
         private string filePath;
 
@@ -16,6 +17,7 @@ namespace Proftaak_ICT4Events
 
         private bool positive;
 
+        //Properties
         #region properties
         public string propertyRFID
         {
@@ -44,6 +46,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor that creates a rating that belongs to a mediafile
         public Rating(string RFID, string FilePath, int RatingID, int CommentID, bool Positive)
         {
             this.RatingID = RatingID;
@@ -52,6 +55,8 @@ namespace Proftaak_ICT4Events
             this.CommentID = CommentID;
         }
 
+        //A function that returns all the ratings that correspond to a single mediafile
+        //The data is constructed and a list is created
         public static List<Rating> getAllFromFile(string filePath, Database database)
         {
             List<string> ratingColumns = new List<string>();
@@ -82,6 +87,8 @@ namespace Proftaak_ICT4Events
             return allRating;
         }
 
+        //A function that returns all the ratings that correspond to a single user
+        //The data is constructed and a list is created
         public static List<Rating> getAllFromUser(string RFID, Database database)
         {
             List<string> ratingColumns = new List<string>();
@@ -112,6 +119,7 @@ namespace Proftaak_ICT4Events
             return allRating;
         }
 
+        //Returns a single rating that corresponds to the ratingID
         public Rating Get(string ratingID, Database database)
         {
             List<string> ratingColumns = new List<string>();
@@ -138,12 +146,14 @@ namespace Proftaak_ICT4Events
             return getRating;
         }
 
+        //Adds a rating to the database
         public void Add(Rating newRating, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO OORDEEL VALUES ({0}, '{1}', '{2}', '{3}', '{4}')",
                 newRating.ratingID, newRating.RFID, newRating.filePath, newRating.commentID, newRating.positive));
         }
 
+        //Edits a rating with the current values of the rating
         public void Edit(Rating updateRating, Database database)
         {
             database.editDatabase(String.Format("UPDATE OORDEEL SET POSITIEF = '{0}' WHERE OORDEELID = {1}",
@@ -151,6 +161,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Remove rating that corresponds to the input rating
         public void Remove(Rating removeRating, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM OORDEEL WHERE OORDEELID = {0}",

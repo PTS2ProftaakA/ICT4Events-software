@@ -8,7 +8,8 @@ namespace Proftaak_ICT4Events
 {
     public class Reservation : IDatabase<Reservation>
     {
-        protected string RFID;
+        //Fields
+        private string RFID;
 
         private int rentalID;
         private int materialID;
@@ -24,6 +25,7 @@ namespace Proftaak_ICT4Events
 
         private User user;
 
+        //Properies
         #region properties
         public string PropertyRFID
         {
@@ -77,10 +79,14 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Empty constructor for easy acces to the functions
+        //This is an easy fix for a more complex, not tackled problem
         public Reservation()
         {
 
         }
+
+        //The constructor for a spotreservation, a user is needed to complete it
         public Reservation(string RFID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
         {
             this.RFID = RFID;
@@ -92,6 +98,7 @@ namespace Proftaak_ICT4Events
             this.spot = spot;
         }
 
+        //The constructor for a materialreservation, a user is needed to complete it
         public Reservation(string RFID, int rentalID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
         {
             this.RFID = RFID;
@@ -103,6 +110,8 @@ namespace Proftaak_ICT4Events
             this.material = material;
         }
 
+        //Returns a list of all reservations
+        //Depending on what type it is, a different constructor is used
         public List<Reservation> GetAll(Database database)
         {
             List<string> reservationColumns = new List<string>();
@@ -151,6 +160,8 @@ namespace Proftaak_ICT4Events
             return allreservations;
         }
 
+        //Returns a list of all reservations of one user
+        //Depending on what type it is, a different constructor is used
         public List<Reservation> GetAllFromUser(string RFID, Database database)
         {
             List<string> reservationColumns = new List<string>();
@@ -199,7 +210,7 @@ namespace Proftaak_ICT4Events
             return allreservations;
         }
 
-        
+        //A function that returns a specific reservation
         public Reservation Get(string rentalID, Database database)
         {
             List<string> reservationColumns = new List<string>();
@@ -245,6 +256,8 @@ namespace Proftaak_ICT4Events
             return getReservation;
         }
 
+        //Adds a reservation to the database
+        //The bool is converted to a string that indicates a YES('Y') or NO('N')
         public void Add(Reservation newReservation, Database database)
         {
             string isPayedString;
@@ -270,6 +283,8 @@ namespace Proftaak_ICT4Events
             }
         }
 
+        //Edits a reservation with the current value of the reservation
+        //The bool is converted to a string that indicates a YES('Y') or NO('N')
         public void Edit(Reservation updateReservation, Database database)
         {
             string isPayedString;
@@ -288,12 +303,15 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes a reservation corresponding to the input
         public void Remove(Reservation removeReservation, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
                 removeReservation.rentalID));
         }
 
+        //Returns a string that is more readable for the user
+        //Depending on what tyoe it is, it will return different strings
         public override string ToString()
         {
             if(material != null)
