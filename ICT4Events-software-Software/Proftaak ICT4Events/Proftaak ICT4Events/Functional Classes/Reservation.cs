@@ -299,11 +299,11 @@ namespace Proftaak_ICT4Events
         {
             if(material != null)
             {
-                return material.ToString() + " - " + startDate.Date + " - " + endDate.Date;
+                return material.ToString() + "\t \t" + startDate.ToString("d") + "\t" + endDate.ToString("d");
             }
             else
             {
-                return spot.ToString() + " - " + startDate.Date + " - " + endDate.Date;
+                return spot.ToString() + "\t \t" + startDate.ToString("d") + "\t" + endDate.ToString("d");
             }
         }
     }

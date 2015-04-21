@@ -26,6 +26,8 @@ namespace Proftaak_ICT4Events
         private Database database;
 
         private FTPClient client;
+
+        private ListViewItem selectedSpot = null;
         public UIMainForm()
         {
             InitializeComponent();
@@ -48,6 +50,8 @@ namespace Proftaak_ICT4Events
 
             client = new FTPClient();
             ReloadTreeView();
+
+            lvAvailableSpots.CheckBoxes = true;
         }
 
         private void ReloadTreeView()
@@ -339,11 +343,28 @@ namespace Proftaak_ICT4Events
 
         private void btnEManagementNew_Click(object sender, EventArgs e)
         {
-            btnEManagementNew.Visible = true;
-            btnEManagementNew.Enabled = true;
-            
-            btnEManagementSave.Visible = false;
-            btnEManagementSave.Enabled = false;
+            btnEManagementNewSave.Visible = !btnEManagementNewSave.Visible;
+            btnEManagementNewSave.Enabled = !btnEManagementNewSave.Enabled;
+
+            btnEManagementSave.Visible = !btnEManagementSave.Visible;
+            btnEManagementSave.Enabled = !btnEManagementSave.Enabled;
+
+            if(btnEManagementNew.Text == "Nieuw")
+            {
+                btnEManagementNew.Text = "Annuleer";
+                tbEManagementNaam.Text = "";
+                cbEManagementLocation.Text = "";
+                nudEManagementAantal.Value = 0;
+                dtpEManagementStart.Value = DateTime.Now;
+                dtpEManagementEnd.Value = DateTime.Now;
+                nudEManagentPercentage.Value = 0;
+            }
+            else
+            {
+                btnEManagementNew.Text = "Nieuw";
+                cbEManagementEvents_SelectedIndexChanged(cbEManagementEvents.SelectedItem, EventArgs.Empty);
+                cbEManagementEvents.DataSource = eventManager.getAllEvents();
+            }
         }
 
         private void btnEManagementNewLocation_Click(object sender, EventArgs e)
@@ -370,6 +391,8 @@ namespace Proftaak_ICT4Events
             {
                 MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
             }
+
+            btnEManagementNew_Click(btnEManagementNew, EventArgs.Empty);
         }
 
         private void cbEManagementEvents_SelectedIndexChanged(object sender, EventArgs e)
@@ -449,5 +472,39 @@ namespace Proftaak_ICT4Events
                 lvAvailableSpots.Items.Add(item);
             }
         }
+
+        private void btnReservation_Click_1(object sender, EventArgs e)
+        {
+            Form f = new UI.UIReserve((int)nudMapPeople.Value);
+            f.ShowDialog();
+            if (f.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show("Done");
+            }
+        }
+
+        private void lvAvailableSpots_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            {
+                if (selectedSpot != null)
+                {
+                    selectedSpot.Checked = false;
+                }
+                selectedSpot = e.Item;
+
+
+                foreach (Spot spot in mapManager.GetAllspots())
+                {
+                    if (spot.SpotNumber.ToString() == selectedSpot.Text)
+                    {
+                        nudMapPeople.Minimum = 1;
+                        nudMapPeople.Maximum = spot.SpotSpotType.AmountOfPersons;
+                        nudMapPeople.Value = spot.SpotSpotType.AmountOfPersons;
+                    }
+                }
+            }
+        }
+
+
     }
 }

@@ -142,14 +142,14 @@ namespace Proftaak_ICT4Events
 
         public void Add(Event newEvent, Database database)
         {
-            database.editDatabase(String.Format("INSERT INTO EVENEMENT VALUES ({0}, '{1}', '{2}', {3}, TO_DATE('{4}', 'DD-MM-YYYY'), TO_DATE('{5}', 'DD-MM-YYYY'), {6})",
-                newEvent.eventID, newEvent.eventName, newEvent.eventLocation, newEvent.amountParticipants, newEvent.startDate, newEvent.endDate, newEvent.reportPercentage));
+            database.editDatabase(String.Format("INSERT INTO EVENEMENT VALUES ({0}, '{1}', {2}, {3}, TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{5}', 'DD/MM/YYYY HH24:MI:SS'), {6})",
+                newEvent.eventID, newEvent.eventName, newEvent.eventLocation.LocationID, newEvent.amountParticipants, newEvent.startDate, newEvent.endDate, newEvent.reportPercentage));
         }
 
         public void Edit(Event updateEvent, Database database)
         {
-            database.editDatabase(String.Format("UPDATE EVENEMENT SET EVENEMENTNAAM = '{0}', LOCATIENAAM = '{1}', AANTALDEELNEMERS = {2}, STARTDATUM = TO_DATE('{3}', 'DD-MM-YYYY'), EINDDATUM = TO_DATE('{4}', 'DD-MM-YYYY'), RAPPORTEERPERCENTAGE = {5} WHERE EVENTID = {6}",
-                updateEvent.eventName, updateEvent.eventLocation, updateEvent.amountParticipants, updateEvent.startDate, updateEvent.endDate, updateEvent.reportPercentage, updateEvent.eventID));
+            database.editDatabase(String.Format("UPDATE EVENEMENT SET EVENEMENTNAAM = '{0}', LOCATIEID = {1}, AANTALDEELNEMERS = {2}, STARTDATUM = TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), EINDDATUM = TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), RAPPORTEERPERCENTAGE = {5} WHERE EVENEMENTID = {6}",
+                updateEvent.eventName, updateEvent.eventLocation.LocationID, updateEvent.amountParticipants, updateEvent.startDate, updateEvent.endDate, updateEvent.reportPercentage, updateEvent.eventID));
 
         }
 

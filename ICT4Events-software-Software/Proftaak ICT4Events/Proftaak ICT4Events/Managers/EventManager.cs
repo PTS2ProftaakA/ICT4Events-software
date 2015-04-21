@@ -48,9 +48,9 @@ namespace Proftaak_ICT4Events
         {
             if (name != null || start <= end)
             {
-                Event nieuwEvent = new Event(name, database.nextSequenceValue("EVENTSEQUENCE"), maxPersons, reportPercentage, start, end, location);
+                Event newEvent = new Event(name, 1, maxPersons, reportPercentage, start, end, location);
 
-                nieuwEvent.Edit(nieuwEvent, database);
+                newEvent.Add(newEvent, database);
                 return true;
             }
             return false;

@@ -21,6 +21,8 @@ namespace Proftaak_ICT4Events.UI
         {
             InitializeComponent();
 
+            this.ControlBox = false;
+
             userRFID = new RFID();
             database = new Database();
 
