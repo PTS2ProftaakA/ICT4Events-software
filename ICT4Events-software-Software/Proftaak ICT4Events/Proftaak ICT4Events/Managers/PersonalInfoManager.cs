@@ -18,7 +18,7 @@ namespace Proftaak_ICT4Events
 
         public User GetSpecificUser(string RFID) 
         {
-            return null;
+            return User.StaticGet(RFID, database);
         }
 
         public void SaveUser(User user) 

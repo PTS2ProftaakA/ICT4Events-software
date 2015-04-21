@@ -25,7 +25,7 @@ namespace Proftaak_ICT4Events
         }
         public void makePost(MediaType type, string description, string filePath)
         {
-            MediaFile newmedia = new MediaFile(filePath, description, CurrentUser.currentUser.propertyRFID, database.nextSequenceValue("MEDIABESTANDSEQUENCE"), CurrentUser.currentUser.EventID, DateTime.Now, type);
+            MediaFile newmedia = new MediaFile(filePath, description, CurrentUser.currentUser.propertyRFID, 1, CurrentUser.currentUser.EventID, DateTime.Now, type);
             newmedia.Add(newmedia, database);
         }
 
