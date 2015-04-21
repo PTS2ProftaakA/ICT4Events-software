@@ -35,7 +35,7 @@ namespace Proftaak_ICT4Events.UI
         private void btnMakePostPost_Click(object sender, EventArgs e)
         {
             MediaType = (MediaType)cbPostMakeType.SelectedItem;
-            Text = tbMakePostPath.Text;
+            Text = tbPostMakeText.Text;
             Path = tbMakePostPath.Text;
             Username = CurrentUser.currentUser.Username;
             ProfilePath = CurrentUser.currentUser.PhotoPath;

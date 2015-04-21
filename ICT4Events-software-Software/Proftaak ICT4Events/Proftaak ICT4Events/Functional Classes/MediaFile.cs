@@ -99,10 +99,10 @@ namespace Proftaak_ICT4Events
             List<MediaFile> selectedMediaFiles = new List<MediaFile>();
 
             mediaFilesColumns.Add("MEDIABESTANDID");
-            mediaFilesColumns.Add("BESTANDSLOCATIE");
+            mediaFilesColumns.Add("BESTANDLOCATIE");
             mediaFilesColumns.Add("EVENEMENTID");
             mediaFilesColumns.Add("RFID");
-            mediaFilesColumns.Add("BESTAND");
+            mediaFilesColumns.Add("BESTANDTYPE");
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
 
@@ -110,7 +110,7 @@ namespace Proftaak_ICT4Events
 
             if(specification == "latest")
             {
-                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 ORDER BY UPLOADDATUM DESC";
+                query = "SELECT * FROM (SELECT * FROM MEDIABESTAND ORDER BY UPLOADDATUM DESC) WHERE ROWNUM <= 10";
             }
             else if(specification == "popular")
             {
@@ -157,10 +157,10 @@ namespace Proftaak_ICT4Events
             MediaFile getMediaFile = null;
 
             mediaFilesColumns.Add("MEDIABESTANDID");
-            mediaFilesColumns.Add("BESTANDSLOCATIE");
+            mediaFilesColumns.Add("BESTANDLOCATIE");
             mediaFilesColumns.Add("EVENEMENTID");
             mediaFilesColumns.Add("RFID");
-            mediaFilesColumns.Add("BESTAND");
+            mediaFilesColumns.Add("BESTANDTYPE");
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
 

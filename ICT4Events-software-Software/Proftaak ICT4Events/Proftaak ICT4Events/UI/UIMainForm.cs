@@ -128,7 +128,7 @@ namespace Proftaak_ICT4Events
 
             if (tcMainForm.SelectedIndex == 0)
             {
-                
+                FeedFill();
             }
             //verhuur
             if (tcMainForm.SelectedIndex == 1)
@@ -178,27 +178,33 @@ namespace Proftaak_ICT4Events
         {
             UI.makePost f = new UI.makePost(feedManager.getTypes(database));
             f.ShowDialog();
+
             if (f.DialogResult == DialogResult.OK)
             {
+
                 feedManager.makePost(f.MediaType, f.Text, f.Path);
+                FeedFill();
 
 
             }
         }
-        private void FeedFill(string search, MediaType type, bool tenMostPopuliar, bool tenNewest)
+        private void FeedFill()
         {
+            flpPosts.Controls.Clear();
             foreach (MediaFile m in feedManager.GetFiles("latest", database))
             {
+
                 User user = personalInfoManager.GetSpecificUser(m.PropertyRFID);
                 Post newpost = new Post(m.MediaTypeName, m.Description, m.FilePath, user.Username, user.PhotoPath);
+                
+                flpPosts.Controls.Add(newpost);
+                flpPosts.Refresh();
+
             }
-
-        }
-
-        private void btnMakePost_Click(object sender, EventArgs e)
-        {
             
         }
+
+       
 
         //RENTAL STUFF//
 
@@ -478,6 +484,12 @@ namespace Proftaak_ICT4Events
 
         private void btnReservation_Click_1(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+            //
+            int TIJDELIJK = 1;
+            //
+            Form f = new UI.UIReserve((int)nudMapPeople.Value, TIJDELIJK);
+=======
             Spot s = null;
             foreach (Spot spot in mapManager.GetAllspots())
             {
@@ -487,6 +499,7 @@ namespace Proftaak_ICT4Events
                 }
             }
             Form f = new UI.UIReserve((int)nudMapPeople.Value, s.SpotNumber);
+>>>>>>> origin/Software
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK)
             {

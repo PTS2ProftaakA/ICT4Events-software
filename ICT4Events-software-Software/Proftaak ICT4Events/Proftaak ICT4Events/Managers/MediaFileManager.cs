@@ -33,7 +33,8 @@ namespace Proftaak_ICT4Events
 
         public void EditFile(MediaFile file)
         {
-
+            Rating rating = new Rating(CurrentUser.currentUser.propertyRFID, file.FilePath, 1, -1, true);
+            file.Ratings.Add(rating);
         }
 
         public void testComment(Comment comment)
