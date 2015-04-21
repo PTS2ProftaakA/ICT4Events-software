@@ -29,5 +29,20 @@ namespace Proftaak_ICT4Events
         {
             return Spot.SearchAll(spottype, database);
         }
+
+        public bool AddBasicUser(string RFID, string reservee, string name, string emailaddress, string username, string password, bool administrator, bool loggedIn, int useriD, int spotnumber)
+        {
+            User user = new User(RFID, reservee, name, emailaddress, username, password, administrator, loggedIn, useriD, spotnumber);
+            try
+            {
+                user.AddBasicUser(user,database);
+                return true;
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
     }
 }
