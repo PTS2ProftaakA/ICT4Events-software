@@ -143,7 +143,7 @@ namespace Proftaak_ICT4Events
             //instellingen
             if (tcMainForm.SelectedIndex == 3)
             {
-                //  SettingsFillControls(LogInManager.INGELODGE USER)
+                SettingsFillControls(CurrentUser.currentUser);
             }
             //kaart
             if (tcMainForm.SelectedIndex == 4)
@@ -239,11 +239,11 @@ namespace Proftaak_ICT4Events
         private void SettingsFillControls(User user)
         {
             tbSettingsName.Text = user.Name;
-            tbSettingsEmail.Text = user.EmailAdres;
+            tbSettingsEmail.Text = user.EmailAddress;
             tbSettingsUsername.Text = user.Username;
             dpBirthDate.Value = user.DateOfBirth;
             pbSettingsPicture.ImageLocation = user.PhotoPath;
-
+            lbPersonRentals.DataSource = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
         }
         private void btnSettingsEdit_Click(object sender, EventArgs e)
         {
@@ -391,7 +391,7 @@ namespace Proftaak_ICT4Events
 
         private void cbMaterialCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbMaterialProduct.DataSource = materialManager.getAllMaterial((MaterialCategory)cbMaterialCategory.SelectedItem);
+            cbMaterialProduct.DataSource = materialManager.getAllMaterialFromCategory((MaterialCategory)cbMaterialCategory.SelectedItem);
         }
 
         private void cbMaterialProduct_SelectedIndexChanged(object sender, EventArgs e)

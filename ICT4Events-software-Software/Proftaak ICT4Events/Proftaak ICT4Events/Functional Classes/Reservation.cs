@@ -77,6 +77,10 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        public Reservation()
+        {
+
+        }
         public Reservation(string RFID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
         {
             this.RFID = RFID;
@@ -140,6 +144,54 @@ namespace Proftaak_ICT4Events
                         Convert.ToDateTime(dataTable[3][i]),
                         dataTable[5][i].ToUpper() == "Y",
                         Spot.Get(dataTable[7][i], database)));
+                    }
+                }
+            }
+
+            return allreservations;
+        }
+
+        public List<Reservation> GetAllFromUser(string RFID, Database database)
+        {
+            List<string> reservationColumns = new List<string>();
+            List<Reservation> allreservations = new List<Reservation>();
+
+            reservationColumns.Add("HUURID");
+            reservationColumns.Add("RFID");
+            reservationColumns.Add("STARTDATUM");
+            reservationColumns.Add("EINDDATUM");
+            reservationColumns.Add("HUURTYPE");
+            reservationColumns.Add("BETAALD");
+            reservationColumns.Add("MATID");
+            reservationColumns.Add("PLAATSNUMMER");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE  RFID = '" + RFID + "' AND HUURTYPE = 'MATERIAAL'", reservationColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    if (dataTable[4][i] == "MATERIAAL")
+                    {
+                        allreservations.Add(new Reservation(
+                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[6][i]),
+                        Convert.ToDateTime(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[3][i]),
+                        dataTable[5][i].ToUpper() == "Y",
+                        Material.GetStatic(dataTable[6][i], database)));
+                    }
+                    else
+                    {
+                        allreservations.Add(new Reservation(
+                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[7][i]),
+                        Convert.ToDateTime(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[3][i]),
+                        dataTable[5][i].ToUpper() == "Y",
+                        Spot.GetStatic(dataTable[7][i], database)));
                     }
                 }
             }
@@ -241,6 +293,18 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM RESERVERING WHERE HUURID = {0}",
                 removeReservation.rentalID));
+        }
+
+        public override string ToString()
+        {
+            if(material != null)
+            {
+                return material.ToString() + " - " + startDate.Date + " - " + endDate.Date;
+            }
+            else
+            {
+                return spot.ToString() + " - " + startDate.Date + " - " + endDate.Date;
+            }
         }
     }
 }

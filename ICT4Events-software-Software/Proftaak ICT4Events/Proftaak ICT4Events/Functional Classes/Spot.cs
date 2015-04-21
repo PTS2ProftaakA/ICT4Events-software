@@ -148,6 +148,38 @@ namespace Proftaak_ICT4Events
             return getSpot;
         }
 
+        public Spot GetStatic(string spotNumber, Database database)
+        {
+            List<string> spotColumns = new List<string>();
+            Spot getSpot = null;
+
+            spotColumns.Add("PLAATSNUMMER");
+            spotColumns.Add("PLAATSTYPEID");
+            spotColumns.Add("PRIJS");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER = " + spotNumber, spotColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                SpotType thisSpotType = null;
+
+                foreach (SpotType spotType in SpotType.GetAll(database))
+                {
+                    if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][1]))
+                    {
+                        thisSpotType = spotType;
+                    }
+                }
+
+                getSpot = new Spot(
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    thisSpotType);
+            }
+
+            return getSpot;
+        }
+
         public void Add(Spot newSpot, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO PLAATS VALUES ({0}, {1}, {2})",
@@ -165,6 +197,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM PLAATS WHERE PLAATSNUMMER = {0}",
                 removeSpot.spotNumber));
+        }
+
+        public override string ToString()
+        {
+            return spotSpotType.SpotTypeName + " - " + spotSpotType.AmountOfPersons;
         }
     }
 }

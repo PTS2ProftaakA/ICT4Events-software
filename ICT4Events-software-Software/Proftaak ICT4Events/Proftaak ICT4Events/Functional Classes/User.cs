@@ -46,7 +46,7 @@ namespace Proftaak_ICT4Events
             get { return name; }
             set { name = value; }
         }
-        public string EmailAdres
+        public string EmailAddress
         {
             get { return emailAddress; }
             set { emailAddress = value; }

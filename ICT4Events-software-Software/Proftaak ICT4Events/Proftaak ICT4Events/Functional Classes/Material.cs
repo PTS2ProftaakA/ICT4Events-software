@@ -196,6 +196,47 @@ namespace Proftaak_ICT4Events
             return getMaterial;
         }
 
+        public static Material GetStatic(string materialID, Database database)
+        {
+            List<string> materialColumns = new List<string>();
+            Material getMaterial = null;
+
+            materialColumns.Add("MATID");
+            materialColumns.Add("NAAM");
+            materialColumns.Add("HOEVEELHEID");
+            materialColumns.Add("BORG");
+            materialColumns.Add("OMSCHRIJVING");
+            materialColumns.Add("CATEGORIE");
+            materialColumns.Add("FOTOPAD");
+
+            //Has to be fixed with current database
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                MaterialCategory thisMaterialCategory = null;
+
+                foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
+                {
+                    if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][1]))
+                    {
+                        thisMaterialCategory = materialCategory;
+                    }
+                }
+                getMaterial = new Material(
+                    dataTable[1][1],
+                    dataTable[4][1],
+                    dataTable[6][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToDecimal(dataTable[3][1]) / 100,
+                    thisMaterialCategory);
+            }
+
+            return getMaterial;
+        }
+
         public void Add(Material newMaterial, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MATERIAAL VALUES ({0}, '{1}', {2}, {3}, '{4}', {5}, '{6}')",

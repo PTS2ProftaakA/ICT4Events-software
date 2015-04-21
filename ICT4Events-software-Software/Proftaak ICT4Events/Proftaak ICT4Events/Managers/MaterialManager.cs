@@ -20,9 +20,14 @@ namespace Proftaak_ICT4Events
             return MaterialCategory.GetAll(database);
         }
 
-        public List<Material> getAllMaterial(MaterialCategory materialCategory)
+        public List<Material> getAllMaterialFromCategory(MaterialCategory materialCategory)
         {
             return Material.getAll(materialCategory, database);
+        }
+        public List<Reservation> getAllMaterialFromUser(User user)
+        {
+            Reservation reservation = new Reservation();
+            return reservation.GetAllFromUser(user.propertyRFID, database);
         }
     }
 }
