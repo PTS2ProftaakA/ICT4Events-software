@@ -134,6 +134,22 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
+        public User(string RFID, string reservee, string name, string emailAddress, string username, string password, bool administrator, bool loggedIn, int userID, int spotNumber)
+        {
+            this.RFID = RFID;
+            this.reservee = reservee;
+            this.name = name;
+            this.emailAddress = emailAddress;
+            this.username = username;
+            this.password = password;
+            this.administrator = administrator;
+            this.loggedIn = loggedIn;
+            this.userID = userID;
+            this.spotNumber = spotNumber;
+
+            string test = administrator ? "Y" : "N";
+        }
+
         public static List<User> getAll(Database database)
         {
             List<string> userColumns = new List<string>();
@@ -319,6 +335,14 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD-MM-YYYY'), '{9}', '{10}', {11}, '{12}', '{13}')",
                 newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn));
+        }
+
+        public void AddBasicUser(User newUser, Database database)
+        {
+            String s = String.Format("INSERT INTO GEBRUIKER(RFID, RESERVEERDER, NAAM, EMAIL, INLOGNAAM, WACHTWOORD, ADMINISTATOR, INGELOGD, GEBRUIKERID,PLAATSNUMMER ) VALUES ('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', GEBRUIKERSEQUENCE.nextval, {8})",
+               newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.username, newUser.password, newUser.administrator ? "Y" : "N", newUser.loggedIn ? "Y" : "N", newUser.spotNumber);
+
+            database.editDatabase(s);
         }
 
         public void Edit(User updateUser, Database database)

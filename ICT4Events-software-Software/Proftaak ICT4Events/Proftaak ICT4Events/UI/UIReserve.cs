@@ -13,10 +13,17 @@ namespace Proftaak_ICT4Events.UI
     public partial class UIReserve : Form
     {
         private List<TextBox>[] textboxes;
+        private MapManager mapmanager;
+        private Database database;
+        private int spotNumber;
         
-        public UIReserve(int count)
+        public UIReserve(int count, int spotNumber)
         {
             InitializeComponent();
+
+            this.spotNumber = spotNumber;
+            database = new Database();
+            mapmanager = new MapManager(database);
 
             textboxes = new List<TextBox>[2];
             textboxes[0] = new List<TextBox>();
@@ -42,15 +49,31 @@ namespace Proftaak_ICT4Events.UI
 
             insertvalues[0] = new List<string>();
             insertvalues[1] = new List<string>();
-            string s = "";
 
             for (int i = 0; i < textboxes[1].Count();i++ )
             {
-                insertvalues[0].Add(textboxes[0][i].Text);
-                insertvalues[1].Add(textboxes[1][i].Text);
-                s += insertvalues[0][i] + " - " + insertvalues[1][i] + "\r";
+                if (textboxes[0][i].Text != "" && textboxes[1][i].Text != "")
+                {
+                    insertvalues[0].Add(textboxes[0][i].Text);
+                    insertvalues[1].Add(textboxes[1][i].Text);
+
+                    mapmanager.AddBasicUser(
+                        Guid.NewGuid().ToString("N").Substring(0, 10),
+                        CurrentUser.currentUser.UserID.ToString(),
+                        insertvalues[0][i],
+                        insertvalues[1][i],
+                        Guid.NewGuid().ToString("N").Substring(0, 10),
+                        Guid.NewGuid().ToString("N").Substring(0, 15),
+                        false,
+                        false,
+                        1,
+                        spotNumber);
+                }
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> origin/Software
             Close();
         }
 
