@@ -45,6 +45,7 @@ namespace Proftaak_ICT4Events
 
         private List<string> GetDirectoryListing(string path)
         {
+            return new List<string>();
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
             request.Method = WebRequestMethods.Ftp.ListDirectory;
             request.Credentials = new NetworkCredential(mUser, mPass);

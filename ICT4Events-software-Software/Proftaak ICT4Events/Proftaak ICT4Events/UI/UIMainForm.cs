@@ -478,7 +478,15 @@ namespace Proftaak_ICT4Events
 
         private void btnReservation_Click_1(object sender, EventArgs e)
         {
-            Form f = new UI.UIReserve((int)nudMapPeople.Value);
+            Spot s = null;
+            foreach (Spot spot in mapManager.GetAllspots())
+            {
+                if (spot.SpotNumber.ToString() == selectedSpot.Text)
+                {
+                    s = spot;
+                }
+            }
+            Form f = new UI.UIReserve((int)nudMapPeople.Value, s.SpotNumber);
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK)
             {

@@ -70,10 +70,6 @@ namespace Proftaak_ICT4Events.UI
                         spotNumber);
                 }
             }
-<<<<<<< HEAD
-            
-=======
->>>>>>> origin/Software
             Close();
         }
 

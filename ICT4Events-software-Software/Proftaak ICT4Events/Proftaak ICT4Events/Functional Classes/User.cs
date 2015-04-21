@@ -339,7 +339,7 @@ namespace Proftaak_ICT4Events
 
         public void AddBasicUser(User newUser, Database database)
         {
-            String s = String.Format("INSERT INTO GEBRUIKER(RFID, RESERVEERDER, NAAM, EMAIL, INLOGNAAM, WACHTWOORD, ADMINISTATOR, INGELOGD, GEBRUIKERID,PLAATSNUMMER ) VALUES ('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', GEBRUIKERSEQUENCE.nextval, {8})",
+            String s = String.Format("INSERT INTO GEBRUIKER(RFID, RESERVEERDER, NAAM, EMAIL, INLOGNAAM, WACHTWOORD, ADMINISTRATOR, INGELOGD, GEBRUIKERID,PLAATSNUMMER ) VALUES ('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', GEBRUIKERSEQUENCE.nextval, {8})",
                newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.username, newUser.password, newUser.administrator ? "Y" : "N", newUser.loggedIn ? "Y" : "N", newUser.spotNumber);
 
             database.editDatabase(s);
