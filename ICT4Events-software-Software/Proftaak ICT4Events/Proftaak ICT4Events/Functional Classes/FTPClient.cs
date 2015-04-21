@@ -10,7 +10,7 @@ namespace Proftaak_ICT4Events
 {
     class FTPClient
     {
-        private const string mHost = "ftp://127.0.0.1:21",
+        private const string mHost = "ftp://192.168.0.4:21",
                              mUser = "SME",
                              mPass = "";
 
