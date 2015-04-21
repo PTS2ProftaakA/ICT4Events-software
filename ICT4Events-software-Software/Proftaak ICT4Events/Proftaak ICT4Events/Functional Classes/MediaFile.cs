@@ -16,6 +16,7 @@ namespace Proftaak_ICT4Events
 
     public class MediaFile : IDatabase<MediaFile>
     {
+        //Fields
         private string filePath;
         private string description;
         private string RFID;
@@ -30,6 +31,7 @@ namespace Proftaak_ICT4Events
         private List<Rating> ratings;
         private List<Comment> comments;
 
+        //Properties
         #region properties
         public string FilePath
         {
@@ -78,6 +80,8 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor for creating a single mediafile
+        //The mediafile has a strong connection with the user
         public MediaFile(string filePath, string description, string RFID, int mediaFileID, int eventID, DateTime uploadDate, MediaType mediaTypeName)
         {
             this.filePath = filePath;
@@ -92,6 +96,8 @@ namespace Proftaak_ICT4Events
             comments = new List<Comment>();
         }
 
+        //A function that gets all the mediafiledata from the database with a certain specification
+        //It is used to construct all the mediafiles
         public static List<MediaFile> GetFiles(string specification, Database database)
         {
             //Specification can be latest, popular or a text to search with
@@ -151,6 +157,7 @@ namespace Proftaak_ICT4Events
             return selectedMediaFiles;
         }
 
+        //Returns a single mediafile which has the input ID
         public MediaFile Get(string mediaFileID, Database database)
         {
             List<string> mediaFilesColumns = new List<string>();
@@ -191,12 +198,14 @@ namespace Proftaak_ICT4Events
             return getMediaFile;
         }
 
+        //Adds a mediafile to the database
         public void Add(MediaFile newMediaFile, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO MEDIABESTAND VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', TO_DATE('{6}', 'DD/MM/YYYY HH24:MI:SS'))",
                 newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.RFID, newMediaFile.mediaTypeName.MediaTypeID, newMediaFile.description, newMediaFile.uploadDate));
         }
 
+        //Edits a mediafile in the database to its current values
         public void Edit(MediaFile updateMediaFile, Database database)
         {
             database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, RFID = '{2}', BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD/MM/YYYY HH24:MI:SS') WHERE MEDIABESTANDID = {6}",
@@ -204,6 +213,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes a mediafile from the database
         public void Remove(MediaFile removeMediaFile, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM MEDIABESTAND WHERE MEDIABESTANDID = {0}",

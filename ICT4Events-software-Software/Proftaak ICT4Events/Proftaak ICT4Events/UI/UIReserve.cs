@@ -12,11 +12,14 @@ namespace Proftaak_ICT4Events.UI
 {
     public partial class UIReserve : Form
     {
+        //Fields
         private List<TextBox>[] textboxes;
         private MapManager mapmanager;
         private Database database;
         private int spotNumber;
         
+        //Creates a popup screen where the names and emailaddresses can be added
+        //The names and emailaddresses are for the people coming with the reservee
         public UIReserve(int count, int spotNumber)
         {
             InitializeComponent();
@@ -43,6 +46,8 @@ namespace Proftaak_ICT4Events.UI
             }
         }
 
+        //Creates users for the names and emailaddresses
+        //These people get usernames, passwords and RFIDs
         private void btnOK_Click(object sender, EventArgs e)
         {
             List<string>[] insertvalues = new List<string>[2];

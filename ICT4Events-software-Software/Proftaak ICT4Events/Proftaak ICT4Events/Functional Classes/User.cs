@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
-
 {
     public class User : IDatabase<User>
     {
+        //Fields
         private string RFID;
         private string reservee;
         private string name;
@@ -30,6 +30,7 @@ namespace Proftaak_ICT4Events
         private List<Reservation> reservations;
         private List<Hobby> hobbies;
 
+        //properties
         #region properties
         public string propertyRFID
         {
@@ -113,6 +114,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor that creates a user as part of an event
         public User(string RFID, string reservee, string name, string emailAddress, string phoneNumber, string photoPath, string username, string password, int userID, int eventID, int spotNumber, bool administrator, bool loggedIn, DateTime dateOfBirth)
         {
             this.RFID = RFID;
@@ -134,6 +136,7 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
+        //Creates a user with fewer properties for implementation purposes
         public User(string RFID, string reservee, string name, string emailAddress, string username, string password, bool administrator, bool loggedIn, int userID, int spotNumber)
         {
             this.RFID = RFID;
@@ -150,6 +153,7 @@ namespace Proftaak_ICT4Events
             string test = administrator ? "Y" : "N";
         }
 
+        //Gets all the users from the database using the more complete constructor
         public static List<User> getAll(Database database)
         {
             List<string> userColumns = new List<string>();
@@ -198,6 +202,7 @@ namespace Proftaak_ICT4Events
             return allUsers;
         }
 
+        //Returns a single user from the database that corresponds with the ID input
         public User Get(string userID, Database database)
         {
             List<string> userColumns = new List<string>();
@@ -243,6 +248,8 @@ namespace Proftaak_ICT4Events
             return getUser;
         }
 
+        //Returns a single user from the database that corresponds with the ID input
+        //This get function is more accesible because of the static property
         public static User StaticGet(string RFID, Database database)
         {
             List<string> userColumns = new List<string>();
@@ -287,6 +294,8 @@ namespace Proftaak_ICT4Events
             return getUser;
         }
 
+        //Returns a single user from the database that corresponds with the username and password
+        //This get function is more accesible because of the static property
         public static User StaticGet(string username, string password, Database database)
         {
             List<string> userColumns = new List<string>();
@@ -331,12 +340,14 @@ namespace Proftaak_ICT4Events
             return getUser;
         }
 
+        //Adds a user to the database
         public void Add(User newUser, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD-MM-YYYY'), '{9}', '{10}', {11}, '{12}', '{13}')",
                 newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn));
         }
 
+        //Adds a more basic user to the database
         public void AddBasicUser(User newUser, Database database)
         {
             String s = String.Format("INSERT INTO GEBRUIKER(RFID, RESERVEERDER, NAAM, EMAIL, INLOGNAAM, WACHTWOORD, ADMINISTRATOR, INGELOGD, GEBRUIKERID,PLAATSNUMMER ) VALUES ('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', GEBRUIKERSEQUENCE.nextval, {8})",
@@ -345,6 +356,7 @@ namespace Proftaak_ICT4Events
             database.editDatabase(s);
         }
 
+        //Edits the input user to it's current values
         public void Edit(User updateUser, Database database)
         {
             database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD-MM-YYYY'), INGELOGD = '{5}'  WHERE GEBRUIKERID = {6}",
@@ -352,6 +364,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes the input user from the database
         public void Remove(User removeUser, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM GEBRUIKER WHERE GEBRUIKERID = {0}",

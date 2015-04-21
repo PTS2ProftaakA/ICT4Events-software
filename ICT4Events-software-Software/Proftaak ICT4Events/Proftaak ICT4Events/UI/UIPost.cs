@@ -13,7 +13,8 @@ namespace Proftaak_ICT4Events
 {
     public partial class Post : UserControl
     {
-
+        //Creates a post with a certain type
+        //The type decides the visuals of the post
         public Post(MediaType type, string description, string filePath, string poster, string userPhoto)
         {
             InitializeComponent();
@@ -80,26 +81,31 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //not implemented yet
         private void btnPostLike_Click(object sender, EventArgs e)
         {
 
         }
 
+        //Creates a form to react to the posted object
         private void btnPostReageer_Click(object sender, EventArgs e)
         {
-            Form f = new Comments(giveMe());
-            f.Show();
+            Form newForm = new Comments(giveMe());
+            newForm.Show();
         }
-
         private Post giveMe()
         {
             return this;
         }
+
+        //Hides the ability to comment
         public void hideCommentBtn()
         {
             this.btnPostReageer.Visible = false;
             this.lblPostReageer.Visible = false;
         }
+
+        //Makes sure the location of the post is correct
         public void spaceRight()
         {
             pbPostPhoto.Visible = true;
@@ -125,11 +131,6 @@ namespace Proftaak_ICT4Events
             wmpPostPlayer.Location = wmp;
             lblTextPostContent.SendToBack();
         }
-
-
-
-
-
         // lblPostLike.Text
         // lblPostReageer.Text
     }

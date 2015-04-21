@@ -12,30 +12,29 @@ namespace Proftaak_ICT4Events
 {
     public partial class Comments : Form
     {
+        //Makes the post light up
         public Comments(Post post)
         {
             InitializeComponent();
             flpReactionsPost.Controls.Add(post);
             post.hideCommentBtn();
-            post.spaceRight();
-           
-            
+            post.spaceRight();            
         }
 
-        public Comments(UIComment reactie)
+        //Makes the comment light up
+        public Comments(UIComment comment)
         {
             InitializeComponent();
-            flpReactionsPost.Controls.Add(reactie);
-            reactie.hideComment();
-            reactie.makeSubject();
+            flpReactionsPost.Controls.Add(comment);
+            comment.hideComment();
+            comment.makeSubject();
         }
 
+        //Posts a new comment
         private void btnCommentsPost_Click(object sender, EventArgs e)
         {
-            UIComment r = new UIComment();
-            flpReactionsPost.Controls.Add(r);
+            UIComment newComment = new UIComment();
+            flpReactionsPost.Controls.Add(newComment);
         }
-
-       
     }
 }

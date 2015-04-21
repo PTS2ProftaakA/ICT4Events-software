@@ -21,11 +21,13 @@ namespace Proftaak_ICT4Events.UI
         {
             InitializeComponent();
 
+            //This is used so the user cannot acces the program without logging in
             this.ControlBox = false;
 
             userRFID = new RFID();
             database = new Database();
 
+            //Makes sure the computer knows when the scanner is attached or not
             userRFID.Attach += new AttachEventHandler(userRFID_Attach);
             userRFID.Detach += new DetachEventHandler(userRFID_Detach);
 
@@ -33,36 +35,38 @@ namespace Proftaak_ICT4Events.UI
 
             openCmdLine(userRFID);
 
+            //Makes this form undeniable for the user
+            //He has to log in to navigate the application
             ShowDialog();
         }
 
         void userRFID_Attach(object sender, AttachEventArgs e)
         {
+            //userRFID.Attached is boolean to see if the Phidgets is connected
             RFID userRFID = (RFID)sender;
             lblExplain.Text = "Of log in door je RFID te scannen!";
-            //userRFID.Attached is boolean to see if the Phidgets is connected;
         }
 
         void userRFID_Detach(object sender, DetachEventArgs e)
         {
+            //userRFID.Attached is boolean to see if the Phidgets is connected
             RFID userRFID = (RFID)sender;
-            lblExplain.Text = "Verbind de RFID-scanner!";
-            //userRFID.Attached is boolean to see if the Phidgets is connected;
+            lblExplain.Text = "Verbind de RFID-scanner!";         
         }
 
         public void userRFID_Tag(object sender, TagEventArgs e)
         {
+            //e.Tag is the actual RFID that belongs to the chip
+            //e.protocol is the protocol that belongs to that chip
+            //The user is retrieved from the database using a function from the User class
             CurrentUser.currentUser = User.StaticGet(e.Tag, database);
             if (CurrentUser.currentUser != null)
             {
                 this.Close();
             }
-
-            //e.Tag is the actual RFID that belongs to the chip
-            //e.protocol is the protocol that belongs to that chip
         }
 
-        //Source a piece of example code at http://www.phidgets.com/docs/Language_-_C_Sharp#Quick_Downloads
+        //Source of the piece of example code at http://www.phidgets.com/docs/Language_-_C_Sharp#Quick_Downloads
         #region Command line open functions
         private void openCmdLine(Phidget p)
         {
@@ -148,6 +152,9 @@ namespace Proftaak_ICT4Events.UI
         }
         #endregion
 
+        //Checks if the combination of username and password is correct
+        //If this is not the case an appropriate error will be shown
+        //If this is the case the user will be logged in and saved
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             if (tbInlogName.Text != "" && tbPassword.Text != "")

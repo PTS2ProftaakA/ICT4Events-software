@@ -15,7 +15,7 @@ namespace Proftaak_ICT4Events
             this.database = database;
         }
 
-
+        //Gets all the reactions from a single mediafile
         public List<Comment> GetReactions(MediaFile file)
         {
             return Comment.GetAllFromFile(file.FilePath, database);

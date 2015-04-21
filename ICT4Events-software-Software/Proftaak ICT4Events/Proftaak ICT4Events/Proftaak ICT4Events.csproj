@@ -120,7 +120,6 @@
     <Compile Include="Managers\PersonalInfoManager.cs" />
     <Compile Include="Functional Classes\Rating.cs" />
     <Compile Include="Managers\MapManager.cs" />
-    <Compile Include="Managers\ProductTypeManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Functional Classes\Reservation.cs" />

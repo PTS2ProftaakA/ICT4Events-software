@@ -14,19 +14,22 @@ namespace Proftaak_ICT4Events
         {
             this.database = database;
         }
-        public List<Comment> GetReactions(MediaFile file)
-        {
-            return Comment.GetAllFromFile(file.FilePath, database);
-        }
 
+        //Gets a list of all events, it uses the method from the Event class
         public List<Event> getAllEvents()
         {
             return Event.getAll(database);
         }
+
+        //Gets a list of all locations, it uses the method from the Location class
+
         public List<Location> getAllLocations()
         {
             return Location.getAll(database);
         }
+
+        //Edits an event using the Edit method in the Event class
+        //It has some basic restrictions to the data that will be edited
         public bool editEvent(Event eventToEdit, Location location, string name, DateTime start, DateTime end, int maxPersons, int reportPercentage)
         {
             if (name != null || start <= end)
@@ -44,6 +47,9 @@ namespace Proftaak_ICT4Events
             }
             return false;
         }
+
+        //Makes an event using the Add method in the Event class
+        //It has some basic restrictions to the data that will be added
         public bool makeEvent(Location location, string name, DateTime start, DateTime end, int maxPersons, int reportPercentage)
         {
             if (name != null || start <= end)
@@ -56,7 +62,8 @@ namespace Proftaak_ICT4Events
             return false;
         }
 
-
+        //Makes an location using the Add method in the Location class
+        //It has some basic restrictions to the data that will be added
         public bool newLocation(string locatieNaam, string address, string phoneNumber, string email, string city, string max)
         {
             int outInt;

@@ -126,9 +126,9 @@
             this.tbManagementProductName = new System.Windows.Forms.TextBox();
             this.tpPostBeheer = new System.Windows.Forms.TabPage();
             this.btnManagementGetPosts = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpReportedPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTestPost = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -169,7 +169,7 @@
             this.tcMainForm.Size = new System.Drawing.Size(1395, 684);
             this.tcMainForm.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tcMainForm.TabIndex = 0;
-            this.tcMainForm.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tcMainForm.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tcMainForm_DrawItem);
             this.tcMainForm.SelectedIndexChanged += new System.EventHandler(this.tcMainForm_SelectedIndexChanged);
             // 
             // tpTijdlijn
@@ -1293,7 +1293,7 @@
             // tpPostBeheer
             // 
             this.tpPostBeheer.Controls.Add(this.btnManagementGetPosts);
-            this.tpPostBeheer.Controls.Add(this.flowLayoutPanel1);
+            this.tpPostBeheer.Controls.Add(this.flpReportedPosts);
             this.tpPostBeheer.Location = new System.Drawing.Point(154, 4);
             this.tpPostBeheer.Margin = new System.Windows.Forms.Padding(4);
             this.tpPostBeheer.Name = "tpPostBeheer";
@@ -1313,13 +1313,13 @@
             this.btnManagementGetPosts.Text = "Get reported posts";
             this.btnManagementGetPosts.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // flpReportedPosts
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 39);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1176, 631);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flpReportedPosts.Location = new System.Drawing.Point(4, 39);
+            this.flpReportedPosts.Margin = new System.Windows.Forms.Padding(4);
+            this.flpReportedPosts.Name = "flpReportedPosts";
+            this.flpReportedPosts.Size = new System.Drawing.Size(1176, 631);
+            this.flpReportedPosts.TabIndex = 0;
             // 
             // lblMenu
             // 
@@ -1332,22 +1332,22 @@
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
             // 
-            // button1
+            // btnTestPost
             // 
-            this.button1.Location = new System.Drawing.Point(225, 41);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "TestPost";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTestPost.Location = new System.Drawing.Point(225, 41);
+            this.btnTestPost.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTestPost.Name = "btnTestPost";
+            this.btnTestPost.Size = new System.Drawing.Size(100, 28);
+            this.btnTestPost.TabIndex = 2;
+            this.btnTestPost.Text = "TestPost";
+            this.btnTestPost.UseVisualStyleBackColor = true;
             // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1431, 786);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnTestPost);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1463,7 +1463,7 @@
         private System.Windows.Forms.Label lblManagementProductName;
         private System.Windows.Forms.TextBox tbManagementProductName;
         private System.Windows.Forms.ComboBox cbManagementProductAll;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTestPost;
         private System.Windows.Forms.RadioButton rbManagementProductDelete;
         private System.Windows.Forms.FlowLayoutPanel flpPosts;
         private System.Windows.Forms.TextBox tbFeedSearch;
@@ -1473,7 +1473,7 @@
         private System.Windows.Forms.Button btnMakePost;
         private System.Windows.Forms.ListBox lbManagementAllRental;
         private System.Windows.Forms.Button btnManagementGetPosts;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpReportedPosts;
         private System.Windows.Forms.Button btnEManagementNew;
         private System.Windows.Forms.Button btnEManagementNewLocation;
         private System.Windows.Forms.ComboBox cbEManagementLocation;

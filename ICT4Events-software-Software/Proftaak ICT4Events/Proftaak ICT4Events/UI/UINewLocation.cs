@@ -25,6 +25,7 @@ namespace Proftaak_ICT4Events
             eventManager = new EventManager(database);
         }
 
+        //Creates a new location using the eventmanager
         private void btnNewLocationOk_Click(object sender, EventArgs e)
         {
             if(!eventManager.newLocation(tbNewLocationName.Text, tbNewLocationAdres.Text, tbNewLocationPhone.Text, tbNewLocationEmail.Text, tbNewLocationCity.Text, tbNewLocationMax.Text))

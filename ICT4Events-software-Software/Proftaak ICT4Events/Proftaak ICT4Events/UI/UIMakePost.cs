@@ -12,33 +12,65 @@ namespace Proftaak_ICT4Events.UI
 {
     public partial class makePost : Form
     {
-        public MediaType MediaType { get; set; }
-        public string Text { get; set; }
+        //Fields
+        private string text;
+        private string path;
+        private string userName;
+        private string profilePath;
 
-        public string Path { get; set; }
+        private MediaType mediaType;
 
-        public string Username { get; set; }
+        //Properties
+        #region properties
+        public string Text
+        {
+            get { return text; }
+            set { text = value; }
+        }
+        public string Path
+        {
+            get { return path; }
+            set { path = value; }
+        }
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+        public string ProfilePath
+        {
+            get { return profilePath; }
+            set { profilePath = value; }
+        }
+        public MediaType MediaType
+        {
+          get { return mediaType; }
+          set { mediaType = value; }
+        }
+        #endregion
 
-        public string ProfilePath { get; set; }
-
+        //Creates a new instance and fills the type combobox with all the mediatypes
+        //Is uses a function from the feedmanager
         public makePost(List<MediaType> mediatype)
         {
             InitializeComponent();
             cbPostMakeType.DataSource = mediatype;
         }
 
+        //not implemented yet
         private void btnMakePostBrowse_Click(object sender, EventArgs e)
         {
 
         }
 
+        //Creates a new post
         private void btnMakePostPost_Click(object sender, EventArgs e)
         {
-            MediaType = (MediaType)cbPostMakeType.SelectedItem;
-            Text = tbPostMakeText.Text;
-            Path = tbMakePostPath.Text;
-            Username = CurrentUser.currentUser.Username;
-            ProfilePath = CurrentUser.currentUser.PhotoPath;
+            mediaType = (MediaType)cbPostMakeType.SelectedItem;
+            text = tbPostMakeText.Text;
+            path = tbMakePostPath.Text;
+            userName = CurrentUser.currentUser.Username;
+            profilePath = CurrentUser.currentUser.PhotoPath;
             Close();
         }
     }
