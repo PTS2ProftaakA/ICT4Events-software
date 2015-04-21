@@ -105,14 +105,19 @@ namespace Proftaak_ICT4Events
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
                     byte[] contents;
-                    MessageBox.Show(Path.GetExtension(ofd.FileName));
-                    if (Path.GetExtension(ofd.FileName) == ".txt")
+                    string ext = Path.GetExtension(ofd.FileName);
+                    if (ext == ".txt")
                     {
                         contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
                     }
-                    else
+                    else if (ext == ".jpg" || ext == ".png" || ext == ".gif" || ext == ".mp4" || ext == ".avi" || ext == ".mp3")
                     {
                         contents = File.ReadAllBytes(ofd.FileName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bestandstype niet toegestaan.");
+                        return;
                     }
 
                     request.ContentLength = contents.Length;
