@@ -9,10 +9,12 @@ namespace Proftaak_ICT4Events
 {
     public class Hobby : IDatabase<Hobby>
     {
+        //Fields
         private string hobbyName;
 
         private int hobbyID;
 
+        //Properties
         #region properties
         public string HobbyName
         {
@@ -26,12 +28,15 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor to create a single hobby
         public Hobby(string hobbyName, int hobbyID)
         {
             this.hobbyName = hobbyName;
             this.hobbyID = hobbyID;
         }
 
+        //A function that returns all the data from hobbies
+        //Furthermore it creates hobbies from the retrieved data
         public static List<Hobby> GetAll(Database database)
         {
             List<string> hobbyColumns = new List<string>();
@@ -55,6 +60,7 @@ namespace Proftaak_ICT4Events
             return allHobbies;
         }
 
+        //A function that returns a single Hobby from the database
         public Hobby Get(string hobbyID, Database database)
         {
             List<string> hobbyColumns = new List<string>();
@@ -78,12 +84,14 @@ namespace Proftaak_ICT4Events
             return getHobby;
         }
 
+        //Adds a single hobby to the database
         public void Add(Hobby newHobby, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO HOBBY VALUES ({0}, '{1}')",
                 newHobby.hobbyID, newHobby.hobbyName));
         }
 
+        //Edits a hobby in the database using it's current values
         public void Edit(Hobby updateHobby, Database database)
         {
             database.editDatabase(String.Format("UPDATE HOBBY SET HOBBYNAAM = '{0}' WHERE HOBBYID = {1}",
@@ -91,6 +99,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Removes a hobby from the database using the hobby's ID
         public void Remove(Hobby removeHobby, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM HOBBY WHERE HOBBYID = {0}",

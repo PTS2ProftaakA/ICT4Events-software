@@ -10,10 +10,12 @@ namespace Proftaak_ICT4Events
 {
     class FTPClient
     {
+        //credentials to connect to the server
         private const string mHost = "ftp://192.168.0.4:21",
                              mUser = "SME",
                              mPass = "";
 
+        //Changes the way the path is interpreted
         private string CleanPathFromNode(TreeNode node)
         {
             if (node == null) return "/";
@@ -26,6 +28,7 @@ namespace Proftaak_ICT4Events
             return GetTreeNode("/", "SME");
         }
 
+        //Tree view data is compiled here from the directory
         private TreeNode GetTreeNode(string path, string name)
         {
             TreeNode node = new TreeNode(name);
@@ -43,8 +46,12 @@ namespace Proftaak_ICT4Events
             return node;
         }
 
+        //Creates a list of folders and files.
         private List<string> GetDirectoryListing(string path)
         {
+            //This doesn't work outside the client server structure on the INFRA-lab
+            return new List<string>();
+
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
             request.Method = WebRequestMethods.Ftp.ListDirectory;
             request.Credentials = new NetworkCredential(mUser, mPass);
@@ -64,6 +71,7 @@ namespace Proftaak_ICT4Events
             return result;
         }
 
+        //Downloads the selected file to the selected folder
         public void DownloadFile(TreeNode targetNode)
         {
             string file = CleanPathFromNode(targetNode);
@@ -90,6 +98,7 @@ namespace Proftaak_ICT4Events
             }
         }
 
+        //Uploads the a file to the selected node
         public void UploadFile(TreeNode targetNode)
         {
             string path = CleanPathFromNode(targetNode);
@@ -130,6 +139,7 @@ namespace Proftaak_ICT4Events
             }
         }
 
+        //Add a directory with a custom name
         public void CreateDirectory(TreeNode targetNode, string name)
         {
             string path = CleanPathFromNode(targetNode);

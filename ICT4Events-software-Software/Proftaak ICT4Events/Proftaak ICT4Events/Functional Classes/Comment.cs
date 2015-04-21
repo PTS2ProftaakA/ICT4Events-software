@@ -9,6 +9,7 @@ namespace Proftaak_ICT4Events
 {
     public class Comment : IDatabase<Comment>
     {
+        //Fields
         private string filePath;
         private string content;
         private string RFID;
@@ -18,6 +19,7 @@ namespace Proftaak_ICT4Events
 
         private List<Rating> ratings;
 
+        //Properties
         #region properties
         public string Content
         {
@@ -46,6 +48,7 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
+        //Constructor for the Comment class
         public Comment(int commentID, int commentedOnID, string filePath, string content, string RFID)
         {
             this.CommentID = commentID;
@@ -57,6 +60,8 @@ namespace Proftaak_ICT4Events
             ratings = new List<Rating>();
         }
 
+        //A function to get all the comments from a single mediafile
+        //The data from the database gets converted to a list of comments
         public static List<Comment> GetAllFromFile(string filePath, Database database)
         {
             List<string> commentColumns = new List<string>();
@@ -86,6 +91,8 @@ namespace Proftaak_ICT4Events
             return allComments;
         }
 
+        //A function to get all the comments from a single user
+        //The data from the database gets converted to a list of comments
         public static List<Comment> GetAllFromUser(string RFID, Database database)
         {
             List<string> commentColumns = new List<string>();
@@ -115,6 +122,7 @@ namespace Proftaak_ICT4Events
             return allComments;
         }
 
+        //Gets a single comment based on the ID of the comment
         public Comment Get(string commentID, Database database)
         {
             List<string> commentColumns = new List<string>();
@@ -140,12 +148,14 @@ namespace Proftaak_ICT4Events
             return getComment;
         }
 
+        //The database is called to add a single comment
         public void Add(Comment newComment, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO REACTIE VALUES ({0}, '{1}', '{2}', {3}, '{4}')",
                 newComment.commentID, newComment.filePath, newComment.RFID, newComment.commentedOnID, newComment.content));
         }
 
+        //The database edits a comment to its current values
         public void Edit(Comment updateComment, Database database)
         {
             database.editDatabase(String.Format("UPDATE REACTIE SET INHOUD = '{0}' WHERE REACTIEID = '{1}'",
@@ -153,6 +163,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //The database removes the comment that this one represents
         public void Remove(Comment removeComment, Database database)
         {
             database.editDatabase(String.Format("DELETE FROM REACTIE WHERE REACTIEID = '{0}'",
