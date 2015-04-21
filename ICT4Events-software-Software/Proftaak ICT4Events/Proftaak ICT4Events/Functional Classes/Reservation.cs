@@ -162,13 +162,13 @@ namespace Proftaak_ICT4Events
 
         //Returns a list of all reservations of one user
         //Depending on what type it is, a different constructor is used
-        public List<Reservation> GetAllFromUser(string RFID, Database database)
+        public List<Reservation> GetAllFromUser(int userID, Database database)
         {
             List<string> reservationColumns = new List<string>();
             List<Reservation> allreservations = new List<Reservation>();
 
             reservationColumns.Add("HUURID");
-            reservationColumns.Add("RFID");
+            reservationColumns.Add("GEBRUIKERID");
             reservationColumns.Add("STARTDATUM");
             reservationColumns.Add("EINDDATUM");
             reservationColumns.Add("HUURTYPE");
@@ -176,7 +176,7 @@ namespace Proftaak_ICT4Events
             reservationColumns.Add("MATID");
             reservationColumns.Add("PLAATSNUMMER");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE  RFID = '" + RFID + "' AND HUURTYPE = 'MATERIAAL'", reservationColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE  GEBRUIKERID = " + userID + " AND HUURTYPE = 'MATERIAAL'", reservationColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -217,7 +217,7 @@ namespace Proftaak_ICT4Events
             Reservation getReservation = null;
 
             reservationColumns.Add("HUURID");
-            reservationColumns.Add("RFID");
+            reservationColumns.Add("GEBRUIKERID");
             reservationColumns.Add("STARTDATUM");
             reservationColumns.Add("EINDDATUM");
             reservationColumns.Add("HUURTYPE");
@@ -274,12 +274,12 @@ namespace Proftaak_ICT4Events
             if (newReservation.Material == null)
             {
                 database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', null, {6})",
-                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spotNumber));
+                    newReservation.rentalID, newReservation.user.UserID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spotNumber));
             }
             else
             {
                 database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
-                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
+                    newReservation.rentalID, newReservation.user.UserID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
             }
         }
 

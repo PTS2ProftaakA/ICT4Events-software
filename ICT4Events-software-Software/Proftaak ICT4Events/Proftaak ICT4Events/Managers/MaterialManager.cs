@@ -27,7 +27,7 @@ namespace Proftaak_ICT4Events
         public List<Reservation> getAllMaterialFromUser(User user)
         {
             Reservation reservation = new Reservation();
-            return reservation.GetAllFromUser(user.propertyRFID, database);
+            return reservation.GetAllFromUser(user.UserID, database);
         }
         public List<Material> getAll()
         {

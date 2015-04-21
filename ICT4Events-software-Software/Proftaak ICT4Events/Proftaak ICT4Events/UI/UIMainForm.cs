@@ -484,12 +484,10 @@ namespace Proftaak_ICT4Events
 
         private void btnReservation_Click_1(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             //
             int TIJDELIJK = 1;
             //
             Form f = new UI.UIReserve((int)nudMapPeople.Value, TIJDELIJK);
-=======
             Spot s = null;
             foreach (Spot spot in mapManager.GetAllspots())
             {
@@ -498,10 +496,9 @@ namespace Proftaak_ICT4Events
                     s = spot;
                 }
             }
-            Form f = new UI.UIReserve((int)nudMapPeople.Value, s.SpotNumber);
->>>>>>> origin/Software
-            f.ShowDialog();
-            if (f.DialogResult == DialogResult.OK)
+            Form f1 = new UI.UIReserve((int)nudMapPeople.Value, s.SpotNumber);
+            f1.ShowDialog();
+            if (f1.DialogResult == DialogResult.OK)
             {
                 MessageBox.Show("Done");
             }
