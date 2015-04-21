@@ -16,6 +16,7 @@ namespace Proftaak_ICT4Events
 
         private string CleanPathFromNode(TreeNode node)
         {
+            if (node == null) return "/";
             //FILTER ROOT NODE NAME AND REPLACE \ (Windows) with / (Unix/web)
             return node.FullPath.Substring(3).Replace('\\', '/');
         }
@@ -44,9 +45,6 @@ namespace Proftaak_ICT4Events
 
         private List<string> GetDirectoryListing(string path)
         {
-            //QUICKFIX
-            return new List<string>();
-
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
             request.Method = WebRequestMethods.Ftp.ListDirectory;
             request.Credentials = new NetworkCredential(mUser, mPass);
@@ -106,7 +104,16 @@ namespace Proftaak_ICT4Events
                 request.Credentials = new NetworkCredential(mUser, mPass);
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    byte[] contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
+                    byte[] contents;
+                    MessageBox.Show(Path.GetExtension(ofd.FileName));
+                    if (Path.GetExtension(ofd.FileName) == ".txt")
+                    {
+                        contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
+                    }
+                    else
+                    {
+                        contents = File.ReadAllBytes(ofd.FileName);
+                    }
 
                     request.ContentLength = contents.Length;
 
