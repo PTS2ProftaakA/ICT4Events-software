@@ -96,6 +96,52 @@ namespace Proftaak_ICT4Events
             comments = new List<Comment>();
         }
 
+        //A function that gets all the mediafiledata from the database above a certain report percentage
+        //It will construct the mediafiles from the database
+        public static List<MediaFile> GetReportedFiles(int percentage, Database database)
+        {
+            //Specification can be latest, popular or a text to search with
+            List<string> mediaFilesColumns = new List<string>();
+            List<MediaFile> selectedMediaFiles = new List<MediaFile>();
+
+            mediaFilesColumns.Add("MEDIABESTANDID");
+            mediaFilesColumns.Add("BESTANDLOCATIE");
+            mediaFilesColumns.Add("EVENEMENTID");
+            mediaFilesColumns.Add("GEBRUIKERID");
+            mediaFilesColumns.Add("BESTANDTYPE");
+            mediaFilesColumns.Add("OPMERKING");
+            mediaFilesColumns.Add("UPLOADDATUM");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIABESTAND m1 WHERE(SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.bestandlocatie = m1.bestandlocatie) * 100 > " + percentage, mediaFilesColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    MediaType thisMediaType = null;
+
+                    foreach (MediaType mediaType in MediaType.GetAll(database))
+                    {
+                        if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][i]))
+                        {
+                            thisMediaType = mediaType;
+                        }
+                    }
+
+                    selectedMediaFiles.Add(new MediaFile(
+                        dataTable[1][i],
+                        dataTable[5][i],
+                        Convert.ToInt32(dataTable[3][i]),
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToDateTime(dataTable[6][i]),
+                        thisMediaType));
+                }
+            }
+
+            return selectedMediaFiles;
+        }
+
         //A function that gets all the mediafiledata from the database with a certain specification
         //It is used to construct all the mediafiles
         public static List<MediaFile> GetFiles(string specification, Database database)
@@ -120,7 +166,7 @@ namespace Proftaak_ICT4Events
             }
             else if(specification == "popular")
             {
-                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.GEBRUIKERID ORDER BY COUNT(*) DESC;";
+                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.GEBRUIKERID ORDER BY COUNT(*) DESC";
             }
             else
             {

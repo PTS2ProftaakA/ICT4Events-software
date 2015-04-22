@@ -22,6 +22,12 @@ namespace Proftaak_ICT4Events
             return MediaFile.GetFiles(specification, database);
         }
 
+        //Get all mediafiles that are above a certain rating percentage
+        public List<MediaFile> GetReportedFiles(int percentage, Database database)
+        {
+            return MediaFile.GetReportedFiles(percentage, database);
+        }
+
         //Returns all the types of media
         //These contain things like video or photo
         public List<MediaType> getTypes(Database database)

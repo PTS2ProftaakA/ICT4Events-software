@@ -31,6 +31,8 @@ namespace Proftaak_ICT4Events.UI
 
             userRFID.Tag += new TagEventHandler(userRFID_Tag);
 
+            tbPassword.PasswordChar = Convert.ToChar("*");
+
             openCmdLine(userRFID);
 
             //Makes this form undeniable for the user

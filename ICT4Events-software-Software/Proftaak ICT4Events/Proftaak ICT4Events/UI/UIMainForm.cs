@@ -163,7 +163,7 @@ namespace Proftaak_ICT4Events
             //Post beheer
             if (tcMainForm.SelectedIndex == 7)
             {
-                //not yet implemented
+                FillReportedFeed();
             }
 
         }
@@ -626,6 +626,24 @@ namespace Proftaak_ICT4Events
                 newMaterial.Add(newMaterial, database);
                 cbManagementProductAll.DataSource = materialManager.getAll();
                 cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+            }
+        }
+        #endregion
+
+        //mediafile management
+        #region mediafile management
+
+        private void FillReportedFeed()
+        {
+            flpReportedPosts.Controls.Clear();
+
+            foreach (MediaFile m in feedManager.GetReportedFiles(99, database))
+            {
+                User user = personalInfoManager.GetSpecificUser(m.UserID);
+                Post newpost = new Post(m.MediaTypeName, m.Description, m.FilePath, user.Username, user.PhotoPath);
+
+                flpReportedPosts.Controls.Add(newpost);
+                flpReportedPosts.Refresh();
             }
         }
         #endregion

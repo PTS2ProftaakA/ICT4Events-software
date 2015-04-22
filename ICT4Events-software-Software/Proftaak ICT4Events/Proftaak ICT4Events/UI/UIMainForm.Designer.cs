@@ -125,10 +125,8 @@
             this.lblManagementProductName = new System.Windows.Forms.Label();
             this.tbManagementProductName = new System.Windows.Forms.TextBox();
             this.tpPostBeheer = new System.Windows.Forms.TabPage();
-            this.btnManagementGetPosts = new System.Windows.Forms.Button();
             this.flpReportedPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.btnTestPost = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -1292,7 +1290,6 @@
             // 
             // tpPostBeheer
             // 
-            this.tpPostBeheer.Controls.Add(this.btnManagementGetPosts);
             this.tpPostBeheer.Controls.Add(this.flpReportedPosts);
             this.tpPostBeheer.Location = new System.Drawing.Point(154, 4);
             this.tpPostBeheer.Margin = new System.Windows.Forms.Padding(4);
@@ -1303,22 +1300,12 @@
             this.tpPostBeheer.Text = "Post Beheer";
             this.tpPostBeheer.UseVisualStyleBackColor = true;
             // 
-            // btnManagementGetPosts
-            // 
-            this.btnManagementGetPosts.Location = new System.Drawing.Point(4, 4);
-            this.btnManagementGetPosts.Margin = new System.Windows.Forms.Padding(4);
-            this.btnManagementGetPosts.Name = "btnManagementGetPosts";
-            this.btnManagementGetPosts.Size = new System.Drawing.Size(171, 28);
-            this.btnManagementGetPosts.TabIndex = 1;
-            this.btnManagementGetPosts.Text = "Get reported posts";
-            this.btnManagementGetPosts.UseVisualStyleBackColor = true;
-            // 
             // flpReportedPosts
             // 
-            this.flpReportedPosts.Location = new System.Drawing.Point(4, 39);
+            this.flpReportedPosts.Location = new System.Drawing.Point(4, 4);
             this.flpReportedPosts.Margin = new System.Windows.Forms.Padding(4);
             this.flpReportedPosts.Name = "flpReportedPosts";
-            this.flpReportedPosts.Size = new System.Drawing.Size(1176, 631);
+            this.flpReportedPosts.Size = new System.Drawing.Size(1176, 666);
             this.flpReportedPosts.TabIndex = 0;
             // 
             // lblMenu
@@ -1332,22 +1319,11 @@
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
             // 
-            // btnTestPost
-            // 
-            this.btnTestPost.Location = new System.Drawing.Point(225, 41);
-            this.btnTestPost.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTestPost.Name = "btnTestPost";
-            this.btnTestPost.Size = new System.Drawing.Size(100, 28);
-            this.btnTestPost.TabIndex = 2;
-            this.btnTestPost.Text = "TestPost";
-            this.btnTestPost.UseVisualStyleBackColor = true;
-            // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1431, 786);
-            this.Controls.Add(this.btnTestPost);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1463,7 +1439,6 @@
         private System.Windows.Forms.Label lblManagementProductName;
         private System.Windows.Forms.TextBox tbManagementProductName;
         private System.Windows.Forms.ComboBox cbManagementProductAll;
-        private System.Windows.Forms.Button btnTestPost;
         private System.Windows.Forms.RadioButton rbManagementProductDelete;
         private System.Windows.Forms.FlowLayoutPanel flpPosts;
         private System.Windows.Forms.TextBox tbFeedSearch;
@@ -1472,7 +1447,6 @@
         private System.Windows.Forms.RadioButton rbtnTenMostPopulair;
         private System.Windows.Forms.Button btnMakePost;
         private System.Windows.Forms.ListBox lbManagementAllRental;
-        private System.Windows.Forms.Button btnManagementGetPosts;
         private System.Windows.Forms.FlowLayoutPanel flpReportedPosts;
         private System.Windows.Forms.Button btnEManagementNew;
         private System.Windows.Forms.Button btnEManagementNewLocation;
