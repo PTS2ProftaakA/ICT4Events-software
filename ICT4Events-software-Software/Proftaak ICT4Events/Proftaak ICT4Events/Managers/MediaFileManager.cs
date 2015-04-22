@@ -37,8 +37,8 @@ namespace Proftaak_ICT4Events
         //Edits a file in the database using the Edit function in MediaFile
         public void EditFile(MediaFile file)
         {
-            Rating rating = new Rating(CurrentUser.currentUser.propertyRFID, file.FilePath, 1, -1, true);
-            file.Ratings.Add(rating);
+            //Rating rating = new Rating(CurrentUser.currentUser.propertyRFID, file.FilePath, 1, -1, true);
+            //file.Ratings.Add(rating);
         }
     }
 }

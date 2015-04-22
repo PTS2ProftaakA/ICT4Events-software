@@ -98,7 +98,7 @@ namespace Proftaak_ICT4Events
 
         //A function that gets all the mediafiledata from the database above a certain report percentage
         //It will construct the mediafiles from the database
-        public static List<MediaFile> GetReportedFiles(int percentage, Database database)
+        public static List<MediaFile> GetReportedFiles(int percentage, int eventID, Database database)
         {
             //Specification can be latest, popular or a text to search with
             List<string> mediaFilesColumns = new List<string>();
@@ -112,7 +112,7 @@ namespace Proftaak_ICT4Events
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIABESTAND m1 WHERE(SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.bestandlocatie = m1.bestandlocatie) * 100 > " + percentage, mediaFilesColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIABESTAND m1 WHERE m1.EVENEMENTID = " + eventID + " AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.bestandlocatie = m1.bestandlocatie) * 100 >= " + percentage, mediaFilesColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -203,6 +203,47 @@ namespace Proftaak_ICT4Events
             return selectedMediaFiles;
         }
 
+        //Returns a single mediafile which has the input ID but more accesible
+        public static MediaFile GetStatic(int mediaFileID, Database database)
+        {
+            List<string> mediaFilesColumns = new List<string>();
+            MediaFile getMediaFile = null;
+
+            mediaFilesColumns.Add("MEDIABESTANDID");
+            mediaFilesColumns.Add("BESTANDLOCATIE");
+            mediaFilesColumns.Add("EVENEMENTID");
+            mediaFilesColumns.Add("GEBRUIKERID");
+            mediaFilesColumns.Add("BESTANDTYPE");
+            mediaFilesColumns.Add("OPMERKING");
+            mediaFilesColumns.Add("UPLOADDATUM");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  MEDIABESTAND WHERE MEDIABESTANDID = " + mediaFileID, mediaFilesColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                MediaType thisMediaType = null;
+
+                foreach (MediaType mediaType in MediaType.GetAll(database))
+                {
+                    if (mediaType.MediaTypeID == Convert.ToInt32(dataTable[4][1]))
+                    {
+                        thisMediaType = mediaType;
+                    }
+                }
+
+                getMediaFile = new MediaFile(
+                    dataTable[1][1],
+                    dataTable[5][1],
+                    Convert.ToInt32(dataTable[3][1]),
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToDateTime(dataTable[6][1]),
+                    thisMediaType);
+            }
+
+            return getMediaFile;
+        }
+
         //Returns a single mediafile which has the input ID
         public MediaFile Get(string mediaFileID, Database database)
         {
@@ -264,6 +305,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM MEDIABESTAND WHERE MEDIABESTANDID = {0}",
                 removeMediaFile.mediaFileID));
+        }
+
+        public override string ToString()
+        {
+            return Convert.ToString(mediaFileID);
         }
     }
 }

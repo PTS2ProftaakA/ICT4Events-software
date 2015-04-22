@@ -9,9 +9,9 @@ namespace Proftaak_ICT4Events
     public class Rating : IDatabase<Rating>
     {
         //Fields
-        private string RFID;
         private string filePath;
 
+        private int userID;
         private int ratingID;
         private int commentID;
 
@@ -19,10 +19,10 @@ namespace Proftaak_ICT4Events
 
         //Properties
         #region properties
-        public string propertyRFID
+        public int UserID
         {
-            get { return RFID; }
-            set { RFID = value; }
+            get { return userID; }
+            set { userID = value; }
         }
         public string FilePath
         {
@@ -47,12 +47,13 @@ namespace Proftaak_ICT4Events
         #endregion
 
         //Constructor that creates a rating that belongs to a mediafile
-        public Rating(string RFID, string FilePath, int RatingID, int CommentID, bool Positive)
+        public Rating(string filePath, int userID, int ratingID, int commentID, bool positive)
         {
-            this.RatingID = RatingID;
-            this.RFID = RFID;
-            this.FilePath = FilePath;
-            this.CommentID = CommentID;
+            this.filePath = FilePath;
+            this.userID = userID;
+            this.ratingID = RatingID;
+            this.commentID = CommentID;
+            this.positive = positive;
         }
 
         //A function that returns all the ratings that correspond to a single mediafile
@@ -63,23 +64,28 @@ namespace Proftaak_ICT4Events
             List<Rating> allRating = new List<Rating>();
 
             ratingColumns.Add("OORDEELID");
-            ratingColumns.Add("RFID");
+            ratingColumns.Add("GEBRUIKERID");
             ratingColumns.Add("BESTANDLOCATIE");
             ratingColumns.Add("REACTIEID");
             ratingColumns.Add("POSITIEF");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE BESTANDLOCATIE = " + filePath, ratingColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE BESTANDLOCATIE = '" + filePath + "'", ratingColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
+                    if(dataTable[2][i] != "")
+                    {
+                        dataTable[3][i] = "-1";
+                    }
+
                     allRating.Add(new Rating(
-                        dataTable[1][i],
                         dataTable[2][i],
+                        Convert.ToInt32(dataTable[1][i]), 
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[3][i]),
-                        Convert.ToBoolean(dataTable[4][i])
+                        dataTable[4][i] == "Y"
                         ));
                 }
             }
@@ -95,23 +101,65 @@ namespace Proftaak_ICT4Events
             List<Rating> allRating = new List<Rating>();
 
             ratingColumns.Add("OORDEELID");
-            ratingColumns.Add("RFID");
+            ratingColumns.Add("GEBRUIKERID");
             ratingColumns.Add("BESTANDLOCATIE");
             ratingColumns.Add("REACTIEID");
             ratingColumns.Add("POSITIEF");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE RFID = " + RFID, ratingColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE RFID = " + RFID, ratingColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
+                    if (dataTable[2][i] != "")
+                    {
+                        dataTable[3][i] = "-1";
+                    }
+
                     allRating.Add(new Rating(
-                        dataTable[1][i],
                         dataTable[2][i],
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[3][i]),
-                        Convert.ToBoolean(dataTable[4][i])
+                        dataTable[4][i] == "Y"
+                        ));
+                }
+            }
+
+            return allRating;
+        }
+
+        //A function that returns all the ratings that correspond to a single comment
+        //The data is constructed and a list is created
+        public static List<Rating> getAllFromComment(int commentID, Database database)
+        {
+            List<string> ratingColumns = new List<string>();
+            List<Rating> allRating = new List<Rating>();
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("GEBRUIKERID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE REACTIEID = " + commentID, ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    if (dataTable[2][i] != "")
+                    {
+                        dataTable[3][i] = "-1";
+                    }
+
+                    allRating.Add(new Rating(
+                        dataTable[2][i],
+                        Convert.ToInt32(dataTable[1][i]),
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i]),
+                        dataTable[4][i] == "Y"
                         ));
                 }
             }
@@ -126,21 +174,27 @@ namespace Proftaak_ICT4Events
             Rating getRating = null;
 
             ratingColumns.Add("OORDEELID");
-            ratingColumns.Add("RFID");
+            ratingColumns.Add("GEBRUIKERID");
             ratingColumns.Add("BESTANDLOCATIE");
             ratingColumns.Add("REACTIEID");
             ratingColumns.Add("POSITIEF");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM  RATING WHERE RFID = " + RFID, ratingColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE GEBRUIKERID = " + userID, ratingColumns);
 
             if (dataTable[0].Count() > 1)
             {
-                     getRating = new Rating(
-                        dataTable[1][1],
-                        dataTable[2][1],
-                        Convert.ToInt32(dataTable[0][1]),
-                        Convert.ToInt32(dataTable[3][1]),
-                        Convert.ToBoolean(dataTable[4][1]));
+                if (dataTable[2][1] != "")
+                {
+                    dataTable[3][1] = "-1";
+                }
+
+                getRating = new Rating(
+                    dataTable[2][1],
+                    Convert.ToInt32(dataTable[1][1]), 
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1]),
+                    dataTable[4][1] == "Y"
+                    );
             }
 
             return getRating;
@@ -149,8 +203,8 @@ namespace Proftaak_ICT4Events
         //Adds a rating to the database
         public void Add(Rating newRating, Database database)
         {
-            database.editDatabase(String.Format("INSERT INTO OORDEEL VALUES ({0}, '{1}', '{2}', '{3}', '{4}')",
-                newRating.ratingID, newRating.RFID, newRating.filePath, newRating.commentID, newRating.positive));
+            database.editDatabase(String.Format("INSERT INTO OORDEEL VALUES ({0}, {1}, '{2}', '{3}', '{4}')",
+                newRating.ratingID, newRating.userID, newRating.filePath, newRating.commentID, newRating.positive));
         }
 
         //Edits a rating with the current values of the rating

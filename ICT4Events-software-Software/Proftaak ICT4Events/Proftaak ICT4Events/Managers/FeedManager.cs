@@ -23,9 +23,15 @@ namespace Proftaak_ICT4Events
         }
 
         //Get all mediafiles that are above a certain rating percentage
-        public List<MediaFile> GetReportedFiles(int percentage, Database database)
+        public List<MediaFile> GetReportedFiles(int percentage, int eventID, Database database)
         {
-            return MediaFile.GetReportedFiles(percentage, database);
+            return MediaFile.GetReportedFiles(percentage, eventID, database);
+        }
+
+        //Get all comments that are above a certain rating percentage
+        public List<Comment> GetReportedComments(int percentage, int eventID, Database database)
+        {
+            return Comment.GetReportedComments(percentage, eventID, database);
         }
 
         //Returns all the types of media
@@ -33,6 +39,18 @@ namespace Proftaak_ICT4Events
         public List<MediaType> getTypes(Database database)
         {
             return MediaType.GetAll(database);
+        }
+
+        //Returns all ratings from one mediafile
+        public List<Rating> getRatingsFromFile(string filePath, Database database)
+        {
+            return Rating.getAllFromFile(filePath, database);
+        }
+
+        //Returns all ratings from one comment
+        public List<Rating> getRatingsFromComment(int commentID, Database database)
+        {
+            return Rating.getAllFromComment(commentID, database);
         }
 
         //Uses the Add function in MediaFile to create a new mediafile and add it in the database

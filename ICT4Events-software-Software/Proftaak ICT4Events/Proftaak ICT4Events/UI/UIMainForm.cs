@@ -163,7 +163,10 @@ namespace Proftaak_ICT4Events
             //Post beheer
             if (tcMainForm.SelectedIndex == 7)
             {
-                FillReportedFeed();
+                if (CurrentUser.currentUser.Administrator)
+                {
+                    FillReportedFeed();
+                }
             }
 
         }
@@ -635,16 +638,105 @@ namespace Proftaak_ICT4Events
 
         private void FillReportedFeed()
         {
-            flpReportedPosts.Controls.Clear();
+            cbReportedPostsEvents.DataSource = eventManager.getAllEvents();
 
-            foreach (MediaFile m in feedManager.GetReportedFiles(99, database))
+            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+        }
+
+        private void cbReportedPostsEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Event selectedEvent = (Event)cbReportedPostsEvents.SelectedItem;
+
+            lvReportedPosts.Columns.Clear();
+            lvReportedPosts.Items.Clear();
+            lvReportedPosts.View = View.Details;
+
+            lvReportedPosts.Columns.Add("Mediabestand ID");
+            lvReportedPosts.Columns.Add("MediaType");
+            lvReportedPosts.Columns.Add("Beschrijving");
+            lvReportedPosts.Columns.Add("Percentage");
+
+            List<ListViewItem> listviewitems = new List<ListViewItem>();
+
+
+            foreach (MediaFile mediaFile in feedManager.GetReportedFiles(selectedEvent.ReportPercentage, selectedEvent.EventID, database))
             {
-                User user = personalInfoManager.GetSpecificUser(m.UserID);
-                Post newpost = new Post(m.MediaTypeName, m.Description, m.FilePath, user.Username, user.PhotoPath);
+                List<Rating> allRatings = feedManager.getRatingsFromFile(mediaFile.FilePath, database);
 
-                flpReportedPosts.Controls.Add(newpost);
-                flpReportedPosts.Refresh();
+                int negativeCount = 0;
+
+                foreach(Rating rating in allRatings)
+                {
+                    if(!rating.Positive)
+                    {
+                        negativeCount++;
+                    }
+                }
+
+                ListViewItem item = new ListViewItem(Convert.ToString(mediaFile.MediaFileID));
+                item.SubItems.Add(mediaFile.MediaTypeName.Type);
+                item.SubItems.Add(mediaFile.Description);
+                item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
+
+                lvReportedPosts.Items.Add(item);
             }
+
+            lvReportedComments.Columns.Clear();
+            lvReportedComments.Items.Clear();
+            lvReportedComments.View = View.Details;
+
+            lvReportedComments.Columns.Add("Bestandlocatie");
+            lvReportedComments.Columns.Add("Inhoud");
+            lvReportedComments.Columns.Add("Percentage");
+
+            foreach (Comment comment in feedManager.GetReportedComments(selectedEvent.ReportPercentage, selectedEvent.EventID, database))
+            {
+                List<Rating> allRatings = feedManager.getRatingsFromComment(comment.CommentID, database);
+
+                int negativeCount = 0;
+
+                foreach (Rating rating in allRatings)
+                {
+                    if (!rating.Positive)
+                    {
+                        negativeCount++;
+                    }
+                }
+
+                ListViewItem item = new ListViewItem(comment.FilePath);
+                item.SubItems.Add(comment.Content);
+       
+                //item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
+                item.SubItems.Add("100");
+                lvReportedComments.Items.Add(item);
+            }
+        }
+
+        private void btnReportedPostsRemove_Click(object sender, EventArgs e)
+        {
+            ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
+
+            foreach(ListViewItem item in checkedItems)
+            {
+                MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+                currentMediafile.Remove(currentMediafile, database);
+            }
+
+            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+        }
+        
+
+        private void btnReportedReactionsRemove_Click(object sender, EventArgs e)
+        {
+            ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
+
+            foreach (ListViewItem item in checkedItems)
+            {
+                Comment currentComment = Comment.GetStatic(item.SubItems[0].Text, database);
+                currentComment.Remove(currentComment, database);
+            }
+
+            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
         }
         #endregion
     }

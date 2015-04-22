@@ -125,8 +125,12 @@
             this.lblManagementProductName = new System.Windows.Forms.Label();
             this.tbManagementProductName = new System.Windows.Forms.TextBox();
             this.tpPostBeheer = new System.Windows.Forms.TabPage();
-            this.flpReportedPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMenu = new System.Windows.Forms.Label();
+            this.cbReportedPostsEvents = new System.Windows.Forms.ComboBox();
+            this.lvReportedPosts = new System.Windows.Forms.ListView();
+            this.btnReportedPostsRemove = new System.Windows.Forms.Button();
+            this.btnReportedCommentsRemove = new System.Windows.Forms.Button();
+            this.lvReportedComments = new System.Windows.Forms.ListView();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -1290,7 +1294,11 @@
             // 
             // tpPostBeheer
             // 
-            this.tpPostBeheer.Controls.Add(this.flpReportedPosts);
+            this.tpPostBeheer.Controls.Add(this.btnReportedCommentsRemove);
+            this.tpPostBeheer.Controls.Add(this.lvReportedComments);
+            this.tpPostBeheer.Controls.Add(this.btnReportedPostsRemove);
+            this.tpPostBeheer.Controls.Add(this.lvReportedPosts);
+            this.tpPostBeheer.Controls.Add(this.cbReportedPostsEvents);
             this.tpPostBeheer.Location = new System.Drawing.Point(154, 4);
             this.tpPostBeheer.Margin = new System.Windows.Forms.Padding(4);
             this.tpPostBeheer.Name = "tpPostBeheer";
@@ -1299,14 +1307,6 @@
             this.tpPostBeheer.TabIndex = 7;
             this.tpPostBeheer.Text = "Post Beheer";
             this.tpPostBeheer.UseVisualStyleBackColor = true;
-            // 
-            // flpReportedPosts
-            // 
-            this.flpReportedPosts.Location = new System.Drawing.Point(4, 4);
-            this.flpReportedPosts.Margin = new System.Windows.Forms.Padding(4);
-            this.flpReportedPosts.Name = "flpReportedPosts";
-            this.flpReportedPosts.Size = new System.Drawing.Size(1176, 666);
-            this.flpReportedPosts.TabIndex = 0;
             // 
             // lblMenu
             // 
@@ -1318,6 +1318,53 @@
             this.lblMenu.Size = new System.Drawing.Size(132, 52);
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
+            // 
+            // cbReportedPostsEvents
+            // 
+            this.cbReportedPostsEvents.FormattingEnabled = true;
+            this.cbReportedPostsEvents.Location = new System.Drawing.Point(41, 27);
+            this.cbReportedPostsEvents.Name = "cbReportedPostsEvents";
+            this.cbReportedPostsEvents.Size = new System.Drawing.Size(531, 24);
+            this.cbReportedPostsEvents.TabIndex = 2;
+            this.cbReportedPostsEvents.SelectedIndexChanged += new System.EventHandler(this.cbReportedPostsEvents_SelectedIndexChanged);
+            // 
+            // lvReportedPosts
+            // 
+            this.lvReportedPosts.CheckBoxes = true;
+            this.lvReportedPosts.Location = new System.Drawing.Point(41, 57);
+            this.lvReportedPosts.Name = "lvReportedPosts";
+            this.lvReportedPosts.Size = new System.Drawing.Size(531, 558);
+            this.lvReportedPosts.TabIndex = 3;
+            this.lvReportedPosts.UseCompatibleStateImageBehavior = false;
+            // 
+            // btnReportedPostsRemove
+            // 
+            this.btnReportedPostsRemove.Location = new System.Drawing.Point(41, 621);
+            this.btnReportedPostsRemove.Name = "btnReportedPostsRemove";
+            this.btnReportedPostsRemove.Size = new System.Drawing.Size(531, 33);
+            this.btnReportedPostsRemove.TabIndex = 4;
+            this.btnReportedPostsRemove.Text = "Verwijder geselecteerde bestanden";
+            this.btnReportedPostsRemove.UseVisualStyleBackColor = true;
+            this.btnReportedPostsRemove.Click += new System.EventHandler(this.btnReportedPostsRemove_Click);
+            // 
+            // btnReportedCommentsRemove
+            // 
+            this.btnReportedCommentsRemove.Location = new System.Drawing.Point(605, 621);
+            this.btnReportedCommentsRemove.Name = "btnReportedCommentsRemove";
+            this.btnReportedCommentsRemove.Size = new System.Drawing.Size(531, 33);
+            this.btnReportedCommentsRemove.TabIndex = 7;
+            this.btnReportedCommentsRemove.Text = "Verwijder geselecteerde reacties";
+            this.btnReportedCommentsRemove.UseVisualStyleBackColor = true;
+            this.btnReportedCommentsRemove.Click += new System.EventHandler(this.btnReportedReactionsRemove_Click);
+            // 
+            // lvReportedComments
+            // 
+            this.lvReportedComments.CheckBoxes = true;
+            this.lvReportedComments.Location = new System.Drawing.Point(605, 57);
+            this.lvReportedComments.Name = "lvReportedComments";
+            this.lvReportedComments.Size = new System.Drawing.Size(531, 558);
+            this.lvReportedComments.TabIndex = 6;
+            this.lvReportedComments.UseCompatibleStateImageBehavior = false;
             // 
             // UIMainForm
             // 
@@ -1447,7 +1494,6 @@
         private System.Windows.Forms.RadioButton rbtnTenMostPopulair;
         private System.Windows.Forms.Button btnMakePost;
         private System.Windows.Forms.ListBox lbManagementAllRental;
-        private System.Windows.Forms.FlowLayoutPanel flpReportedPosts;
         private System.Windows.Forms.Button btnEManagementNew;
         private System.Windows.Forms.Button btnEManagementNewLocation;
         private System.Windows.Forms.ComboBox cbEManagementLocation;
@@ -1458,6 +1504,11 @@
         private System.Windows.Forms.Button btnTreeDownload;
         private System.Windows.Forms.ListView lvAvailableSpots;
         private System.Windows.Forms.RadioButton rbManagementProductEdit;
+        private System.Windows.Forms.ComboBox cbReportedPostsEvents;
+        private System.Windows.Forms.Button btnReportedPostsRemove;
+        private System.Windows.Forms.ListView lvReportedPosts;
+        private System.Windows.Forms.Button btnReportedCommentsRemove;
+        private System.Windows.Forms.ListView lvReportedComments;
     }
 }
 
