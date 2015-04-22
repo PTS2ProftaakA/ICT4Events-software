@@ -2,7 +2,6 @@ C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Soft
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Proftaak ICT4Events.exe
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Proftaak ICT4Events.pdb
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Microsoft.CSharp.dll
-C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Oracle.DataAccess.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Oracle.ManagedDataAccess.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\Phidget21.NET.dll
 C:\Users\Martijn\Desktop\Proftaak 2\ICT4Events-software\ICT4Events-software-Software\Proftaak ICT4Events\Proftaak ICT4Events\bin\x64\Debug\System.Data.DataSetExtensions.dll

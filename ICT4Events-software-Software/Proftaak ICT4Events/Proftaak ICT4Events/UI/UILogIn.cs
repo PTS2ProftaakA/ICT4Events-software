@@ -42,6 +42,7 @@ namespace Proftaak_ICT4Events.UI
         {
             //userRFID.Attached is boolean to see if the Phidgets is connected
             RFID userRFID = (RFID)sender;
+            userRFID.Antenna = true;
             lblExplain.Text = "Of log in door je RFID te scannen!";
         }
 
