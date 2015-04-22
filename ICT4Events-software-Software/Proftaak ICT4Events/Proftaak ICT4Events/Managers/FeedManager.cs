@@ -32,7 +32,7 @@ namespace Proftaak_ICT4Events
         //Uses the Add function in MediaFile to create a new mediafile and add it in the database
         public void makePost(MediaType type, string description, string filePath)
         {
-            MediaFile newmedia = new MediaFile(filePath, description, CurrentUser.currentUser.propertyRFID, 1, CurrentUser.currentUser.EventID, DateTime.Now, type);
+            MediaFile newmedia = new MediaFile(filePath, description, CurrentUser.currentUser.UserID, 1, CurrentUser.currentUser.EventID, DateTime.Now, type);
             newmedia.Add(newmedia, database);
         }
 

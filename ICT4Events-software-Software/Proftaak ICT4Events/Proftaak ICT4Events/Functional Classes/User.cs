@@ -250,7 +250,7 @@ namespace Proftaak_ICT4Events
 
         //Returns a single user from the database that corresponds with the ID input
         //This get function is more accesible because of the static property
-        public static User StaticGet(string RFID, Database database)
+        public static User StaticGetByRFID(string RFID, Database database)
         {
             List<string> userColumns = new List<string>();
             User getUser = null;
@@ -271,6 +271,50 @@ namespace Proftaak_ICT4Events
             userColumns.Add("INGELOGD");
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE RFID = '" + RFID + "'", userColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                getUser = new User(
+                    dataTable[1][1],
+                    dataTable[3][1],
+                    dataTable[4][1],
+                    dataTable[5][1],
+                    dataTable[6][1],
+                    dataTable[7][1],
+                    dataTable[9][1],
+                    dataTable[10][1],
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToInt32(dataTable[11][1]),
+                    dataTable[12][1].ToUpper() == "Y",
+                    dataTable[13][1].ToUpper() == "Y",
+                    Convert.ToDateTime(dataTable[8][1])
+                    );
+            }
+            return getUser;
+        }
+
+        public static User StaticGetByUserID(int userID, Database database)
+        {
+            List<string> userColumns = new List<string>();
+            User getUser = null;
+
+            userColumns.Add("GEBRUIKERID");
+            userColumns.Add("RFID");
+            userColumns.Add("EVENEMENTID");
+            userColumns.Add("RESERVEERDER");
+            userColumns.Add("NAAM");
+            userColumns.Add("EMAIL");
+            userColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("FOTO");
+            userColumns.Add("GEBOORTEDATUM");
+            userColumns.Add("INLOGNAAM");
+            userColumns.Add("WACHTWOORD");
+            userColumns.Add("PLAATSNUMMER");
+            userColumns.Add("ADMINISTRATOR");
+            userColumns.Add("INGELOGD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE GEBRUIKERID = " + userID, userColumns);
 
             if (dataTable[0].Count() > 1)
             {

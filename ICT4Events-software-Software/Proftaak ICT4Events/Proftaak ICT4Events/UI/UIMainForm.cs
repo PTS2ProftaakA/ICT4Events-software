@@ -186,7 +186,7 @@ namespace Proftaak_ICT4Events
             flpPosts.Controls.Clear();
             foreach (MediaFile m in feedManager.GetFiles("latest", database))
             {
-                User user = personalInfoManager.GetSpecificUser(m.PropertyRFID);
+                User user = personalInfoManager.GetSpecificUser(m.UserID);
                 Post newpost = new Post(m.MediaTypeName, m.Description, m.FilePath, user.Username, user.PhotoPath);
                 
                 flpPosts.Controls.Add(newpost);

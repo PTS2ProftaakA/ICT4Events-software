@@ -59,7 +59,7 @@ namespace Proftaak_ICT4Events.UI
             //e.Tag is the actual RFID that belongs to the chip
             //e.protocol is the protocol that belongs to that chip
             //The user is retrieved from the database using a function from the User class
-            CurrentUser.currentUser = User.StaticGet(e.Tag, database);
+            CurrentUser.currentUser = User.StaticGetByRFID(e.Tag, database);
             if (CurrentUser.currentUser != null)
             {
                 this.Close();

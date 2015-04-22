@@ -48,6 +48,8 @@ namespace Proftaak_ICT4Events
                 Point lbldescription = new Point(postWidth - 300, postHeight - 160);
                 lblTextPostContent.Location = lbldescription;
 
+                lblTextPostContent.Text = description;
+                lblPostNaam.Text = poster;
             }
 
             if (type.Type == "Video")
@@ -73,6 +75,9 @@ namespace Proftaak_ICT4Events
                 Point lbldescription = new Point(postWidth - 300, postHeight - 150);
                 lblTextPostContent.Location = lbldescription;
                 lblTextPostContent.SendToBack();
+
+                lblTextPostContent.Text = description;
+                lblPostNaam.Text = poster;
 
                 wmpPostPlayer.settings.autoStart = false;
                 wmpPostPlayer.URL = "C:\\Example.mp4";

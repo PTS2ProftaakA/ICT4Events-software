@@ -19,8 +19,8 @@ namespace Proftaak_ICT4Events
         //Fields
         private string filePath;
         private string description;
-        private string RFID;
 
+        private int userID;
         private int mediaFileID;
         private int eventID;
 
@@ -43,10 +43,10 @@ namespace Proftaak_ICT4Events
             get { return description; }
             set { description = value; }
         }
-        public string PropertyRFID
+        public int UserID
         {
-            get { return RFID; }
-            set { RFID = value; }
+          get { return userID; }
+          set { userID = value; }
         }
         public int MediaFileID
         {
@@ -82,11 +82,11 @@ namespace Proftaak_ICT4Events
 
         //Constructor for creating a single mediafile
         //The mediafile has a strong connection with the user
-        public MediaFile(string filePath, string description, string RFID, int mediaFileID, int eventID, DateTime uploadDate, MediaType mediaTypeName)
+        public MediaFile(string filePath, string description, int userID, int mediaFileID, int eventID, DateTime uploadDate, MediaType mediaTypeName)
         {
             this.filePath = filePath;
             this.description = description;
-            this.RFID = RFID;
+            this.userID = userID;
             this.mediaFileID = mediaFileID;
             this.eventID = eventID;          
             this.uploadDate = uploadDate;
@@ -107,7 +107,7 @@ namespace Proftaak_ICT4Events
             mediaFilesColumns.Add("MEDIABESTANDID");
             mediaFilesColumns.Add("BESTANDLOCATIE");
             mediaFilesColumns.Add("EVENEMENTID");
-            mediaFilesColumns.Add("RFID");
+            mediaFilesColumns.Add("GEBRUIKERID");
             mediaFilesColumns.Add("BESTANDTYPE");
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
@@ -120,7 +120,7 @@ namespace Proftaak_ICT4Events
             }
             else if(specification == "popular")
             {
-                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.RFID ORDER BY COUNT(*) DESC;";
+                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.GEBRUIKERID ORDER BY COUNT(*) DESC;";
             }
             else
             {
@@ -146,7 +146,7 @@ namespace Proftaak_ICT4Events
                     selectedMediaFiles.Add(new MediaFile(
                         dataTable[1][i],
                         dataTable[5][i],
-                        dataTable[3][i],
+                        Convert.ToInt32(dataTable[3][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[6][i]),
@@ -166,7 +166,7 @@ namespace Proftaak_ICT4Events
             mediaFilesColumns.Add("MEDIABESTANDID");
             mediaFilesColumns.Add("BESTANDLOCATIE");
             mediaFilesColumns.Add("EVENEMENTID");
-            mediaFilesColumns.Add("RFID");
+            mediaFilesColumns.Add("GEBRUIKERID");
             mediaFilesColumns.Add("BESTANDTYPE");
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
@@ -188,7 +188,7 @@ namespace Proftaak_ICT4Events
                 getMediaFile = new MediaFile(
                     dataTable[1][1],
                     dataTable[5][1],
-                    dataTable[3][1],
+                    Convert.ToInt32(dataTable[3][1]),
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[2][1]),
                     Convert.ToDateTime(dataTable[6][1]),
@@ -201,15 +201,15 @@ namespace Proftaak_ICT4Events
         //Adds a mediafile to the database
         public void Add(MediaFile newMediaFile, Database database)
         {
-            database.editDatabase(String.Format("INSERT INTO MEDIABESTAND VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', TO_DATE('{6}', 'DD/MM/YYYY HH24:MI:SS'))",
-                newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.RFID, newMediaFile.mediaTypeName.MediaTypeID, newMediaFile.description, newMediaFile.uploadDate));
+            database.editDatabase(String.Format("INSERT INTO MEDIABESTAND VALUES ({0}, '{1}', {2}, {3}, '{4}', '{5}', TO_DATE('{6}', 'DD/MM/YYYY HH24:MI:SS'))",
+                newMediaFile.mediaFileID, newMediaFile.filePath, newMediaFile.eventID, newMediaFile.userID, newMediaFile.mediaTypeName.MediaTypeID, newMediaFile.description, newMediaFile.uploadDate));
         }
 
         //Edits a mediafile in the database to its current values
         public void Edit(MediaFile updateMediaFile, Database database)
         {
-            database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, RFID = '{2}', BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD/MM/YYYY HH24:MI:SS') WHERE MEDIABESTANDID = {6}",
-                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.RFID, updateMediaFile.mediaTypeName.MediaTypeID, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
+            database.editDatabase(String.Format("UPDATE MEDIABESTAND SET BESTANDLOCATIE = '{0}', EVENEMENTID = {1}, GEBRUIKERID = {2}, BESTAND = '{3}', OPMERKING = '{4}', UPLOADDATUM = TO_DATE('{5}', 'DD/MM/YYYY HH24:MI:SS') WHERE MEDIABESTANDID = {6}",
+                updateMediaFile.filePath, updateMediaFile.eventID, updateMediaFile.userID, updateMediaFile.mediaTypeName.MediaTypeID, updateMediaFile.description, updateMediaFile.uploadDate, updateMediaFile.mediaFileID));
 
         }
 

@@ -17,9 +17,9 @@ namespace Proftaak_ICT4Events
         }
 
         //Returns a specific user from the database using a function in User
-        public User GetSpecificUser(string RFID) 
+        public User GetSpecificUser(int userID) 
         {
-            return User.StaticGet(RFID, database);
+            return User.StaticGetByUserID(userID, database);
         }
     }
 }
