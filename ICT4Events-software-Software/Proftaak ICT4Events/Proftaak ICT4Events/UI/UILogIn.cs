@@ -16,6 +16,7 @@ namespace Proftaak_ICT4Events.UI
     {
         private RFID userRFID;
         private Database database;
+        private bool loggedIn = false;
         
         public UILogIn()
         {
@@ -63,6 +64,7 @@ namespace Proftaak_ICT4Events.UI
             CurrentUser.currentUser = User.StaticGetByRFID(e.Tag, database);
             if (CurrentUser.currentUser != null)
             {
+                loggedIn = true;
                 this.Close();
             }
         }
@@ -165,7 +167,7 @@ namespace Proftaak_ICT4Events.UI
                 CurrentUser.currentUser = User.StaticGet(userName, password, database);
                 if (CurrentUser.currentUser != null)
                 {
-
+                    loggedIn = true;
                     this.Close();
                 }
                 else
@@ -184,7 +186,8 @@ namespace Proftaak_ICT4Events.UI
 
         private void UILogIn_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (e.CloseReason == CloseReason.UserClosing && loggedIn == false)
+                Application.Exit();
         }
     }
 }
