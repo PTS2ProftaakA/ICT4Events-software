@@ -21,8 +21,6 @@ namespace Proftaak_ICT4Events.UI
         {
             InitializeComponent();
 
-            //This is used so the user cannot acces the program without logging in
-            this.ControlBox = false;
 
             userRFID = new RFID();
             database = new Database();
@@ -179,6 +177,11 @@ namespace Proftaak_ICT4Events.UI
                 else if (tbPassword.Text == "")
                     MessageBox.Show("Vul uw wachtwoord in.");
             }
+        }
+
+        private void UILogIn_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
