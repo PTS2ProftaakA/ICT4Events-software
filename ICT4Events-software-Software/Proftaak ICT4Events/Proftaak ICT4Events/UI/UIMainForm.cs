@@ -89,7 +89,13 @@ namespace Proftaak_ICT4Events
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-
+        private string DecodeException(string ex)
+        {
+            int start = ex.IndexOf('$') + 1;
+            int end = ex.IndexOf('#');
+            string error = ex.Substring(start, end - start);
+            return error;
+        }
 
         //Reacts to the changing of the tabs inside the application
         #region tab
@@ -417,18 +423,25 @@ namespace Proftaak_ICT4Events
         private void btnEManagementSave_Click(object sender, EventArgs e)
         {
             Event chosenEvent = (Event)cbEManagementEvents.SelectedItem;
-            if (!eventManager.editEvent(chosenEvent, 
-                                  (Location)cbEManagementLocation.SelectedItem, 
-                                  tbEManagementNaam.Text, 
-                                  dtpEManagementStart.Value, 
-                                  dtpEManagementEnd.Value, 
-                                  Convert.ToInt32(nudEManagementAantal.Value), 
-                                  Convert.ToInt32(nudEManagentPercentage.Value)))
+            try
             {
-                MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
-            }
+                if (!eventManager.editEvent(chosenEvent,
+                                      (Location)cbEManagementLocation.SelectedItem,
+                                      tbEManagementNaam.Text,
+                                      dtpEManagementStart.Value,
+                                      dtpEManagementEnd.Value,
+                                      Convert.ToInt32(nudEManagementAantal.Value),
+                                      Convert.ToInt32(nudEManagentPercentage.Value)))
+                {
+                    MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
+                }
 
-            cbEManagementEvents.DataSource = eventManager.getAllEvents();
+                cbEManagementEvents.DataSource = eventManager.getAllEvents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));   
+            }
         }
 
         //The button switches between making a new event and editing an old one
@@ -482,17 +495,24 @@ namespace Proftaak_ICT4Events
         //The event combobox will be reset
         private void btnEManagementNewSave_Click(object sender, EventArgs e)
         {
-            if (!eventManager.makeEvent((Location)cbEManagementLocation.SelectedItem,
-                                  tbEManagementNaam.Text,
-                                  dtpEManagementStart.Value,
-                                  dtpEManagementEnd.Value,
-                                  Convert.ToInt32(nudEManagementAantal.Value),
-                                  Convert.ToInt32(nudEManagentPercentage.Value)))
+            try
             {
-                MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
-            }
+                if (!eventManager.makeEvent((Location)cbEManagementLocation.SelectedItem,
+                                      tbEManagementNaam.Text,
+                                      dtpEManagementStart.Value,
+                                      dtpEManagementEnd.Value,
+                                      Convert.ToInt32(nudEManagementAantal.Value),
+                                      Convert.ToInt32(nudEManagentPercentage.Value)))
+                {
+                    MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
+                }
 
-            btnEManagementNew_Click(btnEManagementNew, EventArgs.Empty);
+                btnEManagementNew_Click(btnEManagementNew, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));   
+            }
         }
 
         //When a event is selected all the values will be shown on the form
