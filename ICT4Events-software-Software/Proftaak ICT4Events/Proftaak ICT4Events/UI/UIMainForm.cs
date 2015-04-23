@@ -89,7 +89,13 @@ namespace Proftaak_ICT4Events
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-
+        private string DecodeException(string ex)
+        {
+            int start = ex.IndexOf('$') + 1;
+            int end = ex.IndexOf('#');
+            string error = ex.Substring(start, end - start);
+            return error;
+        }
 
         //Reacts to the changing of the tabs inside the application
         #region tab
@@ -157,7 +163,10 @@ namespace Proftaak_ICT4Events
             //Post beheer
             if (tcMainForm.SelectedIndex == 7)
             {
-                //not yet implemented
+                if (CurrentUser.currentUser.Administrator)
+                {
+                    FillReportedFeed();
+                }
             }
 
         }
@@ -417,18 +426,25 @@ namespace Proftaak_ICT4Events
         private void btnEManagementSave_Click(object sender, EventArgs e)
         {
             Event chosenEvent = (Event)cbEManagementEvents.SelectedItem;
-            if (!eventManager.editEvent(chosenEvent, 
-                                  (Location)cbEManagementLocation.SelectedItem, 
-                                  tbEManagementNaam.Text, 
-                                  dtpEManagementStart.Value, 
-                                  dtpEManagementEnd.Value, 
-                                  Convert.ToInt32(nudEManagementAantal.Value), 
-                                  Convert.ToInt32(nudEManagentPercentage.Value)))
+            try
             {
-                MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
-            }
+                if (!eventManager.editEvent(chosenEvent,
+                                      (Location)cbEManagementLocation.SelectedItem,
+                                      tbEManagementNaam.Text,
+                                      dtpEManagementStart.Value,
+                                      dtpEManagementEnd.Value,
+                                      Convert.ToInt32(nudEManagementAantal.Value),
+                                      Convert.ToInt32(nudEManagentPercentage.Value)))
+                {
+                    MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
+                }
 
-            cbEManagementEvents.DataSource = eventManager.getAllEvents();
+                cbEManagementEvents.DataSource = eventManager.getAllEvents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));   
+            }
         }
 
         //The button switches between making a new event and editing an old one
@@ -482,17 +498,24 @@ namespace Proftaak_ICT4Events
         //The event combobox will be reset
         private void btnEManagementNewSave_Click(object sender, EventArgs e)
         {
-            if (!eventManager.makeEvent((Location)cbEManagementLocation.SelectedItem,
-                                  tbEManagementNaam.Text,
-                                  dtpEManagementStart.Value,
-                                  dtpEManagementEnd.Value,
-                                  Convert.ToInt32(nudEManagementAantal.Value),
-                                  Convert.ToInt32(nudEManagentPercentage.Value)))
+            try
             {
-                MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
-            }
+                if (!eventManager.makeEvent((Location)cbEManagementLocation.SelectedItem,
+                                      tbEManagementNaam.Text,
+                                      dtpEManagementStart.Value,
+                                      dtpEManagementEnd.Value,
+                                      Convert.ToInt32(nudEManagementAantal.Value),
+                                      Convert.ToInt32(nudEManagentPercentage.Value)))
+                {
+                    MessageBox.Show("Er zijn gegevens niet goed ingevuld.");
+                }
 
-            btnEManagementNew_Click(btnEManagementNew, EventArgs.Empty);
+                btnEManagementNew_Click(btnEManagementNew, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));   
+            }
         }
 
         //When a event is selected all the values will be shown on the form
@@ -591,12 +614,17 @@ namespace Proftaak_ICT4Events
             }
             else if(rbManagementProductDelete.Checked)
             {
-                //This will remove the selected material from the database using the Remove function in Material
-                //All the materials will be refreshed
-                Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
-                removeMaterial.Remove(removeMaterial, database);
-                cbManagementProductAll.DataSource = materialManager.getAll();
-                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                DialogResult result = MessageBox.Show("Alle reserveringen van dit materiaal zullen ook worden verwijderd, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    //This will remove the selected material from the database using the Remove function in Material
+                    //All the materials will be refreshed
+                    Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                    removeMaterial.Remove(removeMaterial, database);
+                    cbManagementProductAll.DataSource = materialManager.getAll();
+                    cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                }
             }
             else
             {
@@ -606,6 +634,123 @@ namespace Proftaak_ICT4Events
                 newMaterial.Add(newMaterial, database);
                 cbManagementProductAll.DataSource = materialManager.getAll();
                 cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+            }
+        }
+        #endregion
+
+        //mediafile management
+        #region mediafile management
+
+        private void FillReportedFeed()
+        {
+            cbReportedPostsEvents.DataSource = eventManager.getAllEvents();
+
+            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+        }
+
+        private void cbReportedPostsEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Event selectedEvent = (Event)cbReportedPostsEvents.SelectedItem;
+
+            lvReportedPosts.Columns.Clear();
+            lvReportedPosts.Items.Clear();
+            lvReportedPosts.View = View.Details;
+
+            lvReportedPosts.Columns.Add("Mediabestand ID");
+            lvReportedPosts.Columns.Add("MediaType");
+            lvReportedPosts.Columns.Add("Beschrijving");
+            lvReportedPosts.Columns.Add("Percentage");
+
+            List<ListViewItem> listviewitems = new List<ListViewItem>();
+
+
+            foreach (MediaFile mediaFile in feedManager.GetReportedFiles(selectedEvent.ReportPercentage, selectedEvent.EventID, database))
+            {
+                List<Rating> allRatings = feedManager.getRatingsFromFile(mediaFile.FilePath, database);
+
+                int negativeCount = 0;
+
+                foreach(Rating rating in allRatings)
+                {
+                    if(!rating.Positive)
+                    {
+                        negativeCount++;
+                    }
+                }
+
+                ListViewItem item = new ListViewItem(Convert.ToString(mediaFile.MediaFileID));
+                item.SubItems.Add(mediaFile.MediaTypeName.Type);
+                item.SubItems.Add(mediaFile.Description);
+                item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
+
+                lvReportedPosts.Items.Add(item);
+            }
+
+            lvReportedComments.Columns.Clear();
+            lvReportedComments.Items.Clear();
+            lvReportedComments.View = View.Details;
+
+            lvReportedComments.Columns.Add("reactieID");
+            lvReportedComments.Columns.Add("Inhoud");
+            lvReportedComments.Columns.Add("Percentage");
+
+            foreach (Comment comment in feedManager.GetReportedComments(selectedEvent.ReportPercentage, selectedEvent.EventID, database))
+            {
+                List<Rating> allRatings = feedManager.getRatingsFromComment(comment.CommentID, database);
+
+                int negativeCount = 0;
+
+                foreach (Rating rating in allRatings)
+                {
+                    if (!rating.Positive)
+                    {
+                        negativeCount++;
+                    }
+                }
+
+                ListViewItem item = new ListViewItem(Convert.ToString(comment.CommentID));
+                item.SubItems.Add(comment.Content);
+                item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
+
+                lvReportedComments.Items.Add(item);
+            }
+        }
+
+        private void btnReportedPostsRemove_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Alle reacties op dit mediabestand en alle oordelen op de hiervoor genoemde reacties en het mediabestand zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
+
+                foreach (ListViewItem item in checkedItems)
+                {
+                    MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+                    currentMediafile.Remove(currentMediafile, database);
+                }
+
+                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+            }
+        }
+        
+
+        private void btnReportedReactionsRemove_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Alle reacties op deze reactie en alle oordelen op de hiervoor genoemde reacties zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
+
+                foreach (ListViewItem item in checkedItems)
+                {
+                    Comment currentComment = Comment.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+
+                    currentComment.Remove(currentComment, database);
+                }
+
+                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
             }
         }
         #endregion

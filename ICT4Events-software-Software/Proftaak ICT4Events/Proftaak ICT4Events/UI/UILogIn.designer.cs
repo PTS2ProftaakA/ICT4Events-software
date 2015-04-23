@@ -89,7 +89,7 @@
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
-            // Inloggen
+            // UILogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,8 +100,9 @@
             this.Controls.Add(this.tbInlogName);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblInlogName);
-            this.Name = "Inloggen";
+            this.Name = "UILogIn";
             this.Text = "Inloggen";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UILogIn_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

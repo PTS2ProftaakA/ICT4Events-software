@@ -16,6 +16,7 @@ namespace Proftaak_ICT4Events.UI
     {
         private RFID userRFID;
         private Database database;
+        private bool loggedIn = false;
         
         public UILogIn()
         {
@@ -31,6 +32,8 @@ namespace Proftaak_ICT4Events.UI
 
             userRFID.Tag += new TagEventHandler(userRFID_Tag);
 
+            tbPassword.PasswordChar = Convert.ToChar("*");
+
             openCmdLine(userRFID);
 
             //Makes this form undeniable for the user
@@ -42,6 +45,7 @@ namespace Proftaak_ICT4Events.UI
         {
             //userRFID.Attached is boolean to see if the Phidgets is connected
             RFID userRFID = (RFID)sender;
+            userRFID.Antenna = true;
             lblExplain.Text = "Of log in door je RFID te scannen!";
         }
 
@@ -60,6 +64,7 @@ namespace Proftaak_ICT4Events.UI
             CurrentUser.currentUser = User.StaticGetByRFID(e.Tag, database);
             if (CurrentUser.currentUser != null)
             {
+                loggedIn = true;
                 this.Close();
             }
         }
@@ -162,7 +167,7 @@ namespace Proftaak_ICT4Events.UI
                 CurrentUser.currentUser = User.StaticGet(userName, password, database);
                 if (CurrentUser.currentUser != null)
                 {
-
+                    loggedIn = true;
                     this.Close();
                 }
                 else
@@ -181,7 +186,8 @@ namespace Proftaak_ICT4Events.UI
 
         private void UILogIn_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (e.CloseReason == CloseReason.UserClosing && loggedIn == false)
+                Application.Exit();
         }
     }
 }

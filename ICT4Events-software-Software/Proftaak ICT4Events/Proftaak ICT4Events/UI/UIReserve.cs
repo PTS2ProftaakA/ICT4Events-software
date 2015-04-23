@@ -54,8 +54,21 @@ namespace Proftaak_ICT4Events.UI
 
             insertvalues[0] = new List<string>();
             insertvalues[1] = new List<string>();
+<<<<<<< HEAD
 
             try
+=======
+            //To make sure you don't create any users while a later one is empty. -- Tim's Comment
+            for (int i = 0; i < textboxes[1].Count(); i++)
+            {
+                if (textboxes[0][i].Text == "" || textboxes[1][i].Text == "")
+                {
+                    MessageBox.Show("Vul de gegevens in.");
+                    return;
+                }
+            }
+            for (int i = 0; i < textboxes[1].Count();i++ )
+>>>>>>> origin/Software
             {
                 for (int i = 0; i < textboxes[1].Count(); i++)
                 {
