@@ -55,27 +55,39 @@ namespace Proftaak_ICT4Events.UI
             insertvalues[0] = new List<string>();
             insertvalues[1] = new List<string>();
 
-            for (int i = 0; i < textboxes[1].Count();i++ )
+            try
             {
-                if (textboxes[0][i].Text != "" && textboxes[1][i].Text != "")
+                for (int i = 0; i < textboxes[1].Count(); i++)
                 {
-                    insertvalues[0].Add(textboxes[0][i].Text);
-                    insertvalues[1].Add(textboxes[1][i].Text);
+                    if (textboxes[0][i].Text != "" && textboxes[1][i].Text != "")
+                    {
+                        insertvalues[0].Add(textboxes[0][i].Text);
+                        insertvalues[1].Add(textboxes[1][i].Text);
 
-                    mapmanager.AddBasicUser(
-                        Guid.NewGuid().ToString("N").Substring(0, 10),
-                        CurrentUser.currentUser.UserID.ToString(),
-                        insertvalues[0][i],
-                        insertvalues[1][i],
-                        Guid.NewGuid().ToString("N").Substring(0, 10),
-                        Guid.NewGuid().ToString("N").Substring(0, 15),
-                        false,
-                        false,
-                        1,
-                        spotNumber);
+                        Spot spot = new Spot(0, 0, new SpotType("", 0, 0));
+                        Spot s = spot.Get(spotNumber.ToString(), database);
+
+                        User user = new User(Guid.NewGuid().ToString("N").Substring(0, 10),
+                            CurrentUser.currentUser.UserID.ToString(),
+                            insertvalues[0][i],
+                            insertvalues[1][i],
+                            Guid.NewGuid().ToString("N").Substring(0, 10),
+                            Guid.NewGuid().ToString("N").Substring(0, 15),
+                            false,
+                            false,
+                            1,
+                            spotNumber);
+                        mapmanager.AddBasicUser(user);
+
+                        mapmanager.AddUsersReservation(user, s);
+                    }
                 }
+                Close();
             }
-            Close();
+            catch
+            {
+                return;
+            }
         }
     }
 }

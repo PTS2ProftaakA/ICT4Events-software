@@ -118,7 +118,7 @@ namespace Proftaak_ICT4Events
             List<Reservation> allreservations = new List<Reservation>();
 
             reservationColumns.Add("HUURID");
-            reservationColumns.Add("RFID");
+            reservationColumns.Add("GEBRUIKERID");
             reservationColumns.Add("STARTDATUM");
             reservationColumns.Add("EINDDATUM");
             reservationColumns.Add("HUURTYPE");
@@ -273,13 +273,13 @@ namespace Proftaak_ICT4Events
 
             if (newReservation.Material == null)
             {
-                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', null, {6})",
-                    newReservation.rentalID, newReservation.user.UserID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spotNumber));
+                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, {1}, TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', null, {6})",
+                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spot.SpotNumber));
             }
             else
             {
                 database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
-                    newReservation.rentalID, newReservation.user.UserID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
+                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
             }
         }
 

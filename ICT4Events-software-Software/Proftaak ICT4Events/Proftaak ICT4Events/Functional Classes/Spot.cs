@@ -77,6 +77,42 @@ namespace Proftaak_ICT4Events
             return allSpot;
         }
 
+        //A function that returns all the available spots
+        public static List<Spot> getAllAvailable(Database database)
+        {
+            List<string> spotColumns = new List<string>();
+            List<Spot> allSpot = new List<Spot>();
+
+            spotColumns.Add("PLAATSNUMMER");
+            spotColumns.Add("PLAATSTYPEID");
+            spotColumns.Add("PRIJS");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER NOT IN (SELECT P.PLAATSNUMMER FROM GEBRUIKER AD, GEBRUIKER G, RESERVERING R, PLAATS P WHERE P.PLAATSNUMMER = R.PLAATSNUMMER AND R.GEBRUIKERID = AD.GEBRUIKERID AND G.RESERVEERDER = AD.GEBRUIKERID);", spotColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    SpotType thisSpotType = null;
+
+                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    {
+                        if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
+                        {
+                            thisSpotType = spotType;
+                        }
+                    }
+
+                    allSpot.Add(new Spot(
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        thisSpotType));
+                }
+            }
+
+            return allSpot;
+        }
+
         //A function that finds all the spots of a single type like 'bungalow'
         public static List<Spot> SearchAll(SpotType spotype, Database database)
         {
@@ -89,7 +125,7 @@ namespace Proftaak_ICT4Events
             List<string>[] dataTable = null;
             if (spotype != null)
             {
-                dataTable = database.selectQuery("SELECT * FROM  PLAATS WHERE PLAATSTYPEID = " + spotype.SpotTypeID, spotColumns);
+                dataTable = database.selectQuery("SELECT * FROM  PLAATS WHERE PLAATSTYPEID = " + spotype.SpotTypeID, spotColumns);    
             }
             else
             {
@@ -116,10 +152,50 @@ namespace Proftaak_ICT4Events
                         thisSpotType));
                 }
             }
-
             return allSpot;
         }
 
+        //Do the same, but only with the available spots
+        public static List<Spot> SearchAllAvailable(SpotType spotype, Database database)
+        {
+            List<string> spotColumns = new List<string>();
+            List<Spot> allSpot = new List<Spot>();
+
+            spotColumns.Add("PLAATSNUMMER");
+            spotColumns.Add("PLAATSTYPEID");
+            spotColumns.Add("PRIJS");
+            List<string>[] dataTable = null;
+            if (spotype != null)
+            {
+                dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER NOT IN (SELECT P.PLAATSNUMMER FROM GEBRUIKER AD, GEBRUIKER G, RESERVERING R, PLAATS P WHERE P.PLAATSNUMMER = R.PLAATSNUMMER AND R.GEBRUIKERID = AD.GEBRUIKERID AND G.RESERVEERDER = AD.GEBRUIKERID) AND PLAATSTYPEID = " + spotype.SpotTypeID + " ORDER BY PLAATSNUMMER", spotColumns);
+            }
+            else
+            {
+                dataTable = database.selectQuery("SELECT * FROM  PLAATS ", spotColumns);
+            }
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    SpotType thisSpotType = null;
+
+                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    {
+                        if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
+                        {
+                            thisSpotType = spotType;
+                        }
+                    }
+
+                    allSpot.Add(new Spot(
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        thisSpotType));
+                }
+            } 
+            return allSpot;
+        }
         //Returns a specific spot that corresponds to the ID of the spot
         public Spot Get(string spotNumber, Database database)
         {

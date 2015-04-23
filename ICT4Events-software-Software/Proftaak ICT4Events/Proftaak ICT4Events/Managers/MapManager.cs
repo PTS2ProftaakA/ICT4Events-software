@@ -21,6 +21,12 @@ namespace Proftaak_ICT4Events
             return Spot.getAll(database);
         }
 
+        //Do the same, but only with the available spots
+        public List<Spot> GetAllAvailableSpots()
+        {
+            return Spot.getAllAvailable(database);
+        }
+
         //A function used in SpotType to return all spot types
         //An example of such a value is "bungalow"
         public List<SpotType> GetAllSpotTypes()
@@ -34,11 +40,16 @@ namespace Proftaak_ICT4Events
             return Spot.SearchAll(spottype, database);
         }
 
+        //Do the same, but only with the available spots
+        public List<Spot> SearchAllAvailableSpots(SpotType spottype)
+        {
+            return Spot.SearchAllAvailable(spottype, database);
+        }
+
         //Uses a function in User to create a basic user
         //Gives an exception when this fails
-        public bool AddBasicUser(string RFID, string reservee, string name, string emailaddress, string username, string password, bool administrator, bool loggedIn, int useriD, int spotnumber)
+        public bool AddBasicUser(User user)
         {
-            User user = new User(RFID, reservee, name, emailaddress, username, password, administrator, loggedIn, useriD, spotnumber);
             try
             {
                 user.AddBasicUser(user,database);
@@ -49,6 +60,16 @@ namespace Proftaak_ICT4Events
                 System.Windows.Forms.MessageBox.Show(e.ToString());
                 return false;
             }
+        }
+
+        public bool AddUsersReservation(User user, Spot spot)
+        {
+                Event e = new Event("", 1, 1, 1, DateTime.Now, DateTime.Now, new Location("", "", "", "", "", 1, 1));
+                Event registeredevent = e.Get("1", database);
+                Reservation reservation = new Reservation(user.UserID.ToString(), 1, spot.SpotNumber, registeredevent.StartDate, registeredevent.EndDate, true, spot);
+                reservation.Add(reservation, database);
+                return true;
+
         }
     }
 }

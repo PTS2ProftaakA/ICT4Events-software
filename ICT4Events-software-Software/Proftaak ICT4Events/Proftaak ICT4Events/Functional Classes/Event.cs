@@ -121,7 +121,7 @@ namespace Proftaak_ICT4Events
 
             eventColumns.Add("EVENEMENTID");
             eventColumns.Add("EVENEMENTNAAM");
-            eventColumns.Add("LOCATIENAAM");
+            eventColumns.Add("LOCATIEID");
             eventColumns.Add("AANTALDEELNEMERS");
             eventColumns.Add("STARTDATUM");
             eventColumns.Add("EINDDATUM");
