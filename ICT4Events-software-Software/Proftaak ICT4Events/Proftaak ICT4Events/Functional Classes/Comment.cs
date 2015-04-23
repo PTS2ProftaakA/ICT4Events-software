@@ -84,7 +84,7 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    if (dataTable[1][i] != "")
+                    if (dataTable[3][i] == "")
                     {
                         dataTable[3][i] = "-1";
                     }
@@ -93,8 +93,8 @@ namespace Proftaak_ICT4Events
                         dataTable[1][i],
                         dataTable[4][i],
                         Convert.ToInt32(dataTable[2][i]),
-                        Convert.ToInt32(dataTable[3][i]),
-                        Convert.ToInt32(dataTable[0][i])
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i])
                         ));
                 }
             }
@@ -121,7 +121,7 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    if (dataTable[1][i] != "")
+                    if (dataTable[3][i] == "")
                     {
                         dataTable[3][i] = "-1";
                     }
@@ -130,8 +130,8 @@ namespace Proftaak_ICT4Events
                         dataTable[1][i],
                         dataTable[4][i],
                         Convert.ToInt32(dataTable[2][i]),
-                        Convert.ToInt32(dataTable[3][i]),
-                        Convert.ToInt32(dataTable[0][i])
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i])
                         ));
                 }
             }
@@ -157,7 +157,7 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    if (dataTable[1][i] != "")
+                    if (dataTable[3][i] == "")
                     {
                         dataTable[3][i] = "-1";
                     }
@@ -166,8 +166,8 @@ namespace Proftaak_ICT4Events
                         dataTable[1][i],
                         dataTable[4][i],
                         Convert.ToInt32(dataTable[2][i]),
-                        Convert.ToInt32(dataTable[3][i]),
-                        Convert.ToInt32(dataTable[0][i])
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i])
                         ));
                 }
             }
@@ -175,7 +175,7 @@ namespace Proftaak_ICT4Events
             return allComments;
         }
 
-        //Gets a single comment based on the ID of the comment but more accesible
+        //Gets a single comment based on the filepath of the comment but more accesible
         public static Comment GetStatic(string filePath, Database database)
         {
             List<string> commentColumns = new List<string>();
@@ -200,8 +200,40 @@ namespace Proftaak_ICT4Events
                     dataTable[1][1],
                     dataTable[4][1],
                     Convert.ToInt32(dataTable[2][1]),
-                    Convert.ToInt32(dataTable[3][1]),
-                    Convert.ToInt32(dataTable[0][1])
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1])
+                    );
+            }
+            return getComment;
+        }
+
+        //Gets a single comment based on the ID of the comment but more accesible
+        public static Comment GetStatic(int commentID, Database database)
+        {
+            List<string> commentColumns = new List<string>();
+            Comment getComment = null;
+
+            commentColumns.Add("REACTIEID");
+            commentColumns.Add("BESTANDLOCATIE");
+            commentColumns.Add("GEBRUIKERID");
+            commentColumns.Add("REACTIEOPID");
+            commentColumns.Add("INHOUD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                if (dataTable[1][1] != "")
+                {
+                    dataTable[3][1] = "-1";
+                }
+
+                getComment = new Comment(
+                    dataTable[1][1],
+                    dataTable[4][1],
+                    Convert.ToInt32(dataTable[2][1]),
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1])
                     );
             }
             return getComment;
@@ -238,6 +270,7 @@ namespace Proftaak_ICT4Events
             }
             return getComment;
         }
+
 
         //The database is called to add a single comment
         public void Add(Comment newComment, Database database)

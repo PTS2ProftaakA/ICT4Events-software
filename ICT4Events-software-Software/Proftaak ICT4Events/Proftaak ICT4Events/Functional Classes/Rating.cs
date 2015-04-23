@@ -130,7 +130,7 @@ namespace Proftaak_ICT4Events
             return allRating;
         }
 
-        //A function that returns all the ratings that correspond to a single comment
+        //A function that returns all the ratings that correspond to a single comment posted on a comment
         //The data is constructed and a list is created
         public static List<Rating> getAllFromComment(int commentID, Database database)
         {

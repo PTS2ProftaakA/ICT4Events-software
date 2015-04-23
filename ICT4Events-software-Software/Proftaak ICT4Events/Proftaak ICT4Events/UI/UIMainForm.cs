@@ -614,12 +614,17 @@ namespace Proftaak_ICT4Events
             }
             else if(rbManagementProductDelete.Checked)
             {
-                //This will remove the selected material from the database using the Remove function in Material
-                //All the materials will be refreshed
-                Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
-                removeMaterial.Remove(removeMaterial, database);
-                cbManagementProductAll.DataSource = materialManager.getAll();
-                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                DialogResult result = MessageBox.Show("Alle reserveringen van dit materiaal zullen ook worden verwijderd, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    //This will remove the selected material from the database using the Remove function in Material
+                    //All the materials will be refreshed
+                    Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                    removeMaterial.Remove(removeMaterial, database);
+                    cbManagementProductAll.DataSource = materialManager.getAll();
+                    cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                }
             }
             else
             {
@@ -685,7 +690,7 @@ namespace Proftaak_ICT4Events
             lvReportedComments.Items.Clear();
             lvReportedComments.View = View.Details;
 
-            lvReportedComments.Columns.Add("Bestandlocatie");
+            lvReportedComments.Columns.Add("reactieID");
             lvReportedComments.Columns.Add("Inhoud");
             lvReportedComments.Columns.Add("Percentage");
 
@@ -703,40 +708,50 @@ namespace Proftaak_ICT4Events
                     }
                 }
 
-                ListViewItem item = new ListViewItem(comment.FilePath);
+                ListViewItem item = new ListViewItem(Convert.ToString(comment.CommentID));
                 item.SubItems.Add(comment.Content);
-       
-                //item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
-                item.SubItems.Add("100");
+                item.SubItems.Add(Convert.ToString(((decimal)negativeCount / (decimal)allRatings.Count()) * 100));
+
                 lvReportedComments.Items.Add(item);
             }
         }
 
         private void btnReportedPostsRemove_Click(object sender, EventArgs e)
         {
-            ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
+            DialogResult result = MessageBox.Show("Alle reacties op dit mediabestand en alle oordelen op de hiervoor genoemde reacties en het mediabestand zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
 
-            foreach(ListViewItem item in checkedItems)
+            if (result == DialogResult.Yes)
             {
-                MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
-                currentMediafile.Remove(currentMediafile, database);
-            }
+                ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
 
-            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+                foreach (ListViewItem item in checkedItems)
+                {
+                    MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+                    currentMediafile.Remove(currentMediafile, database);
+                }
+
+                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+            }
         }
         
 
         private void btnReportedReactionsRemove_Click(object sender, EventArgs e)
         {
-            ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
+            DialogResult result = MessageBox.Show("Alle reacties op deze reactie en alle oordelen op de hiervoor genoemde reacties zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
 
-            foreach (ListViewItem item in checkedItems)
+            if (result == DialogResult.Yes)
             {
-                Comment currentComment = Comment.GetStatic(item.SubItems[0].Text, database);
-                currentComment.Remove(currentComment, database);
-            }
+                ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
 
-            cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+                foreach (ListViewItem item in checkedItems)
+                {
+                    Comment currentComment = Comment.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+
+                    currentComment.Remove(currentComment, database);
+                }
+
+                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+            }
         }
         #endregion
     }
