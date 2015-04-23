@@ -52,7 +52,7 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 0)
             {
-                for (int i = 0; i < dataTable[0].Count(); i++)
+                for (int i = 1; i < dataTable[0].Count(); i++)
                 {
                     allForbiddenWords.Add(new ForbiddenWord(
                         dataTable[1][i], 
@@ -75,7 +75,7 @@ namespace Proftaak_ICT4Events
 
             if (dataTable[0].Count() > 0)
             {
-                for (int i = 0; i < dataTable[0].Count(); i++)
+                for (int i = 1; i < dataTable[0].Count(); i++)
                 {
                     allForbiddenWords.Add(dataTable[0][i]);
                 }
