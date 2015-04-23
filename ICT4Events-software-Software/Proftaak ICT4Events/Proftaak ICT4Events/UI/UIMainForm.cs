@@ -129,45 +129,45 @@ namespace Proftaak_ICT4Events
             }
 
             //tab rental
-            if (tcMainForm.SelectedIndex == 1)
+            else if (tcMainForm.SelectedIndex == 1)
             {
                 cbMaterialCategory.DataSource = materialManager.getAllCategories();
             }
 
             //tab files
-            if (tcMainForm.SelectedIndex == 2)
+            else if (tcMainForm.SelectedIndex == 2)
             {
                 ReloadTreeView();
             }
 
             //tab settings
-            if (tcMainForm.SelectedIndex == 3)
+            else if (tcMainForm.SelectedIndex == 3)
             {
                 SettingsFillControls(CurrentUser.currentUser);
             }
 
             //tab map
-            if (tcMainForm.SelectedIndex == 4)
+            else if (tcMainForm.SelectedIndex == 4)
             {
                 cbMapType.DataSource = mapManager.GetAllSpotTypes();
             }
 
             //event management
-            if (tcMainForm.SelectedIndex == 5)
+            else if (tcMainForm.SelectedIndex == 5)
             {
                 tcMainForm.TabIndex = 1;
                 cbEManagementEvents.DataSource = eventManager.getAllEvents();
             }
 
             //material management
-            if (tcMainForm.SelectedIndex == 6)
+            else if (tcMainForm.SelectedIndex == 6)
             {
                 cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
                 cbManagementProductAll.DataSource = materialManager.getAll();
                 rbManagementProductEdit.Checked = true;
             }
             //Post beheer
-            if (tcMainForm.SelectedIndex == 7)
+            else if (tcMainForm.SelectedIndex == 7)
             {
                 if (CurrentUser.currentUser.Administrator)
                 {
@@ -240,14 +240,21 @@ namespace Proftaak_ICT4Events
 
         //When the user wants to rent something, a new reservation is added to the database
         //A function in Reservation called Add is used
-        private void btnMaterialRent_Click_1(object sender, EventArgs e)
+        private void btnMaterialRent_Click(object sender, EventArgs e)
         {
             Material selectedMaterial = (Material)cbMaterialProduct.SelectedItem;
 
-            Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.UserID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
-            newMaterialReservation.User = CurrentUser.currentUser;
+            if (selectedMaterial.Amount > 0)
+            {
+                Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.UserID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
+                newMaterialReservation.User = CurrentUser.currentUser;
 
-            newMaterialReservation.Add(newMaterialReservation, database);
+                newMaterialReservation.Add(newMaterialReservation, database);
+            }
+            else
+            {
+                MessageBox.Show("Dit product is helaas niet meer beschikbaar");
+            }
         }
         #endregion
 
@@ -296,7 +303,31 @@ namespace Proftaak_ICT4Events
 
             dpBirthDate.Value = user.DateOfBirth;
             pbSettingsPicture.ImageLocation = user.PhotoPath;
-            lbPersonRentals.DataSource = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
+
+            List<Reservation> rentedMaterials = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
+
+            lvPersonalRental.Columns.Clear();
+            lvPersonalRental.Items.Clear();
+            lvPersonalRental.View = View.Details;
+
+            lvPersonalRental.Columns.Add("Materiaal");
+            lvPersonalRental.Columns.Add("Startdatum");
+            lvPersonalRental.Columns.Add("Einddatum");
+
+            lvPersonalRental.Columns[0].Width = 180;
+            lvPersonalRental.Columns[1].Width = 90;
+            lvPersonalRental.Columns[2].Width = 90;
+
+            List<ListViewItem> listviewitems = new List<ListViewItem>();
+
+            foreach (Reservation reservation in rentedMaterials)
+            {
+                ListViewItem item = new ListViewItem(reservation.Material.Name);
+                item.SubItems.Add(Convert.ToString(reservation.StartDate.ToString("dd/MM/yyyy")));
+                item.SubItems.Add(Convert.ToString(reservation.EndDate.ToString("dd/MM/yyyy")));
+
+                lvPersonalRental.Items.Add(item);
+            }
         }
 
 
@@ -710,6 +741,11 @@ namespace Proftaak_ICT4Events
             lvReportedPosts.Columns.Add("Beschrijving");
             lvReportedPosts.Columns.Add("Percentage");
 
+            lvReportedPosts.Columns[0].Width = 110;
+            lvReportedPosts.Columns[1].Width = 70;
+            lvReportedPosts.Columns[2].Width = 145;
+            lvReportedPosts.Columns[3].Width = 70;
+            
             List<ListViewItem> listviewitems = new List<ListViewItem>();
 
 
@@ -742,6 +778,10 @@ namespace Proftaak_ICT4Events
             lvReportedComments.Columns.Add("reactieID");
             lvReportedComments.Columns.Add("Inhoud");
             lvReportedComments.Columns.Add("Percentage");
+
+            lvReportedComments.Columns[0].Width = 110;
+            lvReportedComments.Columns[1].Width = 215;
+            lvReportedComments.Columns[2].Width = 70;
 
             foreach (Comment comment in feedManager.GetReportedComments(selectedEvent.ReportPercentage, selectedEvent.EventID, database))
             {

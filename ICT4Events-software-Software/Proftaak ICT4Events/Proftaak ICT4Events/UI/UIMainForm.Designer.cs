@@ -65,7 +65,6 @@
             this.tpSettings = new System.Windows.Forms.TabPage();
             this.tbSettingsPhoneNumber = new System.Windows.Forms.TextBox();
             this.lblSettingPhoneNumber = new System.Windows.Forms.Label();
-            this.lbPersonRentals = new System.Windows.Forms.ListBox();
             this.btnSettingsSave = new System.Windows.Forms.Button();
             this.dpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.tbSettingsUsername = new System.Windows.Forms.TextBox();
@@ -136,6 +135,7 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.btnSettingsChangePhotoPath = new System.Windows.Forms.Button();
             this.tbSettingsPhotoPath = new System.Windows.Forms.TextBox();
+            this.lvPersonalRental = new System.Windows.Forms.ListView();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -338,7 +338,7 @@
             this.btnMaterialRent.TabIndex = 13;
             this.btnMaterialRent.Text = "Reserveren";
             this.btnMaterialRent.UseVisualStyleBackColor = true;
-            this.btnMaterialRent.Click += new System.EventHandler(this.btnMaterialRent_Click_1);
+            this.btnMaterialRent.Click += new System.EventHandler(this.btnMaterialRent_Click);
             // 
             // lblMaterialProductNameName
             // 
@@ -561,11 +561,11 @@
             // 
             // tpSettings
             // 
+            this.tpSettings.Controls.Add(this.lvPersonalRental);
             this.tpSettings.Controls.Add(this.tbSettingsPhotoPath);
             this.tpSettings.Controls.Add(this.btnSettingsChangePhotoPath);
             this.tpSettings.Controls.Add(this.tbSettingsPhoneNumber);
             this.tpSettings.Controls.Add(this.lblSettingPhoneNumber);
-            this.tpSettings.Controls.Add(this.lbPersonRentals);
             this.tpSettings.Controls.Add(this.btnSettingsSave);
             this.tpSettings.Controls.Add(this.dpBirthDate);
             this.tpSettings.Controls.Add(this.tbSettingsUsername);
@@ -604,16 +604,6 @@
             this.lblSettingPhoneNumber.TabIndex = 13;
             this.lblSettingPhoneNumber.Text = "Telefoonnummer";
             this.lblSettingPhoneNumber.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lbPersonRentals
-            // 
-            this.lbPersonRentals.FormattingEnabled = true;
-            this.lbPersonRentals.ItemHeight = 16;
-            this.lbPersonRentals.Location = new System.Drawing.Point(335, 390);
-            this.lbPersonRentals.Margin = new System.Windows.Forms.Padding(4);
-            this.lbPersonRentals.Name = "lbPersonRentals";
-            this.lbPersonRentals.Size = new System.Drawing.Size(487, 260);
-            this.lbPersonRentals.TabIndex = 12;
             // 
             // btnSettingsSave
             // 
@@ -1426,6 +1416,14 @@
             this.tbSettingsPhotoPath.Size = new System.Drawing.Size(267, 22);
             this.tbSettingsPhotoPath.TabIndex = 16;
             // 
+            // lvPersonalRental
+            // 
+            this.lvPersonalRental.Location = new System.Drawing.Point(336, 359);
+            this.lvPersonalRental.Name = "lvPersonalRental";
+            this.lvPersonalRental.Size = new System.Drawing.Size(486, 286);
+            this.lvPersonalRental.TabIndex = 17;
+            this.lvPersonalRental.UseCompatibleStateImageBehavior = false;
+            // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1526,7 +1524,6 @@
         private System.Windows.Forms.DateTimePicker dtpRentalEnd;
         private System.Windows.Forms.DateTimePicker dtpRentalStart;
         private System.Windows.Forms.Button btnMaterialRent;
-        private System.Windows.Forms.ListBox lbPersonRentals;
         private System.Windows.Forms.NumericUpDown nudMapPeople;
         private System.Windows.Forms.ComboBox cbMapType;
         private System.Windows.Forms.RadioButton rbManagementProductNew;
@@ -1575,6 +1572,7 @@
         private System.Windows.Forms.Label lblSettingPhoneNumber;
         private System.Windows.Forms.Button btnSettingsChangePhotoPath;
         private System.Windows.Forms.TextBox tbSettingsPhotoPath;
+        private System.Windows.Forms.ListView lvPersonalRental;
     }
 }
 
