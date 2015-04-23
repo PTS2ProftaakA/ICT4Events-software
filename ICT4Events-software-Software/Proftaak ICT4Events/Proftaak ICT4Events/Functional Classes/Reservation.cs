@@ -9,8 +9,7 @@ namespace Proftaak_ICT4Events
     public class Reservation : IDatabase<Reservation>
     {
         //Fields
-        private string RFID;
-
+        private int userID;
         private int rentalID;
         private int materialID;
         private int spotNumber;
@@ -27,10 +26,10 @@ namespace Proftaak_ICT4Events
 
         //Properies
         #region properties
-        public string PropertyRFID
+        public int UserID
         {
-            get { return RFID; }
-            set { RFID = value; }
+            get { return userID; }
+            set { userID = value; }
         }
         public int RentalID
         {
@@ -87,9 +86,9 @@ namespace Proftaak_ICT4Events
         }
 
         //The constructor for a spotreservation, a user is needed to complete it
-        public Reservation(string RFID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
+        public Reservation(int userID, int rentalID, int materialID, DateTime startDate, DateTime endDate, bool isPayed, Spot spot)
         {
-            this.RFID = RFID;
+            this.userID = userID;
             this.rentalID = rentalID;
             this.materialID = materialID;
             this.startDate = startDate;
@@ -99,9 +98,9 @@ namespace Proftaak_ICT4Events
         }
 
         //The constructor for a materialreservation, a user is needed to complete it
-        public Reservation(string RFID, int rentalID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
+        public Reservation(int userID, int rentalID, int spotNumber, DateTime startDate, DateTime endDate, bool isPayed, Material material)
         {
-            this.RFID = RFID;
+            this.userID = userID;
             this.rentalID = rentalID;
             this.spotNumber = spotNumber;
             this.startDate = startDate;
@@ -135,7 +134,7 @@ namespace Proftaak_ICT4Events
                     if (dataTable[4][i] == "MATERIAAL")
                     {
                         allreservations.Add(new Reservation(
-                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[6][i]),
                         Convert.ToDateTime(dataTable[2][i]),
@@ -146,7 +145,7 @@ namespace Proftaak_ICT4Events
                     else
                     {
                         allreservations.Add(new Reservation(
-                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[7][i]),
                         Convert.ToDateTime(dataTable[2][i]),
@@ -185,7 +184,7 @@ namespace Proftaak_ICT4Events
                     if (dataTable[4][i] == "MATERIAAL")
                     {
                         allreservations.Add(new Reservation(
-                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[6][i]),
                         Convert.ToDateTime(dataTable[2][i]),
@@ -196,7 +195,7 @@ namespace Proftaak_ICT4Events
                     else
                     {
                         allreservations.Add(new Reservation(
-                        dataTable[1][i],
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[7][i]),
                         Convert.ToDateTime(dataTable[2][i]),
@@ -232,24 +231,24 @@ namespace Proftaak_ICT4Events
                 if(dataTable[4][1] == "MATERIAAL")
                 {
                     getReservation = new Reservation(
-                    dataTable[1][1],
-                    Convert.ToInt32(dataTable[0][1]),
-                    Convert.ToInt32(dataTable[6][1]),
-                    Convert.ToDateTime(dataTable[2][1]),
-                    Convert.ToDateTime(dataTable[3][1]),
-                    dataTable[5][1].ToUpper() == "Y",
-                    Material.Get(dataTable[6][1], database));
+                        Convert.ToInt32(dataTable[1][1]),
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[6][1]),
+                        Convert.ToDateTime(dataTable[2][1]),
+                        Convert.ToDateTime(dataTable[3][1]),
+                        dataTable[5][1].ToUpper() == "Y",
+                        Material.Get(dataTable[6][1], database));
                 }
                 else
                 {
                     getReservation = new Reservation(
-                    dataTable[1][1],
-                    Convert.ToInt32(dataTable[0][1]),
-                    Convert.ToInt32(dataTable[7][1]),
-                    Convert.ToDateTime(dataTable[2][1]),
-                    Convert.ToDateTime(dataTable[3][1]),
-                    dataTable[5][1].ToUpper() == "Y",
-                    Spot.Get(dataTable[7][1], database));
+                        Convert.ToInt32(dataTable[1][1]),
+                        Convert.ToInt32(dataTable[0][1]),
+                        Convert.ToInt32(dataTable[7][1]),
+                        Convert.ToDateTime(dataTable[2][1]),
+                        Convert.ToDateTime(dataTable[3][1]),
+                        dataTable[5][1].ToUpper() == "Y",
+                        Spot.Get(dataTable[7][1], database));
                 }
             }
 
@@ -260,26 +259,15 @@ namespace Proftaak_ICT4Events
         //The bool is converted to a string that indicates a YES('Y') or NO('N')
         public void Add(Reservation newReservation, Database database)
         {
-            string isPayedString;
-
-            if (isPayed)
-            {
-                isPayedString = "Y";
-            }
-            else
-            {
-                isPayedString = "N";
-            }
-
             if (newReservation.Material == null)
             {
                 database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, {1}, TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', null, {6})",
-                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "PLAATS", isPayedString, newReservation.spot.SpotNumber));
+                    newReservation.rentalID, newReservation.userID, newReservation.startDate, newReservation.endDate, "PLAATS", newReservation.isPayed ? "Y" : "N", newReservation.spot.SpotNumber));
             }
             else
             {
                 database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
-                    newReservation.rentalID, newReservation.RFID, newReservation.startDate, newReservation.endDate, "MATERIAAL", isPayedString, newReservation.material.MaterialID));
+                    newReservation.rentalID, newReservation.userID, newReservation.startDate, newReservation.endDate, "MATERIAAL", newReservation.isPayed ? "Y" : "N", newReservation.material.MaterialID));
             }
         }
 
@@ -287,19 +275,8 @@ namespace Proftaak_ICT4Events
         //The bool is converted to a string that indicates a YES('Y') or NO('N')
         public void Edit(Reservation updateReservation, Database database)
         {
-            string isPayedString;
-
-            if (isPayed)
-            {
-                isPayedString = "Y";
-            }
-            else
-            {
-                isPayedString = "N";
-            }
-
             database.editDatabase(String.Format("UPDATE RESERVERING SET STARTDATUM = TO_DATE('{0}', 'DD/MM/YYYY HH24:MI:SS'), EINDDATUM = TO_DATE('{1}', 'DD/MM/YYYY HH24:MI:SS'), BETAALD = '{2}' WHERE PLAATSNUMMER = {1}",
-                updateReservation.startDate, updateReservation.endDate, isPayedString));
+                updateReservation.startDate, updateReservation.endDate, updateReservation.isPayed ? "Y" : "N"));
 
         }
 
