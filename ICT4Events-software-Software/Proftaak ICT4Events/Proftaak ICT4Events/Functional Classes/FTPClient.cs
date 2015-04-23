@@ -163,12 +163,16 @@ namespace Proftaak_ICT4Events
                         return;
                     }
 
-                    request.ContentLength = contents.Length;
+                    if ((request.ContentLength = contents.Length) == 0)
+                    {
+                        MessageBox.Show("Bestand heeft geen inhoud");
+                        return;
+                    }
 
                     using (Stream stream = request.GetRequestStream())
                     {
                         stream.Write(contents, 0, contents.Length);
-                        MessageBox.Show("Bestand is geuploadt");
+                        MessageBox.Show("Bestand is geupload");
                     }
                 }
             }
@@ -178,6 +182,18 @@ namespace Proftaak_ICT4Events
         public void CreateDirectory(TreeNode targetNode, string name)
         {
             string path = CleanPathFromNode(targetNode);
+
+            if (name == String.Empty)
+            {
+                MessageBox.Show("Map moet een naam hebben");
+                return;
+            }
+
+            if (GetDirectoryListing(path).Where(d => d == name).Count() > 0)
+            {
+                MessageBox.Show("Map bestaat al");
+                return;
+            }
 
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path + "/" + name);
             request.Method = WebRequestMethods.Ftp.MakeDirectory;
