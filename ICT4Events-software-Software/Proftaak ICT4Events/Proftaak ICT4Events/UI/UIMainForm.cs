@@ -334,18 +334,19 @@ namespace Proftaak_ICT4Events
         //Saves the setting updated by the user in the database
         private void btnSettingsSave_Click(object sender, EventArgs e)
         {
-            string email = tbSettingsEmail.Text;
-            string name = tbSettingsName.Text;
-            string userName = tbSettingsUsername.Text;
-            string phoneNumber = tbSettingsPhoneNumber.Text;
-            string photoPath = tbSettingsPhotoPath.Text;
-            DateTime birth = dpBirthDate.Value;
-
-            int outInt;
-
             try
             {
-                if (name != null && email.Contains("@") && email.Contains(".") && userName != null && birth < DateTime.Now && int.TryParse(phoneNumber, out outInt) && phoneNumber.Length >= 10)
+                string email = tbSettingsEmail.Text;
+                string name = tbSettingsName.Text;
+                string userName = tbSettingsUsername.Text;
+                string phoneNumber = tbSettingsPhoneNumber.Text;
+                string photoPath = tbSettingsPhotoPath.Text;
+                DateTime birth = dpBirthDate.Value;
+
+                int outInt;
+
+
+                if (name != null && email.Contains("@") && email.Contains(".") && userName != null && birth < DateTime.Now && int.TryParse(phoneNumber, out outInt) && phoneNumber.Length >= 8)
                 {
                     DialogResult result = MessageBox.Show("Weet je zeker dat je je peroonlijke gegevens aan wilt passen? \n De volgende keer zal je met je eventueel aangepaste username moeten inloggen.", "Important Question", MessageBoxButtons.YesNo);
 
@@ -370,7 +371,7 @@ namespace Proftaak_ICT4Events
             }
             catch (Exception ex)
             {
-                if(ex.Message.Contains("ORA-00001"))
+                if (ex.Message.StartsWith("ORA-00001"))
                 {
                     MessageBox.Show("Deze gebruikersnaam is al in gebruik. \nProbeer een andere gebruikersnaam.");
                 }
@@ -843,5 +844,10 @@ namespace Proftaak_ICT4Events
             }
         }
         #endregion
+
+        private void btnLogOff_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
