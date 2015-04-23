@@ -119,16 +119,14 @@ namespace Proftaak_ICT4Events
                 request.Credentials = new NetworkCredential(mUser, mPass);
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    byte[] contents;
-                    string ext = Path.GetExtension(ofd.FileName);
-
                     if (GetDirectoryListing(path).Where(s => s == Path.GetFileName(ofd.FileName)).Count() != 0)
                     {
                         MessageBox.Show("Bestand bestaat al");
                         return;
                     }
 
-                    foreach (string s in ForbiddenWord.GetAllStrings(mDatabase))
+                    List<string> forbiddenWords = ForbiddenWord.GetAllStrings(mDatabase);
+                    foreach (string s in forbiddenWords)
                     {
                         if (Path.GetFileNameWithoutExtension(ofd.FileName).Contains(s))
                         {
@@ -137,8 +135,22 @@ namespace Proftaak_ICT4Events
                         }
                     }
 
+                    byte[] contents;
+                    string ext = Path.GetExtension(ofd.FileName);
+
                     if (ext == ".txt")
                     {
+                        foreach (string l in File.ReadAllLines(ofd.FileName))
+                        {
+                            foreach (string s in forbiddenWords)
+                            {
+                                if (l.Contains(s))
+                                {
+                                    MessageBox.Show("Tekstbestand bevat een verboden woord");
+                                    return;
+                                }
+                            }
+                        }
                         contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
                     }
                     else if (ext == ".jpg" || ext == ".png" || ext == ".gif" || ext == ".mp4" || ext == ".avi" || ext == ".mp3")
