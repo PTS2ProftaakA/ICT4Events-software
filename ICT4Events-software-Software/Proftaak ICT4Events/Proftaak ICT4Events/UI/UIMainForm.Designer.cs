@@ -63,6 +63,8 @@
             this.tvFolders = new System.Windows.Forms.ListView();
             this.tvTree = new System.Windows.Forms.TreeView();
             this.tpSettings = new System.Windows.Forms.TabPage();
+            this.tbSettingsPhoneNumber = new System.Windows.Forms.TextBox();
+            this.lblSettingPhoneNumber = new System.Windows.Forms.Label();
             this.lbPersonRentals = new System.Windows.Forms.ListBox();
             this.btnSettingsSave = new System.Windows.Forms.Button();
             this.dpBirthDate = new System.Windows.Forms.DateTimePicker();
@@ -72,7 +74,6 @@
             this.lblSettingsUsername = new System.Windows.Forms.Label();
             this.lblSettingsGeboorte = new System.Windows.Forms.Label();
             this.lblSettingsEmail = new System.Windows.Forms.Label();
-            this.btnSettingsEdit = new System.Windows.Forms.Button();
             this.lblSettingsName = new System.Windows.Forms.Label();
             this.pbSettingsPicture = new System.Windows.Forms.PictureBox();
             this.tpMap = new System.Windows.Forms.TabPage();
@@ -85,6 +86,8 @@
             this.lblMapInfo = new System.Windows.Forms.Label();
             this.pbMapMap = new System.Windows.Forms.PictureBox();
             this.tpEventBeheer = new System.Windows.Forms.TabPage();
+            this.lbEManagementLoggedUsers = new System.Windows.Forms.ListBox();
+            this.btnEManagementLoggedUsers = new System.Windows.Forms.Button();
             this.btnEManagementNewSave = new System.Windows.Forms.Button();
             this.btnEManagementNewLocation = new System.Windows.Forms.Button();
             this.cbEManagementLocation = new System.Windows.Forms.ComboBox();
@@ -131,8 +134,8 @@
             this.lvReportedPosts = new System.Windows.Forms.ListView();
             this.cbReportedPostsEvents = new System.Windows.Forms.ComboBox();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.btnEManagementLoggedUsers = new System.Windows.Forms.Button();
-            this.lbEManagementLoggedUsers = new System.Windows.Forms.ListBox();
+            this.btnSettingsChangePhotoPath = new System.Windows.Forms.Button();
+            this.tbSettingsPhotoPath = new System.Windows.Forms.TextBox();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -558,6 +561,10 @@
             // 
             // tpSettings
             // 
+            this.tpSettings.Controls.Add(this.tbSettingsPhotoPath);
+            this.tpSettings.Controls.Add(this.btnSettingsChangePhotoPath);
+            this.tpSettings.Controls.Add(this.tbSettingsPhoneNumber);
+            this.tpSettings.Controls.Add(this.lblSettingPhoneNumber);
             this.tpSettings.Controls.Add(this.lbPersonRentals);
             this.tpSettings.Controls.Add(this.btnSettingsSave);
             this.tpSettings.Controls.Add(this.dpBirthDate);
@@ -567,7 +574,6 @@
             this.tpSettings.Controls.Add(this.lblSettingsUsername);
             this.tpSettings.Controls.Add(this.lblSettingsGeboorte);
             this.tpSettings.Controls.Add(this.lblSettingsEmail);
-            this.tpSettings.Controls.Add(this.btnSettingsEdit);
             this.tpSettings.Controls.Add(this.lblSettingsName);
             this.tpSettings.Controls.Add(this.pbSettingsPicture);
             this.tpSettings.Location = new System.Drawing.Point(154, 4);
@@ -577,6 +583,27 @@
             this.tpSettings.TabIndex = 3;
             this.tpSettings.Text = "Instellingen";
             this.tpSettings.UseVisualStyleBackColor = true;
+            // 
+            // tbSettingsPhoneNumber
+            // 
+            this.tbSettingsPhoneNumber.Location = new System.Drawing.Point(335, 173);
+            this.tbSettingsPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSettingsPhoneNumber.Name = "tbSettingsPhoneNumber";
+            this.tbSettingsPhoneNumber.Size = new System.Drawing.Size(487, 22);
+            this.tbSettingsPhoneNumber.TabIndex = 14;
+            // 
+            // lblSettingPhoneNumber
+            // 
+            this.lblSettingPhoneNumber.AutoSize = true;
+            this.lblSettingPhoneNumber.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSettingPhoneNumber.Location = new System.Drawing.Point(329, 142);
+            this.lblSettingPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSettingPhoneNumber.Name = "lblSettingPhoneNumber";
+            this.lblSettingPhoneNumber.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblSettingPhoneNumber.Size = new System.Drawing.Size(218, 30);
+            this.lblSettingPhoneNumber.TabIndex = 13;
+            this.lblSettingPhoneNumber.Text = "Telefoonnummer";
+            this.lblSettingPhoneNumber.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbPersonRentals
             // 
@@ -590,19 +617,19 @@
             // 
             // btnSettingsSave
             // 
-            this.btnSettingsSave.Enabled = false;
             this.btnSettingsSave.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsSave.Location = new System.Drawing.Point(33, 337);
+            this.btnSettingsSave.Location = new System.Drawing.Point(335, 319);
             this.btnSettingsSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSettingsSave.Name = "btnSettingsSave";
-            this.btnSettingsSave.Size = new System.Drawing.Size(267, 33);
+            this.btnSettingsSave.Size = new System.Drawing.Size(488, 33);
             this.btnSettingsSave.TabIndex = 11;
             this.btnSettingsSave.Text = "Opslaan";
             this.btnSettingsSave.UseVisualStyleBackColor = true;
+            this.btnSettingsSave.Click += new System.EventHandler(this.btnSettingsSave_Click);
             // 
             // dpBirthDate
             // 
-            this.dpBirthDate.Location = new System.Drawing.Point(335, 175);
+            this.dpBirthDate.Location = new System.Drawing.Point(336, 230);
             this.dpBirthDate.Margin = new System.Windows.Forms.Padding(4);
             this.dpBirthDate.Name = "dpBirthDate";
             this.dpBirthDate.Size = new System.Drawing.Size(487, 22);
@@ -610,7 +637,7 @@
             // 
             // tbSettingsUsername
             // 
-            this.tbSettingsUsername.Location = new System.Drawing.Point(335, 234);
+            this.tbSettingsUsername.Location = new System.Drawing.Point(336, 289);
             this.tbSettingsUsername.Margin = new System.Windows.Forms.Padding(4);
             this.tbSettingsUsername.Name = "tbSettingsUsername";
             this.tbSettingsUsername.Size = new System.Drawing.Size(487, 22);
@@ -636,7 +663,7 @@
             // 
             this.lblSettingsUsername.AutoSize = true;
             this.lblSettingsUsername.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsUsername.Location = new System.Drawing.Point(329, 203);
+            this.lblSettingsUsername.Location = new System.Drawing.Point(330, 258);
             this.lblSettingsUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsUsername.Name = "lblSettingsUsername";
             this.lblSettingsUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -649,7 +676,7 @@
             // 
             this.lblSettingsGeboorte.AutoSize = true;
             this.lblSettingsGeboorte.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsGeboorte.Location = new System.Drawing.Point(329, 144);
+            this.lblSettingsGeboorte.Location = new System.Drawing.Point(330, 199);
             this.lblSettingsGeboorte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSettingsGeboorte.Name = "lblSettingsGeboorte";
             this.lblSettingsGeboorte.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -670,17 +697,6 @@
             this.lblSettingsEmail.TabIndex = 3;
             this.lblSettingsEmail.Text = "Email";
             this.lblSettingsEmail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnSettingsEdit
-            // 
-            this.btnSettingsEdit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsEdit.Location = new System.Drawing.Point(33, 297);
-            this.btnSettingsEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSettingsEdit.Name = "btnSettingsEdit";
-            this.btnSettingsEdit.Size = new System.Drawing.Size(267, 33);
-            this.btnSettingsEdit.TabIndex = 2;
-            this.btnSettingsEdit.Text = "Profiel Bewerken";
-            this.btnSettingsEdit.UseVisualStyleBackColor = true;
             // 
             // lblSettingsName
             // 
@@ -834,6 +850,25 @@
             this.tpEventBeheer.TabIndex = 5;
             this.tpEventBeheer.Text = "Event Beheer";
             this.tpEventBeheer.UseVisualStyleBackColor = true;
+            // 
+            // lbEManagementLoggedUsers
+            // 
+            this.lbEManagementLoggedUsers.FormattingEnabled = true;
+            this.lbEManagementLoggedUsers.ItemHeight = 16;
+            this.lbEManagementLoggedUsers.Location = new System.Drawing.Point(790, 131);
+            this.lbEManagementLoggedUsers.Name = "lbEManagementLoggedUsers";
+            this.lbEManagementLoggedUsers.Size = new System.Drawing.Size(283, 404);
+            this.lbEManagementLoggedUsers.TabIndex = 21;
+            // 
+            // btnEManagementLoggedUsers
+            // 
+            this.btnEManagementLoggedUsers.Location = new System.Drawing.Point(790, 90);
+            this.btnEManagementLoggedUsers.Name = "btnEManagementLoggedUsers";
+            this.btnEManagementLoggedUsers.Size = new System.Drawing.Size(283, 27);
+            this.btnEManagementLoggedUsers.TabIndex = 20;
+            this.btnEManagementLoggedUsers.Text = "Laat alle ingelogde gebruikers zien";
+            this.btnEManagementLoggedUsers.UseVisualStyleBackColor = true;
+            this.btnEManagementLoggedUsers.Click += new System.EventHandler(this.btnEManagementLoggedUsers_Click);
             // 
             // btnEManagementNewSave
             // 
@@ -1370,24 +1405,26 @@
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
             // 
-            // btnEManagementLoggedUsers
+            // btnSettingsChangePhotoPath
             // 
-            this.btnEManagementLoggedUsers.Location = new System.Drawing.Point(790, 90);
-            this.btnEManagementLoggedUsers.Name = "btnEManagementLoggedUsers";
-            this.btnEManagementLoggedUsers.Size = new System.Drawing.Size(283, 27);
-            this.btnEManagementLoggedUsers.TabIndex = 20;
-            this.btnEManagementLoggedUsers.Text = "Laat alle ingelogde gebruikers zien";
-            this.btnEManagementLoggedUsers.UseVisualStyleBackColor = true;
-            this.btnEManagementLoggedUsers.Click += new System.EventHandler(this.btnEManagementLoggedUsers_Click);
+            this.btnSettingsChangePhotoPath.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettingsChangePhotoPath.Location = new System.Drawing.Point(33, 319);
+            this.btnSettingsChangePhotoPath.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSettingsChangePhotoPath.Name = "btnSettingsChangePhotoPath";
+            this.btnSettingsChangePhotoPath.Size = new System.Drawing.Size(267, 33);
+            this.btnSettingsChangePhotoPath.TabIndex = 15;
+            this.btnSettingsChangePhotoPath.Text = "Kies een foto";
+            this.btnSettingsChangePhotoPath.UseVisualStyleBackColor = true;
+            this.btnSettingsChangePhotoPath.Click += new System.EventHandler(this.btnSettingsChangePhotoPath_Click);
             // 
-            // lbEManagementLoggedUsers
+            // tbSettingsPhotoPath
             // 
-            this.lbEManagementLoggedUsers.FormattingEnabled = true;
-            this.lbEManagementLoggedUsers.ItemHeight = 16;
-            this.lbEManagementLoggedUsers.Location = new System.Drawing.Point(790, 131);
-            this.lbEManagementLoggedUsers.Name = "lbEManagementLoggedUsers";
-            this.lbEManagementLoggedUsers.Size = new System.Drawing.Size(283, 404);
-            this.lbEManagementLoggedUsers.TabIndex = 21;
+            this.tbSettingsPhotoPath.Location = new System.Drawing.Point(33, 289);
+            this.tbSettingsPhotoPath.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSettingsPhotoPath.Name = "tbSettingsPhotoPath";
+            this.tbSettingsPhotoPath.ReadOnly = true;
+            this.tbSettingsPhotoPath.Size = new System.Drawing.Size(267, 22);
+            this.tbSettingsPhotoPath.TabIndex = 16;
             // 
             // UIMainForm
             // 
@@ -1444,7 +1481,6 @@
         private System.Windows.Forms.Label lblSettingsUsername;
         private System.Windows.Forms.Label lblSettingsGeboorte;
         private System.Windows.Forms.Label lblSettingsEmail;
-        private System.Windows.Forms.Button btnSettingsEdit;
         private System.Windows.Forms.Label lblSettingsName;
         private System.Windows.Forms.PictureBox pbSettingsPicture;
         private System.Windows.Forms.DateTimePicker dpBirthDate;
@@ -1535,6 +1571,10 @@
         private System.Windows.Forms.ListView lvReportedComments;
         private System.Windows.Forms.ListBox lbEManagementLoggedUsers;
         private System.Windows.Forms.Button btnEManagementLoggedUsers;
+        private System.Windows.Forms.TextBox tbSettingsPhoneNumber;
+        private System.Windows.Forms.Label lblSettingPhoneNumber;
+        private System.Windows.Forms.Button btnSettingsChangePhotoPath;
+        private System.Windows.Forms.TextBox tbSettingsPhotoPath;
     }
 }
 

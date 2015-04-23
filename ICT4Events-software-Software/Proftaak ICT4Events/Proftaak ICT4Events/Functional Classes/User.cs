@@ -52,7 +52,7 @@ namespace Proftaak_ICT4Events
             get { return emailAddress; }
             set { emailAddress = value; }
         }
-        public string PhoneNumer
+        public string PhoneNumber
         {
             get { return phoneNumber; }
             set { phoneNumber = value; }
@@ -442,8 +442,8 @@ namespace Proftaak_ICT4Events
         //Adds a user to the database
         public void Add(User newUser, Database database)
         {
-            database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD-MM-YYYY'), '{9}', '{10}', {11}, '{12}', '{13}')",
-                newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn));
+            database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD/MM/YYYY HH24:MI:SS', '{9}', '{10}', {11}, '{12}', '{13}')",
+                newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn ? "Y" : "N"));
         }
 
         //Adds a more basic user to the database
@@ -458,8 +458,8 @@ namespace Proftaak_ICT4Events
         //Edits the input user to it's current values
         public void Edit(User updateUser, Database database)
         {
-            database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD-MM-YYYY'), INGELOGD = '{5}'  WHERE GEBRUIKERID = {6}",
-                updateUser.name, updateUser.emailAddress, updateUser.phoneNumber, updateUser.photoPath, updateUser.dateOfBirth, updateUser.loggedIn, updateUser.userID));
+            database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), INGELOGD = '{5}', INLOGNAAM = '{6}'  WHERE GEBRUIKERID = {7}",
+                updateUser.name, updateUser.emailAddress, updateUser.phoneNumber, updateUser.photoPath, updateUser.dateOfBirth, updateUser.loggedIn ? "Y" : "N", updateUser.username, updateUser.userID));
 
         }
 

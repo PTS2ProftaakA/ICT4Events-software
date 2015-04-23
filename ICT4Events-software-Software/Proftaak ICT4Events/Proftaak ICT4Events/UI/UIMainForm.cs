@@ -290,35 +290,71 @@ namespace Proftaak_ICT4Events
             tbSettingsName.Text = user.Name;
             tbSettingsEmail.Text = user.EmailAddress;
             tbSettingsUsername.Text = user.Username;
+            tbSettingsPhoneNumber.Text = user.PhoneNumber;
+            tbSettingsPhotoPath.Text = user.PhotoPath;
+
+
             dpBirthDate.Value = user.DateOfBirth;
             pbSettingsPicture.ImageLocation = user.PhotoPath;
             lbPersonRentals.DataSource = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
         }
 
-        //not yet implemented
-        private void btnSettingsEdit_Click(object sender, EventArgs e)
-        {
-            btnSettingsSave.Enabled = true;
-        }
 
-        //not yet implemented
+        //Saves the setting updated by the user in the database
         private void btnSettingsSave_Click(object sender, EventArgs e)
         {
             string email = tbSettingsEmail.Text;
             string name = tbSettingsName.Text;
-            string username = tbSettingsUsername.Text;
+            string userName = tbSettingsUsername.Text;
+            string phoneNumber = tbSettingsPhoneNumber.Text;
+            string photoPath = tbSettingsPhotoPath.Text;
             DateTime birth = dpBirthDate.Value;
 
-            if (name != null && email.Contains("@") == true && email.Contains(".") == true && username != null && birth < DateTime.Now)
+            int outInt;
+
+            try
             {
-                //personalInfoManager.SaveUser(CurrentUser.currentUser, name, email, username, birth);
-                btnSettingsSave.Enabled = false;
+                if (name != null && email.Contains("@") && email.Contains(".") && userName != null && birth < DateTime.Now && int.TryParse(phoneNumber, out outInt) && phoneNumber.Length >= 10)
+                {
+                    DialogResult result = MessageBox.Show("Weet je zeker dat je je peroonlijke gegevens aan wilt passen? \n De volgende keer zal je met je eventueel aangepaste username moeten inloggen.", "Important Question", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        CurrentUser.currentUser.Name = name;
+                        CurrentUser.currentUser.EmailAddress = email;
+                        CurrentUser.currentUser.DateOfBirth = birth;
+                        CurrentUser.currentUser.PhoneNumber = phoneNumber;
+                        CurrentUser.currentUser.Username = userName;
+                        CurrentUser.currentUser.PhotoPath = photoPath;
+
+                        CurrentUser.currentUser.Edit(CurrentUser.currentUser, database);
+
+                        SettingsFillControls(CurrentUser.currentUser);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Gegevens zijn niet correct ingevuld");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Gegevens zijn niet geldig");
+                if(ex.Message.Contains("ORA-00001"))
+                {
+                    MessageBox.Show("Deze gebruikersnaam is al in gebruik. \nProbeer een andere gebruikersnaam.");
+                }
             }
         }
+
+        //This button is used for changing the photo of the user
+        private void btnSettingsChangePhotoPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            tbSettingsPhotoPath.Text = fileDialog.FileName;
+        }
+
         #endregion
 
         //map
@@ -729,7 +765,7 @@ namespace Proftaak_ICT4Events
 
         private void btnReportedPostsRemove_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Alle reacties op dit mediabestand en alle oordelen op de hiervoor genoemde reacties en het mediabestand zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Alle reacties op dit mediabestand en alle oordelen op de hiervoor genoemde reacties en het mediabestand zullen verwijderd worden, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -748,7 +784,7 @@ namespace Proftaak_ICT4Events
 
         private void btnReportedReactionsRemove_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Alle reacties op deze reactie en alle oordelen op de hiervoor genoemde reacties zullen verwijderd worden wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Alle reacties op deze reactie en alle oordelen op de hiervoor genoemde reacties zullen verwijderd worden, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
