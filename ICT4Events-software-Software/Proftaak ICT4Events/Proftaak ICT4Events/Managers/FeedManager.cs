@@ -59,6 +59,5 @@ namespace Proftaak_ICT4Events
             MediaFile newmedia = new MediaFile(filePath, description, CurrentUser.currentUser.UserID, 1, CurrentUser.currentUser.EventID, DateTime.Now, type);
             newmedia.Add(newmedia, database);
         }
-
     }
 }

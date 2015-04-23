@@ -202,6 +202,55 @@ namespace Proftaak_ICT4Events
             return allUsers;
         }
 
+        //Gets all the users from the database that are logged in
+        public static List<User> getAllLoggedIn(Database database)
+        {
+            List<string> userColumns = new List<string>();
+            List<User> allUsers = new List<User>();
+
+            userColumns.Add("GEBRUIKERID");
+            userColumns.Add("RFID");
+            userColumns.Add("EVENEMENTID");
+            userColumns.Add("RESERVEERDER");
+            userColumns.Add("NAAM");
+            userColumns.Add("EMAIL");
+            userColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("FOTO");
+            userColumns.Add("GEBOORTEDATUM");
+            userColumns.Add("INLOGNAAM");
+            userColumns.Add("WACHTWOORD");
+            userColumns.Add("PLAATSNUMMER");
+            userColumns.Add("ADMINISTRATOR");
+            userColumns.Add("INGELOGD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE INGELOGD = 'Y'", userColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    allUsers.Add(new User(
+                        dataTable[1][i],
+                        dataTable[3][i],
+                        dataTable[4][i],
+                        dataTable[5][i],
+                        dataTable[6][i],
+                        dataTable[7][i],
+                        dataTable[9][i],
+                        dataTable[10][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToInt32(dataTable[11][i]),
+                        dataTable[12][i].ToUpper() == "Y",
+                        dataTable[13][i].ToUpper() == "Y",
+                        Convert.ToDateTime(dataTable[8][i])
+                        ));
+                }
+            }
+
+            return allUsers;
+        }
+
         //Returns a single user from the database that corresponds with the ID input
         public User Get(string userID, Database database)
         {
@@ -384,6 +433,12 @@ namespace Proftaak_ICT4Events
             return getUser;
         }
 
+        //Switches the status of the user to logged in or not
+        public void SetLogIn(string status, int userID, Database database)
+        {
+            database.editDatabase("UPDATE GEBRUIKER SET INGELOGD = '" + status + "' WHERE GEBRUIKERID = " + userID);
+        }
+
         //Adds a user to the database
         public void Add(User newUser, Database database)
         {
@@ -413,6 +468,11 @@ namespace Proftaak_ICT4Events
         {
             database.editDatabase(String.Format("DELETE FROM GEBRUIKER WHERE GEBRUIKERID = {0}",
                 removeUser.userID));
+        }
+
+        public override string ToString()
+        {
+            return userID + "\t" + username;
         }
     }
 }

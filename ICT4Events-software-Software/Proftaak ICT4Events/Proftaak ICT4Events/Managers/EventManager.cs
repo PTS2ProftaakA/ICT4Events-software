@@ -77,5 +77,11 @@ namespace Proftaak_ICT4Events
 
             return false;
         }
+
+        //returns all logged in user
+        public List<User> loggedInUsers()
+        {
+            return User.getAllLoggedIn(database);
+        }
     }
 }
