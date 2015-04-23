@@ -125,12 +125,14 @@
             this.lblManagementProductName = new System.Windows.Forms.Label();
             this.tbManagementProductName = new System.Windows.Forms.TextBox();
             this.tpPostBeheer = new System.Windows.Forms.TabPage();
-            this.lblMenu = new System.Windows.Forms.Label();
-            this.cbReportedPostsEvents = new System.Windows.Forms.ComboBox();
-            this.lvReportedPosts = new System.Windows.Forms.ListView();
-            this.btnReportedPostsRemove = new System.Windows.Forms.Button();
             this.btnReportedCommentsRemove = new System.Windows.Forms.Button();
             this.lvReportedComments = new System.Windows.Forms.ListView();
+            this.btnReportedPostsRemove = new System.Windows.Forms.Button();
+            this.lvReportedPosts = new System.Windows.Forms.ListView();
+            this.cbReportedPostsEvents = new System.Windows.Forms.ComboBox();
+            this.lblMenu = new System.Windows.Forms.Label();
+            this.btnEManagementLoggedUsers = new System.Windows.Forms.Button();
+            this.lbEManagementLoggedUsers = new System.Windows.Forms.ListBox();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -788,9 +790,9 @@
             this.lblMapInfo.Location = new System.Drawing.Point(35, 15);
             this.lblMapInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapInfo.Name = "lblMapInfo";
-            this.lblMapInfo.Size = new System.Drawing.Size(153, 40);
+            this.lblMapInfo.Size = new System.Drawing.Size(257, 40);
             this.lblMapInfo.TabIndex = 0;
-            this.lblMapInfo.Text = "Plek Info";
+            this.lblMapInfo.Text = "Plek Informatie";
             // 
             // pbMapMap
             // 
@@ -805,6 +807,8 @@
             // 
             // tpEventBeheer
             // 
+            this.tpEventBeheer.Controls.Add(this.lbEManagementLoggedUsers);
+            this.tpEventBeheer.Controls.Add(this.btnEManagementLoggedUsers);
             this.tpEventBeheer.Controls.Add(this.btnEManagementNewSave);
             this.tpEventBeheer.Controls.Add(this.btnEManagementNewLocation);
             this.tpEventBeheer.Controls.Add(this.cbEManagementLocation);
@@ -1308,45 +1312,6 @@
             this.tpPostBeheer.Text = "Post Beheer";
             this.tpPostBeheer.UseVisualStyleBackColor = true;
             // 
-            // lblMenu
-            // 
-            this.lblMenu.AutoSize = true;
-            this.lblMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.Location = new System.Drawing.Point(57, 27);
-            this.lblMenu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(132, 52);
-            this.lblMenu.TabIndex = 1;
-            this.lblMenu.Text = "menu";
-            // 
-            // cbReportedPostsEvents
-            // 
-            this.cbReportedPostsEvents.FormattingEnabled = true;
-            this.cbReportedPostsEvents.Location = new System.Drawing.Point(41, 27);
-            this.cbReportedPostsEvents.Name = "cbReportedPostsEvents";
-            this.cbReportedPostsEvents.Size = new System.Drawing.Size(531, 24);
-            this.cbReportedPostsEvents.TabIndex = 2;
-            this.cbReportedPostsEvents.SelectedIndexChanged += new System.EventHandler(this.cbReportedPostsEvents_SelectedIndexChanged);
-            // 
-            // lvReportedPosts
-            // 
-            this.lvReportedPosts.CheckBoxes = true;
-            this.lvReportedPosts.Location = new System.Drawing.Point(41, 57);
-            this.lvReportedPosts.Name = "lvReportedPosts";
-            this.lvReportedPosts.Size = new System.Drawing.Size(531, 558);
-            this.lvReportedPosts.TabIndex = 3;
-            this.lvReportedPosts.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnReportedPostsRemove
-            // 
-            this.btnReportedPostsRemove.Location = new System.Drawing.Point(41, 621);
-            this.btnReportedPostsRemove.Name = "btnReportedPostsRemove";
-            this.btnReportedPostsRemove.Size = new System.Drawing.Size(531, 33);
-            this.btnReportedPostsRemove.TabIndex = 4;
-            this.btnReportedPostsRemove.Text = "Verwijder geselecteerde bestanden";
-            this.btnReportedPostsRemove.UseVisualStyleBackColor = true;
-            this.btnReportedPostsRemove.Click += new System.EventHandler(this.btnReportedPostsRemove_Click);
-            // 
             // btnReportedCommentsRemove
             // 
             this.btnReportedCommentsRemove.Location = new System.Drawing.Point(605, 621);
@@ -1366,6 +1331,64 @@
             this.lvReportedComments.TabIndex = 6;
             this.lvReportedComments.UseCompatibleStateImageBehavior = false;
             // 
+            // btnReportedPostsRemove
+            // 
+            this.btnReportedPostsRemove.Location = new System.Drawing.Point(41, 621);
+            this.btnReportedPostsRemove.Name = "btnReportedPostsRemove";
+            this.btnReportedPostsRemove.Size = new System.Drawing.Size(531, 33);
+            this.btnReportedPostsRemove.TabIndex = 4;
+            this.btnReportedPostsRemove.Text = "Verwijder geselecteerde bestanden";
+            this.btnReportedPostsRemove.UseVisualStyleBackColor = true;
+            this.btnReportedPostsRemove.Click += new System.EventHandler(this.btnReportedPostsRemove_Click);
+            // 
+            // lvReportedPosts
+            // 
+            this.lvReportedPosts.CheckBoxes = true;
+            this.lvReportedPosts.Location = new System.Drawing.Point(41, 57);
+            this.lvReportedPosts.Name = "lvReportedPosts";
+            this.lvReportedPosts.Size = new System.Drawing.Size(531, 558);
+            this.lvReportedPosts.TabIndex = 3;
+            this.lvReportedPosts.UseCompatibleStateImageBehavior = false;
+            // 
+            // cbReportedPostsEvents
+            // 
+            this.cbReportedPostsEvents.FormattingEnabled = true;
+            this.cbReportedPostsEvents.Location = new System.Drawing.Point(41, 27);
+            this.cbReportedPostsEvents.Name = "cbReportedPostsEvents";
+            this.cbReportedPostsEvents.Size = new System.Drawing.Size(531, 24);
+            this.cbReportedPostsEvents.TabIndex = 2;
+            this.cbReportedPostsEvents.SelectedIndexChanged += new System.EventHandler(this.cbReportedPostsEvents_SelectedIndexChanged);
+            // 
+            // lblMenu
+            // 
+            this.lblMenu.AutoSize = true;
+            this.lblMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMenu.Location = new System.Drawing.Point(57, 27);
+            this.lblMenu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMenu.Name = "lblMenu";
+            this.lblMenu.Size = new System.Drawing.Size(132, 52);
+            this.lblMenu.TabIndex = 1;
+            this.lblMenu.Text = "menu";
+            // 
+            // btnEManagementLoggedUsers
+            // 
+            this.btnEManagementLoggedUsers.Location = new System.Drawing.Point(790, 90);
+            this.btnEManagementLoggedUsers.Name = "btnEManagementLoggedUsers";
+            this.btnEManagementLoggedUsers.Size = new System.Drawing.Size(283, 27);
+            this.btnEManagementLoggedUsers.TabIndex = 20;
+            this.btnEManagementLoggedUsers.Text = "Laat alle ingelogde gebruikers zien";
+            this.btnEManagementLoggedUsers.UseVisualStyleBackColor = true;
+            this.btnEManagementLoggedUsers.Click += new System.EventHandler(this.btnEManagementLoggedUsers_Click);
+            // 
+            // lbEManagementLoggedUsers
+            // 
+            this.lbEManagementLoggedUsers.FormattingEnabled = true;
+            this.lbEManagementLoggedUsers.ItemHeight = 16;
+            this.lbEManagementLoggedUsers.Location = new System.Drawing.Point(790, 131);
+            this.lbEManagementLoggedUsers.Name = "lbEManagementLoggedUsers";
+            this.lbEManagementLoggedUsers.Size = new System.Drawing.Size(283, 404);
+            this.lbEManagementLoggedUsers.TabIndex = 21;
+            // 
             // UIMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1376,6 +1399,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UIMainForm";
             this.Text = "ICT4 EVENTS";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIMainForm_FormClosing);
             this.tcMainForm.ResumeLayout(false);
             this.tpTijdlijn.ResumeLayout(false);
             this.tpTijdlijn.PerformLayout();
@@ -1509,6 +1533,8 @@
         private System.Windows.Forms.ListView lvReportedPosts;
         private System.Windows.Forms.Button btnReportedCommentsRemove;
         private System.Windows.Forms.ListView lvReportedComments;
+        private System.Windows.Forms.ListBox lbEManagementLoggedUsers;
+        private System.Windows.Forms.Button btnEManagementLoggedUsers;
     }
 }
 

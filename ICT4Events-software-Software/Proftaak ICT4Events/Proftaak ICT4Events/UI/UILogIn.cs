@@ -186,6 +186,17 @@ namespace Proftaak_ICT4Events.UI
 
         private void UILogIn_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //Makes sure the user logs in when the form is closing and he logged in
+            //He log out if the form is clicked away
+            if(loggedIn)
+            {
+                CurrentUser.currentUser.SetLogIn("Y", CurrentUser.currentUser.UserID, database);
+            }
+            else
+            {
+                CurrentUser.currentUser.SetLogIn("N", CurrentUser.currentUser.UserID, database);
+            }
+
             if (e.CloseReason == CloseReason.UserClosing && loggedIn == false)
                 Application.Exit();
         }

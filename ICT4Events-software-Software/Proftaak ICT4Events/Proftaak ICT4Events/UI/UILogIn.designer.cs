@@ -40,9 +40,10 @@
             // 
             this.lblInlogName.AutoSize = true;
             this.lblInlogName.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInlogName.Location = new System.Drawing.Point(12, 9);
+            this.lblInlogName.Location = new System.Drawing.Point(16, 11);
+            this.lblInlogName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInlogName.Name = "lblInlogName";
-            this.lblInlogName.Size = new System.Drawing.Size(157, 33);
+            this.lblInlogName.Size = new System.Drawing.Size(194, 40);
             this.lblInlogName.TabIndex = 1;
             this.lblInlogName.Text = "Inlognaam";
             // 
@@ -50,40 +51,45 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(12, 68);
+            this.lblPassword.Location = new System.Drawing.Point(16, 84);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(188, 33);
+            this.lblPassword.Size = new System.Drawing.Size(230, 40);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Wachtwoord";
             // 
             // tbInlogName
             // 
-            this.tbInlogName.Location = new System.Drawing.Point(18, 45);
+            this.tbInlogName.Location = new System.Drawing.Point(24, 55);
+            this.tbInlogName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbInlogName.Name = "tbInlogName";
-            this.tbInlogName.Size = new System.Drawing.Size(182, 20);
+            this.tbInlogName.Size = new System.Drawing.Size(241, 22);
             this.tbInlogName.TabIndex = 3;
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(18, 104);
+            this.tbPassword.Location = new System.Drawing.Point(24, 128);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(182, 20);
+            this.tbPassword.Size = new System.Drawing.Size(241, 22);
             this.tbPassword.TabIndex = 4;
             // 
             // lblExplain
             // 
             this.lblExplain.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExplain.Location = new System.Drawing.Point(12, 179);
+            this.lblExplain.Location = new System.Drawing.Point(16, 220);
+            this.lblExplain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExplain.Name = "lblExplain";
-            this.lblExplain.Size = new System.Drawing.Size(192, 124);
+            this.lblExplain.Size = new System.Drawing.Size(256, 153);
             this.lblExplain.TabIndex = 5;
             this.lblExplain.Text = "Of log in door je RFID te scannen!";
             // 
             // btnLogIn
             // 
-            this.btnLogIn.Location = new System.Drawing.Point(218, 45);
+            this.btnLogIn.Location = new System.Drawing.Point(291, 55);
+            this.btnLogIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(88, 82);
+            this.btnLogIn.Size = new System.Drawing.Size(117, 101);
             this.btnLogIn.TabIndex = 6;
             this.btnLogIn.Text = "Inloggen";
             this.btnLogIn.UseVisualStyleBackColor = true;
@@ -91,15 +97,16 @@
             // 
             // UILogIn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 332);
+            this.ClientSize = new System.Drawing.Size(543, 409);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblExplain);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbInlogName);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblInlogName);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UILogIn";
             this.Text = "Inloggen";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UILogIn_FormClosed);

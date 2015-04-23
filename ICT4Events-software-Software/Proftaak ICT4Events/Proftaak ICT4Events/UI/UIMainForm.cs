@@ -97,6 +97,12 @@ namespace Proftaak_ICT4Events
             return error;
         }
 
+        //Makes sure the user logs out when the form is closed
+        private void UIMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CurrentUser.currentUser.SetLogIn("N", CurrentUser.currentUser.UserID, database);
+        }
+
         //Reacts to the changing of the tabs inside the application
         #region tab
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -334,7 +340,7 @@ namespace Proftaak_ICT4Events
             SpotType spotType = (SpotType)cbMapType.SelectedValue;
 
             //Creates an item in the listview with all nescessary information
-            foreach (Spot spot in mapManager.SearchAllSpots(spotType))
+            foreach (Spot spot in mapManager.SearchAllAvailableSpots(spotType))
             {
                 ListViewItem item = new ListViewItem(spot.SpotNumber.ToString());
                 item.SubItems.Add(spot.SpotSpotType.SpotTypeName);
@@ -535,6 +541,11 @@ namespace Proftaak_ICT4Events
             dtpEManagementStart.Value = chosenEvent.StartDate;
             dtpEManagementEnd.Value = chosenEvent.EndDate;
             nudEManagentPercentage.Value = Convert.ToDecimal(chosenEvent.ReportPercentage);
+        }
+
+        private void btnEManagementLoggedUsers_Click(object sender, EventArgs e)
+        {
+            lbEManagementLoggedUsers.DataSource = eventManager.loggedInUsers();
         }
         #endregion
 
