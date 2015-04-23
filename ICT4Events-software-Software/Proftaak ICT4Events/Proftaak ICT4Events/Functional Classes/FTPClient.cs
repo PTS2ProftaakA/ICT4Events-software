@@ -10,10 +10,16 @@ namespace Proftaak_ICT4Events
 {
     class FTPClient
     {
+        private Database mDatabase;
         //credentials to connect to the server
         private const string mHost = "ftp://192.168.0.4:21",
                              mUser = "SME",
                              mPass = "";
+
+        public FTPClient(Database database)
+        {
+            mDatabase = database;
+        }
 
         //Changes the way the path is interpreted
         private string CleanPathFromNode(TreeNode node)
@@ -115,6 +121,22 @@ namespace Proftaak_ICT4Events
                 {
                     byte[] contents;
                     string ext = Path.GetExtension(ofd.FileName);
+
+                    if (GetDirectoryListing(path).Where(s => s == Path.GetFileName(ofd.FileName)).Count() != 0)
+                    {
+                        MessageBox.Show("Bestand bestaat al");
+                        return;
+                    }
+
+                    foreach (string s in ForbiddenWord.GetAllStrings(mDatabase))
+                    {
+                        if (Path.GetFileNameWithoutExtension(ofd.FileName).Contains(s))
+                        {
+                            MessageBox.Show("Bestandsnaam bevat een verboden woord");
+                            return;
+                        }
+                    }
+
                     if (ext == ".txt")
                     {
                         contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
@@ -134,6 +156,7 @@ namespace Proftaak_ICT4Events
                     using (Stream stream = request.GetRequestStream())
                     {
                         stream.Write(contents, 0, contents.Length);
+                        MessageBox.Show("Bestand is geuploadt");
                     }
                 }
             }

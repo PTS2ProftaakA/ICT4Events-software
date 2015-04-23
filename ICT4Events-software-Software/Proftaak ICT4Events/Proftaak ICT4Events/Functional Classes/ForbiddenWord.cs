@@ -50,14 +50,34 @@ namespace Proftaak_ICT4Events
             List<string>[] dataTable = database.selectQuery("SELECT * FROM VERBODENWOORD", forbiddenWordColumns);
 
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() > 0)
             {
-                for (int i = 1; i < dataTable[0].Count(); i++)
+                for (int i = 0; i < dataTable[0].Count(); i++)
                 {
                     allForbiddenWords.Add(new ForbiddenWord(
-                        dataTable[2][1], 
-                        Convert.ToInt32(dataTable[0][1]),
-                        Convert.ToInt32(dataTable[1][1])));
+                        dataTable[1][i], 
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToInt32(dataTable[0][i])));
+                }
+            }
+
+            return allForbiddenWords;
+        }
+
+        public static List<string> GetAllStrings(Database database)
+        {
+            List<string> forbiddenWordColumns = new List<string>(),
+                    allForbiddenWords = new List<string>();
+
+            forbiddenWordColumns.Add("WOORD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT WOORD FROM VERBODENWOORD", forbiddenWordColumns);
+
+            if (dataTable[0].Count() > 0)
+            {
+                for (int i = 0; i < dataTable[0].Count(); i++)
+                {
+                    allForbiddenWords.Add(dataTable[0][i]);
                 }
             }
 
