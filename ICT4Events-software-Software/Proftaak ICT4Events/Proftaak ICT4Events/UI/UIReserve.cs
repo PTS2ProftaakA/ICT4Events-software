@@ -54,49 +54,71 @@ namespace Proftaak_ICT4Events.UI
 
             insertvalues[0] = new List<string>();
             insertvalues[1] = new List<string>();
-<<<<<<< HEAD
+
+            bool NaamMissing = false;
+            bool EmailMissing = false;
 
             try
-=======
-            //To make sure you don't create any users while a later one is empty. -- Tim's Comment
-            for (int i = 0; i < textboxes[1].Count(); i++)
             {
-                if (textboxes[0][i].Text == "" || textboxes[1][i].Text == "")
-                {
-                    MessageBox.Show("Vul de gegevens in.");
-                    return;
-                }
-            }
-            for (int i = 0; i < textboxes[1].Count();i++ )
->>>>>>> origin/Software
-            {
+                //To make sure you don't create any users while a later one is empty. -- Tim's Comment
                 for (int i = 0; i < textboxes[1].Count(); i++)
                 {
-                    if (textboxes[0][i].Text != "" && textboxes[1][i].Text != "")
+                    if (textboxes[0][i].Text == "" || textboxes[1][i].Text == "")
                     {
-                        insertvalues[0].Add(textboxes[0][i].Text);
-                        insertvalues[1].Add(textboxes[1][i].Text);
-
-                        Spot spot = new Spot(0, 0, new SpotType("", 0, 0));
-                        Spot s = spot.Get(spotNumber.ToString(), database);
-
-                        User user = new User(Guid.NewGuid().ToString("N").Substring(0, 10),
-                            CurrentUser.currentUser.UserID.ToString(),
-                            insertvalues[0][i],
-                            insertvalues[1][i],
-                            Guid.NewGuid().ToString("N").Substring(0, 10),
-                            Guid.NewGuid().ToString("N").Substring(0, 15),
-                            false,
-                            false,
-                            1,
-                            spotNumber);
-                        mapmanager.AddBasicUser(user);
-
-                        mapmanager.AddUsersReservation(user, s);
+                        if (textboxes[0][i].Text == "" && textboxes[1][i].Text == "")
+                        {
+                            NaamMissing = true;
+                            EmailMissing = true;
+                        }
+                        else if (textboxes[0][i].Text == "")
+                        {
+                            NaamMissing = true;
+                        }
+                        else if (textboxes[1][i].Text == "")
+                        {
+                            EmailMissing = true;
+                        }
                     }
                 }
-                Close();
-            }
+
+                if (NaamMissing || EmailMissing)
+                {
+                    if (NaamMissing && EmailMissing)
+                        MessageBox.Show("Vul de namen en emails allemaal in");
+                    else if (NaamMissing)
+                        MessageBox.Show("Vul de namen allemaal in");
+                    else if (EmailMissing)
+                        MessageBox.Show("Vul de emails allemaal in");
+                    return;
+                }
+
+                for (int i = 0; i < textboxes[1].Count(); i++)
+                {
+                        if (textboxes[0][i].Text != "" && textboxes[1][i].Text != "")
+                        {
+                            insertvalues[0].Add(textboxes[0][i].Text);
+                            insertvalues[1].Add(textboxes[1][i].Text);
+
+                            Spot spot = new Spot(0, 0, new SpotType("", 0, 0));
+                            Spot s = spot.Get(spotNumber.ToString(), database);
+
+                            User user = new User(Guid.NewGuid().ToString("N").Substring(0, 10),
+                                CurrentUser.currentUser.UserID.ToString(),
+                                insertvalues[0][i],
+                                insertvalues[1][i],
+                                Guid.NewGuid().ToString("N").Substring(0, 10),
+                                Guid.NewGuid().ToString("N").Substring(0, 15),
+                                false,
+                                false,
+                                1,
+                                spotNumber);
+                            mapmanager.AddBasicUser(user);
+
+                            mapmanager.AddUsersReservation(user, s);
+                        }
+                    }
+                    Close();
+                }
             catch
             {
                 return;
