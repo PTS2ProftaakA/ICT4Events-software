@@ -47,7 +47,7 @@ namespace Proftaak_ICT4Events
             //popping up the login screen
             UI.UILogIn logInScreen = new UI.UILogIn();
 
-            client = new FTPClient();
+            client = new FTPClient(database);
             ReloadTreeView();
 
             lvAvailableSpots.CheckBoxes = true;
@@ -244,7 +244,7 @@ namespace Proftaak_ICT4Events
         {
             Material selectedMaterial = (Material)cbMaterialProduct.SelectedItem;
 
-            Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.propertyRFID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
+            Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.UserID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
             newMaterialReservation.User = CurrentUser.currentUser;
 
             newMaterialReservation.Add(newMaterialReservation, database);

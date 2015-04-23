@@ -66,7 +66,7 @@ namespace Proftaak_ICT4Events
         {
                 Event e = new Event("", 1, 1, 1, DateTime.Now, DateTime.Now, new Location("", "", "", "", "", 1, 1));
                 Event registeredevent = e.Get("1", database);
-                Reservation reservation = new Reservation(user.UserID.ToString(), 1, spot.SpotNumber, registeredevent.StartDate, registeredevent.EndDate, true, spot);
+                Reservation reservation = new Reservation(user.UserID, 1, spot.SpotNumber, registeredevent.StartDate, registeredevent.EndDate, true, spot);
                 reservation.Add(reservation, database);
                 return true;
 
