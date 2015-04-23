@@ -80,7 +80,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDLOCATIE = '" + filePath + "'", commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -117,7 +117,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE GEBRUIKERID = " + userID, commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -190,7 +190,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT r1.REACTIEID, r1.BESTANDLOCATIE, r1.GEBRUIKERID, r1.REACTIEOPID, r1.INHOUD FROM REACTIE r1, MEDIABESTAND m1 WHERE r1.bestandlocatie = m1.bestandlocatie AND m1.EVENEMENTID = " + eventID + " AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.reactieID = r1.reactieID AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.reactieID = r1.reactieID AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.reactieID = r1.reactieID) * 100 >=" + percentage, commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -226,7 +226,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDLOCATIE = '" + filePath + "'", commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 if (dataTable[1][1] != "")
                 {
@@ -258,7 +258,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 if (dataTable[1][1] != "")
                 {
@@ -290,7 +290,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 if (dataTable[1][1] != "")
                 {

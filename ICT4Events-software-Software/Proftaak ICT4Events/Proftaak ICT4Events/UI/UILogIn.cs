@@ -192,13 +192,11 @@ namespace Proftaak_ICT4Events.UI
             {
                 CurrentUser.currentUser.SetLogIn("Y", CurrentUser.currentUser.UserID, database);
             }
-            else
-            {
-                CurrentUser.currentUser.SetLogIn("N", CurrentUser.currentUser.UserID, database);
-            }
 
             if (e.CloseReason == CloseReason.UserClosing && loggedIn == false)
+            {
                 Application.Exit();
+            }
         }
     }
 }

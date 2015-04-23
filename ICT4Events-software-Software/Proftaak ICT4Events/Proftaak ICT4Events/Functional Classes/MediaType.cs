@@ -49,7 +49,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIATYPE", mediaTypeColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -73,7 +73,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT TYPE FROM MEDIATYPE WHERE MEDIATYPEID = " + mediaTypeID, mediaTypeColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {

@@ -50,7 +50,7 @@ namespace Proftaak_ICT4Events
             List<string>[] dataTable = database.selectQuery("SELECT * FROM VERBODENWOORD", forbiddenWordColumns);
 
 
-            if (dataTable[0].Count() > 0)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -73,7 +73,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT WOORD FROM VERBODENWOORD", forbiddenWordColumns);
 
-            if (dataTable[0].Count() > 0)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {

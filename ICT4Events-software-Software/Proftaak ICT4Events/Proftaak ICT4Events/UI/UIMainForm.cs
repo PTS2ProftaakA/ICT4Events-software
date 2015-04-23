@@ -103,6 +103,22 @@ namespace Proftaak_ICT4Events
             CurrentUser.currentUser.SetLogIn("N", CurrentUser.currentUser.UserID, database);
         }
 
+        //Makes the user delete his account if he has not paid for the event
+        private void btnSettingsUnsubscribe_Click(object sender, EventArgs e)
+        {
+              DialogResult result = MessageBox.Show("Weet je zeker dat je je wilt afmelden voor dit event? \nAl de mensen waarvoor je gereserveerd hebt zullen ook hun account verliezen.", "Important Question", MessageBoxButtons.YesNo);
+
+              if (result == DialogResult.Yes && (lblSettingPaid.ForeColor == Color.Red || !lblSettingPaid.Visible))
+              {
+                  CurrentUser.currentUser.Remove(CurrentUser.currentUser, database);
+                  Application.Exit();
+              }
+              else if(result == DialogResult.Yes)
+              {
+                  MessageBox.Show("Je hebt al betaald voor dit event, je kan je niet meer op deze manier afmelden");
+              }
+        }
+
         //Reacts to the changing of the tabs inside the application
         #region tab
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -299,10 +315,27 @@ namespace Proftaak_ICT4Events
             tbSettingsUsername.Text = user.Username;
             tbSettingsPhoneNumber.Text = user.PhoneNumber;
             tbSettingsPhotoPath.Text = user.PhotoPath;
-
-
             dpBirthDate.Value = user.DateOfBirth;
             pbSettingsPicture.ImageLocation = user.PhotoPath;
+
+            Reservation userReservation = new Reservation();
+            userReservation = userReservation.GetSpotReservation(user.UserID, database);
+
+            if (userReservation != null)
+            {
+                lblSettingPaid.Visible = true;
+
+                if (userReservation.IsPayed)
+                {
+                    lblSettingPaid.Text = "Betaald";
+                    lblSettingPaid.ForeColor = Color.Green;
+                }
+                else
+                {
+                    lblSettingPaid.Text = "Niet betaald";
+                    lblSettingPaid.ForeColor = Color.Red;
+                }
+            }
 
             List<Reservation> rentedMaterials = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
 
@@ -425,7 +458,7 @@ namespace Proftaak_ICT4Events
         //When the reservation button is pressed a dialog pops up with textboxes
         //These textboxes need to be filled with the information of the people that go with the reservee
         //It uses UIReserve for the form
-        private void btnReservation_Click_1(object sender, EventArgs e)
+        private void btnReservation_Click(object sender, EventArgs e)
         {
             int temporaryValue = 1;
 
@@ -439,6 +472,8 @@ namespace Proftaak_ICT4Events
                     currentSpot = spot;
                 }
             }
+
+            
 
             Form secondNewForm = new UI.UIReserve((int)nudMapPeople.Value, currentSpot.SpotNumber);
             secondNewForm.ShowDialog();
@@ -482,7 +517,7 @@ namespace Proftaak_ICT4Events
         private void cbEManagementEvents_DropDownClosed(object sender, EventArgs e)
         {
             Event chosenEvent = (Event)cbEManagementEvents.SelectedItem;
-            List<Proftaak_ICT4Events.Location> locations = eventManager.getAllLocations();
+            List<Location> locations = eventManager.getAllLocations();
 
 
             cbEManagementLocation.DataSource = locations;
@@ -616,6 +651,35 @@ namespace Proftaak_ICT4Events
         private void btnEManagementLoggedUsers_Click(object sender, EventArgs e)
         {
             lbEManagementLoggedUsers.DataSource = eventManager.loggedInUsers();
+        }
+        //Button for the deletion of an event
+        private void btnEManagerDelete_Click(object sender, EventArgs e)
+        {
+            Event chosenEvent = (Event)cbEManagementEvents.SelectedItem;
+
+            DialogResult result = MessageBox.Show("Weet je zeker dat je dit evenement wilt verwijderen? \nAlle gebruikers op dit evenement zullen verwijderd worden", "Important Question", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                chosenEvent.Remove(chosenEvent, database);
+                cbEManagementEvents.DataSource = eventManager.getAllEvents();
+                Application.Exit();
+            }
+        }
+
+        //Button for the deletion of a location
+        private void btnEManagementDeleteLocation_Click(object sender, EventArgs e)
+        {
+            Location chosenLocation = (Location)cbEManagementLocation.SelectedItem;
+
+            DialogResult result = MessageBox.Show("Weet je zeker dat je deze locatie wilt verwijderen? \nAlle evenementen op deze locatie zullen verwijderd worden", "Important Question", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                chosenLocation.Remove(chosenLocation, database);
+                cbEManagementLocation.DataSource = eventManager.getAllLocations();
+                Application.Exit();
+            }
         }
         #endregion
 
@@ -845,10 +909,5 @@ namespace Proftaak_ICT4Events
         }
         #endregion
 
-        private void btnLogOff_Click(object sender, EventArgs e)
-        {
-            //Iets met drop user als hij geen reserveringen heeft.
-            Application.Exit();
-        }
     }
 }

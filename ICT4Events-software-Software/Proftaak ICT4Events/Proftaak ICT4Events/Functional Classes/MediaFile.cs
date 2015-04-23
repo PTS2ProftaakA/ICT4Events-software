@@ -114,7 +114,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM MEDIABESTAND m1 WHERE m1.EVENEMENTID = " + eventID + " AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.bestandlocatie = m1.bestandlocatie AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.bestandlocatie = m1.bestandlocatie) * 100 >= " + percentage, mediaFilesColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -175,7 +175,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery(query, mediaFilesColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -219,7 +219,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MEDIABESTAND WHERE MEDIABESTANDID = " + mediaFileID, mediaFilesColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 MediaType thisMediaType = null;
 
@@ -260,7 +260,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MEDIABESTAND WHERE MEDIABESTANDID = " + mediaFileID, mediaFilesColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 MediaType thisMediaType = null;
 

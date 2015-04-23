@@ -61,7 +61,7 @@ namespace Proftaak_ICT4Events
             get { return isPayed; }
             set { isPayed = value; }
         }
-        public Spot Spot
+        public Spot ReservationSpot
         {
             get { return spot; }
             set { spot = value; }
@@ -95,6 +95,7 @@ namespace Proftaak_ICT4Events
             this.endDate = endDate;
             this.isPayed = isPayed;
             this.spot = spot;
+            this.material = null;
         }
 
         //The constructor for a materialreservation, a user is needed to complete it
@@ -107,6 +108,7 @@ namespace Proftaak_ICT4Events
             this.endDate = endDate;
             this.isPayed = isPayed;
             this.material = material;
+            this.spot = null;
         }
 
         //Returns a list of all reservations
@@ -127,7 +129,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -151,7 +153,7 @@ namespace Proftaak_ICT4Events
                         Convert.ToDateTime(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[3][i]),
                         dataTable[5][i].ToUpper() == "Y",
-                        Spot.Get(dataTable[7][i], database)));
+                        Spot.GetStatic(dataTable[7][i], database)));
                     }
                 }
             }
@@ -177,7 +179,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE  GEBRUIKERID = " + userID + " AND HUURTYPE = 'MATERIAAL'", reservationColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -186,27 +188,48 @@ namespace Proftaak_ICT4Events
                         allreservations.Add(new Reservation(
                         Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
-                        Convert.ToInt32(dataTable[6][i]),
+                        -1,
                         Convert.ToDateTime(dataTable[2][i]),
                         Convert.ToDateTime(dataTable[3][i]),
                         dataTable[5][i].ToUpper() == "Y",
                         Material.GetStatic(dataTable[6][i], database)));
                     }
-                    else
-                    {
-                        allreservations.Add(new Reservation(
-                        Convert.ToInt32(dataTable[1][i]),
-                        Convert.ToInt32(dataTable[0][i]),
-                        Convert.ToInt32(dataTable[7][i]),
-                        Convert.ToDateTime(dataTable[2][i]),
-                        Convert.ToDateTime(dataTable[3][i]),
-                        dataTable[5][i].ToUpper() == "Y",
-                        Spot.GetStatic(dataTable[7][i], database)));
-                    }
                 }
             }
 
             return allreservations;
+        }
+
+
+        public Reservation GetSpotReservation(int userID, Database database)
+        {
+            List<string> reservationColumns = new List<string>();
+            Reservation getReservation = null;
+
+            reservationColumns.Add("HUURID");
+            reservationColumns.Add("GEBRUIKERID");
+            reservationColumns.Add("STARTDATUM");
+            reservationColumns.Add("EINDDATUM");
+            reservationColumns.Add("HUURTYPE");
+            reservationColumns.Add("BETAALD");
+            reservationColumns.Add("MATID");
+            reservationColumns.Add("PLAATSNUMMER");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURTYPE = 'PLAATS' AND GEBRUIKERID = " + userID, reservationColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                getReservation = new Reservation(
+                    Convert.ToInt32(dataTable[1][1]),
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[7][1]),
+                    Convert.ToDateTime(dataTable[2][1]),
+                    Convert.ToDateTime(dataTable[3][1]),
+                    dataTable[5][1].ToUpper() == "Y",
+                    Spot.GetStatic(dataTable[7][1], database));
+            }
+
+            return getReservation;
         }
 
         //A function that returns a specific reservation
@@ -226,7 +249,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
 
-            if (dataTable[0].Count() >= 1)
+            if (dataTable[0].Count() > 1)
             {
                 if(dataTable[4][1] == "MATERIAAL")
                 {
@@ -248,7 +271,7 @@ namespace Proftaak_ICT4Events
                         Convert.ToDateTime(dataTable[2][1]),
                         Convert.ToDateTime(dataTable[3][1]),
                         dataTable[5][1].ToUpper() == "Y",
-                        Spot.Get(dataTable[7][1], database));
+                        Spot.GetStatic(dataTable[7][1], database));
                 }
             }
 
@@ -266,7 +289,7 @@ namespace Proftaak_ICT4Events
             }
             else
             {
-                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, '{1}', TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
+                database.editDatabase(String.Format("INSERT INTO RESERVERING VALUES ({0}, {1}, TO_DATE('{2}', 'DD/MM/YYYY HH24:MI:SS'), TO_DATE('{3}', 'DD/MM/YYYY HH24:MI:SS'), '{4}', '{5}', {6}, null)",
                     newReservation.rentalID, newReservation.userID, newReservation.startDate, newReservation.endDate, "MATERIAAL", newReservation.isPayed ? "Y" : "N", newReservation.material.MaterialID));
             }
         }
