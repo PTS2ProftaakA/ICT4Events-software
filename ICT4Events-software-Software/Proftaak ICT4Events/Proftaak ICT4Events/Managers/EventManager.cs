@@ -68,7 +68,7 @@ namespace Proftaak_ICT4Events
         {
             int outInt;
 
-            if (locatieNaam != "" && address != "" && phoneNumber != "" && email != "" && city != "" && int.TryParse(max, out outInt))
+            if (locatieNaam != "" && address != "" && phoneNumber != "" && email.Contains("@") && email.Contains(".") && city != "" && int.TryParse(max, out outInt))
             {
                 Location location = new Location(locatieNaam, address, phoneNumber, email, city, 1, Convert.ToInt32(max));
                 location.Add(location, database);

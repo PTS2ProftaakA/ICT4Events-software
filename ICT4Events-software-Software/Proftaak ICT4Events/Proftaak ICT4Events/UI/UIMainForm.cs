@@ -847,6 +847,7 @@ namespace Proftaak_ICT4Events
 
         private void btnLogOff_Click(object sender, EventArgs e)
         {
+            //Iets met drop user als hij geen reserveringen heeft.
             Application.Exit();
         }
     }
