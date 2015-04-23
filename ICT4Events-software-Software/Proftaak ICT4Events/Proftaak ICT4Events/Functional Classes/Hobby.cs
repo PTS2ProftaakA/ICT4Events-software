@@ -47,7 +47,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY", hobbyColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -71,7 +71,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT HOBBYNAAM FROM HOBBY WHERE HOBBYID = " + hobbyID, hobbyColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {

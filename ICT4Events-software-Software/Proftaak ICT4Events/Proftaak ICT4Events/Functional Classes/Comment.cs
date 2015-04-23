@@ -78,9 +78,9 @@ namespace Proftaak_ICT4Events
             commentColumns.Add("REACTIEOPID");
             commentColumns.Add("INHOUD");
 
-            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDSLOCATIE = " + filePath, commentColumns);
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDLOCATIE = '" + filePath + "'", commentColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -116,6 +116,43 @@ namespace Proftaak_ICT4Events
             commentColumns.Add("INHOUD");
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE GEBRUIKERID = " + userID, commentColumns);
+
+            if (dataTable[0].Count() >= 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    if (dataTable[3][i] == "")
+                    {
+                        dataTable[3][i] = "-1";
+                    }
+
+                    allComments.Add(new Comment(
+                        dataTable[1][i],
+                        dataTable[4][i],
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[3][i])
+                        ));
+                }
+            }
+
+            return allComments;
+        }
+
+        //A function to get all the comments from a single comment
+        //The data from the database gets converted to a list of comments
+        public static List<Comment> GetAllFromComment(int commentID, Database database)
+        {
+            List<string> commentColumns = new List<string>();
+            List<Comment> allComments = new List<Comment>();
+
+            commentColumns.Add("REACTIEID");
+            commentColumns.Add("BESTANDLOCATIE");
+            commentColumns.Add("GEBRUIKERID");
+            commentColumns.Add("REACTIEOPID");
+            commentColumns.Add("INHOUD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEOPID = " + commentID, commentColumns);
 
             if (dataTable[0].Count() > 1)
             {
@@ -153,7 +190,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT r1.REACTIEID, r1.BESTANDLOCATIE, r1.GEBRUIKERID, r1.REACTIEOPID, r1.INHOUD FROM REACTIE r1, MEDIABESTAND m1 WHERE r1.bestandlocatie = m1.bestandlocatie AND m1.EVENEMENTID = " + eventID + " AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.reactieID = r1.reactieID AND o1.positief = 'N') > 0 AND (SELECT COUNT(*) FROM OORDEEL o1 WHERE o1.reactieID = r1.reactieID AND o1.positief = 'N') / (SELECT COUNT(*) FROM OORDEEL o2 WHERE o2.reactieID = r1.reactieID) * 100 >=" + percentage, commentColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -189,7 +226,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE BESTANDLOCATIE = '" + filePath + "'", commentColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 if (dataTable[1][1] != "")
                 {
@@ -221,7 +258,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 if (dataTable[1][1] != "")
                 {
@@ -253,7 +290,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM REACTIE WHERE REACTIEID = " + commentID, commentColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 if (dataTable[1][1] != "")
                 {

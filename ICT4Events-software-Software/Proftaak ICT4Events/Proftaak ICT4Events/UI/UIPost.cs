@@ -15,22 +15,37 @@ namespace Proftaak_ICT4Events
     {
         //Creates a post with a certain type
         //The type decides the visuals of the post
-        public Post(MediaType type, string description, string filePath, string poster, string userPhoto)
+        public User user;
+        Database database;
+        MediaFile postFile;
+        public Post(MediaFile mediafile, User poster, Database Database)
         {
             InitializeComponent();
-            if (type.Type == "Tekst")
+            database = Database;
+            user = poster;
+            postFile = mediafile;
+            editLikelabel();
+            editCommentLabel();
+            
+            
+          
+            
+            
+            
+            if (mediafile.MediaTypeName.Type == "Tekst")
             {
                 pbPostPhoto.Visible = false;
-                wmpPostPlayer.Visible = false;
+                //wmpPostPlayer.Visible = false;
 
-                lblTextPostContent.Text = description;
-                lblPostNaam.Text = poster;
+                lblTextPostContent.Text = mediafile.Description;
+                lblPostNaam.Text = poster.Username;
+                pbPostProfPicture.ImageLocation = mediafile.FilePath;
 
             }
-            if (type.Type == "Plaatje")
+            if (mediafile.MediaTypeName.Type == "Afbeelding")
             {
                 lblTextPostContent.Visible = true;
-                wmpPostPlayer.Visible = false;
+              //  wmpPostPlayer.Visible = false;
                 pbPostPhoto.Visible = true;
 
                 int postWidth = 400;
@@ -48,15 +63,16 @@ namespace Proftaak_ICT4Events
                 Point lbldescription = new Point(postWidth - 300, postHeight - 160);
                 lblTextPostContent.Location = lbldescription;
 
-                lblTextPostContent.Text = description;
-                lblPostNaam.Text = poster;
+                lblTextPostContent.Text = mediafile.Description;
+                lblPostNaam.Text = poster.Username;
+                pbPostProfPicture.ImageLocation = mediafile.FilePath;
             }
 
-            if (type.Type == "Video")
+            if (mediafile.MediaTypeName.Type == "Video")
             {
 
                 pbPostPhoto.Visible = true;
-                wmpPostPlayer.Visible = true;
+             //   wmpPostPlayer.Visible = true;
                 pbPostPhoto.Image = null;
                 lblTextPostContent.Visible = true;
 
@@ -76,11 +92,12 @@ namespace Proftaak_ICT4Events
                 lblTextPostContent.Location = lbldescription;
                 lblTextPostContent.SendToBack();
 
-                lblTextPostContent.Text = description;
-                lblPostNaam.Text = poster;
+                lblTextPostContent.Text = mediafile.Description;
+                lblPostNaam.Text = poster.Username;
+                pbPostProfPicture.ImageLocation = mediafile.FilePath;
 
-                wmpPostPlayer.settings.autoStart = false;
-                wmpPostPlayer.URL = "C:\\Example.mp4";
+             //   wmpPostPlayer.settings.autoStart = false;
+            //    wmpPostPlayer.URL = "C:\\Example.mp4";
 
             }
 
@@ -89,14 +106,24 @@ namespace Proftaak_ICT4Events
         //not implemented yet
         private void btnPostLike_Click(object sender, EventArgs e)
         {
-
+            Rating newRating = new Rating(postFile.FilePath, user.UserID, 1, 0, true);
+            newRating.FilePath = postFile.FilePath;
+            newRating.Add(newRating, database);
+            editLikelabel();
+            
         }
 
         //Creates a form to react to the posted object
         private void btnPostReageer_Click(object sender, EventArgs e)
         {
-            Form newForm = new Comments(giveMe());
-            newForm.Show();
+            Form newForm = new Comments(postFile, this, database);
+            newForm.ShowDialog();
+            if (newForm.DialogResult == DialogResult.Cancel)
+            {
+               
+                editCommentLabel();
+                editLikelabel();
+            }
         }
         private Post giveMe()
         {
@@ -114,7 +141,7 @@ namespace Proftaak_ICT4Events
         public void spaceRight()
         {
             pbPostPhoto.Visible = true;
-            wmpPostPlayer.Visible = true;
+          //  wmpPostPlayer.Visible = true;
             pbPostPhoto.Image = null;
             lblTextPostContent.Visible = true;
 
@@ -133,10 +160,34 @@ namespace Proftaak_ICT4Events
             Point lbldescription = new Point(postWidth - 580, postHeight - 180);
             lblTextPostContent.Location = lbldescription;
             Point wmp = new Point(postWidth - 580, postHeight - 540);
-            wmpPostPlayer.Location = wmp;
+      //      wmpPostPlayer.Location = wmp;
             lblTextPostContent.SendToBack();
         }
         // lblPostLike.Text
         // lblPostReageer.Text
+        private void editLikelabel()
+        {
+            List<Rating> likes = new List<Rating>();
+            List<Rating> ratings = new List<Rating>();
+            ratings = Rating.getAllFromFile(postFile.FilePath, database);
+            
+                foreach (Rating r in ratings)
+                {
+                    if (r.Positive)
+                    {
+                        likes.Add(r);
+                    }
+                }
+                lblPostLike.Text = Convert.ToString(likes.Count());
+
+            
+        }
+        private void editCommentLabel()
+        {
+            List<Comment> comments = new List<Comment>();
+            comments = Comment.GetAllFromFile(postFile.FilePath, database);
+           lblPostReageer.Text = Convert.ToString(comments.Count());
+            
+        }
     }
 }

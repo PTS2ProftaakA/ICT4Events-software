@@ -128,7 +128,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -178,7 +178,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE  GEBRUIKERID = " + userID + " AND HUURTYPE = 'MATERIAAL'", reservationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -227,7 +227,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM RESERVERING WHERE HUURID = " + rentalID, reservationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 if(dataTable[4][1] == "MATERIAAL")
                 {

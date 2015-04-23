@@ -81,7 +81,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM LOCATIE", locationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -115,7 +115,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM LOCATIE WHERE LOCATIEID = " + locationID, locationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 getLocation = new Location(
                         dataTable[1][1],
@@ -147,7 +147,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM LOCATIE WHERE LOCATIEID = " + locationID, locationColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 getLocation = new Location(
                         dataTable[1][1],

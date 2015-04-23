@@ -176,7 +176,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER", userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -225,7 +225,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE INGELOGD = 'Y'", userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -274,7 +274,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE GEBRUIKERID = " + userID, userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                     getUser = new User(
                         dataTable[1][1],
@@ -321,7 +321,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE RFID = '" + RFID + "'", userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 getUser = new User(
                     dataTable[1][1],
@@ -365,7 +365,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE GEBRUIKERID = " + userID, userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 getUser = new User(
                     dataTable[1][1],
@@ -411,7 +411,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE INLOGNAAM = '" + username + "' AND WACHTWOORD = '" + password + "'", userColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 getUser = new User(
                     dataTable[1][1],

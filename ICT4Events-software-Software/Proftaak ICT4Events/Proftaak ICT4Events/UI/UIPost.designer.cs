@@ -35,14 +35,12 @@
             this.lblTextPostContent = new System.Windows.Forms.Label();
             this.lblPostLike = new System.Windows.Forms.Label();
             this.lblPostReageer = new System.Windows.Forms.Label();
-            this.wmpPostPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnPostReport = new System.Windows.Forms.Button();
             this.pbPostPhoto = new System.Windows.Forms.PictureBox();
-            this.pbPostPicture = new System.Windows.Forms.PictureBox();
+            this.pbPostProfPicture = new System.Windows.Forms.PictureBox();
             this.btnManagementPostDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.wmpPostPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPostPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPostPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPostProfPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPostLike
@@ -104,16 +102,6 @@
             this.lblPostReageer.TabIndex = 6;
             this.lblPostReageer.Text = "1";
             // 
-            // wmpPostPlayer
-            // 
-            this.wmpPostPlayer.Enabled = true;
-            this.wmpPostPlayer.Location = new System.Drawing.Point(209, 20);
-            this.wmpPostPlayer.Name = "wmpPostPlayer";
-            this.wmpPostPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpPostPlayer.OcxState")));
-            this.wmpPostPlayer.Size = new System.Drawing.Size(438, 353);
-            this.wmpPostPlayer.TabIndex = 8;
-            this.wmpPostPlayer.Visible = false;
-            // 
             // btnPostReport
             // 
             this.btnPostReport.Location = new System.Drawing.Point(12, 146);
@@ -126,7 +114,6 @@
             // pbPostPhoto
             // 
             this.pbPostPhoto.Enabled = false;
-            
             this.pbPostPhoto.Location = new System.Drawing.Point(101, 12);
             this.pbPostPhoto.Name = "pbPostPhoto";
             this.pbPostPhoto.Size = new System.Drawing.Size(240, 205);
@@ -135,15 +122,14 @@
             this.pbPostPhoto.TabStop = false;
             this.pbPostPhoto.Visible = false;
             // 
-            // pbPostPicture
+            // pbPostProfPicture
             // 
-            
-            this.pbPostPicture.Location = new System.Drawing.Point(12, 12);
-            this.pbPostPicture.Name = "pbPostPicture";
-            this.pbPostPicture.Size = new System.Drawing.Size(81, 81);
-            this.pbPostPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPostPicture.TabIndex = 2;
-            this.pbPostPicture.TabStop = false;
+            this.pbPostProfPicture.Location = new System.Drawing.Point(12, 12);
+            this.pbPostProfPicture.Name = "pbPostProfPicture";
+            this.pbPostProfPicture.Size = new System.Drawing.Size(81, 81);
+            this.pbPostProfPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPostProfPicture.TabIndex = 2;
+            this.pbPostProfPicture.TabStop = false;
             // 
             // btnManagementPostDelete
             // 
@@ -166,16 +152,14 @@
             this.Controls.Add(this.lblPostReageer);
             this.Controls.Add(this.lblTextPostContent);
             this.Controls.Add(this.lblPostNaam);
-            this.Controls.Add(this.pbPostPicture);
+            this.Controls.Add(this.pbPostProfPicture);
             this.Controls.Add(this.btnPostReageer);
             this.Controls.Add(this.btnPostLike);
-            this.Controls.Add(this.wmpPostPlayer);
             this.Controls.Add(this.pbPostPhoto);
             this.Name = "Post";
             this.Size = new System.Drawing.Size(400, 172);
-            ((System.ComponentModel.ISupportInitialize)(this.wmpPostPlayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPostPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPostPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPostProfPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,13 +169,13 @@
 
         private System.Windows.Forms.Button btnPostLike;
         private System.Windows.Forms.Button btnPostReageer;
-        private System.Windows.Forms.PictureBox pbPostPicture;
+        private System.Windows.Forms.PictureBox pbPostProfPicture;
         private System.Windows.Forms.Label lblPostNaam;
         private System.Windows.Forms.Label lblTextPostContent;
         private System.Windows.Forms.Label lblPostLike;
         private System.Windows.Forms.Label lblPostReageer;
         private System.Windows.Forms.PictureBox pbPostPhoto;
-        private AxWMPLib.AxWindowsMediaPlayer wmpPostPlayer;
+
         private System.Windows.Forms.Button btnPostReport;
         private System.Windows.Forms.Button btnManagementPostDelete;
     }

@@ -120,15 +120,4 @@
   <data name="lblTextPostContent.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget risus imperdiet, cursus lectus non, laoreet eros. Maecenas rutrum finibus ante eget lacinia. Phasellus molestie augue in metus lobortis, ut cursus arcu mattis. Integer eget felis aliquet, consectetur mi vitae, accumsan sem. Duis sollicitudin, nunc porta fermentum tincidunt, elit elit mollis est, non porttitor nunc nisl in augue. Duis pretium varius velit, eu consequat metus molestie ut. Nullam sed felis est. Sed maximus ex id nulla consequat iaculis. Praesent lacus nulla, dictum sit amet augue ac, maximus convallis risus. Ut tincidunt sapien ut justo efficitur, vitae consequat ipsum facilisis. Phasellus id metus et felis fringilla hendrerit viverra a ipsum. Praesent sit amet dolor in ipsum mattis vulputate a at mi. Fusce rutrum, velit semper viverra accumsan, augue quam posuere magna, in auctor ante leo et ante.</value>
   </data>
-  <data name="wmpPostPlayer.OcxState" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACFTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAtwAAAAIB
-        AAAAAQAAAAAAAAAAAAAAAKIAAAAAAwAACAAAAAAABQAAAAAAAADwPwMAAAAAAAUAAAAAAAAAAAAIAAIA
-        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAZgB1AGwAbAAAAAsA
-        AAALAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAwAcAAGEC
-        AAAL
-</value>
-  </data>
 </root>

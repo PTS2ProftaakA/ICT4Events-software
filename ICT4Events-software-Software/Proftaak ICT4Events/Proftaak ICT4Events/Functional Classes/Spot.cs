@@ -53,7 +53,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  PLAATS", spotColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -89,7 +89,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER NOT IN (SELECT P.PLAATSNUMMER FROM GEBRUIKER AD, GEBRUIKER G, RESERVERING R, PLAATS P WHERE P.PLAATSNUMMER = R.PLAATSNUMMER AND R.GEBRUIKERID = AD.GEBRUIKERID AND G.RESERVEERDER = AD.GEBRUIKERID);", spotColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -132,7 +132,7 @@ namespace Proftaak_ICT4Events
                 dataTable = database.selectQuery("SELECT * FROM  PLAATS ", spotColumns);
             }
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -174,7 +174,7 @@ namespace Proftaak_ICT4Events
                 dataTable = database.selectQuery("SELECT * FROM  PLAATS ", spotColumns);
             }
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
@@ -208,7 +208,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER = " + spotNumber, spotColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 SpotType thisSpotType = null;
 
@@ -242,7 +242,7 @@ namespace Proftaak_ICT4Events
 
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER = " + spotNumber, spotColumns);
 
-            if (dataTable[0].Count() > 1)
+            if (dataTable[0].Count() >= 1)
             {
                 SpotType thisSpotType = null;
 

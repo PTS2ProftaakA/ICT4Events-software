@@ -49,10 +49,10 @@ namespace Proftaak_ICT4Events
         //Constructor that creates a rating that belongs to a mediafile
         public Rating(string filePath, int userID, int ratingID, int commentID, bool positive)
         {
-            this.filePath = FilePath;
+            this.filePath = filePath;
             this.userID = userID;
-            this.ratingID = RatingID;
-            this.commentID = CommentID;
+            this.ratingID = ratingID;
+            this.commentID = commentID;
             this.positive = positive;
         }
 
@@ -75,14 +75,14 @@ namespace Proftaak_ICT4Events
             {
                 for (int i = 1; i < dataTable[0].Count(); i++)
                 {
-                    if(dataTable[2][i] != "")
+                    if (dataTable[2][i] != "")
                     {
                         dataTable[3][i] = "-1";
                     }
 
                     allRating.Add(new Rating(
                         dataTable[2][i],
-                        Convert.ToInt32(dataTable[1][i]), 
+                        Convert.ToInt32(dataTable[1][i]),
                         Convert.ToInt32(dataTable[0][i]),
                         Convert.ToInt32(dataTable[3][i]),
                         dataTable[4][i] == "Y"
@@ -190,7 +190,7 @@ namespace Proftaak_ICT4Events
 
                 getRating = new Rating(
                     dataTable[2][1],
-                    Convert.ToInt32(dataTable[1][1]), 
+                    Convert.ToInt32(dataTable[1][1]),
                     Convert.ToInt32(dataTable[0][1]),
                     Convert.ToInt32(dataTable[3][1]),
                     dataTable[4][1] == "Y"
@@ -204,7 +204,7 @@ namespace Proftaak_ICT4Events
         public void Add(Rating newRating, Database database)
         {
             database.editDatabase(String.Format("INSERT INTO OORDEEL VALUES ({0}, {1}, '{2}', '{3}', '{4}')",
-                newRating.ratingID, newRating.userID, newRating.filePath, newRating.commentID, newRating.positive));
+                newRating.ratingID, newRating.userID, newRating.filePath, newRating.commentID, newRating.positive ? "Y" : "N"));
         }
 
         //Edits a rating with the current values of the rating

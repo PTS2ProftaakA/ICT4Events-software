@@ -202,8 +202,8 @@ namespace Proftaak_ICT4Events
             foreach (MediaFile m in feedManager.GetFiles("latest", database))
             {
                 User user = personalInfoManager.GetSpecificUser(m.UserID);
-                Post newpost = new Post(m.MediaTypeName, m.Description, m.FilePath, user.Username, user.PhotoPath);
-                
+                Post newpost = new Post(m, user, database);
+
                 flpPosts.Controls.Add(newpost);
                 flpPosts.Refresh();
             }
@@ -415,6 +415,8 @@ namespace Proftaak_ICT4Events
             {
                 MessageBox.Show("Done");
             }
+
+            //cbMapType_SelectedIndexChanged
         }
 
         //Determines how many people can go on the trip
