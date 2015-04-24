@@ -136,19 +136,59 @@ namespace Proftaak_ICT4Events
             hobbies = new List<Hobby>();
         }
 
-        //Creates a user with fewer properties for implementation purposes
-        public User(string RFID, string reservee, string name, string emailAddress, string username, string password, bool administrator, bool loggedIn, int userID, int spotNumber)
+
+        //Gets all the users from the database that use this user as reservee
+        public static List<User> getAllFromReservee(User user, Database database)
         {
-            this.RFID = RFID;
-            this.reservee = reservee;
-            this.name = name;
-            this.emailAddress = emailAddress;
-            this.username = username;
-            this.password = password;
-            this.administrator = administrator;
-            this.loggedIn = loggedIn;
-            this.userID = userID;
-            this.spotNumber = spotNumber;
+            List<string> userColumns = new List<string>();
+            List<User> allUsers = new List<User>();
+
+            userColumns.Add("GEBRUIKERID");
+            userColumns.Add("RFID");
+            userColumns.Add("EVENEMENTID");
+            userColumns.Add("RESERVEERDER");
+            userColumns.Add("NAAM");
+            userColumns.Add("EMAIL");
+            userColumns.Add("TELEFOONNUMMER");
+            userColumns.Add("FOTO");
+            userColumns.Add("GEBOORTEDATUM");
+            userColumns.Add("INLOGNAAM");
+            userColumns.Add("WACHTWOORD");
+            userColumns.Add("PLAATSNUMMER");
+            userColumns.Add("ADMINISTRATOR");
+            userColumns.Add("INGELOGD");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  GEBRUIKER WHERE RESERVEERDER = " + user.userID, userColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                for (int i = 1; i < dataTable[0].Count(); i++)
+                {
+                    if (dataTable[8][i] == "")
+                    {
+                        dataTable[8][i] = Convert.ToString(DateTime.MinValue);
+                    }
+
+                    allUsers.Add(new User(
+                        dataTable[1][i],
+                        dataTable[3][i],
+                        dataTable[4][i],
+                        dataTable[5][i],
+                        dataTable[6][i],
+                        dataTable[7][i],
+                        dataTable[9][i],
+                        dataTable[10][i],
+                        Convert.ToInt32(dataTable[0][i]),
+                        Convert.ToInt32(dataTable[2][i]),
+                        Convert.ToInt32(dataTable[11][i]),
+                        dataTable[12][i].ToUpper() == "Y",
+                        dataTable[13][i].ToUpper() == "Y",
+                        Convert.ToDateTime(dataTable[8][i])
+                        ));
+                }
+            }
+
+            return allUsers;
         }
 
         //Gets all the users from the database using the more complete constructor
@@ -440,24 +480,15 @@ namespace Proftaak_ICT4Events
         //Adds a user to the database
         public void Add(User newUser, Database database)
         {
-            database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD/MM/YYYY HH24:MI:SS', '{9}', '{10}', {11}, '{12}', '{13}')",
-                newUser.userID, newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator, newUser.loggedIn ? "Y" : "N"));
-        }
-
-        //Adds a more basic user to the database
-        public void AddBasicUser(User newUser, Database database)
-        {
-            String s = String.Format("INSERT INTO GEBRUIKER(RFID, RESERVEERDER, NAAM, EMAIL, INLOGNAAM, WACHTWOORD, ADMINISTRATOR, INGELOGD, GEBRUIKERID,PLAATSNUMMER ) VALUES ('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', GEBRUIKERSEQUENCE.nextval, {8})",
-               newUser.RFID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.username, newUser.password, newUser.administrator ? "Y" : "N", newUser.loggedIn ? "Y" : "N", newUser.spotNumber);
-
-            database.editDatabase(s);
+            database.editDatabase(String.Format("INSERT INTO GEBRUIKER VALUES ({0}, '{1}', {2}, {3}, '{4}', '{5}', '{6}', '{7}', TO_DATE('{8}', 'DD/MM/YYYY HH24:MI:SS'), '{9}', '{10}', {11}, '{12}', '{13}')",
+                newUser.userID, newUser.RFID, newUser.eventID, newUser.reservee, newUser.name, newUser.emailAddress, newUser.phoneNumber, newUser.photoPath, newUser.dateOfBirth, newUser.username, newUser.password, newUser.spotNumber, newUser.administrator ? "Y" : "N", newUser.loggedIn ? "Y" : "N"));
         }
 
         //Edits the input user to it's current values
         public void Edit(User updateUser, Database database)
         {
-            database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), INGELOGD = '{5}', INLOGNAAM = '{6}'  WHERE GEBRUIKERID = {7}",
-                updateUser.name, updateUser.emailAddress, updateUser.phoneNumber, updateUser.photoPath, updateUser.dateOfBirth, updateUser.loggedIn ? "Y" : "N", updateUser.username, updateUser.userID));
+            database.editDatabase(String.Format("UPDATE GEBRUIKER SET NAAM = '{0}', EMAIL = '{1}', TELEFOONNUMMER = '{2}', FOTO = '{3}', GEBOORTEDATUM = TO_DATE('{4}', 'DD/MM/YYYY HH24:MI:SS'), INGELOGD = '{5}', INLOGNAAM = '{6}', PLAATSNUMMER = {7}  WHERE GEBRUIKERID = {8}",
+                updateUser.name, updateUser.emailAddress, updateUser.phoneNumber, updateUser.photoPath, updateUser.dateOfBirth, updateUser.loggedIn ? "Y" : "N", updateUser.username, updateUser.spotNumber, updateUser.userID));
 
         }
 

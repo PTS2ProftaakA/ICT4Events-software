@@ -63,6 +63,7 @@
             this.tvFolders = new System.Windows.Forms.ListView();
             this.tvTree = new System.Windows.Forms.TreeView();
             this.tpSettings = new System.Windows.Forms.TabPage();
+            this.btnSettingsUnsubscribe = new System.Windows.Forms.Button();
             this.lblSettingPaid = new System.Windows.Forms.Label();
             this.lvPersonalRental = new System.Windows.Forms.ListView();
             this.tbSettingsPhotoPath = new System.Windows.Forms.TextBox();
@@ -89,6 +90,8 @@
             this.lblMapInfo = new System.Windows.Forms.Label();
             this.pbMapMap = new System.Windows.Forms.PictureBox();
             this.tpEventBeheer = new System.Windows.Forms.TabPage();
+            this.btnEManagementDeleteLocation = new System.Windows.Forms.Button();
+            this.btnEManagerDelete = new System.Windows.Forms.Button();
             this.lbEManagementLoggedUsers = new System.Windows.Forms.ListBox();
             this.btnEManagementLoggedUsers = new System.Windows.Forms.Button();
             this.btnEManagementNewSave = new System.Windows.Forms.Button();
@@ -137,9 +140,6 @@
             this.lvReportedPosts = new System.Windows.Forms.ListView();
             this.cbReportedPostsEvents = new System.Windows.Forms.ComboBox();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.btnSettingsUnsubscribe = new System.Windows.Forms.Button();
-            this.btnEManagerDelete = new System.Windows.Forms.Button();
-            this.btnEManagementDeleteLocation = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tpTijdlijn.SuspendLayout();
             this.tpRental.SuspendLayout();
@@ -223,6 +223,7 @@
             // 
             // cbFeedFileTypes
             // 
+            this.cbFeedFileTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFeedFileTypes.FormattingEnabled = true;
             this.cbFeedFileTypes.Location = new System.Drawing.Point(237, 4);
             this.cbFeedFileTypes.Margin = new System.Windows.Forms.Padding(4);
@@ -462,6 +463,7 @@
             // 
             // cbMaterialProduct
             // 
+            this.cbMaterialProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMaterialProduct.FormattingEnabled = true;
             this.cbMaterialProduct.Location = new System.Drawing.Point(28, 154);
             this.cbMaterialProduct.Margin = new System.Windows.Forms.Padding(4);
@@ -472,6 +474,7 @@
             // 
             // cbMaterialCategory
             // 
+            this.cbMaterialCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMaterialCategory.FormattingEnabled = true;
             this.cbMaterialCategory.Location = new System.Drawing.Point(28, 73);
             this.cbMaterialCategory.Margin = new System.Windows.Forms.Padding(4);
@@ -589,6 +592,18 @@
             this.tpSettings.TabIndex = 3;
             this.tpSettings.Text = "Instellingen";
             this.tpSettings.UseVisualStyleBackColor = true;
+            // 
+            // btnSettingsUnsubscribe
+            // 
+            this.btnSettingsUnsubscribe.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettingsUnsubscribe.Location = new System.Drawing.Point(865, 319);
+            this.btnSettingsUnsubscribe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSettingsUnsubscribe.Name = "btnSettingsUnsubscribe";
+            this.btnSettingsUnsubscribe.Size = new System.Drawing.Size(198, 33);
+            this.btnSettingsUnsubscribe.TabIndex = 19;
+            this.btnSettingsUnsubscribe.Text = "Afmelden";
+            this.btnSettingsUnsubscribe.UseVisualStyleBackColor = true;
+            this.btnSettingsUnsubscribe.Click += new System.EventHandler(this.btnSettingsUnsubscribe_Click);
             // 
             // lblSettingPaid
             // 
@@ -798,6 +813,7 @@
             // 
             // cbMapType
             // 
+            this.cbMapType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMapType.FormattingEnabled = true;
             this.cbMapType.Location = new System.Drawing.Point(267, 68);
             this.cbMapType.Margin = new System.Windows.Forms.Padding(4);
@@ -893,6 +909,28 @@
             this.tpEventBeheer.Text = "Event Beheer";
             this.tpEventBeheer.UseVisualStyleBackColor = true;
             // 
+            // btnEManagementDeleteLocation
+            // 
+            this.btnEManagementDeleteLocation.Location = new System.Drawing.Point(607, 168);
+            this.btnEManagementDeleteLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEManagementDeleteLocation.Name = "btnEManagementDeleteLocation";
+            this.btnEManagementDeleteLocation.Size = new System.Drawing.Size(158, 28);
+            this.btnEManagementDeleteLocation.TabIndex = 23;
+            this.btnEManagementDeleteLocation.Text = "Verwijder Locatie";
+            this.btnEManagementDeleteLocation.UseVisualStyleBackColor = true;
+            this.btnEManagementDeleteLocation.Click += new System.EventHandler(this.btnEManagementDeleteLocation_Click);
+            // 
+            // btnEManagerDelete
+            // 
+            this.btnEManagerDelete.Location = new System.Drawing.Point(85, 159);
+            this.btnEManagerDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEManagerDelete.Name = "btnEManagerDelete";
+            this.btnEManagerDelete.Size = new System.Drawing.Size(161, 28);
+            this.btnEManagerDelete.TabIndex = 22;
+            this.btnEManagerDelete.Text = "Verwijderen";
+            this.btnEManagerDelete.UseVisualStyleBackColor = true;
+            this.btnEManagerDelete.Click += new System.EventHandler(this.btnEManagerDelete_Click);
+            // 
             // lbEManagementLoggedUsers
             // 
             this.lbEManagementLoggedUsers.FormattingEnabled = true;
@@ -940,6 +978,7 @@
             // 
             // cbEManagementLocation
             // 
+            this.cbEManagementLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEManagementLocation.FormattingEnabled = true;
             this.cbEManagementLocation.Location = new System.Drawing.Point(317, 155);
             this.cbEManagementLocation.Margin = new System.Windows.Forms.Padding(4);
@@ -1067,6 +1106,7 @@
             // 
             // cbEManagementEvents
             // 
+            this.cbEManagementEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEManagementEvents.FormattingEnabled = true;
             this.cbEManagementEvents.Location = new System.Drawing.Point(85, 90);
             this.cbEManagementEvents.Margin = new System.Windows.Forms.Padding(4);
@@ -1183,6 +1223,7 @@
             // 
             // cbManagementProductAll
             // 
+            this.cbManagementProductAll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbManagementProductAll.FormattingEnabled = true;
             this.cbManagementProductAll.Location = new System.Drawing.Point(233, 54);
             this.cbManagementProductAll.Margin = new System.Windows.Forms.Padding(4);
@@ -1435,6 +1476,7 @@
             // 
             // cbReportedPostsEvents
             // 
+            this.cbReportedPostsEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReportedPostsEvents.FormattingEnabled = true;
             this.cbReportedPostsEvents.Location = new System.Drawing.Point(41, 27);
             this.cbReportedPostsEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1453,40 +1495,6 @@
             this.lblMenu.Size = new System.Drawing.Size(132, 52);
             this.lblMenu.TabIndex = 1;
             this.lblMenu.Text = "menu";
-            // 
-            // btnSettingsUnsubscribe
-            // 
-            this.btnSettingsUnsubscribe.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsUnsubscribe.Location = new System.Drawing.Point(865, 319);
-            this.btnSettingsUnsubscribe.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSettingsUnsubscribe.Name = "btnSettingsUnsubscribe";
-            this.btnSettingsUnsubscribe.Size = new System.Drawing.Size(198, 33);
-            this.btnSettingsUnsubscribe.TabIndex = 19;
-            this.btnSettingsUnsubscribe.Text = "Afmelden";
-            this.btnSettingsUnsubscribe.UseVisualStyleBackColor = true;
-            this.btnSettingsUnsubscribe.Click += new System.EventHandler(this.btnSettingsUnsubscribe_Click);
-            // 
-            // btnEManagerDelete
-            // 
-            this.btnEManagerDelete.Location = new System.Drawing.Point(85, 159);
-            this.btnEManagerDelete.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEManagerDelete.Name = "btnEManagerDelete";
-            this.btnEManagerDelete.Size = new System.Drawing.Size(161, 28);
-            this.btnEManagerDelete.TabIndex = 22;
-            this.btnEManagerDelete.Text = "Verwijderen";
-            this.btnEManagerDelete.UseVisualStyleBackColor = true;
-            this.btnEManagerDelete.Click += new System.EventHandler(this.btnEManagerDelete_Click);
-            // 
-            // btnEManagementDeleteLocation
-            // 
-            this.btnEManagementDeleteLocation.Location = new System.Drawing.Point(607, 168);
-            this.btnEManagementDeleteLocation.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEManagementDeleteLocation.Name = "btnEManagementDeleteLocation";
-            this.btnEManagementDeleteLocation.Size = new System.Drawing.Size(158, 28);
-            this.btnEManagementDeleteLocation.TabIndex = 23;
-            this.btnEManagementDeleteLocation.Text = "Verwijder Locatie";
-            this.btnEManagementDeleteLocation.UseVisualStyleBackColor = true;
-            this.btnEManagementDeleteLocation.Click += new System.EventHandler(this.btnEManagementDeleteLocation_Click);
             // 
             // UIMainForm
             // 

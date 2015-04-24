@@ -441,27 +441,66 @@ namespace Proftaak_ICT4Events
             lvAvailableSpots.Items.Clear();
             lvAvailableSpots.View = View.Details;
 
-            lvAvailableSpots.Columns.Add("Plaatsnummer");
-            lvAvailableSpots.Columns.Add("Plaatstype");
-            lvAvailableSpots.Columns.Add("Aantal personen");
-            lvAvailableSpots.Columns.Add("Prijs");
+            Reservation userReservation = new Reservation();
+            userReservation = userReservation.GetSpotReservation(CurrentUser.currentUser.UserID, database);
 
-            List<ListViewItem> listviewitems = new List<ListViewItem>();
-
-            SpotType spotType = (SpotType)cbMapType.SelectedValue;
-
-            //Creates an item in the listview with all nescessary information
-            foreach (Spot spot in mapManager.SearchAllAvailableSpots(spotType))
+            if (userReservation == null)
             {
-                ListViewItem item = new ListViewItem(spot.SpotNumber.ToString());
-                item.SubItems.Add(spot.SpotSpotType.SpotTypeName);
-                item.SubItems.Add(spot.SpotSpotType.AmountOfPersons.ToString());
-                item.SubItems.Add(Convert.ToDouble(spot.Price / 100).ToString());
-                listviewitems.Add(item);
+                lvAvailableSpots.Columns.Add("Plaatsnummer");
+                lvAvailableSpots.Columns.Add("Plaatstype");
+                lvAvailableSpots.Columns.Add("Aantal personen");
+                lvAvailableSpots.Columns.Add("Prijs");
+
+                List<ListViewItem> listviewitems = new List<ListViewItem>();
+
+                SpotType spotType = (SpotType)cbMapType.SelectedValue;
+
+                //Creates an item in the listview with all nescessary information
+                foreach (Spot spot in mapManager.SearchAllAvailableSpots(spotType))
+                {
+                    ListViewItem item = new ListViewItem(spot.SpotNumber.ToString());
+                    item.SubItems.Add(spot.SpotSpotType.SpotTypeName);
+                    item.SubItems.Add(spot.SpotSpotType.AmountOfPersons.ToString());
+                    item.SubItems.Add(Convert.ToDouble(spot.Price / 100).ToString());
+                    listviewitems.Add(item);
+                }
+                foreach (ListViewItem item in listviewitems)
+                {
+                    lvAvailableSpots.Items.Add(item);
+                }
             }
-            foreach (ListViewItem item in listviewitems)
+            else
             {
+                lblMapInfo.Visible = false;
+                lblMapMax.Visible = false;
+                lblMapTypePlace.Visible = false;
+
+                cbMapType.Visible = false;
+                nudMapPeople.Visible = false;
+                btnReservation.Visible = false;
+
+                lvAvailableSpots.CheckBoxes = false;
+
+                lvAvailableSpots.Columns.Add("Plaatsnummer");
+                lvAvailableSpots.Columns.Add("Naam");
+
+                lvAvailableSpots.Columns[0].Width = 90;
+                lvAvailableSpots.Columns[1].Width = 195;
+
+                List<ListViewItem> listviewitems = new List<ListViewItem>();
+
+                ListViewItem item = new ListViewItem(Convert.ToString(CurrentUser.currentUser.SpotNumber));
+                item.SubItems.Add(CurrentUser.currentUser.Name);
+
                 lvAvailableSpots.Items.Add(item);
+
+                foreach(User user in User.getAllFromReservee(CurrentUser.currentUser, database))
+                {
+                    item = new ListViewItem(Convert.ToString(user.SpotNumber));
+                    item.SubItems.Add(user.Name);
+
+                    lvAvailableSpots.Items.Add(item);
+                }
             }
         }
 
@@ -470,9 +509,6 @@ namespace Proftaak_ICT4Events
         //It uses UIReserve for the form
         private void btnReservation_Click(object sender, EventArgs e)
         {
-            int temporaryValue = 1;
-
-            Form newForm = new UI.UIReserve((int)nudMapPeople.Value, temporaryValue);
             Spot currentSpot = null;
 
             foreach (Spot spot in mapManager.GetAllspots())
@@ -483,10 +519,14 @@ namespace Proftaak_ICT4Events
                 }
             }
 
+            CurrentUser.currentUser.SpotNumber = currentSpot.SpotNumber;
+            CurrentUser.currentUser.Edit(CurrentUser.currentUser, database);
+            Form secondNewForm = new UI.UIReserve((int)nudMapPeople.Value + 1, currentSpot);
             
-
-            Form secondNewForm = new UI.UIReserve((int)nudMapPeople.Value, currentSpot.SpotNumber);
             secondNewForm.ShowDialog();
+
+           
+            
 
             if (secondNewForm.DialogResult == DialogResult.OK)
             {
@@ -511,9 +551,9 @@ namespace Proftaak_ICT4Events
                 {
                     if (spot.SpotNumber.ToString() == selectedSpot.Text)
                     {
-                        nudMapPeople.Minimum = 1;
-                        nudMapPeople.Maximum = spot.SpotSpotType.AmountOfPersons;
-                        nudMapPeople.Value = spot.SpotSpotType.AmountOfPersons;
+                        nudMapPeople.Minimum = 0;
+                        nudMapPeople.Maximum = spot.SpotSpotType.AmountOfPersons - 1;
+                        nudMapPeople.Value = spot.SpotSpotType.AmountOfPersons - 1;
                     }
                 }
             }

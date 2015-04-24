@@ -48,28 +48,9 @@ namespace Proftaak_ICT4Events
 
         //Uses a function in User to create a basic user
         //Gives an exception when this fails
-        public bool AddBasicUser(User user)
+        public void AddUser(User user)
         {
-            try
-            {
-                user.AddBasicUser(user,database);
-                return true;
-            }
-            catch(Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.ToString());
-                return false;
-            }
-        }
-
-        public bool AddUsersReservation(User user, Spot spot)
-        {
-                Event e = new Event("", 1, 1, 1, DateTime.Now, DateTime.Now, new Location("", "", "", "", "", 1, 1));
-                Event registeredevent = e.Get("1", database);
-                Reservation reservation = new Reservation(CurrentUser.currentUser.UserID, 1, spot.SpotNumber, registeredevent.StartDate, registeredevent.EndDate, false, spot);
-                reservation.Add(reservation, database);
-                return true;
-
+            user.Add(user,database);
         }
     }
 }

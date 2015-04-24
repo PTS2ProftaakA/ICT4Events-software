@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblMaterialDescriptionValue.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet, ex vel consectetur volutpat, urna quam tincidunt est, non tempus neque mauris vitae ante. Nunc dapibus libero eu tortor sagittis, at lacinia felis placerat. Sed efficitur, urna ac convallis varius, metus ipsum convallis augue, ac semper turpis dolor vitae ante. Aenean eu dapibus odio, sit amet sodales ante. Nam leo odio, commodo ultricies est ut, ultricies ullamcorper tortor. Pellentesque nec porttitor elit. Quisque pellentesque massa nec varius commodo.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbMapMap.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6468,5 +6465,8 @@
         GP1qV5qd9povWrRo0frMlns7V/M0/8tap+11WrRotRN9Otzbl3n7Zmo/Dde0aU+LFq02KYr6P+ByxpDo
         nAhpAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="lblMaterialDescriptionValue.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet, ex vel consectetur volutpat, urna quam tincidunt est, non tempus neque mauris vitae ante. Nunc dapibus libero eu tortor sagittis, at lacinia felis placerat. Sed efficitur, urna ac convallis varius, metus ipsum convallis augue, ac semper turpis dolor vitae ante. Aenean eu dapibus odio, sit amet sodales ante. Nam leo odio, commodo ultricies est ut, ultricies ullamcorper tortor. Pellentesque nec porttitor elit. Quisque pellentesque massa nec varius commodo.</value>
   </data>
 </root>
