@@ -260,16 +260,26 @@ namespace Proftaak_ICT4Events
         {
             Material selectedMaterial = (Material)cbMaterialProduct.SelectedItem;
 
-            if (selectedMaterial.Amount > 0)
+            try
             {
-                Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.UserID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
-                newMaterialReservation.User = CurrentUser.currentUser;
+                if (selectedMaterial.Amount > 0)
+                {
+                    Reservation newMaterialReservation = new Reservation(CurrentUser.currentUser.UserID, 10, selectedMaterial.MaterialID, dtpRentalStart.Value, dtpRentalEnd.Value, false, selectedMaterial);
+                    newMaterialReservation.User = CurrentUser.currentUser;
 
-                newMaterialReservation.Add(newMaterialReservation, database);
+                    newMaterialReservation.Add(newMaterialReservation, database);
+
+                    selectedMaterial.Amount--;
+                    selectedMaterial.Edit(selectedMaterial, database);
+                }
+                else
+                {
+                    MessageBox.Show("Dit product is helaas niet meer beschikbaar");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Dit product is helaas niet meer beschikbaar");
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
         #endregion

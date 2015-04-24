@@ -79,6 +79,14 @@ namespace Proftaak_ICT4Events.UI
                             EmailMissing = true;
                         }
                     }
+                    else
+                    {
+                        if(!textboxes[1][i].Text.Contains("@") || !textboxes[1][i].Text.Contains("."))
+                        {
+                            MessageBox.Show("Zorg ervoor dat alle e-mailadressen goed zijn ingevuld");
+                            return;
+                        }
+                    }
                 }
 
                 if (NaamMissing || EmailMissing)
