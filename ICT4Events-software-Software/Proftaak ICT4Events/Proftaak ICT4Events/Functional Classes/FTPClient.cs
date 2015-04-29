@@ -12,7 +12,7 @@ namespace Proftaak_ICT4Events
     {
         private Database mDatabase;
         //credentials to connect to the server
-        private const string mHost = "ftp://192.168.0.4:21",
+        private const string mHost = "ftp://192.168.20.28:21",
                              mUser = "SME",
                              mPass = "";
 
@@ -55,9 +55,6 @@ namespace Proftaak_ICT4Events
         //Creates a list of folders and files.
         private List<string> GetDirectoryListing(string path)
         {
-            //This doesn't work outside the client server structure on the INFRA-lab
-            return new List<string>();
-
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
             request.Method = WebRequestMethods.Ftp.ListDirectory;
             request.Credentials = new NetworkCredential(mUser, mPass);
@@ -87,17 +84,34 @@ namespace Proftaak_ICT4Events
             request.Credentials = new NetworkCredential(mUser, mPass);
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             {
-                Stream stream = response.GetResponseStream();
-                using (StreamReader reader = new StreamReader(stream))
+                using (Stream stream = response.GetResponseStream())
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.FileName = Path.GetFileName(file);
                     sfd.Filter = "Alle bestanden (*.*)|*.*";
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        using (StreamWriter writer = new StreamWriter(sfd.FileName))
+                        if (Path.GetExtension(sfd.FileName) == ".txt")
                         {
-                            writer.Write(reader.ReadToEnd());
+                            using (StreamReader reader = new StreamReader(stream))
+                            using (StreamWriter writer = new StreamWriter(sfd.FileName))
+                            {
+                                writer.Write(reader.ReadToEnd());
+                                writer.Flush();
+                            }
+                        }
+                        else
+                        {
+                            using (FileStream writer = File.Create(sfd.FileName))
+                            {
+                                byte[] buffer = new byte[32768];
+                                while (true)
+                                {
+                                    int read = stream.Read(buffer, 0, buffer.Length);
+                                    if (read <= 0)
+                                        return;
+                                    writer.Write(buffer, 0, read);
+                                }
+                            }
                         }
                     }
                 }
