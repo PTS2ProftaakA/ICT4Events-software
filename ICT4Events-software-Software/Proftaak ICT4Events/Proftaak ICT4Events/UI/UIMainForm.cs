@@ -273,6 +273,8 @@ namespace Proftaak_ICT4Events
 
                     selectedMaterial.Amount--;
                     selectedMaterial.Edit(selectedMaterial, database);
+
+                    MessageBox.Show("Het geselecteerde product is voor je gereserveerd");
                 }
                 else
                 {
@@ -470,6 +472,8 @@ namespace Proftaak_ICT4Events
                 {
                     lvAvailableSpots.Items.Add(item);
                 }
+
+                lvAvailableSpots.Items[0].Checked = true;
             }
             else
             {
