@@ -18,8 +18,7 @@ namespace Proftaak_ICT4Events
 
         private Comment parentComment;
 
-
-
+        //Fills the panel with al the comments from a mediafile
         public Comments(Post post, Database database)
         {
             this.fromPost = true;
@@ -29,8 +28,7 @@ namespace Proftaak_ICT4Events
 
             flpReactionsPost.Controls.Add(post);
             post.hideCommentBtn();
-
-
+            
             foreach (Comment c in Comment.GetAllFromFile(post.mediafile.FilePath, database))
             {
                 UIComment comment = new UIComment(c, database);
@@ -40,6 +38,7 @@ namespace Proftaak_ICT4Events
 
         }
 
+        //Fills the panel with al the comments from a comment
         public Comments(Comment comment, Database database)
         {
             this.database = database;

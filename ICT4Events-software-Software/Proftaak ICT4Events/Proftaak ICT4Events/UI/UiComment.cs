@@ -15,6 +15,7 @@ namespace Proftaak_ICT4Events
         private User user;
         private Comment comment;
         private Database database;
+
         public UIComment(Comment comment, Database database)
         {
             InitializeComponent();
@@ -26,28 +27,15 @@ namespace Proftaak_ICT4Events
             lblComment.Text = comment.Content;
             editLikeLabel();
             editCommentLabel();
-
-            //Rating r = Rating.GetRatingByCommentIDAndUserID(CurrentUser.currentUser.UserID, comment.CommentID, database);
-            //if (r != null)
-            //{
-            //    if (r.Positive)
-            //        btnCommentLike.Text = "Unlike";
-            //    else if (!r.Positive)
-            //    {
-            //        btnCommentLike.Text = "Gerapporteerd";
-            //        btnCommentLike.Enabled = false;
-            //    }
-            //}
-
         }
 
-        //Not yet implemented
+        //This button is used to like a post or comment
         private void btnCommentLike_Click(object sender, EventArgs e)
         {
             try
             {
-                Rating r = Rating.GetRatingByCommentIDAndUserID(CurrentUser.currentUser.UserID, comment.CommentID, database);
-                if (r == null)
+                Rating rating = Rating.GetRatingByCommentIDAndUserID(CurrentUser.currentUser.UserID, comment.CommentID, database);
+                if (rating == null)
                 {
                     Rating like = new Rating(null, CurrentUser.currentUser.UserID, 1, comment.CommentID, true);
                     like.Add(like, database);
@@ -55,7 +43,7 @@ namespace Proftaak_ICT4Events
                 }
                 else
                 {
-                    r.Remove(r, database);
+                    rating.Remove(rating, database);
                     btnCommentLike.Text = "Like";
                 }
                 editLikeLabel();
@@ -95,38 +83,42 @@ namespace Proftaak_ICT4Events
         {
             BackColor = Color.Gray;
         }
+
+        //Edits label to display correct amount of likes
         public void editLikeLabel()
         {
             List<Rating> ratings = new List<Rating>();
             ratings = Rating.getAllFromComment(comment.CommentID, database);
-            int likes = ratings.Where(r => r.Positive).Count();
+            int likes = ratings.Where(rating => rating.Positive).Count();
             lblCommentLike.Text = Convert.ToString(likes);
         }
+
+        //Edits label to display correct amount of comments
         public void editCommentLabel()
         {
             List<Comment> comments = new List<Comment>();
             comments = Comment.GetAllFromComment(comment.CommentID, database);
             lblCommentComment.Text = Convert.ToString(comments.Count());
-
         }
 
+        //Button used to report a post
         private void btnCommentReport_Click(object sender, EventArgs e)
         {
             try
             {
-                Rating r = Rating.GetRatingByCommentIDAndUserID(CurrentUser.currentUser.UserID, comment.CommentID, database);
-                if (r != null)
+                Rating rating = Rating.GetRatingByCommentIDAndUserID(CurrentUser.currentUser.UserID, comment.CommentID, database);
+                if (rating != null)
                 {
-                    if (r.Positive)
+                    if (rating.Positive)
                     {
-                        r.Positive = false;
-                        r.Edit(r, database);
+                        rating.Positive = false;
+                        rating.Edit(rating, database);
                         btnCommentLike.Enabled = false;
                         btnCommentLike.Text = "Gerapporteerd";
                     }
                     else
                     {
-                        r.Remove(r, database);
+                        rating.Remove(rating, database);
                         btnCommentLike.Enabled = true;
                         btnCommentLike.Text = "Like";
                     }

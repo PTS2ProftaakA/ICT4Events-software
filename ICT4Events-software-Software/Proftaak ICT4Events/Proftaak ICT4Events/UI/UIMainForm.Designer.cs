@@ -1412,7 +1412,7 @@
             this.btnFeedZoek.TabIndex = 5;
             this.btnFeedZoek.Text = "Zoek";
             this.btnFeedZoek.UseVisualStyleBackColor = true;
-            this.btnFeedZoek.Click += new System.EventHandler(this.btnFeedZoek_Click_1);
+            this.btnFeedZoek.Click += new System.EventHandler(this.btnFeedZoek_Click);
             // 
             // UIMainForm
             // 

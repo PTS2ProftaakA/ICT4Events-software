@@ -67,9 +67,8 @@ namespace Proftaak_ICT4Events.UI
             bool NaamMissing = false;
             bool EmailMissing = false;
 
-            //try
-            //{
-                //To make sure you don't create any users while a later one is empty. -- Tim's Comment
+            try
+            {
                 for (int i = 1; i < textboxes[1].Count(); i++)
                 {
                     if (textboxes[0][i].Text == "" || textboxes[1][i].Text == "")
@@ -137,13 +136,12 @@ namespace Proftaak_ICT4Events.UI
 
                 Reservation newReservation = new Reservation(CurrentUser.currentUser.UserID, 1, -1, DateTime.Now, DateTime.MaxValue, false, spot);
                 newReservation.Add(newReservation, database);
-
-            //}
-            //catch
-            //{
-            //    this.Close();
-            //    return;
-            //}
+            }
+            catch
+            {
+                this.Close();
+                return;
+            }
 
             this.Close();
         }

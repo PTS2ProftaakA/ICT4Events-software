@@ -65,7 +65,7 @@ namespace Proftaak_ICT4Events.UI
             cbPostMakeType.DataSource = mediatype;
         }
 
-        //not implemented yet
+        //Opens a dialog where you can pick content
         private void btnMakePostBrowse_Click(object sender, EventArgs e)
         {
             OpenFileDialog getFile = new OpenFileDialog();
@@ -105,17 +105,17 @@ namespace Proftaak_ICT4Events.UI
         {
             if (text == "" && path == "")
             {
-                MessageBox.Show("Vul het bericht en de filepath mee.");
+                MessageBox.Show("Vul het bericht en de bestandslocatie in");
                 return;
             }
             else if (text == "")
             {
-                MessageBox.Show("Geef text mee");
+                MessageBox.Show("Vul het bericht in");
                 return;
             }
             else if (path == "")
             {
-                MessageBox.Show("de Path is leeg");
+                MessageBox.Show("Vul de bestandslocatie in");
                 return;
             }
 
@@ -138,27 +138,25 @@ namespace Proftaak_ICT4Events.UI
             Close();
         }
 
+        //A post with textcontent doesnt need a filepath so it's disabled
         private void cbPostMakeType_DropDownClosed(object sender, EventArgs e)
         {
             if (cbPostMakeType.SelectedIndex == 0)
             {
                 btnMakePostBrowse.Enabled = true;
                 tbMakePostPath.Visible = true;
-                
             }
 
             if (cbPostMakeType.SelectedIndex == 1)
             {
                 btnMakePostBrowse.Enabled = true;
                 tbMakePostPath.Visible = true;
-                
             }
 
             if (cbPostMakeType.SelectedIndex == 2)
             {
                 btnMakePostBrowse.Enabled = false;
                 tbMakePostPath.Visible = false;
-      
             }
         }
     }

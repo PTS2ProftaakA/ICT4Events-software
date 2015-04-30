@@ -149,6 +149,7 @@ namespace Proftaak_ICT4Events
         {
             //Checks if the user is an administrator
             //If not it disables some functions that only administrators should be handling
+            //If he is an administrator he cannot rent a place on the map
             if (!CurrentUser.currentUser.Administrator)
             {
                 ((Control)tcMainForm.TabPages[5]).Enabled = false;
@@ -244,7 +245,8 @@ namespace Proftaak_ICT4Events
         }
 
         //Fills the feed with the correct mediafile
-        //This is determined by the user, the example here is latest posts
+        //This is determined by the user, it can be sorted by latest or most popular
+        //It can be further sorted by filetype
         private void FeedFill()
         {
             flpPosts.Controls.Clear();
@@ -302,6 +304,7 @@ namespace Proftaak_ICT4Events
                 }
             }
 
+            //Fills the feed with mediafiles
             foreach (MediaFile m in feedManager.GetFiles(query, database))
             {
                 User user = personalInfoManager.GetSpecificUser(m.UserID);
@@ -312,7 +315,8 @@ namespace Proftaak_ICT4Events
             }
         }
 
-        private void btnFeedZoek_Click_1(object sender, EventArgs e)
+        //Fills the feed with the selected filters
+        private void btnFeedZoek_Click(object sender, EventArgs e)
         {
             try
             {
@@ -432,6 +436,7 @@ namespace Proftaak_ICT4Events
             Reservation userReservation = new Reservation();
             userReservation = userReservation.GetSpotReservation(user.UserID, database);
 
+            //If you have reserved a spot on the map it checks if you have paid for it
             if (userReservation != null)
             {
                 lblSettingPaid.Visible = true;
@@ -448,6 +453,7 @@ namespace Proftaak_ICT4Events
                 }
             }
 
+            //It will list all the material reserved by the logged in user
             List<Reservation> rentedMaterials = materialManager.getAllMaterialFromUser(CurrentUser.currentUser);
 
             lvPersonalRental.Columns.Clear();
@@ -545,6 +551,7 @@ namespace Proftaak_ICT4Events
             Reservation userReservation = new Reservation();
             userReservation = userReservation.GetSpotReservation(CurrentUser.currentUser.UserID, database);
 
+            //If the user has not reserved a spot yet, he gets the opportunity to do so
             if (userReservation == null)
             {
                 lvAvailableSpots.Columns.Add("Plaatsnummer");
@@ -572,6 +579,7 @@ namespace Proftaak_ICT4Events
 
                 lvAvailableSpots.Items[0].Checked = true;
             }
+            //If the user did reserve a spot, it will show him the people who he reserved it for and the spotnumber
             else
             {
                 lblMapInfo.Visible = false;
