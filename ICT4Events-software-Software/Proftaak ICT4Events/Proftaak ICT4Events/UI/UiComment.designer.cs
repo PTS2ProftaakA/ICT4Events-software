@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIComment));
             this.pbCommentProfile = new System.Windows.Forms.PictureBox();
             this.lblCommentName = new System.Windows.Forms.Label();
             this.lblComment = new System.Windows.Forms.Label();
@@ -35,12 +36,13 @@
             this.btnCommentReageer = new System.Windows.Forms.Button();
             this.lblCommentLike = new System.Windows.Forms.Label();
             this.lblCommentComment = new System.Windows.Forms.Label();
+            this.btnCommentReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbCommentProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // pbCommentProfile
             // 
-            
+            this.pbCommentProfile.Image = ((System.Drawing.Image)(resources.GetObject("pbCommentProfile.Image")));
             this.pbCommentProfile.Location = new System.Drawing.Point(3, 3);
             this.pbCommentProfile.Name = "pbCommentProfile";
             this.pbCommentProfile.Size = new System.Drawing.Size(80, 80);
@@ -67,9 +69,9 @@
             // 
             // btnCommentLike
             // 
-            this.btnCommentLike.Location = new System.Drawing.Point(83, 98);
+            this.btnCommentLike.Location = new System.Drawing.Point(78, 98);
             this.btnCommentLike.Name = "btnCommentLike";
-            this.btnCommentLike.Size = new System.Drawing.Size(75, 23);
+            this.btnCommentLike.Size = new System.Drawing.Size(80, 23);
             this.btnCommentLike.TabIndex = 3;
             this.btnCommentLike.Text = "Like";
             this.btnCommentLike.UseVisualStyleBackColor = true;
@@ -103,10 +105,21 @@
             this.lblCommentComment.TabIndex = 6;
             this.lblCommentComment.Text = "100";
             // 
-            // Reactie
+            // btnCommentReport
+            // 
+            this.btnCommentReport.Location = new System.Drawing.Point(6, 103);
+            this.btnCommentReport.Name = "btnCommentReport";
+            this.btnCommentReport.Size = new System.Drawing.Size(19, 23);
+            this.btnCommentReport.TabIndex = 7;
+            this.btnCommentReport.Text = "X";
+            this.btnCommentReport.UseVisualStyleBackColor = true;
+            this.btnCommentReport.Click += new System.EventHandler(this.btnCommentReport_Click);
+            // 
+            // UIComment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCommentReport);
             this.Controls.Add(this.lblCommentComment);
             this.Controls.Add(this.lblCommentLike);
             this.Controls.Add(this.btnCommentReageer);
@@ -114,7 +127,7 @@
             this.Controls.Add(this.lblComment);
             this.Controls.Add(this.lblCommentName);
             this.Controls.Add(this.pbCommentProfile);
-            this.Name = "Reactie";
+            this.Name = "UIComment";
             this.Size = new System.Drawing.Size(337, 141);
             ((System.ComponentModel.ISupportInitialize)(this.pbCommentProfile)).EndInit();
             this.ResumeLayout(false);
@@ -131,5 +144,6 @@
         private System.Windows.Forms.Button btnCommentReageer;
         private System.Windows.Forms.Label lblCommentLike;
         private System.Windows.Forms.Label lblCommentComment;
+        private System.Windows.Forms.Button btnCommentReport;
     }
 }

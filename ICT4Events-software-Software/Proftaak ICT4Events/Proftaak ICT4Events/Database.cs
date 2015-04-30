@@ -14,7 +14,7 @@ namespace Proftaak_ICT4Events
     {
         //private OracleConnection connection;
         private string user = "DBS2Proftaak";
-        private string password = "qwert12345";
+        private string password = "test";
         private OracleConnection connection;
 
         #region properties
@@ -41,7 +41,7 @@ namespace Proftaak_ICT4Events
             try 
             {
                 connection = new OracleConnection();
-                connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //localhost:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
+                connection.ConnectionString = "User Id=" + user + ";Password=" + password + ";Data Source=" + " //192.168.20.28:1521/xe" + ";"; //orcl is de servicename (kan anders zijn, is afhankelijk van de Oracle server die geinstalleerd is. Mogelijk is ook Oracle Express: xe
                 connection.Open();
                 return true;
             }

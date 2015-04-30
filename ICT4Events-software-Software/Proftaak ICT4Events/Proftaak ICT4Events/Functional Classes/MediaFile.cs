@@ -144,7 +144,7 @@ namespace Proftaak_ICT4Events
 
         //A function that gets all the mediafiledata from the database with a certain specification
         //It is used to construct all the mediafiles
-        public static List<MediaFile> GetFiles(string specification, Database database)
+        public static List<MediaFile> GetFiles(string query, Database database)
         {
             //Specification can be latest, popular or a text to search with
             List<string> mediaFilesColumns = new List<string>();
@@ -158,20 +158,9 @@ namespace Proftaak_ICT4Events
             mediaFilesColumns.Add("OPMERKING");
             mediaFilesColumns.Add("UPLOADDATUM");
 
-            string query;
 
-            if(specification == "latest")
-            {
-                query = "SELECT * FROM (SELECT * FROM MEDIABESTAND ORDER BY UPLOADDATUM DESC) WHERE ROWNUM <= 10";
-            }
-            else if(specification == "popular")
-            {
-                query = query = "SELECT m.BESTANDLOCATIE, m.RFID, COUNT(*) AS Likes FROM MEDIABESTAND m, OORDEEL o WHERE m.BESTANDLOCATIE = o.BESTANDLOCATIE AND o.POSITIEF = 'Y' AND ROWNUM <= 10 GROUP BY m.BESTANDLOCATIE, m.GEBRUIKERID ORDER BY COUNT(*) DESC";
-            }
-            else
-            {
-                query = "SELECT * FROM MEDIABESTAND WHERE ROWNUM <= 10 AND DESCRIPTION LIKE " + specification; 
-            }
+
+
 
             List<string>[] dataTable = database.selectQuery(query, mediaFilesColumns);
 

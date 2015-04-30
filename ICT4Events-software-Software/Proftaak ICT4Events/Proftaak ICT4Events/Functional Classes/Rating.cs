@@ -200,6 +200,68 @@ namespace Proftaak_ICT4Events
             return getRating;
         }
 
+        public static Rating GetRatingByCommentIDAndUserID(int userID, int commentID, Database database)
+        {
+            List<string> ratingColumns = new List<string>();
+            Rating getRating = null;
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("GEBRUIKERID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE GEBRUIKERID = " + userID + " AND REACTIEID = '" + commentID + "'", ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                if (dataTable[2][1] != "")
+                {
+                    dataTable[3][1] = "-1";
+                }
+
+                getRating = new Rating(
+                    dataTable[2][1],
+                    Convert.ToInt32(dataTable[1][1]),
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1]),
+                    dataTable[4][1] == "Y"
+                    );
+            }
+
+            return getRating;
+        }
+        public static Rating GetRatingByFilepathAndUserID(int userID, string filepath, Database database)
+        {
+            List<string> ratingColumns = new List<string>();
+            Rating getRating = null;
+
+            ratingColumns.Add("OORDEELID");
+            ratingColumns.Add("GEBRUIKERID");
+            ratingColumns.Add("BESTANDLOCATIE");
+            ratingColumns.Add("REACTIEID");
+            ratingColumns.Add("POSITIEF");
+
+            List<string>[] dataTable = database.selectQuery("SELECT * FROM  OORDEEL WHERE GEBRUIKERID = " + userID + " AND BESTANDLOCATIE = '" + filepath + "'", ratingColumns);
+
+            if (dataTable[0].Count() > 1)
+            {
+                if (dataTable[2][1] != "")
+                {
+                    dataTable[3][1] = "-1";
+                }
+
+                getRating = new Rating(
+                    dataTable[2][1],
+                    Convert.ToInt32(dataTable[1][1]),
+                    Convert.ToInt32(dataTable[0][1]),
+                    Convert.ToInt32(dataTable[3][1]),
+                    dataTable[4][1] == "Y"
+                    );
+            }
+
+            return getRating;
+        }
         //Adds a rating to the database
         public void Add(Rating newRating, Database database)
         {

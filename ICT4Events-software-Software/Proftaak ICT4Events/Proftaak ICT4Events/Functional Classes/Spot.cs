@@ -51,6 +51,8 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
 
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  PLAATS", spotColumns);
 
             if (dataTable[0].Count() > 1)
@@ -59,7 +61,7 @@ namespace Proftaak_ICT4Events
                 {
                     SpotType thisSpotType = null;
 
-                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    foreach (SpotType spotType in allSpotTypes)
                     {
                         if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
                         {
@@ -87,6 +89,8 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
 
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER NOT IN (SELECT P.PLAATSNUMMER FROM GEBRUIKER AD, GEBRUIKER G, RESERVERING R, PLAATS P WHERE P.PLAATSNUMMER = R.PLAATSNUMMER AND R.GEBRUIKERID = AD.GEBRUIKERID AND G.RESERVEERDER = AD.GEBRUIKERID);", spotColumns);
 
             if (dataTable[0].Count() > 1)
@@ -95,7 +99,7 @@ namespace Proftaak_ICT4Events
                 {
                     SpotType thisSpotType = null;
 
-                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    foreach (SpotType spotType in allSpotTypes)
                     {
                         if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
                         {
@@ -122,7 +126,11 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSNUMMER");
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
+
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             List<string>[] dataTable = null;
+
             if (spotype != null)
             {
                 dataTable = database.selectQuery("SELECT * FROM  PLAATS WHERE PLAATSTYPEID = " + spotype.SpotTypeID, spotColumns);    
@@ -138,7 +146,7 @@ namespace Proftaak_ICT4Events
                 {
                     SpotType thisSpotType = null;
 
-                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    foreach (SpotType spotType in allSpotTypes)
                     {
                         if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
                         {
@@ -164,7 +172,11 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSNUMMER");
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
+
             List<string>[] dataTable = null;
+
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             if (spotype != null)
             {
                 dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER NOT IN (SELECT P.PLAATSNUMMER FROM GEBRUIKER AD, GEBRUIKER G, RESERVERING R, PLAATS P WHERE P.PLAATSNUMMER = R.PLAATSNUMMER AND R.GEBRUIKERID = AD.GEBRUIKERID AND G.RESERVEERDER = AD.GEBRUIKERID) AND PLAATSTYPEID = " + spotype.SpotTypeID + " ORDER BY PLAATSNUMMER", spotColumns);
@@ -180,7 +192,7 @@ namespace Proftaak_ICT4Events
                 {
                     SpotType thisSpotType = null;
 
-                    foreach (SpotType spotType in SpotType.GetAll(database))
+                    foreach (SpotType spotType in allSpotTypes)
                     {
                         if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][i]))
                         {
@@ -206,13 +218,15 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
 
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER = " + spotNumber, spotColumns);
 
             if (dataTable[0].Count() >= 1)
             {
                 SpotType thisSpotType = null;
 
-                foreach (SpotType spotType in SpotType.GetAll(database))
+                foreach (SpotType spotType in allSpotTypes)
                 {
                     if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][1]))
                     {
@@ -240,13 +254,15 @@ namespace Proftaak_ICT4Events
             spotColumns.Add("PLAATSTYPEID");
             spotColumns.Add("PRIJS");
 
+            List<SpotType> allSpotTypes = SpotType.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM PLAATS WHERE PLAATSNUMMER = " + spotNumber, spotColumns);
 
             if (dataTable[0].Count() >= 1)
             {
                 SpotType thisSpotType = null;
 
-                foreach (SpotType spotType in SpotType.GetAll(database))
+                foreach (SpotType spotType in allSpotTypes)
                 {
                     if (spotType.SpotTypeID == Convert.ToInt32(dataTable[1][1]))
                     {

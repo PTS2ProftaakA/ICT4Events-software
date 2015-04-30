@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Proftaak_ICT4Events
-
 {
     public class Comment : IDatabase<Comment>
     {
@@ -306,6 +305,27 @@ namespace Proftaak_ICT4Events
                     );
             }
             return getComment;
+        }
+
+        public static int GetHighestCommentID(Database database)
+        {
+            List<string> ratingColumns = new List<string>();
+
+
+            ratingColumns.Add("REACTIEID");
+
+
+            List<string>[] getal = database.selectQuery("SELECT MAX(REACTIEID) as REACTIEID FROM  OORDEEL", ratingColumns);
+            if (getal[0].Count() > 1 && getal[0][1] != "")
+            {
+
+                int returnValue = Convert.ToInt32(getal[0][1]);
+                return returnValue;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
 

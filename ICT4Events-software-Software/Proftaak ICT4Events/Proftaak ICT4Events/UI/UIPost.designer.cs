@@ -38,16 +38,15 @@
             this.btnPostReport = new System.Windows.Forms.Button();
             this.pbPostPhoto = new System.Windows.Forms.PictureBox();
             this.pbPostProfPicture = new System.Windows.Forms.PictureBox();
-            this.btnManagementPostDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPostPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPostProfPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPostLike
             // 
-            this.btnPostLike.Location = new System.Drawing.Point(128, 132);
+            this.btnPostLike.Location = new System.Drawing.Point(102, 132);
             this.btnPostLike.Name = "btnPostLike";
-            this.btnPostLike.Size = new System.Drawing.Size(75, 23);
+            this.btnPostLike.Size = new System.Drawing.Size(101, 23);
             this.btnPostLike.TabIndex = 0;
             this.btnPostLike.Text = "Like";
             this.btnPostLike.UseVisualStyleBackColor = true;
@@ -110,10 +109,12 @@
             this.btnPostReport.TabIndex = 9;
             this.btnPostReport.Text = "X";
             this.btnPostReport.UseVisualStyleBackColor = true;
+            this.btnPostReport.Click += new System.EventHandler(this.btnPostReport_Click);
             // 
             // pbPostPhoto
             // 
             this.pbPostPhoto.Enabled = false;
+            this.pbPostPhoto.Image = ((System.Drawing.Image)(resources.GetObject("pbPostPhoto.Image")));
             this.pbPostPhoto.Location = new System.Drawing.Point(101, 12);
             this.pbPostPhoto.Name = "pbPostPhoto";
             this.pbPostPhoto.Size = new System.Drawing.Size(240, 205);
@@ -124,6 +125,7 @@
             // 
             // pbPostProfPicture
             // 
+            this.pbPostProfPicture.Image = ((System.Drawing.Image)(resources.GetObject("pbPostProfPicture.Image")));
             this.pbPostProfPicture.Location = new System.Drawing.Point(12, 12);
             this.pbPostProfPicture.Name = "pbPostProfPicture";
             this.pbPostProfPicture.Size = new System.Drawing.Size(81, 81);
@@ -131,22 +133,11 @@
             this.pbPostProfPicture.TabIndex = 2;
             this.pbPostProfPicture.TabStop = false;
             // 
-            // btnManagementPostDelete
-            // 
-            this.btnManagementPostDelete.Location = new System.Drawing.Point(34, 138);
-            this.btnManagementPostDelete.Name = "btnManagementPostDelete";
-            this.btnManagementPostDelete.Size = new System.Drawing.Size(47, 23);
-            this.btnManagementPostDelete.TabIndex = 10;
-            this.btnManagementPostDelete.Text = "WIS";
-            this.btnManagementPostDelete.UseVisualStyleBackColor = true;
-            this.btnManagementPostDelete.Visible = false;
-            // 
             // Post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Controls.Add(this.btnManagementPostDelete);
             this.Controls.Add(this.btnPostReport);
             this.Controls.Add(this.lblPostLike);
             this.Controls.Add(this.lblPostReageer);
@@ -177,6 +168,5 @@
         private System.Windows.Forms.PictureBox pbPostPhoto;
 
         private System.Windows.Forms.Button btnPostReport;
-        private System.Windows.Forms.Button btnManagementPostDelete;
     }
 }

@@ -53,6 +53,7 @@
             this.cbPostMakeType.Name = "cbPostMakeType";
             this.cbPostMakeType.Size = new System.Drawing.Size(121, 21);
             this.cbPostMakeType.TabIndex = 1;
+            this.cbPostMakeType.DropDownClosed += new System.EventHandler(this.cbPostMakeType_DropDownClosed);
             // 
             // lblPostMakeText
             // 

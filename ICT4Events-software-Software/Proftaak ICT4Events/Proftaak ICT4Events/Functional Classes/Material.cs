@@ -87,6 +87,8 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
+            List<MaterialCategory> allMaterialCategories = MaterialCategory.GetAll(database);
+
             dataTable = database.selectQuery("SELECT * FROM  MATERIAAL", materialColumns);
 
             if (dataTable[0].Count() > 1)
@@ -95,7 +97,7 @@ namespace Proftaak_ICT4Events
                 {
                     MaterialCategory thisMaterialCategory = null;
 
-                    foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
+                    foreach (MaterialCategory materialCategory in allMaterialCategories)
                     {
                         if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
                         {
@@ -132,6 +134,8 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
+            List<MaterialCategory> allMaterialCategories = MaterialCategory.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE CATEGORIE = " + category.MaterialCategoryID, materialColumns);
 
             if (dataTable[0].Count() > 1)
@@ -140,7 +144,7 @@ namespace Proftaak_ICT4Events
                 {
                     MaterialCategory thisMaterialCategory = null;
 
-                    foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
+                    foreach (MaterialCategory materialCategory in allMaterialCategories)
                     {
                         if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][i]))
                         {
@@ -176,13 +180,15 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
+            List<MaterialCategory> allMaterialCategories = MaterialCategory.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 MaterialCategory thisMaterialCategory = null;
 
-                foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
+                foreach (MaterialCategory materialCategory in allMaterialCategories)
                 {
                     if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][1]))
                     {
@@ -216,13 +222,15 @@ namespace Proftaak_ICT4Events
             materialColumns.Add("CATEGORIE");
             materialColumns.Add("FOTOPAD");
 
+            List<MaterialCategory> allMaterialCategories = MaterialCategory.GetAll(database);
+
             List<string>[] dataTable = database.selectQuery("SELECT * FROM  MATERIAAL WHERE MATID = " + materialID, materialColumns);
 
             if (dataTable[0].Count() > 1)
             {
                 MaterialCategory thisMaterialCategory = null;
 
-                foreach (MaterialCategory materialCategory in MaterialCategory.GetAll(database))
+                foreach (MaterialCategory materialCategory in allMaterialCategories)
                 {
                     if (materialCategory.MaterialCategoryID == Convert.ToInt32(dataTable[5][1]))
                     {

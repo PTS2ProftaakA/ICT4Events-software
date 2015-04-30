@@ -12,73 +12,84 @@ namespace Proftaak_ICT4Events
 {
     public partial class Comments : Form
     {
-        private MediaFile mediaFile;
         private Database database;
-        private bool post;
-        private Comment Thiscomment;
-        //Makes the post light up
-        public Comments(MediaFile mediafile, Post post, Database database)
+        private bool fromPost;
+        private Post parentPost;
+
+        private Comment parentComment;
+
+
+
+        public Comments(Post post, Database database)
         {
-            this.post = true;
-            this.mediaFile = mediafile;
+            this.fromPost = true;
             this.database = database;
+            parentPost = post;
             InitializeComponent();
+
             flpReactionsPost.Controls.Add(post);
-            
             post.hideCommentBtn();
-            post.spaceRight();            
-            flpReactionsPost.Refresh();
-            foreach (Comment c in Comment.GetAllFromFile(mediafile.FilePath, database))
+
+
+            foreach (Comment c in Comment.GetAllFromFile(post.mediafile.FilePath, database))
             {
-                UIComment comment = new UIComment(User.StaticGetByUserID(c.UserID, database), c, database);
+                UIComment comment = new UIComment(c, database);
                 flpReactionsPost.Controls.Add(comment);
             }
+            flpReactionsPost.Refresh();
+
         }
 
-        //Makes the comment light up
         public Comments(Comment comment, Database database)
         {
             this.database = database;
-            post = false;
-            Thiscomment = comment;
+            fromPost = false;
+            parentComment = comment;
+
             InitializeComponent();
 
-            UIComment subjectComment = new UIComment(User.StaticGetByUserID(comment.UserID, database), Thiscomment, database);
-            flpReactionsPost.Controls.Add(subjectComment);
-            subjectComment.hideComment();
-            subjectComment.makeSubject();
-            showComments();
+            UIComment subject = new UIComment(comment, database);
+            subject.BackColor = Color.LightGray;
+            flpReactionsPost.Controls.Add(subject);
+
+            foreach (Comment c in Comment.GetAllFromComment(comment.CommentID, database))
+            {
+                UIComment comm = new UIComment(c, database);
+                flpReactionsPost.Controls.Add(comm);
+            }
+
+            flpReactionsPost.Refresh();
+
         }
 
         //Posts a new comment
         private void btnCommentsPost_Click(object sender, EventArgs e)
         {
-            if (post)
+            int x = Comment.GetHighestCommentID(database) + 1;
+
+            if (fromPost)
             {
-                Comment comment = new Comment(mediaFile.FilePath, tbCommentsPost.Text, CurrentUser.currentUser.UserID, 1, 0);
+                Comment comment = new Comment(parentPost.mediafile.FilePath, tbCommentsPost.Text, CurrentUser.currentUser.UserID, x, 0);
                 comment.Add(comment, database);
-                UIComment newComment = new UIComment(CurrentUser.currentUser, comment, database);
+                UIComment newComment = new UIComment(comment, database);
                 flpReactionsPost.Controls.Add(newComment);
             }
-            else if(!post)
+            else if (!fromPost)
             {
-                Comment comment = new Comment(null, tbCommentsPost.Text, CurrentUser.currentUser.UserID, 1, Thiscomment.CommentID);
+                flpReactionsPost.Controls.Clear();
+                Comment comment = new Comment(null, tbCommentsPost.Text, CurrentUser.currentUser.UserID, x, parentComment.CommentID);
                 comment.Add(comment, database);
-                showComments();
+
+                foreach (Comment c in Comment.GetAllFromComment(parentComment.CommentID, database))
+                {
+                    UIComment comm = new UIComment(c, database);
+                    flpReactionsPost.Controls.Add(comm);
+                }
+
             }
-            
+            flpReactionsPost.Refresh();
+
         }
-        private void showComments()
-        {
-            flpReactionsPost.Controls.Clear();
-            UIComment subject = new UIComment(User.StaticGetByUserID(Thiscomment.UserID, database), Thiscomment, database);
-            foreach (Comment c in Comment.GetAllFromComment(Thiscomment.CommentID, database))
-            {
-                
-                UIComment comment = new UIComment(User.StaticGetByUserID(c.UserID, database), c, database);
-                flpReactionsPost.Controls.Add(comment);
-            }
-            
-        }
+
     }
 }

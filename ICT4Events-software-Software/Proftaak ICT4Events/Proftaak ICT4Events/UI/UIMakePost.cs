@@ -17,8 +17,15 @@ namespace Proftaak_ICT4Events.UI
         private string path;
         private string userName;
         private string profilePath;
-
+        private FTPClient client;
         private MediaType mediaType;
+        private string uploadString;
+
+        public string UploadString
+        {
+            get { return uploadString; }
+            set { uploadString = value; }
+        }
 
         //Properties
         #region properties
@@ -48,30 +55,111 @@ namespace Proftaak_ICT4Events.UI
           set { mediaType = value; }
         }
         #endregion
-
+        
         //Creates a new instance and fills the type combobox with all the mediatypes
         //Is uses a function from the feedmanager
-        public makePost(List<MediaType> mediatype)
+        public makePost(List<MediaType> mediatype, Database database)
         {
             InitializeComponent();
+            this.client = new FTPClient(database);
             cbPostMakeType.DataSource = mediatype;
         }
 
         //not implemented yet
         private void btnMakePostBrowse_Click(object sender, EventArgs e)
         {
+            OpenFileDialog getFile = new OpenFileDialog();
+            getFile.Multiselect = false;
 
+            
+
+            if (cbPostMakeType.SelectedIndex == 0)
+            {
+                
+                getFile.Filter = "Video files (*.mp4, *.avi) | *.mp4; *.avi;";
+            }
+
+            if (cbPostMakeType.SelectedIndex == 1)
+            {
+                
+                getFile.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png;";
+            }
+
+            if (cbPostMakeType.SelectedIndex == 2)
+            {
+                
+                getFile.Filter = "text files (*.txt) | *.txt;";
+                
+            }
+
+
+            if (getFile.ShowDialog() == DialogResult.OK)
+            {
+                uploadString = getFile.FileName.Replace("\\\\", "\\");
+                tbMakePostPath.Text = uploadString;
+            }
         }
 
         //Creates a new post
         private void btnMakePostPost_Click(object sender, EventArgs e)
         {
+            if (text == "" && path == "")
+            {
+                MessageBox.Show("Vul het bericht en de filepath mee.");
+                return;
+            }
+            else if (text == "")
+            {
+                MessageBox.Show("Geef text mee");
+                return;
+            }
+            else if (path == "")
+            {
+                MessageBox.Show("de Path is leeg");
+                return;
+            }
+
+
+            if (cbPostMakeType.SelectedIndex != 2)
+            {
+                client.UploadPostFile(uploadString);
+                uploadString = "/" + System.IO.Path.GetFileName(uploadString);
+            }
+            else
+            {
+                uploadString = CurrentUser.currentUser.UserID + (DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
+            }
+            
             mediaType = (MediaType)cbPostMakeType.SelectedItem;
             text = tbPostMakeText.Text;
-            path = tbMakePostPath.Text;
             userName = CurrentUser.currentUser.Username;
             profilePath = CurrentUser.currentUser.PhotoPath;
+            
             Close();
+        }
+
+        private void cbPostMakeType_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cbPostMakeType.SelectedIndex == 0)
+            {
+                btnMakePostBrowse.Enabled = true;
+                tbMakePostPath.Visible = true;
+                
+            }
+
+            if (cbPostMakeType.SelectedIndex == 1)
+            {
+                btnMakePostBrowse.Enabled = true;
+                tbMakePostPath.Visible = true;
+                
+            }
+
+            if (cbPostMakeType.SelectedIndex == 2)
+            {
+                btnMakePostBrowse.Enabled = false;
+                tbMakePostPath.Visible = false;
+      
+            }
         }
     }
 }

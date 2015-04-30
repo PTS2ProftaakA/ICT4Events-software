@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Proftaak_ICT4Events
 {
     public partial class UIMainForm : Form
-    {  
+    {
         //Introducing all the managers to the main form
         private DiscussionManager discussionManager;
         private FeedManager feedManager;
@@ -89,11 +89,28 @@ namespace Proftaak_ICT4Events
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
+        //This method is used to decode errors from the database
         private string DecodeException(string ex)
         {
-            int start = ex.IndexOf('$') + 1;
-            int end = ex.IndexOf('#');
-            string error = ex.Substring(start, end - start);
+            string error = ex;
+            if (ex.Contains("$") && ex.Contains("#"))
+            {
+                int start = ex.IndexOf('$') + 1;
+                int end = ex.IndexOf('#');
+                error = ex.Substring(start, end - start);
+            }
+            else if (ex.StartsWith("Object"))
+            {
+                error = "Er is iets niet goed ingevult.";
+            }
+            else if (ex.StartsWith("ORA-02290"))
+            {
+                error = "Als administator kunt u geen plaats reserveren.";
+            }
+            else if (ex.StartsWith("ORA-00001"))
+            {
+                error = "Deze gebruikersnaam is al in gebruik. \nProbeer een andere gebruikersnaam.";
+            }
             return error;
         }
 
@@ -106,17 +123,24 @@ namespace Proftaak_ICT4Events
         //Makes the user delete his account if he has not paid for the event
         private void btnSettingsUnsubscribe_Click(object sender, EventArgs e)
         {
-              DialogResult result = MessageBox.Show("Weet je zeker dat je je wilt afmelden voor dit event? \nAl de mensen waarvoor je gereserveerd hebt zullen ook hun account verliezen.", "Important Question", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Weet je zeker dat je je wilt afmelden voor dit event? \nAl de mensen waarvoor je gereserveerd hebt zullen ook hun account verliezen.", "Important Question", MessageBoxButtons.YesNo);
 
-              if (result == DialogResult.Yes && (lblSettingPaid.ForeColor == Color.Red || !lblSettingPaid.Visible))
-              {
-                  CurrentUser.currentUser.Remove(CurrentUser.currentUser, database);
-                  Application.Exit();
-              }
-              else if(result == DialogResult.Yes)
-              {
-                  MessageBox.Show("Je hebt al betaald voor dit event, je kan je niet meer op deze manier afmelden");
-              }
+            if (result == DialogResult.Yes && (lblSettingPaid.ForeColor == Color.Red || !lblSettingPaid.Visible))
+            {
+                try
+                {
+                    CurrentUser.currentUser.Remove(CurrentUser.currentUser, database);
+                    Application.Exit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("Je hebt al betaald voor dit event, je kan je niet meer op deze manier afmelden");
+            }
         }
 
         //Reacts to the changing of the tabs inside the application
@@ -125,7 +149,7 @@ namespace Proftaak_ICT4Events
         {
             //Checks if the user is an administrator
             //If not it disables some functions that only administrators should be handling
-            if(!CurrentUser.currentUser.Administrator)
+            if (!CurrentUser.currentUser.Administrator)
             {
                 ((Control)tcMainForm.TabPages[5]).Enabled = false;
                 ((Control)tcMainForm.TabPages[6]).Enabled = false;
@@ -201,14 +225,21 @@ namespace Proftaak_ICT4Events
         //Creates a post using the feedmanager
         private void btnMakePost_Click_1(object sender, EventArgs e)
         {
-            UI.makePost f = new UI.makePost(feedManager.getTypes(database));
-            f.ShowDialog();
-
-            if (f.DialogResult == DialogResult.OK)
+            try
             {
+                UI.makePost f = new UI.makePost(feedManager.getTypes(database), database);
+                f.ShowDialog();
 
-                feedManager.makePost(f.MediaType, f.Text, f.Path);
-                FeedFill();
+                if (f.DialogResult == DialogResult.OK)
+                {
+
+                    feedManager.makePost(f.MediaType, f.Text, f.UploadString);
+                    FeedFill();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
 
@@ -217,13 +248,79 @@ namespace Proftaak_ICT4Events
         private void FeedFill()
         {
             flpPosts.Controls.Clear();
-            foreach (MediaFile m in feedManager.GetFiles("latest", database))
+
+            string query;
+
+            if (rbtnTenMostPopulair.Checked)
+            {
+                query = "SELECT * FROM (SELECT M1.MEDIABESTANDID, M1.BESTANDLOCATIE, M1.EVENEMENTID, M1.GEBRUIKERID, M1.BESTANDTYPE, M1.OPMERKING, M1.UPLOADDATUM FROM MEDIABESTAND M1, (SELECT M2.BESTANDLOCATIE, COUNT(O.OORDEELID) LIKES FROM MEDIABESTAND M2, OORDEEL O WHERE  O.POSITIEF = 'Y' AND O.BESTANDLOCATIE = M2.BESTANDLOCATIE GROUP BY M2.BESTANDLOCATIE) L WHERE L.BESTANDLOCATIE = M1.BESTANDLOCATIE ORDER BY L.LIKES DESC,M1.BESTANDLOCATIE DESC) TOP10 WHERE ROWNUM <= 10";
+
+                if (cbFeedFileTypes.SelectedIndex != 0)
+                {
+                    switch (cbFeedFileTypes.Text.ToUpper())
+                    {
+                        case "VIDEO":
+                            query += " AND TOP10.BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Video')";
+                            break;
+                        case "FOTO":
+                            query += " AND TOP10.BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Afbeelding')";
+                            break;
+                        case "TEKST":
+                            query += " AND TOP10.BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Tekst')";
+                            break;
+                    }
+                }
+
+                if (!tbFeedSearch.Text.Equals(String.Empty))
+                {
+                    query += " AND TOP10.OPMERKING LIKE '%" + tbFeedSearch.Text + "%'";
+                }
+            }
+            else
+            {
+                query = "SELECT * FROM (SELECT * FROM MEDIABESTAND ORDER BY UPLOADDATUM DESC) WHERE ROWNUM <= 10";
+
+                if (cbFeedFileTypes.SelectedIndex != 0)
+                {
+                    switch (cbFeedFileTypes.Text.ToUpper())
+                    {
+                        case "VIDEO":
+                            query += " AND BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Video')";
+                            break;
+                        case "FOTO":
+                            query += " AND BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Afbeelding')";
+                            break;
+                        case "TEKST":
+                            query += " AND BESTANDTYPE = (SELECT MEDIATYPEID FROM MEDIATYPE WHERE TYPE = 'Tekst')";
+                            break;
+                    }
+                }
+
+                if (!tbFeedSearch.Text.Equals(String.Empty))
+                {
+                    query += " AND OPMERKING LIKE '%" + tbFeedSearch.Text + "%'";
+                }
+            }
+
+            foreach (MediaFile m in feedManager.GetFiles(query, database))
             {
                 User user = personalInfoManager.GetSpecificUser(m.UserID);
                 Post newpost = new Post(m, user, database);
 
                 flpPosts.Controls.Add(newpost);
                 flpPosts.Refresh();
+            }
+        }
+
+        private void btnFeedZoek_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FeedFill();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
         #endregion
@@ -281,7 +378,7 @@ namespace Proftaak_ICT4Events
                     MessageBox.Show("Dit product is helaas niet meer beschikbaar");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(DecodeException(ex.Message));
             }
@@ -420,7 +517,7 @@ namespace Proftaak_ICT4Events
             {
                 if (ex.Message.StartsWith("ORA-00001"))
                 {
-                    MessageBox.Show("Deze gebruikersnaam is al in gebruik. \nProbeer een andere gebruikersnaam.");
+                    MessageBox.Show(DecodeException(ex.Message));
                 }
             }
         }
@@ -500,7 +597,7 @@ namespace Proftaak_ICT4Events
 
                 lvAvailableSpots.Items.Add(item);
 
-                foreach(User user in User.getAllFromReservee(CurrentUser.currentUser, database))
+                foreach (User user in User.getAllFromReservee(CurrentUser.currentUser, database))
                 {
                     item = new ListViewItem(Convert.ToString(user.SpotNumber));
                     item.SubItems.Add(user.Name);
@@ -528,7 +625,7 @@ namespace Proftaak_ICT4Events
             CurrentUser.currentUser.SpotNumber = currentSpot.SpotNumber;
             CurrentUser.currentUser.Edit(CurrentUser.currentUser, database);
             Form secondNewForm = new UI.UIReserve((int)nudMapPeople.Value + 1, currentSpot);
-            
+
             secondNewForm.ShowDialog();
 
             cbMapType_SelectedIndexChanged(lvAvailableSpots, EventArgs.Empty);
@@ -602,7 +699,7 @@ namespace Proftaak_ICT4Events
             }
             catch (Exception ex)
             {
-                MessageBox.Show(DecodeException(ex.Message));   
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
 
@@ -617,7 +714,7 @@ namespace Proftaak_ICT4Events
             btnEManagementSave.Enabled = !btnEManagementSave.Enabled;
 
             //All data has been reset to basic values
-            if(btnEManagementNew.Text == "Nieuw")
+            if (btnEManagementNew.Text == "Nieuw")
             {
                 btnEManagementNew.Text = "Annuleer";
                 tbEManagementNaam.Text = "";
@@ -641,14 +738,21 @@ namespace Proftaak_ICT4Events
         //The location combobox will be reset
         private void btnEManagementNewLocation_Click(object sender, EventArgs e)
         {
-            Form newForm = new NewLocation();
-            newForm.ShowDialog();
-            if (newForm.DialogResult == DialogResult.OK)
+            try
             {
-                
-                List<Proftaak_ICT4Events.Location> locations = eventManager.getAllLocations();
-                cbEManagementLocation.DataSource = locations;
-                cbEManagementLocation.Refresh();
+                Form newForm = new NewLocation();
+                newForm.ShowDialog();
+                if (newForm.DialogResult == DialogResult.OK)
+                {
+
+                    List<Proftaak_ICT4Events.Location> locations = eventManager.getAllLocations();
+                    cbEManagementLocation.DataSource = locations;
+                    cbEManagementLocation.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
 
@@ -673,7 +777,7 @@ namespace Proftaak_ICT4Events
             }
             catch (Exception ex)
             {
-                MessageBox.Show(DecodeException(ex.Message));   
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
 
@@ -698,7 +802,14 @@ namespace Proftaak_ICT4Events
 
         private void btnEManagementLoggedUsers_Click(object sender, EventArgs e)
         {
-            lbEManagementLoggedUsers.DataSource = eventManager.loggedInUsers();
+            try
+            {
+                lbEManagementLoggedUsers.DataSource = eventManager.loggedInUsers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));
+            }
         }
         //Button for the deletion of an event
         private void btnEManagerDelete_Click(object sender, EventArgs e)
@@ -709,9 +820,16 @@ namespace Proftaak_ICT4Events
 
             if (result == DialogResult.Yes)
             {
-                chosenEvent.Remove(chosenEvent, database);
-                cbEManagementEvents.DataSource = eventManager.getAllEvents();
-                Application.Exit();
+                try
+                {
+                    chosenEvent.Remove(chosenEvent, database);
+                    cbEManagementEvents.DataSource = eventManager.getAllEvents();
+                    Application.Exit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(DecodeException(ex.Message));
+                }
             }
         }
 
@@ -724,9 +842,16 @@ namespace Proftaak_ICT4Events
 
             if (result == DialogResult.Yes)
             {
-                chosenLocation.Remove(chosenLocation, database);
-                cbEManagementLocation.DataSource = eventManager.getAllLocations();
-                Application.Exit();
+                try
+                {
+                    chosenLocation.Remove(chosenLocation, database);
+                    cbEManagementLocation.DataSource = eventManager.getAllLocations();
+                    Application.Exit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(DecodeException(ex.Message));
+                }
             }
         }
         #endregion
@@ -737,10 +862,17 @@ namespace Proftaak_ICT4Events
         //The category combobox will be reset
         private void btnManagementNewCategorie_Click(object sender, EventArgs e)
         {
-            MaterialCategory newMaterialCategory  = new MaterialCategory(cbManagementCatergory.Text, 1);
-            newMaterialCategory.Add(newMaterialCategory, database);
+            try
+            {
+                MaterialCategory newMaterialCategory = new MaterialCategory(cbManagementCatergory.Text, 1);
+                newMaterialCategory.Add(newMaterialCategory, database);
 
-            cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+                cbManagementCatergory.DataSource = MaterialCategory.GetAll(database);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(DecodeException(ex.Message));
+            }
         }
 
         //If the selected material is changed, the form will be filled with the material data
@@ -751,7 +883,7 @@ namespace Proftaak_ICT4Events
 
             tbManagementProductName.Text = selectedMaterial.Name;
             nudManagementProductAmount.Value = selectedMaterial.Amount;
-            nudManagementProductDeposit.Value = Math.Round(selectedMaterial.Deposit/100, 2);
+            nudManagementProductDeposit.Value = Math.Round(selectedMaterial.Deposit / 100, 2);
             cbManagementCatergory.SelectedIndex = selectedMaterial.MaterialCategoryName.MaterialCategoryID - 1;
             tbManagementDescription.Text = selectedMaterial.Description;
             tbManagementProductphotoPath.Text = selectedMaterial.PhotoPath;
@@ -777,7 +909,7 @@ namespace Proftaak_ICT4Events
             cbManagementProductAll.Text = "";
             nudManagementProductAmount.Value = 0;
             nudManagementProductDeposit.Value = 0;
-            
+
 
             pbProductList.ImageLocation = "";
 
@@ -796,37 +928,44 @@ namespace Proftaak_ICT4Events
         //The button has different functions depending on what radiobutton was selected
         private void btnManagementProductSelect_Click(object sender, EventArgs e)
         {
-            if(rbManagementProductEdit.Checked)
+            try
             {
-                //This will make the material update the database with it's current values using the Edit function in Material
-                //All the materials will be refreshed
-                Material editMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value * 100), (MaterialCategory)cbManagementCatergory.SelectedItem);
-                editMaterial.Edit(editMaterial, database);
-                cbManagementProductAll.DataSource = materialManager.getAll();
-                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
-            }
-            else if(rbManagementProductDelete.Checked)
-            {
-                DialogResult result = MessageBox.Show("Alle reserveringen van dit materiaal zullen ook worden verwijderd, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
+                if (rbManagementProductEdit.Checked)
                 {
-                    //This will remove the selected material from the database using the Remove function in Material
+                    //This will make the material update the database with it's current values using the Edit function in Material
                     //All the materials will be refreshed
-                    Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
-                    removeMaterial.Remove(removeMaterial, database);
+                    Material editMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value * 100), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                    editMaterial.Edit(editMaterial, database);
+                    cbManagementProductAll.DataSource = materialManager.getAll();
+                    cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                }
+                else if (rbManagementProductDelete.Checked)
+                {
+                    DialogResult result = MessageBox.Show("Alle reserveringen van dit materiaal zullen ook worden verwijderd, wilt u doorgaan?", "Important Question", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        //This will remove the selected material from the database using the Remove function in Material
+                        //All the materials will be refreshed
+                        Material removeMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                        removeMaterial.Remove(removeMaterial, database);
+                        cbManagementProductAll.DataSource = materialManager.getAll();
+                        cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                    }
+                }
+                else
+                {
+                    //This will add a new material to the database using the Add function in Material
+                    //All the materials will be refreshed
+                    Material newMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
+                    newMaterial.Add(newMaterial, database);
                     cbManagementProductAll.DataSource = materialManager.getAll();
                     cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //This will add a new material to the database using the Add function in Material
-                //All the materials will be refreshed
-                Material newMaterial = new Material(tbManagementProductName.Text, tbManagementDescription.Text, tbManagementProductphotoPath.Text, ((Material)cbManagementProductAll.SelectedItem).MaterialID, Convert.ToInt32(nudManagementProductAmount.Value), Convert.ToDecimal(nudManagementProductDeposit.Value), (MaterialCategory)cbManagementCatergory.SelectedItem);
-                newMaterial.Add(newMaterial, database);
-                cbManagementProductAll.DataSource = materialManager.getAll();
-                cbManagementProductAll_SelectedIndexChanged(cbManagementProductAll, EventArgs.Empty);
+                MessageBox.Show(DecodeException(ex.Message));
             }
         }
         #endregion
@@ -858,7 +997,7 @@ namespace Proftaak_ICT4Events
             lvReportedPosts.Columns[1].Width = 70;
             lvReportedPosts.Columns[2].Width = 145;
             lvReportedPosts.Columns[3].Width = 70;
-            
+
             List<ListViewItem> listviewitems = new List<ListViewItem>();
 
 
@@ -868,9 +1007,9 @@ namespace Proftaak_ICT4Events
 
                 int negativeCount = 0;
 
-                foreach(Rating rating in allRatings)
+                foreach (Rating rating in allRatings)
                 {
-                    if(!rating.Positive)
+                    if (!rating.Positive)
                     {
                         negativeCount++;
                     }
@@ -924,18 +1063,25 @@ namespace Proftaak_ICT4Events
 
             if (result == DialogResult.Yes)
             {
-                ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
-
-                foreach (ListViewItem item in checkedItems)
+                try
                 {
-                    MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
-                    currentMediafile.Remove(currentMediafile, database);
-                }
+                    ListView.CheckedListViewItemCollection checkedItems = lvReportedPosts.CheckedItems;
 
-                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+                    foreach (ListViewItem item in checkedItems)
+                    {
+                        MediaFile currentMediafile = MediaFile.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+                        currentMediafile.Remove(currentMediafile, database);
+                    }
+
+                    cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(DecodeException(ex.Message));
+                }
             }
         }
-        
+
 
         private void btnReportedReactionsRemove_Click(object sender, EventArgs e)
         {
@@ -943,19 +1089,25 @@ namespace Proftaak_ICT4Events
 
             if (result == DialogResult.Yes)
             {
-                ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
-
-                foreach (ListViewItem item in checkedItems)
+                try
                 {
-                    Comment currentComment = Comment.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+                    ListView.CheckedListViewItemCollection checkedItems = lvReportedComments.CheckedItems;
 
-                    currentComment.Remove(currentComment, database);
+                    foreach (ListViewItem item in checkedItems)
+                    {
+                        Comment currentComment = Comment.GetStatic(Convert.ToInt32(item.SubItems[0].Text), database);
+
+                        currentComment.Remove(currentComment, database);
+                    }
+
+                    cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
                 }
-
-                cbReportedPostsEvents_SelectedIndexChanged(this, EventArgs.Empty);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(DecodeException(ex.Message));
+                }
             }
         }
         #endregion
-
     }
 }
