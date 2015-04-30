@@ -257,7 +257,7 @@ namespace Proftaak_ICT4Events
         {
             try
             {
-                string destination = "/" + Path.GetFileName(filepath);
+                string destination = mHost + "/" + Path.GetFileName(filepath);
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(destination);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential(mUser, mPass);
