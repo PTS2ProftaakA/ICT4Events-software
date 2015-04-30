@@ -130,12 +130,14 @@ namespace Proftaak_ICT4Events
                 ((Control)tcMainForm.TabPages[5]).Enabled = false;
                 ((Control)tcMainForm.TabPages[6]).Enabled = false;
                 ((Control)tcMainForm.TabPages[7]).Enabled = false;
+                ((Control)tcMainForm.TabPages[4]).Enabled = true;
             }
             else
             {
                 ((Control)tcMainForm.TabPages[5]).Enabled = true;
                 ((Control)tcMainForm.TabPages[6]).Enabled = true;
                 ((Control)tcMainForm.TabPages[7]).Enabled = true;
+                ((Control)tcMainForm.TabPages[4]).Enabled = false;
             }
 
             //tab feed
@@ -525,15 +527,7 @@ namespace Proftaak_ICT4Events
             
             secondNewForm.ShowDialog();
 
-           
-            
-
-            if (secondNewForm.DialogResult == DialogResult.OK)
-            {
-                MessageBox.Show("Done");
-            }
-
-            //cbMapType_SelectedIndexChanged
+            cbMapType_SelectedIndexChanged(lvAvailableSpots, EventArgs.Empty);
         }
 
         //Determines how many people can go on the trip
