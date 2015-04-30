@@ -14,6 +14,7 @@ namespace Proftaak_ICT4Events
         //credentials to connect to the server
         private const string mHost = "ftp://192.168.20.28:21",
                              mUser = "SME",
+                             mPostUser = "POSTS",
                              mPass = "";
 
         public FTPClient(Database database)
@@ -138,7 +139,7 @@ namespace Proftaak_ICT4Events
         {
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + source);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
-            request.Credentials = new NetworkCredential(mUser, mPass);
+            request.Credentials = new NetworkCredential(mPostUser, mPass);
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             {
                 using (Stream stream = response.GetResponseStream())
@@ -260,7 +261,7 @@ namespace Proftaak_ICT4Events
                 string destination = mHost + "/" + Path.GetFileName(filepath);
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(destination);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
-                request.Credentials = new NetworkCredential(mUser, mPass);
+                request.Credentials = new NetworkCredential(mPostUser, mPass);
                 using (StreamReader reader = new StreamReader(filepath))
                 {
                     if (GetDirectoryListing("/").Where(s => s == Path.GetFileName(filepath)).Count() != 0)
