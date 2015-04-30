@@ -118,6 +118,44 @@ namespace Proftaak_ICT4Events
             }
         }
 
+        //Downloads a file to a temporary destination
+        public void DownloadTempFile(string source)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + source);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(mUser, mPass);
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    string dest = Path.GetTempPath() + Path.GetFileName(source);
+                    if (Path.GetExtension(source) == ".txt")
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        using (StreamWriter writer = new StreamWriter(dest))
+                        {
+                            writer.Write(reader.ReadToEnd());
+                            writer.Flush();
+                        }
+                    }
+                    else
+                    {
+                        using (FileStream writer = File.Create(dest))
+                        {
+                            byte[] buffer = new byte[32768];
+                            while (true)
+                            {
+                                int read = stream.Read(buffer, 0, buffer.Length);
+                                if (read <= 0)
+                                    return;
+                                writer.Write(buffer, 0, read);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         //Uploads the a file to the selected node
         public void UploadFile(TreeNode targetNode)
         {
