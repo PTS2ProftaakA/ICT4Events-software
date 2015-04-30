@@ -55,23 +55,31 @@ namespace Proftaak_ICT4Events
         //Creates a list of folders and files.
         private List<string> GetDirectoryListing(string path)
         {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
-            request.Method = WebRequestMethods.Ftp.ListDirectory;
-            request.Credentials = new NetworkCredential(mUser, mPass);
-            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-            List<string> result = new List<string>();
-            using (Stream stream = response.GetResponseStream())
+            try
             {
-                using (StreamReader reader = new StreamReader(stream))
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path);
+                request.Method = WebRequestMethods.Ftp.ListDirectory;
+                request.Credentials = new NetworkCredential(mUser, mPass);
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                List<string> result = new List<string>();
+                using (Stream stream = response.GetResponseStream())
                 {
-                    while (!reader.EndOfStream)
+                    using (StreamReader reader = new StreamReader(stream))
                     {
-                        result.Add(reader.ReadLine());
+                        while (!reader.EndOfStream)
+                        {
+                            result.Add(reader.ReadLine());
+                        }
                     }
                 }
+                return result;
             }
-            return result;
+            catch (Exception)
+            {
+                MessageBox.Show("Kon geen listing ophalen");
+                return null;
+            }
         }
 
         //Downloads the selected file to the selected folder
@@ -79,42 +87,49 @@ namespace Proftaak_ICT4Events
         {
             string file = CleanPathFromNode(targetNode);
 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + file);
-            request.Method = WebRequestMethods.Ftp.DownloadFile;
-            request.Credentials = new NetworkCredential(mUser, mPass);
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            try
             {
-                using (Stream stream = response.GetResponseStream())
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + file);
+                request.Method = WebRequestMethods.Ftp.DownloadFile;
+                request.Credentials = new NetworkCredential(mUser, mPass);
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
                 {
-                    SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.Filter = "Alle bestanden (*.*)|*.*";
-                    if (sfd.ShowDialog() == DialogResult.OK)
+                    using (Stream stream = response.GetResponseStream())
                     {
-                        if (Path.GetExtension(sfd.FileName) == ".txt")
+                        SaveFileDialog sfd = new SaveFileDialog();
+                        sfd.Filter = "Alle bestanden (*.*)|*.*";
+                        if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            using (StreamReader reader = new StreamReader(stream))
-                            using (StreamWriter writer = new StreamWriter(sfd.FileName))
+                            if (Path.GetExtension(sfd.FileName) == ".txt")
                             {
-                                writer.Write(reader.ReadToEnd());
-                                writer.Flush();
-                            }
-                        }
-                        else
-                        {
-                            using (FileStream writer = File.Create(sfd.FileName))
-                            {
-                                byte[] buffer = new byte[32768];
-                                while (true)
+                                using (StreamReader reader = new StreamReader(stream))
+                                using (StreamWriter writer = new StreamWriter(sfd.FileName))
                                 {
-                                    int read = stream.Read(buffer, 0, buffer.Length);
-                                    if (read <= 0)
-                                        return;
-                                    writer.Write(buffer, 0, read);
+                                    writer.Write(reader.ReadToEnd());
+                                    writer.Flush();
+                                }
+                            }
+                            else
+                            {
+                                using (FileStream writer = File.Create(sfd.FileName))
+                                {
+                                    byte[] buffer = new byte[32768];
+                                    while (true)
+                                    {
+                                        int read = stream.Read(buffer, 0, buffer.Length);
+                                        if (read <= 0)
+                                            return;
+                                        writer.Write(buffer, 0, read);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Kon bestand niet downloaden");
             }
         }
 
@@ -161,17 +176,94 @@ namespace Proftaak_ICT4Events
         {
             string path = CleanPathFromNode(targetNode);
 
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Alle bestanden (*.*)|*.*";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            try
             {
-                string destination = mHost + path + "/" + Path.GetFileName(ofd.FileName);
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Alle bestanden (*.*)|*.*";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string destination = mHost + path + "/" + Path.GetFileName(ofd.FileName);
+                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(destination);
+                    request.Method = WebRequestMethods.Ftp.UploadFile;
+                    request.Credentials = new NetworkCredential(mUser, mPass);
+                    using (StreamReader reader = new StreamReader(ofd.FileName))
+                    {
+                        if (GetDirectoryListing(path).Where(s => s == Path.GetFileName(ofd.FileName)).Count() != 0)
+                        {
+                            MessageBox.Show("Bestand bestaat al");
+                            return;
+                        }
+
+                        List<string> forbiddenWords = ForbiddenWord.GetAllStrings(mDatabase);
+                        foreach (string s in forbiddenWords)
+                        {
+                            if (Path.GetFileNameWithoutExtension(ofd.FileName).Contains(s))
+                            {
+                                MessageBox.Show("Bestandsnaam bevat een verboden woord");
+                                return;
+                            }
+                        }
+
+                        byte[] contents;
+                        string ext = Path.GetExtension(ofd.FileName);
+
+                        if (ext == ".txt")
+                        {
+                            foreach (string l in File.ReadAllLines(ofd.FileName))
+                            {
+                                foreach (string s in forbiddenWords)
+                                {
+                                    if (l.Contains(s))
+                                    {
+                                        MessageBox.Show("Tekstbestand bevat een verboden woord");
+                                        return;
+                                    }
+                                }
+                            }
+                            contents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
+                        }
+                        else if (ext == ".jpg" || ext == ".png" || ext == ".gif" || ext == ".mp4" || ext == ".avi" || ext == ".mp3")
+                        {
+                            contents = File.ReadAllBytes(ofd.FileName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bestandstype niet toegestaan.");
+                            return;
+                        }
+
+                        if ((request.ContentLength = contents.Length) == 0)
+                        {
+                            MessageBox.Show("Bestand heeft geen inhoud");
+                            return;
+                        }
+
+                        using (Stream stream = request.GetRequestStream())
+                        {
+                            stream.Write(contents, 0, contents.Length);
+                            MessageBox.Show("Bestand is geupload");
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Kon bestand niet uploaden");
+            }
+        }
+
+        //Uploads a file for use in a post
+        public void UploadPostFile(string filepath)
+        {
+            try
+            {
+                string destination = "/" + Path.GetFileName(filepath);
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(destination);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential(mUser, mPass);
-                using (StreamReader reader = new StreamReader(ofd.FileName))
+                using (StreamReader reader = new StreamReader(filepath))
                 {
-                    if (GetDirectoryListing(path).Where(s => s == Path.GetFileName(ofd.FileName)).Count() != 0)
+                    if (GetDirectoryListing("/").Where(s => s == Path.GetFileName(filepath)).Count() != 0)
                     {
                         MessageBox.Show("Bestand bestaat al");
                         return;
@@ -180,7 +272,7 @@ namespace Proftaak_ICT4Events
                     List<string> forbiddenWords = ForbiddenWord.GetAllStrings(mDatabase);
                     foreach (string s in forbiddenWords)
                     {
-                        if (Path.GetFileNameWithoutExtension(ofd.FileName).Contains(s))
+                        if (Path.GetFileNameWithoutExtension(filepath).Contains(s))
                         {
                             MessageBox.Show("Bestandsnaam bevat een verboden woord");
                             return;
@@ -188,11 +280,11 @@ namespace Proftaak_ICT4Events
                     }
 
                     byte[] contents;
-                    string ext = Path.GetExtension(ofd.FileName);
+                    string ext = Path.GetExtension(filepath);
 
                     if (ext == ".txt")
                     {
-                        foreach (string l in File.ReadAllLines(ofd.FileName))
+                        foreach (string l in File.ReadAllLines(filepath))
                         {
                             foreach (string s in forbiddenWords)
                             {
@@ -207,7 +299,7 @@ namespace Proftaak_ICT4Events
                     }
                     else if (ext == ".jpg" || ext == ".png" || ext == ".gif" || ext == ".mp4" || ext == ".avi" || ext == ".mp3")
                     {
-                        contents = File.ReadAllBytes(ofd.FileName);
+                        contents = File.ReadAllBytes(filepath);
                     }
                     else
                     {
@@ -228,6 +320,10 @@ namespace Proftaak_ICT4Events
                     }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Kon bestand niet uploaden");
+            }
         }
 
         //Add a directory with a custom name
@@ -247,15 +343,22 @@ namespace Proftaak_ICT4Events
                 return;
             }
 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path + "/" + name);
-            request.Method = WebRequestMethods.Ftp.MakeDirectory;
-            request.Credentials = new NetworkCredential(mUser, mPass);
-            try {
-                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse()) { }
+            try
+            {
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(mHost + path + "/" + name);
+                request.Method = WebRequestMethods.Ftp.MakeDirectory;
+                request.Credentials = new NetworkCredential(mUser, mPass);
+                try {
+                    using (FtpWebResponse response = (FtpWebResponse)request.GetResponse()) { }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Map kon niet toegevoegd worden");
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show("Map kon niet toegevoegd worden :(");
+                MessageBox.Show("Kon map niet aanmaken");
             }
         }
     }
